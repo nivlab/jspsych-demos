@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+
+    <!-- load some libraries -->
+    <script src="./lib/jspsych-6.3.1/jspsych.js"></script>
+
+    <!-- load some built-in jspsych modules -->
+    <script src="./lib/jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="./lib/jspsych-6.3.1/plugins/jspsych-html-button-response.js"></script>
+    <script src="./lib/jspsych-6.3.1/plugins/jspsych-survey-multi-choice.js"></script>
+    <script src="./lib/jspsych-6.3.1/plugins/jspsych-survey-text.js"></script>
+    <script src="./lib/jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
+    <link href="./lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+
+    <!-- load custom plugins to run the task -->
+    <script src="./js/turk-rsl.js"></script>
+    <script src="./js/probability-elicitation.js"></script>
+
+    <!-- load some task variables -->
+    <script src="./js/turk-rsl-runsheet.js"></script>
+    <script src="./js/turk-rsl-stimuli.js"></script>
+
+  </head>
+  <body></body>
+  <script>
+
+
+  //------------------------------------
+  // welcome messages and landing pages
+  //------------------------------------
+
+  // define welcome message
+  var welcome = {
+    type: "html-keyboard-response",
+    stimulus: "Welcome to the risk-sensitive learning task demo. Press any key to get started."
+  };
+
+  // define experiment end message
+  var expt_end = {
+    type: "html-keyboard-response",
+    stimulus: "End of demo."
+  };
+
+  //------------------------------------
+  // experimental variables
+  //------------------------------------
+
+  // randomise allocation of image numbers to stimuli numbers
+  var image_allocation = jsPsych.randomization.sampleWithoutReplacement([...Array(stimulus_images.length).keys()], stimulus_images.length);
+
+  // set up block and trial counters; these are global variables that will be incremented inside the turk
+  var counter = {};
+  counter.block = 1;
+  counter.trial = 1;
+  counter.n_blocks = 1;
+  counter.n_trials = rsl_runsheet.length;
+
+  // define what a block is
+  var rsl_block = {
+    timeline_variables: rsl_runsheet,
+    randomize_order: true,
+    timeline:
+    [{
+      type: 'turk-rsl',
+      stimuli: stimulus_images,
+      image_allocation: image_allocation,
+      feedback_images: feedback_images,
+      n_trials: rsl_runsheet.length,
+      left_image: jsPsych.timelineVariable('left_image'),
+      right_image: jsPsych.timelineVariable('right_image')
+    }],
+
+  };
+
+
+  //------------------------------------
+  // continuous orchard rating slider
+  //------------------------------------
+
+  // continuous value elictation slider
+  var continuous_value_elicitation = {
+    type: 'probability-elicitation',
+    slider_images: slider_images,
+    orchard_images: stimulus_images,
+    image_allocation: image_allocation
+  };
+
+  //------------------------------------
+  // put everything into a timeline
+  //------------------------------------
+
+  // Add variables to timeline in relevant order
+  var timeline = [
+
+    welcome,                              // landing page
+    rsl_block,                            // do task block
+    continuous_value_elicitation,         // do continuous value elicitation
+    expt_end                              // show final screen
+
+  ];
+
+  //------------------------------------
+  //  run the experiment
+  //------------------------------------
+
+  jsPsych.init({
+    timeline: timeline,
+    show_preload_progress_bar: true,
+    preload_images: [stimulus_images, feedback_images],
+    on_finish: function() {
+
+      // add interactions to the data variable
+      var interaction_data = jsPsych.data.getInteractionData();
+      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+      // get csv representation of data and log to console
+      var all_data = jsPsych.data.get();
+      jsPsych.data.displayData('json');
+    }
+  });
+
+  </script>
+</html>
