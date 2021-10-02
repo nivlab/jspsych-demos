@@ -2,22 +2,37 @@
 layout: default
 ---
 
-## Header 2
+# Tasks
 
-[bandit task](./tasks/bandit/experiment.html)
+TABLE OF CONTENTS
+{:toc}
 
-[rsl task](./tasks/rsl/experiment.html)
+<hr>
 
-[symmetry span task](./tasks/symmetry_span/experiment.html)
+## Bandit Tasks
 
+### [Simple 2-arm bandit](#test)
 
-> This is a blockquote following a header.
+> A simple 2-arm bandit task using Javascript and Canvas graphics.
 >
-> When something is important enough, you do it even if the odds are not in your favor.
+> [<b>Code</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/bandit) [<b>Demo</b>](./tasks/bandit/experiment.html)
 
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
+
+### Risk sensitive learning task (v1)
+
+> A jsPsych implementation of the risk sensitive learning task ([Niv et al. 2012](https://doi.org/10.1523/JNEUROSCI.5498-10.2012)) using Javascript and Canvas graphics.
+>
+> [<b>Code</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/rsl) [<b>Demo</b>](./tasks/rsl/experiment.html)
+
+<hr>
+
+## Neuropsychological Tasks
+
+### Symmetry span
+
+> A jsPsych implementation of the symmetry span test ([Unsworth et al. 2005](https://doi.org/10.3758/BF03192720)), adapted from [Mahi Luthra](https://github.com/mahiluthra/working_memory_tests).
+>
+> [<b>Code</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/symmetry_span) [<b>Demo</b>](./tasks/symmetry_span/experiment.html)
+
+
+## WIP
