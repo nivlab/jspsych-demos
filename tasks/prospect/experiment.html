@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gambling Experiment</title>
+
+  <!-- Load libraries -->
+  <script src="./lib/jquery-3.3.1/jquery.min.js"></script>
+  <script src="./lib/jspsych-6.3.1/jspsych.js"></script>
+
+  <!-- Load jsPsych plug-ins -->
+  <script src="./js/jspsych-task-comprehension.js" type="text/javascript"></script>
+  <script src="./js/jspsych-task-gamble.js" type="text/javascript"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-instructions.js" type="text/javascript"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
+
+  <!-- Load task data -->
+  <script src="./json/gambles.json" type="text/javascript" ></script>
+
+  <!-- Load CSS styles -->
+  <link href="./lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  <link href="./css/task.gamble.min.css" rel="stylesheet" type="text/css"></link>
+</head>
+<body></body>
+<script>
+
+// Display alert message on back/refresh.
+// https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+function verify_unload(e){
+  e.preventDefault();
+  (e || window.event).returnValue = null;
+  return null;
+};
+window.addEventListener("beforeunload", verify_unload);
+
+// Define experiment fullscreen.
+var fullscreen = {
+  type: 'fullscreen',
+  fullscreen_mode: true
+}
+
+//------------------------------------//
+// Section 1: Prepare instructions
+//------------------------------------//
+
+var instr = {
+  type: 'instructions',
+  pages: [
+    "<img src='./img/instr01.png' style='max-width: 75%'></img>",
+    "<img src='./img/instr02.png' style='max-width: 75%'></img>",
+    "<img src='./img/instr03.png' style='max-width: 75%'></img>",
+    "<img src='./img/instr04.png' style='max-width: 75%'></img>",
+    "<img src='./img/instr05.png' style='max-width: 75%'></img>",
+    "<img src='./img/instr06.png' style='max-width: 75%'></img>",
+    "<img src='./img/instr07.png' style='max-width: 75%'></img>",
+    "<img src='./img/instr08.png' style='max-width: 75%'></img>",
+    "<img src='./img/instr09.png' style='max-width: 75%'></img>",
+    "<img src='./img/instr10.png' style='max-width: 75%'></img>",
+    "<img src='./img/instr11.png' style='max-width: 75%'></img>",
+  ],
+  show_clickable_nav: true,
+  button_label_previous: "Prev",
+  button_label_next: "Next"
+}
+
+var comprehension = {
+  type: 'task-comprehension'
+}
+
+var reminder = {
+  type: 'instructions',
+  pages: [
+    "<img src='./img/instr12.png' style='max-width: 75%'></img>",
+  ],
+  show_clickable_nav: true,
+  button_label_previous: "Prev",
+  button_label_next: "Next"
+}
+
+//------------------------------------//
+// Section 2: Prepare Gambles
+//------------------------------------//
+
+// Load gambles.
+var GAMBLES = JSON.parse(GAMBLES);
+
+// Iteratively construct trials.
+var trials =[];
+GAMBLES.forEach(function (gamble) {
+
+  // Define side presentation.
+  var left = jsPsych.randomization.sampleWithoutReplacement([true,false], 1)[0];
+
+  // Define gambling trial.
+  var trial = {
+    type: 'task-gamble',
+
+    // Gamble trial data.
+    pA1: gamble['pA1'],        // Gamble A, high value probability
+    pA2: gamble['pA2'],        // Gamble A, low value probability
+    A1:  gamble['A1'],         // Gamble A, high value magnitude
+    A2:  gamble['A2'],         // Gamble A, low value magnitude
+    pB1: gamble['pB1'],        // Gamble B, high value probability
+    pB2: gamble['pB2'],        // Gamble B, low value probability
+    B1:  gamble['B1'],         // Gamble B, high value magnitude
+    B2:  gamble['B2'],         // Gamble B, low value magnitude
+    left: left,                // Gamble A on left side
+
+    // Gamble trial metadata
+    data: { ID: gamble['ID'], Domain: gamble['Domain'], Problem: gamble['Problem'] },
+
+  };
+
+  // Store trial.
+  trials.push(trial);
+
+});
+
+// Randomize trial order.
+var trials = jsPsych.randomization.sampleWithoutReplacement(trials, trials.length);
+
+//------------------------------------//
+// Section 3: Present experiment
+//------------------------------------//
+
+// Initialize timeline.
+var timeline = [];
+timeline = timeline.concat(fullscreen);
+timeline = timeline.concat(instr);
+timeline = timeline.concat(comprehension);
+timeline = timeline.concat(reminder);
+timeline = timeline.concat(trials);
+
+jsPsych.init({
+  timeline: timeline,
+  show_progress_bar: true,
+  on_finish: function() {
+
+    // Add interactions to the data variable
+    var interaction_data = jsPsych.data.getInteractionData();
+    jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+    // Display jsPsych data in viewport.
+    jsPsych.data.displayData();
+
+  }
+})
+
+</script>
+</html>

@@ -12,7 +12,7 @@ TABLE OF CONTENTS
 
 <hr>
 
-## Bandit Tasks
+## Reinforcement Learning Tasks
 
 ### Simple 2-arm bandit
 
@@ -61,6 +61,16 @@ TABLE OF CONTENTS
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/horizons) [<b>[Demo]</b>](./tasks/horizons/experiment.html)
 
 > An implementation of the horizons task ([Wilson et al. 2014](https://doi.org/10.1037/a0038199)) using Javascript and CSS.
+
+<hr>
+
+## Decision-making Tasks
+
+### Prospect theory gambles
+
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/prospect) [<b>[Demo]</b>](./tasks/prospect/experiment.html)
+
+> A jsPsych implementation of prospect theory gambles using icon arrays ([Banchilon et al. 2019](http://arxiv.org/abs/1910.09725)).
 
 <hr>
 
