@@ -4,7 +4,7 @@ layout: default
 
 ## Header 2
 
-[bandit task](./tasks/bandit/bandit.html).
+[bandit task](./tasks/bandit/experiment.html)
 
 > This is a blockquote following a header.
 >
