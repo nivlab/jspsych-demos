@@ -1,0 +1,479 @@
+/* ---------------------------------- */
+/* Task layout CSS                    */
+/* ---------------------------------- */
+
+/* Container for screen */
+.investment-game-container {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* ---------------------------------- */
+/* Smartphone CSS                     */
+/* ---------------------------------- */
+/* inspired by Tobias Meier */
+/* https://codepen.io/teiermobi/pen/yNNdbN */
+
+.smartphone {
+
+  /* smartphone position */
+  position: relative;
+  top: 0px;
+
+  /* smartphone size */
+  width: 320px;
+  height: 450px;
+
+  /* smartphone display */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* smartphone shape & border */
+  border-left:9px solid #191919;
+  border-right:9px solid #191919;
+  border-top: 50px solid #191919;
+  border-bottom: 65px solid #191919;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+
+  /* smartphone styling */
+  margin: 2rem auto;
+  background: #f2f2f2;
+
+}
+
+.smartphone::before {
+
+  /* speaker position */
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  /* speaker size */
+  width: 42px;
+  height: 4px;
+  border-radius: 30px;
+
+  /* speaker styling */
+  content: "";
+  background: #666;
+
+}
+
+.smartphone::after {
+
+  /* button position */
+  position: absolute;
+  top: calc(100% + 32.5px);
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translateY(-50%, -50%);
+
+  /* button size */
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+
+  /* button styling */
+  content: "";
+  background: #666;
+
+}
+
+.smartphone .side-button {
+
+  /* button position */
+  position: absolute;
+  left: -4.2%;
+  top: 80px;
+
+  /* button size */
+  width: 10px;
+  height: 80px;
+
+  /* button shape & border */
+  border-top-left-radius:5px;
+  border-bottom-left-radius:5px;
+
+  /* button styling */
+  background: #191919;
+
+}
+
+.smartphone .top-bar {
+
+  /* bar position */
+  position: absolute;
+  left: 0px;
+  top: 0px;
+
+  /* bar size */
+  width: 100%;
+  height: 20px;
+  padding-top: 5px;
+
+  /* bar styling */
+  background: #333;
+  opacity: 0.4;
+
+}
+
+.smartphone .top-bar #wifi {
+
+  /* wifi icon position */
+  position: absolute;
+  left:7px;
+  top: 2px;
+  float: left;
+
+  /* wifi icon styling */
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+
+}
+
+.smartphone .top-bar #battery {
+
+  /* battery icon position */
+  position: absolute;
+  left: 90%;
+  top: 0px;
+  float: right;
+
+  /* battery icon styling */
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+
+}
+
+/* ---------------------------------- */
+/* Investment app CSS                 */
+/* ---------------------------------- */
+
+.smartphone .app {
+
+  /* app position */
+  position: absolute;
+  bottom: 0;
+
+  /* app size */
+  width: 100%;
+  height: calc(100%);
+
+  /* app styling */
+  background: #f2f2f2;
+  overflow: hidden;
+
+  /* app font */
+  font-family: 'Quicksand', sans-serif;
+  font-size: 15px;
+
+}
+
+.smartphone .app .stock {
+
+  /* stock position */
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+
+  /* stock size */
+  height: 105px;
+  width: 105px;
+
+  /* stock display */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* stock styling */
+  background: #3f51b5;
+  border-radius: 50%;
+  color: #fff;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 28px;
+
+}
+
+.smartphone .app .invest-box {
+
+  /* investments box position */
+  position: absolute;
+  top: 180px;
+
+  /* investments box size */
+  height: 125px;
+  width: 100%;
+
+  /* investments box styling */
+  background: #FFFFFF;
+  border-radius: 5px;
+  color: #fff;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 24px;
+
+}
+
+.smartphone .app .invest-box #funds {
+
+  /* funds position */
+  position: absolute;
+  left: 21px;
+
+  /* funds font */
+  font-family: 'Quicksand', sans-serif;
+
+}
+
+.smartphone .app .invest-box #funds:nth-of-type(odd) {
+  top: 3px;
+  font-size: 14px;
+  color: grey;
+}
+
+.smartphone .app .invest-box #funds:nth-of-type(even) {
+  top: calc(7px + 1em);
+  font-size: 20px;
+  color: black;
+}
+
+.smartphone .app .invest-box .choice {
+
+  /* choice position */
+  position: absolute;
+  left: 50%;
+  top: 75%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  /* choice size */
+  height: 25px;
+  width: 110px;
+
+  /* choice styling */
+  background: #3f51b5;
+  border-radius: 4px;
+  padding: 6px;
+
+  /* choice fonts */
+  color: #fff;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 17px;
+
+}
+
+.smartphone .app .invest-box .choice:nth-of-type(odd) {
+  left: 25%;
+}
+
+.smartphone .app .invest-box .choice:nth-of-type(even) {
+  left: 75%;
+}
+
+.smartphone .app .invest-box .choice[status='selected'] {
+  border: 3px solid #D3D3D3;
+}
+
+#choice-1 {
+  background: transparent;
+  border: 1px solid #D3D3D3;
+  color: black;
+}
+
+#choice-1[status='selected'] {
+  border: 3px solid #D3D3D3;
+}
+
+.smartphone .app .earnings-box {
+
+  /* earnings box position */
+  position: absolute;
+  top: 180px;
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+
+  /* earnings box size */
+  height: 125px;
+  width: 100%;
+
+  /* earnings box display */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* earnings box styling */
+  background: #FFFFFF;
+  border-radius: 5px;
+
+}
+
+.smartphone .app .earnings-box #earnings {
+
+  /* earnings text display */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* earnings text font */
+  font-family: 'Quicksand', sans-serif;
+  font-size: 30px;
+  color: #000000;
+
+}
+
+/* arrow color filters */
+/* https://codepen.io/sosuke/pen/Pjoqqp */
+
+.smartphone .app .earnings-box #up-arrow {
+  filter: invert(50%) sepia(32%) saturate(1188%) hue-rotate(97deg) brightness(95%) contrast(89%);
+  -webkit-filter: invert(50%) sepia(32%) saturate(1188%) hue-rotate(97deg) brightness(95%) contrast(89%);
+}
+
+.smartphone .app .earnings-box #down-arrow {
+  filter: invert(27%) sepia(42%) saturate(6168%) hue-rotate(336deg) brightness(73%) contrast(146%);
+  -webkit-filter: invert(27%) sepia(42%) saturate(6168%) hue-rotate(336deg) brightness(73%) contrast(146%);
+}
+
+/* ---------------------------------- */
+/* Loading screen CSS                 */
+/* ---------------------------------- */
+/* inspired from loading.io */
+/* https://loading.io/css/ */
+
+.lds-spinner {
+  color: official;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-spinner div {
+  transform-origin: 40px 40px;
+  animation: lds-spinner 1.6s linear infinite;
+  -webkit-animation: lds-spinner 1.0s linear infinite;
+  -moz-animation: lds-spinner 1.0s linear infinite;
+}
+.lds-spinner div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 37px;
+  width: 6px;
+  height: 18px;
+  border-radius: 20%;
+  background: #A8A8A8;
+}
+.lds-spinner div:nth-child(1) {
+  transform: rotate(0deg);
+  animation-delay: -1.1s;
+}
+.lds-spinner div:nth-child(2) {
+  transform: rotate(30deg);
+  animation-delay: -1s;
+}
+.lds-spinner div:nth-child(3) {
+  transform: rotate(60deg);
+  animation-delay: -0.9s;
+}
+.lds-spinner div:nth-child(4) {
+  transform: rotate(90deg);
+  animation-delay: -0.8s;
+}
+.lds-spinner div:nth-child(5) {
+  transform: rotate(120deg);
+  animation-delay: -0.7s;
+}
+.lds-spinner div:nth-child(6) {
+  transform: rotate(150deg);
+  animation-delay: -0.6s;
+}
+.lds-spinner div:nth-child(7) {
+  transform: rotate(180deg);
+  animation-delay: -0.5s;
+}
+.lds-spinner div:nth-child(8) {
+  transform: rotate(210deg);
+  animation-delay: -0.4s;
+}
+.lds-spinner div:nth-child(9) {
+  transform: rotate(240deg);
+  animation-delay: -0.3s;
+}
+.lds-spinner div:nth-child(10) {
+  transform: rotate(270deg);
+  animation-delay: -0.2s;
+}
+.lds-spinner div:nth-child(11) {
+  transform: rotate(300deg);
+  animation-delay: -0.1s;
+}
+.lds-spinner div:nth-child(12) {
+  transform: rotate(330deg);
+  animation-delay: 0s;
+}
+@keyframes lds-spinner {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+@-webkit-keyframes lds-spinner {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+@-moz-keyframes lds-spinner {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+/* ---------------------------------- */
+/* Animations CSS                     */
+/* ---------------------------------- */
+
+/* end of trial feedback animations */
+.smartphone .app .invest-box[status='feedback'] {
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+  animation: side-scroll-invest 0.25s linear;
+  -webkit-animation: side-scroll-invest 0.25s linear;
+  -moz-animation: side-scroll-invest 0.25s linear;
+}
+@keyframes side-scroll-invest {
+  0% {transform: translateX(0%); }
+  100% {transform: translateX(-100%); }
+}
+@-webkit-keyframes side-scroll-invest {
+  0% {transform: translateX(0%); }
+  100% {transform: translateX(-100%); }
+}
+@-moz-animation side-scroll-invest {
+  0% {transform: translateX(0%); }
+  100% {transform: translateX(-100%); }
+}
+
+/* end of trial feedback animations */
+.smartphone .app .earnings-box[status='feedback'] {
+  transform: translateX(0%);
+  -webkit-transform: translateX(0%);
+  animation: side-scroll-earnings 0.25s linear;
+  -webkit-animation: side-scroll-earnings 0.25s linear;
+  -moz-animation: side-scroll-earnings 0.25s linear;
+}
+@keyframes side-scroll-earnings {
+  0% {transform: translateX(100%); }
+  100% {transform: translateX(0%); }
+}
+@-webkit-keyframes side-scroll-earnings {
+  0% {transform: translateX(100%); }
+  100% {transform: translateX(0%); }
+}
+@-moz-animation side-scroll-earnings {
+  0% {transform: translateX(100%); }
+  100% {transform: translateX(0%); }
+}

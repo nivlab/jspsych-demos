@@ -38,6 +38,12 @@ TABLE OF CONTENTS
 
 > A child-friendly, fishing-themed implementation of the risk sensitive learning task ([Niv et al. 2012](https://doi.org/10.1523/JNEUROSCI.5498-10.2012)) using Javascript and CSS.
 
+### Risky investment task
+
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/investment) [<b>[Demo]</b>](./tasks/investment/experiment.html)
+
+> A stock market-themed risky investment task implemented using Javascript and CSS. Similar in framing to [Zhang et al. (2015)](https://doi.org/10.1111/tops.12143). Designed to study risk sensitive reinforcement learning behaviors.
+
 ### Horizons task
 
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/horizons) [<b>[Demo]</b>](./tasks/horizons/experiment.html)
