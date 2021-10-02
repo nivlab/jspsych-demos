@@ -20,6 +20,12 @@ TABLE OF CONTENTS
 
 > A simple 2-arm bandit task using Javascript and Canvas graphics.
 
+### 3-arm reversal learning task
+
+[<b>[Code]</b>](https://github.com/nivlab/ThreeArmJS) [<b>[Demo]</b>](https://nivlab.github.io/ThreeArmJS)
+
+> A gamified, fishing-themed 3-arm reversal learning task implemented using Javascript and CSS.
+
 ### Risk sensitive learning task (v1)
 
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/rsl-v1) [<b>[Demo]</b>](./tasks/rsl-v1/experiment.html)
@@ -32,11 +38,11 @@ TABLE OF CONTENTS
 
 > A child-friendly, fishing-themed implementation of the risk sensitive learning task ([Niv et al. 2012](https://doi.org/10.1523/JNEUROSCI.5498-10.2012)) using Javascript and CSS.
 
-### 3-arm reversal learning task
+### Horizons task
 
-[<b>[Code]</b>](https://github.com/nivlab/ThreeArmJS) [<b>[Demo]</b>](https://nivlab.github.io/ThreeArmJS)
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/horizons) [<b>[Demo]</b>](./tasks/horizons/experiment.html)
 
-> A gamified, fishing-themed 3-arm reversal learning task implemented using Javascript and CSS.
+> An implementation of the horizons task ([Wilson et al. 2014](https://doi.org/10.1037/a0038199)) using Javascript and CSS.
 
 <hr>
 
