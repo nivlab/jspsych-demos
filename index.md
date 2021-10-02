@@ -44,6 +44,12 @@ TABLE OF CONTENTS
 
 > A stock market-themed risky investment task implemented using Javascript and CSS. Similar in framing to [Zhang et al. (2015)](https://doi.org/10.1111/tops.12143). Designed to study risk sensitive reinforcement learning behaviors.
 
+### Relative value learning task
+
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/rvl) [<b>[Demo]</b>](./tasks/rvl/experiment.html)
+
+> A science fiction-themed implementation of the relative value learning task ([Palminteri et al. 2015](https://doi.org/10.1038/ncomms9096)). Runs two blocks of only counterfactual learning but can be easily adapted to include factual learning.
+
 ### Horizons task
 
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/horizons) [<b>[Demo]</b>](./tasks/horizons/experiment.html)

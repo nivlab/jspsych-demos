@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Robot Recruitment</title>
+
+  <!-- Load libraries -->
+  <script src="./lib/jquery-3.3.1/jquery.min.js"></script>
+  <script src="./lib/jspsych-6.3.1/jspsych.js"></script>
+
+  <!-- Load experiment -->
+  <script src="./js/palminteri-experiment.js" type="text/javascript"></script>
+
+  <!-- Load jsPsych plug-ins -->
+  <script src="./js/jspsych-palminteri-instructions.js" type="text/javascript"></script>
+  <script src="./js/jspsych-palminteri-comprehension.js" type="text/javascript"></script>
+  <script src="./js/jspsych-palminteri-practice.js" type="text/javascript"></script>
+  <script src="./js/jspsych-palminteri-learning.js" type="text/javascript"></script>
+  <script src="./js/jspsych-palminteri-probe.js" type="text/javascript"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-instructions.js" type="text/javascript"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-call-function.js" type="text/javascript"></script>
+
+  <!-- Load CSS styles -->
+  <link rel="stylesheet" href="./lib/jspsych-6.3.1/css/jspsych.css">
+  <link rel="stylesheet" href="./css/robots-css.min.css">
+
+</head>
+<body></body>
+<script>
+
+  // Display alert message on back/refresh.
+  // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+  function verify_unload(e){
+    e.preventDefault();
+    (e || window.event).returnValue = null;
+    return null;
+  };
+  window.addEventListener("beforeunload", verify_unload);
+
+  // Define global variables.
+  var low_quality = false;
+
+  // Define timeline.
+  var timeline = [];
+  timeline = timeline.concat(instructions);        // Instructions loop
+  timeline = timeline.concat(comprehension_check); // Comprehension check (implicit)
+  timeline = timeline.concat(ready);
+  timeline = timeline.concat(learning_phase_1);
+  timeline = timeline.concat(instructions_05);
+  timeline = timeline.concat(probe_phase_1);
+  timeline = timeline.concat(instructions_06);
+  timeline = timeline.concat(learning_phase_2);
+  timeline = timeline.concat(instructions_05);
+  timeline = timeline.concat(probe_phase_2);
+  timeline = timeline.concat(complete);
+
+  jsPsych.init({
+    timeline: timeline,
+    show_progress_bar: true,
+    on_finish: function() {
+
+      // Remove requirement to verify redirect
+      window.removeEventListener("beforeunload", verify_unload);
+
+      // Add interactions to the data variable
+      var interaction_data = jsPsych.data.getInteractionData();
+      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+      // Display jsPsych data in viewport.
+      jsPsych.data.displayData();
+
+    }
+  })
+
+</script>
+</html>
