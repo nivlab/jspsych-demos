@@ -3,7 +3,7 @@
 
 body {
   background-color: #fff;
-  padding:50px;
+  padding: 50px;
   font: 14px/1.5 "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color:#727272;
   font-weight:400;
@@ -23,7 +23,7 @@ h1, h2, h3 {
 }
 
 h1 {
-  font-size:28px;
+  font-size:30px;
 }
 
 h2 {
@@ -34,16 +34,17 @@ h3, h4, h5, h6 {
   color:#494949;
 }
 
+h3 {
+  margin: 0 0 6px;
+}
+
 a {
-  // color:#267CB9;
   color: #810081;
   text-decoration:none;
 }
 
 a:hover, a:focus {
-  // color: #069;
   color: #670067;
-  font-weight: bold;
 }
 
 a small {
@@ -63,10 +64,9 @@ a:hover small {
 }
 
 blockquote {
-  border-left:1px solid #e5e5e5;
-  margin:0;
-  padding:0 0 0 20px;
-  font-style:italic;
+  border-left: 0px solid #e5e5e5;
+  margin: 0;
+  padding: 0 0 0 12px;
 }
 
 code, pre {
@@ -125,6 +125,10 @@ header {
   float:left;
   position:fixed;
   -webkit-font-smoothing:subpixel-antialiased;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 ul.downloads {
