@@ -38,6 +38,12 @@ TABLE OF CONTENTS
 
 > A child-friendly, fishing-themed implementation of the risk sensitive learning task ([Niv et al. 2012](https://doi.org/10.1523/JNEUROSCI.5498-10.2012)) using Javascript and CSS.
 
+### Modified risk sensitivity task
+
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/mrst) [<b>[Demo]</b>](./tasks/mrst/experiment.html)
+
+> A modified version of the risk sensitive learning task ([Niv et al. 2012](https://doi.org/10.1523/JNEUROSCI.5498-10.2012)) developed & used by Livia Qoshe for her honor's thesis work in Niv lab.
+
 ### Risky investment task
 
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/investment) [<b>[Demo]</b>](./tasks/investment/experiment.html)
