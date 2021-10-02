@@ -3,8 +3,12 @@ layout: default
 ---
 
 # Tasks
+{:.no_toc}
 
 TABLE OF CONTENTS
+
+* TOC
+{:toc}
 
 <hr>
 
