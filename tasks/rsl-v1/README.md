@@ -1,4 +1,4 @@
-# Risk sensitive learning
+# Risk sensitive learning (v1)
 
 Author(s): Dan Bennett
 

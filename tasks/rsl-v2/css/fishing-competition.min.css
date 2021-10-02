@@ -1,0 +1,457 @@
+/* ---------------------------------- */
+/* Fishing Competition Layout         */
+/* ---------------------------------- */
+
+.fishing-wrap {
+  height: 100vh;
+  width: 100vw;
+}
+.beach-grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+  height: 50vw;
+  width: 100vw;
+}
+.beach-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 40vw;
+  height: 30vw;
+  border: 3px solid #807256;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.beach-container[side='left'] {
+  left: 27.5%;
+}
+.beach-container[side='right'] {
+  left: 72.5%;
+}
+.beach-container[context='closed'] {
+  -webkit-filter: opacity(20%);
+  filter: opacity(20%);
+}
+
+/* ---------------------------------- */
+/* Fishing Competition Elements       */
+/* ---------------------------------- */
+
+.sky {
+  position: absolute;
+  height: 40%;
+  width: 100%;
+  background: linear-gradient(to bottom, #037ccb 0%, #82ccef 100%);
+}
+.sand {
+  position: absolute;
+  top: 65%;
+  height: 35%;
+  width: 100%;
+  background: #fdf1d7;
+}
+.wet-sand {
+  position: absolute;
+  left: 0%;
+  top: 40%;
+  height: 37.5%;
+  width: 100%;
+  border-radius:0 0 10% 10%;
+  background: #ecc075;
+  box-shadow: 0 10px 10px 0 #ecc075;
+  animation: wet-sand ease-in-out 10s infinite;
+  -webkit-animation: wet-sand ease-in-out 10s infinite;
+}
+.wet-sand[context='red'] {
+  animation: wet-sand ease-in-out 10.5s infinite;
+  -webkit-animation: wet-sand ease-in-out 10.5s infinite;
+}
+.wet-sand[context='green'] {
+  animation: wet-sand ease-in-out 10.25s infinite;
+  -webkit-animation: wet-sand ease-in-out 10.25s infinite;
+}
+.wet-sand[context='blue'] {
+  animation: wet-sand ease-in-out 9.5s infinite;
+  -webkit-animation: wet-sand ease-in-out 9.5s infinite;
+}
+.wet-sand[context='purple'] {
+  animation: wet-sand ease-in-out 9.75s infinite;
+  -webkit-animation: wet-sand ease-in-out 9.75s infinite;
+}
+@keyframes wet-sand {
+  0%   { opacity: 0.2; }
+  34%  { opacity: 0.2; }
+  35%  { opacity: 0.7; }
+  100% { opacity: 0.2; }
+}
+@-webkit-keyframes wet-sand {
+  0%   { opacity: 0.2; }
+  34%  { opacity: 0.2; }
+  35%  { opacity: 0.7; }
+  100% { opacity: 0.2; }
+}
+.sea {
+  position: absolute;
+  left: 0%;
+  top: 40%;
+  height: 30%;
+  width: 100%;
+  border-radius: 0 0 10% 10%;
+  background: linear-gradient(to bottom, rgba(8,122,193,1) 0%, rgba(18,156,192,1) 25%, rgba(42,212,229,1) 50%, rgba(150,233,239,1) 75%, rgba(222,236,211,1) 100%);
+  animation: wave ease-in-out 10s infinite;
+  -webkit-animation: wave ease-in-out 10s infinite;
+  transform-origin: 50% 0%;
+  overflow: hidden;
+}
+.sea[context='red'] {
+  animation: wave ease-in-out 10.5s infinite;
+  -webkit-animation: wave ease-in-out 10.5s infinite;
+}
+.sea[context='green'] {
+  animation: wave ease-in-out 10.25s infinite;
+  -webkit-animation: wave ease-in-out 10.25s infinite;
+}
+.sea[context='blue'] {
+  animation: wave ease-in-out 9.5s infinite;
+  -webkit-animation: wave ease-in-out 9.5s infinite;
+}
+.sea[context='purple'] {
+  animation: wave ease-in-out 9.75s infinite;
+  -webkit-animation: wave ease-in-out 9.75s infinite;
+}
+@keyframes wave {
+  0%   { transform: scaleY(1.00); }
+  35%  { transform: scaleY(1.30); }
+  69%  { transform: scaleY(1.00); }
+  100% { transform: scaleY(1.00); }
+}
+@-webkit-keyframes wave {
+  0%   { transform: scaleY(1.00); }
+  35%  { transform: scaleY(1.30); }
+  69%  { transform: scaleY(1.00); }
+  100% { transform: scaleY(1.00); }
+}
+.seafoam {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, transparent 90%, white 100%);
+  -webkit-animation: seafoam ease-in-out 10s infinite;
+  animation: seafoam ease-in-out 10s infinite;
+}
+.seafoam[context='red'] {
+  -webkit-animation: seafoam ease-in-out 10.5s infinite;
+  animation: seafoam ease-in-out 10.5s infinite;
+}
+.seafoam[context='green'] {
+  -webkit-animation: seafoam ease-in-out 10.25s infinite;
+  animation: seafoam ease-in-out 10.25s infinite;
+}
+.seafoam[context='blue'] {
+  -webkit-animation: seafoam ease-in-out 9.5s infinite;
+  animation: seafoam ease-in-out 9.5s infinite;
+}
+.seafoam[context='purple'] {
+  -webkit-animation: seafoam ease-in-out 9.75s infinite;
+  animation: seafoam ease-in-out 9.75s infinite;
+}
+@keyframes seafoam {
+  0%   { opacity: 0; }
+  30%  { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+@-webkit-keyframes seafoam {
+  0%   { opacity: 0; }
+  30%  { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+.sand-front {
+  position: absolute;
+  height: 10%;
+  width: 100%;
+  background: #fdf1d7;
+  top: 90%;
+}
+.cloud {
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  fill: #e9f4f2;
+  overflow: visible;
+}
+.cloud[pattern='1'] {
+  content: url("../img/cloud01.svg");
+}
+.cloud[pattern='2'] {
+  content: url("../img/cloud02.svg")
+}
+.cloud[pattern='3'] {
+  content: url("../img/cloud03.svg")
+}
+.cloud[context='closed'] {
+  display: none;
+}
+.cloud[context='red'][pattern='1'] {
+  left: 20%;
+  top: 11%;
+  height: 9%;
+  width: 9%;
+}
+.cloud[context='red'][pattern='2'] {
+  left: 55%;
+  top: 18%;
+  height: 15%;
+  width: 15%;
+}
+.cloud[context='red'][pattern='3'] {
+  left: 85%;
+  top: 14%;
+  height: 11%;
+  width: 11%;
+}
+.cloud[context='green'][pattern='1'] {
+  left: 87%;
+  top: 13%;
+  height: 13%;
+  width: 13%;
+}
+.cloud[context='green'][pattern='2'] {
+  left: 11%;
+  top: 18%;
+  height: 15%;
+  width: 15%;
+}
+.cloud[context='green'][pattern='3'] {
+  left: 45%;
+  top: 9%;
+  height: 7%;
+  width: 7%;
+}
+.cloud[context='blue'][pattern='1'] {
+  left: 26%;
+  top: 22%;
+  height: 14%;
+  width: 14%;
+}
+.cloud[context='blue'][pattern='2'] {
+  left: 83%;
+  top: 18%;
+  height: 11%;
+  width: 11%;
+}
+.cloud[context='blue'][pattern='3'] {
+  left: 45%;
+  top: 18%;
+  height: 11%;
+  width: 11%;
+}
+.cloud[context='purple'][pattern='1'] {
+  left: 57%;
+  top: 12%;
+  height: 7%;
+  width: 7%;
+}
+.cloud[context='purple'][pattern='2'] {
+  left: 23%;
+  top: 18%;
+  height: 11%;
+  width: 11%;
+}
+.cloud[context='purple'][pattern='3'] {
+  left: 87%;
+  top: 18%;
+  height: 13%;
+  width: 13%;
+}
+.surfboard {
+  position: absolute;
+  bottom: 10%;
+  -webkit-transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%);
+  height: 55%;
+  width: 55%;
+}
+.surfboard[side='left'] {
+  left: 12.5%;
+}
+.surfboard[side='right'] {
+  left: 87.5%;
+}
+.surfboard[context='red'] {
+  content: url("../img/surfboard-red.svg");
+}
+.surfboard[context='green'] {
+  content: url("../img/surfboard-green.svg");
+}
+.surfboard[context='blue'] {
+  content: url("../img/surfboard-blue.svg");
+}
+.surfboard[context='purple'] {
+  content: url("../img/surfboard-purple.svg");
+}
+.decal {
+  position: absolute;
+  top: 60%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d()(-50%, -50%, 0);
+}
+.decal[side='left'] {
+  left: 12.5%;
+}
+.decal[side='right'] {
+  left: 87.5%;
+}
+.decal[context='red'] {
+  content: url("../img/animal-lion.svg");
+  height: 14%;
+  width: 14%;
+  -webkit-transform: translate3d(-50%, -50%, 0) scaleX(-1);
+  transform: translate3d(-50%, -50%, 0) scaleX(-1);
+}
+.decal[context='green'] {
+  content: url("../img/animal-snake.svg");
+  height: 15%;
+  width: 15%;
+}
+.decal[context='blue'] {
+  content: url("../img/animal-elephant.svg");
+  height: 17%;
+  width: 17%;
+}
+.decal[context='purple'] {
+  content: url("../img/animal-monkey.svg");
+  height: 17%;
+  width: 17%;
+}
+.shadow {
+  position: absolute;
+  left: 86%;
+  bottom: 11%;
+  -webkit-ransform: translate(-50%, 50%) rotateX(80deg);
+  transform: translate(-50%, 50%) rotateX(80deg);
+  width: 15%;
+  height: 17%;
+  background: black;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+.shadow[side='left'] {
+  left: 11%;
+}
+.shadow[side='right'] {
+  left: 86%;
+}
+.shadow[context='closed'] {
+  display: none;
+}
+.closed-sign {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  -webkit-ransform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 40%;
+  background-color: white;
+  border-radius: 4px 4px;
+  display: none;
+}
+.closed-sign[context='closed'] {
+  display: inherit;
+}
+.closed-sign::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 2px);
+  -webkit-ransform: translate(-50%, 0%);
+  transform: translate(-50%, 0%);
+  width: 75%;
+  height: 50%;
+  border-left: 6px solid grey;
+  border-right: 6px solid grey;
+}
+.closed-sign .closed-symbol {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 70%;
+  content: url("../img/no-fishing.svg");
+  overflow: visible;
+}
+.fish-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-ransform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 20vw;
+  height: 20vw;
+  border: 0.5px solid #807256;
+  border-radius: 50% 50%;
+  background-color: #fffefc;
+  opacity: 0%;
+}
+.fish-container[context='feedback'] {
+  opacity: 100%;
+  -webkit-animation: appear ease-in 0.5s;
+  animation: appear ease-in 0.5s;
+}
+@keyframes appear {
+  0%   { opacity: 0; }
+  99%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-webkit-keyframes appear {
+  0%   { opacity: 0; }
+  99%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+.fish {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-ransform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+}
+.fish[pattern='1'] {
+  content: url("../img/animal-fish01.svg");
+}
+.fish[pattern='1'][outcome='0'] {
+  display: none;
+}
+.fish[pattern='1'][outcome='2'] {
+  top: 33%;
+}
+.fish[pattern='2'] {
+  content: url("../img/animal-fish02.svg");
+  display: none;
+  -webkit-transform: translate(-50%, -50%) scaleX(-1);
+  transform: translate(-50%, -50%) scaleX(-1);
+}
+.fish[pattern='2'][outcome='2'] {
+  top: 67%;
+  display: inherit;
+}
+.fish[pattern='3'] {
+  content: url("../img/animal-tire.svg");
+  display: none;
+}
+.fish[pattern='3'][outcome='0'] {
+  display: inherit;
+}

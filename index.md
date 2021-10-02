@@ -22,9 +22,15 @@ TABLE OF CONTENTS
 
 ### Risk sensitive learning task (v1)
 
-[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/rsl) [<b>[Demo]</b>](./tasks/rsl/experiment.html)
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/rsl-v1) [<b>[Demo]</b>](./tasks/rsl-v1/experiment.html)
 
 > A jsPsych implementation of the risk sensitive learning task ([Niv et al. 2012](https://doi.org/10.1523/JNEUROSCI.5498-10.2012)) using Javascript and Canvas graphics.
+
+### Risk sensitive learning task (v2)
+
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/rsl-v2) [<b>[Demo]</b>](./tasks/rsl-v2/experiment.html)
+
+> A child-friendly, fishing-themed jsPsych implementation of the risk sensitive learning task ([Niv et al. 2012](https://doi.org/10.1523/JNEUROSCI.5498-10.2012)) using Javascript and CSS.
 
 <hr>
 

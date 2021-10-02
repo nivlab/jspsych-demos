@@ -1,0 +1,5 @@
+# Risk sensitive learning (v2)
+
+Author(s): Sam Zorowitz, Branson Byers
+
+A child-friendly, fishing-themed jsPsych implementation of the risk sensitive learning task ([Niv et al. 2012](https://doi.org/10.1523/JNEUROSCI.5498-10.2012)) using Javascript and CSS. 

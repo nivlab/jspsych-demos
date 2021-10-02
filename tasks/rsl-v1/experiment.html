@@ -115,9 +115,9 @@
       var interaction_data = jsPsych.data.getInteractionData();
       jsPsych.data.get().addToLast({interactions: interaction_data.json()});
 
-      // get csv representation of data and log to console
-      var all_data = jsPsych.data.get();
-      jsPsych.data.displayData('json');
+      // Display jsPsych data in viewport.
+      jsPsych.data.displayData();
+      
     }
   });
 

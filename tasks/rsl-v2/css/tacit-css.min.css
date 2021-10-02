@@ -1,0 +1,125 @@
+/* DOCUMENT CSS */
+html,body,button,option {
+  font-family: system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29.7px
+}
+html,body {
+  width: 100%
+}
+html {
+  height: 100%
+}
+body {
+  background: #fff;
+  color: #1a1919;
+  padding: 36px
+}
+
+/* PARAGRAPH CSS */
+p,hr {
+  margin-bottom: 16px
+}
+a {
+  color: #275a90;
+  text-decoration: none
+}
+a: hover{
+  text-decoration: underline
+}
+hr {
+  border-bottom: 1px solid #595959
+}
+var,em,i {
+  font-style: italic
+}
+dt,strong,b {
+  font-weight: 600
+}
+* {
+  border: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  box-sizing: border-box;
+  margin: 0;
+  max-width: 100%;
+  padding: 0;
+  vertical-align: baseline
+}
+ol,ul {
+  margin-bottom: 16px;
+  margin-left: 60px
+}
+li dl,li ol,li ul {
+  margin-bottom: 0
+}
+blockquote {
+  margin-bottom: 16px;
+  margin-left: 60px
+}
+
+/* HEADINGS CSS */
+h1,h2,h3,h4,h5,h6 {
+  color: #000;
+  margin-bottom: 12px
+}
+h1 {
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 43.2px;
+  margin-top: 72px
+}
+h2 {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 30px;
+  margin-top: 36px;
+  text-decoration: underline;
+}
+h3 {
+  font-size: 21.6px;
+  line-height: 27px;
+  margin-top: 36px
+}
+h4 {
+  font-size: 18px;
+  line-height: 23.4px;
+  margin-top: 18px
+}
+h5 {
+  font-size: 14.4px;
+  font-weight: bold;
+  line-height: 21.6px;
+  text-transform: uppercase
+}
+h6 {
+  color: #595959;
+  font-size: 14.4px;
+  font-weight: bold;
+  line-height: 18px;
+  text-transform: uppercase
+}
+
+/* BUTTON CSS */
+button {
+  border-radius: 3.6px;
+  display: inline-block;
+  padding: 9.9px;
+  cursor: pointer;
+  display: inline;
+  margin-bottom: 18px;
+  margin-right: 7.2px;
+  padding: 6.525px 23.4px;
+  text-align: center
+}
+button[type="submit"] {
+  background: #ffb347;
+  color: #fff
+}
+button[type="submit"]: hover {
+  background: #ffb347;
+  color: #bfbfbf
+}
