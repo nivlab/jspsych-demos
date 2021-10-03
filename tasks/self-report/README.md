@@ -1,4 +1,6 @@
-# Questionnaires
+# Self-Report
+
+Author(s): Sam Zorowitz, Dan Bennett, Dan Mirea
 
 This folder contains template jsPsych code for self-report questionnaires, demographics forms, and debriefing forms.
 
