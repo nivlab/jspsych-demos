@@ -1,0 +1,147 @@
+<!doctype html>
+<!--
+The consent.html displays the text of an IRB-approved consent form.
+-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decision Making Experiment - Informed Consent Form</title>
+  <link rel="stylesheet" href="../static/css/tacit-css.min.css"/>
+</head>
+<body>
+
+  <!-- Study headers -->
+  <h1>CONSENT FORM</h1>
+
+  <hr>
+  <p>
+    <b>TITLE OF RESEARCH:</b> Neurocognitive mechanisms of decision-making and learning from rewards
+    <br>
+    <b>PRINCIPAL INVESTIGATOR</b>: Nathaniel D. Daw, Ph.D.
+    <br>
+    <b>PRINCIPAL INVESTIGATOR’S DEPARTMENT</b>: Neuroscience & Psychology
+  </p>
+  <hr>
+
+  <!-- Intro paragraph -->
+  <p>
+    You are being invited to take part in a research study. Before you decide to participate in this study, it is important that you understand why the research is being done and what it will involve. Please take the time to read the following information carefully. Please contact the researcher if there is anything that is not clear or if you need more information.
+  </p>
+
+  <!-- Study purpose -->
+  <h2>Purpose of the research:</h2>
+  <p>
+    With this research we hope to explore the following objectives related to human learning and decision-making:
+
+    <ol type="I">
+      <li>Understanding how humans learn about the statistical structure of their environment and from feedback about rewards.</li>
+      <li>Understanding how humans draw on this knowledge to make decisions in the environment.</li>
+    </ol>
+
+    These processes are relevant to issues of self-control (such as drug addiction and dieting) and to neurological or psychiatric disorders such as Parkinson's disease and schizophrenia, which implicate various parts of these systems.
+
+  </p>
+
+  <!-- Study procedures -->
+  <h2>Study Procedures:</h2>
+  <p>
+    In this experiment, you'll repeatedly be presented with images on your computer screen and asked to make decisions or responses using button-presses or mouse-clicks. At the conclusion of the experiment, you will receive monetary compensation determined in part by the decisions you make during the task.
+  </p>
+
+  <p>
+    Your total expected time commitment for this study is: 45 minutes.
+  </p>
+
+</p>
+
+<!-- Benefits and risks -->
+<h2>Benefits and risks:</h2>
+<p>
+  You will not receive any direct benefit from your participating other than the monetary payment you will receive for participation and the possible enjoyable or rewarding aspects of participating in research.
+</p>
+
+<p>
+  This study includes questions related to mental health: about your emotions and reactions to being placed in certain situations, and the levels at which you may identify with certain thoughts or feelings. Some participants may find these questions troubling. The experimenters are not clinicians and not in a position to diagnose any disorders or offer medical advice. If the questions trouble you, we urge you to seek further advice or information from healthcare professionals. At the end of the questionnaires, and again at the completion of the experiment, we will provide you with resources for learning more about mental health conditions and for seeking support if you so wish.
+</p>
+
+<!-- Confidentiality -->
+<h2>Confidentiality:</h2>
+<p>
+  The research team will make every effort to protect your confidentiality, as required by law.  Personally identifying data will remain strictly confidential. Immediately following data collection, your age, profession, ethnic classification, and any other personally identifying information, will be separated from the rest of the obtained data and replaced by a coded designation. The personally identifying information and its mapping to code numbers will be stored in a locked cabinet in the investigator's laboratory in the Princeton Neuroscience Institute, or digitally on secure, encrypted, password-protected computers also located at the PNI. Consent forms will be stored, separately, in the same manner. We will not include any information that will make it possible to identify you in any report we might publish.
+</p>
+
+<!-- Compensation -->
+<h2>Compensation:</h2>
+<p>
+  For this study, which is estimated to take 45 minutes, you will be compensated $6 for your participation plus an additional payment $2 based on the decisions you make during the experiment.
+</p>
+
+<!-- Contact information -->
+<h2>Who to contact with questions:</h2>
+<p>
+  1. PRINCIPAL INVESTIGATOR:
+
+  <ul style="list-style-type:none;">
+    <li>Nathaniel D. Daw, PhD</li>
+    <li>Princeton Neuroscience Institute 237</li>
+    <li>Princeton University</li>
+    <li>Princeton, NJ 08544</li>
+    <li>Phone: (609) 258-9916</li>
+    <li>Email: ndaw@princeton.edu</li>
+  </ul>
+
+</p>
+
+<p>
+  2. If you have questions regarding your rights as a research subject, or if problems arise which you do not feel you can discuss with the Investigator, please contact the Institutional Review Board at:
+
+  <ul style="list-style-type:none;">
+    <li>Office of Research Integrity and Assurance</li>
+    <li>Human Research Protection Program</li>
+    <li>Assistant Director</li>
+    <li>Phone: (609) 258-0865</li>
+    <li>Email: irb@princeton.edu</li>
+  </ul>
+</p>
+
+<hr>
+
+<!-- Consent -->
+<p>
+  I understand the information that was presented and that:
+
+  <blockquote>
+    My participation is voluntary, and I may withdraw my consent and discontinue participation in the project at any time.  My refusal to participate will not result in any penalty. I do not waive any legal rights or release Princeton University, its agents, or you from liability for negligence.
+  </blockquote>
+
+  By clicking the box below, I hereby give my consent to be the subject of your research.
+</p>
+
+<center>
+  <form method="post">
+    <div class="recontact">
+      <p>Would you like to be re-contacted for future studies?</p>
+      <p>
+        <input type="radio" name="future_contact" value="Yes">Yes
+        <input type="radio" name="future_contact" value="No">No
+      </p>
+    </div>
+    <button type="submit" name="subj_consent" value=1>I accept</button>
+    <button type="submit" name="subj_consent" value=0>No thank you</button>
+  </form>
+</center>
+
+</body>
+<style>
+.recontact {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  z-index: -1;
+}
+</style>
+</html>

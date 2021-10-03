@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Screen Check</title>
+
+  <!-- Load libraries -->
+  <script src="./lib/jspsych-6.3.1/jspsych.js"></script>
+
+  <!-- Load jsPsych plug-ins -->
+  <script src="./jspsych-screen-check.js"></script>
+
+  <!-- Load CSS styles -->
+  <link href="./lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+</head>
+<body></body>
+<script>
+
+  // Display alert message on back/refresh.
+  // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+  function verify_unload(e){
+    e.preventDefault();
+    (e || window.event).returnValue = null;
+    return null;
+  };
+  window.addEventListener("beforeunload", verify_unload);
+
+  // Query URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const min_width = urlParams.get('min_width') || 12000;
+  const min_height = urlParams.get('min_height') || 8000;
+
+  // Define screen check
+  var screen_check = {
+    type: 'screen-check',
+    min_width: min_width,
+    min_height: min_height
+  }
+
+  // Initialize timeline.
+  var timeline = [];
+  timeline = timeline.concat(screen_check);
+
+  jsPsych.init({
+    timeline: timeline,
+    show_progress_bar: true,
+    on_finish: function() {
+
+      // Remove requirement to verify redirect
+      window.removeEventListener("beforeunload", verify_unload);
+
+      // Add interactions to the data variable
+      var interaction_data = jsPsych.data.getInteractionData();
+      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+      // Display jsPsych data in viewport.
+      jsPsych.data.displayData();
+
+    }
+  })
+
+</script>
+</html>
