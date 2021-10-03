@@ -2,7 +2,7 @@
 layout: default
 ---
 
-# Tasks
+# Tasks / Plugins
 {:.no_toc}
 
 TABLE OF CONTENTS
