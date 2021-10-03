@@ -1,4 +1,4 @@
-# Audio test
+# Screen check
 
 Author(s): Sam Zorowitz
 
