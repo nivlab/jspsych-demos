@@ -67,7 +67,7 @@ items.forEach((j, i) => {
     choices: jsPsych.NO_KEYS,
     trial_duration: 1200,
     on_start: function(trial) {
-      const k = jsPsych.data.get().filter({trial_type: 'mars', item_set: item_set}).count();
+      const k = jsPsych.data.get().filter({trial_type: 'mars', item_set: 3}).count();
       trial.stimulus = `<div style="font-size:24px;">Loading puzzle:<br>${k+1} / 3</div>`;
     }
   }
