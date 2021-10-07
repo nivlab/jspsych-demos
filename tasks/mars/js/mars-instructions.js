@@ -6,6 +6,21 @@
 const style = "width:auto; height:auto; max-width:100%; max-height:200px;";
 
 //---------------------------------------//
+// Define images for preloading.
+//---------------------------------------//
+
+var images_practice = [];
+[1,2,3].forEach(i => {
+  images_task.push(`./img/is3/mars_${i}_M_ss1.webp`)
+  images_task.push(`./img/is3/mars_${i}_T1_ss1_pd.webp`)
+  images_task.push(`./img/is3/mars_${i}_T2_ss1_pd.webp`)
+  images_task.push(`./img/is3/mars_${i}_T3_ss1_pd.webp`)
+  images_task.push(`./img/is3/mars_${i}_T4_ss1_pd.webp`)
+});
+images_practice.push('./img/practice/p1_M1.webp')
+images_practice.push('./img/practice/p1_T1.webp')
+
+//---------------------------------------//
 // Define instructions screens.
 //---------------------------------------//
 

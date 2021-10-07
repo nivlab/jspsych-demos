@@ -2,8 +2,10 @@
 // Define parameters.
 //---------------------------------------//
 
-// Define item parameters.
-const item_set = 3;
+// Define puzzle set.
+var items = [4,5,7];
+var shape_set = 1;
+var distractor = 'pd';
 
 // Define timing parameters.
 const trial_duration = 30000;     // 30 seconds
@@ -13,16 +15,21 @@ const max_threshold = 10;
 const rg_threshold = 3000;       // 3 seconds
 
 // Define screen size parameters.
-var min_width = 580;
+var min_width = 600;
 var min_height = 600;
 
 //---------------------------------------//
-// Define puzzle set.
+// Define images for preloading.
 //---------------------------------------//
 
-var items = [4,5,7];
-var shape_set = 1;
-var distractor = 'pd';
+var images_task = [];
+items.forEach(i => {
+  images_task.push(`./img/is3/mars_${i}_M_ss${shape_set}.webp`)
+  images_task.push(`./img/is3/mars_${i}_T1_ss${shape_set}_${distractor}.webp`)
+  images_task.push(`./img/is3/mars_${i}_T2_ss${shape_set}_${distractor}.webp`)
+  images_task.push(`./img/is3/mars_${i}_T3_ss${shape_set}_${distractor}.webp`)
+  images_task.push(`./img/is3/mars_${i}_T4_ss${shape_set}_${distractor}.webp`)
+});
 
 //---------------------------------------//
 // Define MARS task.
@@ -32,7 +39,7 @@ var distractor = 'pd';
 var MARS = [];
 
 // Define image constants.
-const img_path = `./img/is${item_set}/`;
+const img_path = `./img/is3/`;
 
 // Iteratively construct trials.
 items.forEach((j, i) => {
@@ -77,7 +84,7 @@ items.forEach((j, i) => {
     trial_duration: trial_duration,
     randomize_choice_order: true,
     img_path: img_path,
-    data: {item_set: item_set},
+    data: {item_set: 3},
     on_finish: function(data) {
 
       // Store number of browser interactions

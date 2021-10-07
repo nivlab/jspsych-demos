@@ -111,25 +111,25 @@ jsPsych.plugins["mars"] = (function() {
     }
     .mars-item {
       position: relative;
-      max-height: 360px;
-      max-width: 360px;
-      border: 5px solid #777777;
+      max-height: 384px;
+      max-width: 384px;
+      border: 4px solid #777777;
       border-radius: 2px;
     }
     .mars-item img {
-      max-height: 360px;
-      max-width: 360px;
+      max-height: 384px;
+      max-width: 384px;
     }
     .mars-choice-row {
       position: relative;
       display: flex;
       flex-direction: row;
-      gap: 25px;
+      gap: 24px;
     }
     .mars-choice {
       position: relative;
-      max-height: 125px;
-      max-width: 125px;
+      max-height: 128px;
+      max-width: 128px;
       border: 2px solid #777777;
       border-radius: 4px;
     }
@@ -142,7 +142,7 @@ jsPsych.plugins["mars"] = (function() {
     }
     .mars-feedback {
       position: relative;
-      height: 75px;
+      height: 70px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -197,7 +197,7 @@ jsPsych.plugins["mars"] = (function() {
 
     // confirm screen resolution
     const screen_resolution = [window.innerWidth, window.innerHeight];
-    if (screen_resolution[0] < 580 || screen_resolution[1] < 600) {
+    if (screen_resolution[0] < 600 || screen_resolution[1] < 600) {
       var minimum_resolution = 0;
     } else {
       var minimum_resolution = 1;
