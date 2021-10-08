@@ -1,10 +1,10 @@
 /**
- * jspsych-spatial-recall
- * Sam Zorowitz
- *
- * plugin for running one trial of a spatial recall task
- *
- **/
+* jspsych-spatial-recall
+* Sam Zorowitz
+*
+* plugin for running one trial of a spatial recall task
+*
+**/
 
 jsPsych.plugins["spatial-recall"] = (function() {
 
@@ -81,24 +81,49 @@ jsPsych.plugins["spatial-recall"] = (function() {
 
     // Insert CSS
     new_html += `<style>
-    .spatial-container {
-      height: 100vh;
-      width: 100vw;
+    .jspsych-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
-    .spatial-container[status='hide'] {
 
-      /* Hide cursor during sequence presentation */
+    /* Hide cursor during sequence presentation */
+    .jspsych-content-wrapper[status='hide'] {
       cursor: none;
+    }
+
+    p {
+      margin-block-start: 0px;
+      margin-block-end: 0px;
+    }
+
+    .spatial-header {
+
+      /* Header position */
+      position: relative;
+
+      /* Header layout */
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+
+      /* Header styling */
+      visibility: visible;
+      margin-bottom: 16px;
+      font-size: 28px;
 
     }
+
+    /* Prevent cursor events during sequence presentation */
+    .spatial-header[status='hide'] {
+      visibility: hidden;
+    }
+
     .spatial-grid {
 
       /* Grid position */
       position: relative;
-      left: 50%;
-      top: 45%;
-      -webkit-transform: translate3d(-50%, -50%, 0);
-      transform: translate3d(-50%, -50%, 0);
 
       /* Grid layout */
       display: grid;
@@ -109,18 +134,17 @@ jsPsych.plugins["spatial-recall"] = (function() {
       border: 1px solid black;
 
     }
+
+    /* Prevent cursor events during sequence presentation */
     .spatial-grid[status='hide'] {
-
-      /* Prevent cursor events during sequence presentation */
       pointer-events: none;
-
     }
+
+    /* Prevent cursor events after maximum number of entries reached */
     .spatial-grid[status='complete'] {
-
-      /* Prevent cursor events after maximum number of entries reached */
       cursor: not-allowed;
-
     }
+
     .spatial-grid .spatial-grid-tile {
 
       /* Grid tile size */
@@ -134,74 +158,52 @@ jsPsych.plugins["spatial-recall"] = (function() {
       -webkit-box-sizing: border-box;
 
     }
+
+    /* Highlight tile on hover event */
     .spatial-grid .spatial-grid-tile:hover {
-
-      /* Highlight tile on hover event */
       background-color: #0198E180;
-
     }
+
+    /* Highlight tile on click event */
     .spatial-grid .spatial-grid-tile:active {
-
-      /* Highlight tile on click event */
       background-color: #0198E1;
-
     }
+
+    /* Highlight tile during sequence */
     .spatial-grid .spatial-grid-tile[status='fill'] {
-
-      /* Highlight tile during sequence */
       background-color: #0198E1;
-
     }
+
+    /* Prevent cursor events after maximum number of entries reached */
     .spatial-grid[status='complete'] .spatial-grid-tile {
-
-      /* Prevent cursor events after maximum number of entries reached */
       pointer-events: none;
-
     }
-    .spatial-header {
 
-      /* Header position */
-      position: absolute;
-      left: calc(50%);
-      top: calc(45% - ${trial.tile_size}px * ${trial.grid_size} / 2);
-      -webkit-transform: translate3d(-50%, -100%, 0);
-      transform: translate3d(-50%, -100%, 0);
-
-      /* Header font */
-      font-size: 24px;
-      line-height: 1.4;
-      text-align: center;
-
-    }
-    .spatial-header[status='hide'] {
-
-      /* Hide element during sequence presentation */
-      display: none;
-
-    }
     .spatial-entry-bar {
 
       /* Bar position */
-      position: absolute;
-      left: calc(50% - ${trial.tile_size}px * ${trial.grid_size} / 2 );
-      top: calc(45% + ${trial.tile_size}px * ${trial.grid_size} / 2 + 5px);
+      position: relative;
 
       /* Bar size */
-      width: calc(20px * ${trial.sequence.length});
+      width: calc(${trial.grid_size} * ${trial.tile_size}px);
       height: 20px;
 
       /* Bar layout */
-      display: grid;
-      grid-template-columns: repeat(${trial.sequence.length}, calc(100%/${trial.sequence.length}));
-      grid-template-rows: 100%;
+      display: flex;
+      flex-direction: row;
+
+      /* Bar styling */
+      visibility: visible;
+      margin-top: 2px;
+      margin-bottom: 8px;
 
     }
+
+    /* Hide element during sequence presentation */
     .spatial-entry-bar[status='hide'] {
-
-      /* Hide element during sequence presentation */
-      display: none;
-
+      visibility: hidden;
     }
+
     .spatial-entry-bar .entry {
 
       /* Entry indicator size */
@@ -216,20 +218,38 @@ jsPsych.plugins["spatial-recall"] = (function() {
       -webkit-box-sizing: border-box;
 
     }
-    .spatial-entry-bar .entry[status='fill'] {
 
-      /* Highlight entry after response given */
+    /* Highlight entry after response given */
+    .spatial-entry-bar .entry[status='fill'] {
       background: #0198E180;
+    }
+
+    .spatial-button-bar {
+
+      /* Bar position */
+      position: relative;
+
+      /* Bar layout */
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      /* Bar size */
+      width: calc(${trial.grid_size} * ${trial.tile_size}px);
+      height: 32px;
+      visibility: visible;
 
     }
-    button[action='clear'], button[action='submit'] {
 
-      /* Button position */
-      position: absolute;
-      top: calc(45% + ${trial.tile_size}px * ${trial.grid_size} / 2 + 50px);
+    .spatial-button-bar[status='hide'] {
+      visibility: hidden;
+    }
+
+    button[action='clear'], button[action='submit'] {
 
       /* Button size */
       width: 90px;
+      height: 32px;
 
       /* Button aesthetics */
       background: #FFFFFF;
@@ -264,15 +284,12 @@ jsPsych.plugins["spatial-recall"] = (function() {
     }
     </style>`;
 
-    // Open task container.
-    new_html += '<div class="spatial-container" id="spatial-container">';
-
-    // Add spatial recall header.
+    // Draw header.
     new_html += '<div class="spatial-header" id="header">';
     new_html += '<p>RECALL' + (trial.backwards ? '<small><br>(BACKWARDS)</small>' : '') + '</p>';
     new_html += '</div>';
 
-    // Add spatial recall grid.
+    // Draw tiles.
     new_html += '<div class="spatial-grid" id="spatial-grid">';
     for (let i = 0; i < trial.grid_size**2; i++) {
       new_html += `<div class="spatial-grid-tile" id="tile-${i}" data-choice=${i}></div>`;
@@ -287,11 +304,10 @@ jsPsych.plugins["spatial-recall"] = (function() {
     new_html += '</div>';
 
     // Add buttons.
+    new_html += '<div class="spatial-button-bar" id="button-bar">';
     new_html += '<button type="button" id="clear" action="clear">Clear</button>';
     new_html += '<button type="button" id="submit" action="submit">Submit</button>';
-
-    // Close task container.
-    new_html += '</div">';
+    new_html += '</div>';
 
     // Display HTML.
     display_element.innerHTML = new_html;
@@ -319,17 +335,17 @@ jsPsych.plugins["spatial-recall"] = (function() {
     // function to toggel display elements
     function toggle_elements(status) {
 
-        // Hide elements
-        display_element.querySelector('#header').setAttribute('status', status);
-        display_element.querySelector('#entry-bar').setAttribute('status', status);
-        display_element.querySelector('#clear').setAttribute('status', status);
-        display_element.querySelector('#submit').setAttribute('status', status);
+      // Hide elements
+      display_element.querySelector('#header').setAttribute('status', status);
+      display_element.querySelector('#entry-bar').setAttribute('status', status);
+      display_element.querySelector('#button-bar').setAttribute('status', status);
 
-        // Hide cursor
-        display_element.querySelector('#spatial-container').setAttribute('status', status);
+      // Hide cursor
+      // console.log(document.querySelector('.jspsych-content-wrapper'))
+      document.querySelector('.jspsych-content-wrapper').setAttribute('status', status);
 
-        // Hide mouse events
-        display_element.querySelector('#spatial-grid').setAttribute('status', status);
+      // Hide mouse events
+      display_element.querySelector('#spatial-grid').setAttribute('status', status);
 
     }
 
@@ -434,15 +450,19 @@ jsPsych.plugins["spatial-recall"] = (function() {
       var end_time = performance.now();
       var rt = end_time - start_time;
 
+      // copy responses
+      const copy = trial.backwards ? [...responses].reverse() : [...responses];
+
       // score responses
-      var score_ls = longest_subsequence(responses, trial.sequence);
-      var score_pc = partial_credit(responses, trial.sequence);
+      var score_ls = longest_subsequence(copy, trial.sequence);
+      var score_pc = partial_credit(copy, trial.sequence);
       var score_an = (score_pc == trial.sequence.length) ? 1 : 0;
 
       // gather the data to store for the trial
       var trial_data = {
         sequence: trial.sequence,
         sequence_length: trial.sequence.length,
+        backwards: trial.backwards,
         responses: responses,
         score_an: score_an,
         score_pc: score_pc,
@@ -483,10 +503,10 @@ jsPsych.plugins["spatial-recall"] = (function() {
 
     // fill the matrix
     for(let i = 1; i <= observed.length; i++) {
-        for(let j = 1; j <= target.length; j++) {
-            if(observed[i-1] == target[j-1]) { matrix[i][j] = matrix[i-1][j] + 1}
-            else matrix[i][j] = Math.max(matrix[i-1][j], matrix[i][j-1])
-        }
+      for(let j = 1; j <= target.length; j++) {
+        if(observed[i-1] == target[j-1]) { matrix[i][j] = matrix[i-1][j] + 1}
+        else matrix[i][j] = Math.max(matrix[i-1][j], matrix[i][j-1])
+      }
     }
 
     // return the max which is at the right bottom corner of the matrix
