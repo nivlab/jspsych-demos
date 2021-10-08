@@ -146,7 +146,7 @@ TABLE OF CONTENTS
 
 <hr>
 
-## WIP / Unpublished Tasks
+## Code upon request / WIP
 
 <i>Niv lab members</i>: There are jsPsych tasks that have already been developed but are not at a point where they can be publicly shared. These include:
 
