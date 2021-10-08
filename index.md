@@ -82,6 +82,12 @@ TABLE OF CONTENTS
 
 > A web-friendly implementation of the matrix reasoning item bank ([Chierchia et al. 2019](https://doi.org/10.1098/rsos.190232)). All materials were retrieved from the project's [OSF repository](https://osf.io/g96f4/) and the task design was modeled after the [Gorilla version](https://app.gorilla.sc/openmaterials/36164).
 
+### Spatial recall
+
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/spatial-recall) [<b>[Demo]</b>](./tasks/spatial-recall/experiment.html)
+
+> A simple plugin for a forwards/backwards spatial recall task. Includes three scoring rules (absolute, partial credit, longest sequence).
+
 ### Symmetry span
 
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/symmetry_span) [<b>[Demo]</b>](./tasks/symmetry_span/experiment.html)

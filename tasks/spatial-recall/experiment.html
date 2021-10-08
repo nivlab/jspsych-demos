@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Memory Game</title>
+
+  <!-- Load libraries -->
+  <script src="./lib/jspsych-6.3.1/jspsych.js"></script>
+
+  <!-- Load jsPsych plug-ins -->
+  <script src="./js/jspsych-spatial-recall.js"></script>
+  <script src="./js/jspsych-screen-check.js"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-instructions.js"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
+
+  <!-- Load CSS styles -->
+  <link href="./lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+</head>
+<body></body>
+<script>
+
+  // Display alert message on back/refresh.
+  // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+  function verify_unload(e){
+    e.preventDefault();
+    (e || window.event).returnValue = null;
+    return null;
+  };
+  window.addEventListener("beforeunload", verify_unload);
+
+  // Define instructions
+  var instructions_01 = {
+    type: 'instructions',
+    pages: [
+      "On the next screen, recall the pattern of the illumininated in the correct order."
+    ],
+    key_forward: 'ArrowRight',
+    key_backward: 'ArrowLeft',
+    allow_keys: true,
+    show_clickable_nav: true,
+    button_label_previous: 'Prev',
+    button_label_next: 'Next'
+  }
+
+  // Define forwards recall
+  var recall_forwards = {
+    timeline: [
+      {
+        type: 'screen-check',
+        min_width: 258,
+        min_height: 364
+      },
+      {
+        type: 'html-keyboard-response',
+        stimulus: '<p style="font-size: 48px;">+</p>',
+        choices: jsPsych.NO_KEYS,
+        trial_duration: 1200,
+      },
+      {
+        type: 'spatial-recall',
+        grid_size: 4,
+        sequence: jsPsych.timelineVariable('sequence'),
+        backwards: false
+      }
+    ],
+    timeline_variables: [
+      {sequence: jsPsych.randomization.sampleWithoutReplacement([...Array(16).keys()], 2)},
+      {sequence: jsPsych.randomization.sampleWithoutReplacement([...Array(16).keys()], 3)},
+      {sequence: jsPsych.randomization.sampleWithoutReplacement([...Array(16).keys()], 4)},
+    ]
+  }
+
+  // Define instructions
+  var instructions_02 = {
+    type: 'instructions',
+    pages: [
+      "On the next screen, recall the pattern of the illumininated in the <b>reverse order</b>."
+    ],
+    key_forward: 'ArrowRight',
+    key_backward: 'ArrowLeft',
+    allow_keys: true,
+    show_clickable_nav: true,
+    button_label_previous: 'Prev',
+    button_label_next: 'Next'
+  }
+
+  // Define forwards recall
+  var recall_backwards = {
+    timeline: [
+      {
+        type: 'screen-check',
+        min_width: 258,
+        min_height: 364
+      },
+      {
+        type: 'html-keyboard-response',
+        stimulus: '<p style="font-size: 48px;">+</p>',
+        choices: jsPsych.NO_KEYS,
+        trial_duration: 1200,
+      },
+      {
+        type: 'spatial-recall',
+        grid_size: 4,
+        sequence: jsPsych.timelineVariable('sequence'),
+        backwards: true
+      }
+    ],
+    timeline_variables: [
+      {sequence: jsPsych.randomization.sampleWithoutReplacement([...Array(16).keys()], 2)},
+      {sequence: jsPsych.randomization.sampleWithoutReplacement([...Array(16).keys()], 3)},
+      {sequence: jsPsych.randomization.sampleWithoutReplacement([...Array(16).keys()], 4)},
+    ]
+  }
+
+  // Initialize timeline.
+  var timeline = [];
+  timeline = timeline.concat(instructions_01);
+  timeline = timeline.concat(recall_forwards);
+  timeline = timeline.concat(instructions_02);
+  timeline = timeline.concat(recall_backwards);
+
+  jsPsych.init({
+    timeline: timeline,
+    show_progress_bar: true,
+    on_finish: function() {
+
+      // Remove requirement to verify redirect
+      window.removeEventListener("beforeunload", verify_unload);
+
+      // Add interactions to the data variable
+      var interaction_data = jsPsych.data.getInteractionData();
+      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+      // Display jsPsych data in viewport.
+      jsPsych.data.displayData();
+
+    }
+  })
+
+</script>
+</html>
