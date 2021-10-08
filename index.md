@@ -86,6 +86,8 @@ TABLE OF CONTENTS
 
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/spatial-recall) [<b>[Demo]</b>](./tasks/spatial-recall/experiment.html)
 
+> A simple plugin for a forwards/backwards spatial recall task. Includes three scoring rules (absolute, partial credit, longest sequence).
+
 ### Symmetry span
 
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/symmetry_span) [<b>[Demo]</b>](./tasks/symmetry_span/experiment.html)
