@@ -13,5 +13,5 @@ If you'd like to preview the demos page locally (for example, in the process of 
 1. Clone down the project's repository (`git clone https://github.com/nivlab/jspsych-demos`)
 2. `cd` into the project's directory
 3. Run `bundle install` to install the necessary dependencies
-4. Run `bundle exec jekyll` serve to start the preview server
+4. Run `bundle exec jekyll serve` to start the preview server
 5. Visit `localhost:4000` in your browser to preview the project

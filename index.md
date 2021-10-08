@@ -76,6 +76,12 @@ TABLE OF CONTENTS
 
 ## Executive Functioning Tasks
 
+### Raven's progressive matrices
+
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/rpm) [<b>[Demo]</b>](./tasks/rpm/experiment.html?tf=a)
+
+> The abbreviated 9-item Raven's standard progressive matrices. Both Forms A and B of [Bilker et al. (2012)](https://doi.org/10.1177%2F1073191112446655) are available.
+
 ### Matrix reasoning task (MaRs-IB)
 
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/mars) [<b>[Demo]</b>](./tasks/mars/experiment.html)

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Puzzle Game</title>
+
+  <!-- Load libraries -->
+  <script src="./lib/jquery-3.3.1/jquery.min.js"></script>
+  <script src="./lib/jspsych-6.3.1/jspsych.js"></script>
+
+  <!-- Load experiment -->
+  <script src="./js/rpm_tfa.js"></script>
+  <script src="./js/rpm_tfb.js"></script>
+
+  <!-- Load jsPsych plug-ins -->
+  <script src="./js/jspsych-rpm.js"></script>
+  <script src="./js/jspsych-screen-check.js"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-instructions.js"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-call-function.js"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-preload.js"></script>
+
+  <!-- Load CSS styles -->
+  <link href="./lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+</head>
+<body></body>
+<script>
+
+  // Display alert message on back/refresh.
+  // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+  function verify_unload(e){
+    e.preventDefault();
+    (e || window.event).returnValue = null;
+    return null;
+  };
+  window.addEventListener("beforeunload", verify_unload);
+
+  // Query URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const test_form = urlParams.get('tf');
+
+  // Define image preloading.
+  var PRELOAD = {
+    type: 'preload',
+    images: (test_form == "a") ? preload_rpm_tfa : preload_rpm_tfb,
+    message: 'Loading images. This may take a moment depending on your internet connection.',
+    error_message: '<p>The experiment failed to load. Please try restarting your browser.</p><p>If this error persists after 2-3 tries, please contact the experimenter.</p>',
+    continue_after_error: false,
+    show_progress_bar: true,
+    max_load_time: 30000
+  }
+
+  // Define experiment fullscreen.
+  var FULLSCREEN = {
+    type: 'fullscreen',
+    fullscreen_mode: true
+  }
+
+  // Define instructions
+  var INSTRUCTIONS = {
+    type: 'instructions',
+    pages: [
+      "<p>We are beginning the <b>puzzle task</b>.</p><p>In this task, you will be shown a series of puzzles. For each puzzle, your goal is to<br>identify the missing piece from the options appearing below the puzzle.</p>",
+      '<p>There are 9 puzzles in total. You will have <b>30 seconds</b> for each puzzle.</p><p>Try to be as accurate as you can be. If you cannot solve the puzzle before time runs out, then you should guess.</p><p>Press the "next" button to get started.</p>',
+    ],
+    show_clickable_nav: true,
+    button_label_previous: 'Prev',
+    button_label_next: 'Next',
+  }
+
+  // Initialize timeline.
+  var timeline = [];
+  timeline = timeline.concat(PRELOAD);
+  timeline = timeline.concat(FULLSCREEN);
+  timeline = timeline.concat(INSTRUCTIONS);
+  timeline = timeline.concat((test_form == "a") ? RPM_TFa : RPM_TFb);
+
+  jsPsych.init({
+    timeline: timeline,
+    show_progress_bar: true,
+    on_finish: function() {
+
+      // Remove requirement to verify redirect
+      window.removeEventListener("beforeunload", verify_unload);
+
+      // Add interactions to the data variable
+      var interaction_data = jsPsych.data.getInteractionData();
+      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+      // Display jsPsych data in viewport.
+      jsPsych.data.displayData();
+
+    }
+  })
+
+</script>
+</html>
