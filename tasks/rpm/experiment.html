@@ -35,10 +35,14 @@
   };
   window.addEventListener("beforeunload", verify_unload);
 
+  // Query URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const test_form = urlParams.get('tf');
+
   // Define image preloading.
   var PRELOAD = {
     type: 'preload',
-    images: [preload_rpm_tfa],
+    images: (test_form == "a") ? preload_rpm_tfa : preload_rpm_tfb,
     message: 'Loading images. This may take a moment depending on your internet connection.',
     error_message: '<p>The experiment failed to load. Please try restarting your browser.</p><p>If this error persists after 2-3 tries, please contact the experimenter.</p>',
     continue_after_error: false,
@@ -64,20 +68,12 @@
     button_label_next: 'Next',
   }
 
-  // Query URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const test_form = urlParams.get('tf');
-
   // Initialize timeline.
   var timeline = [];
   timeline = timeline.concat(PRELOAD);
   timeline = timeline.concat(FULLSCREEN);
   timeline = timeline.concat(INSTRUCTIONS);
-  if (test_form == "a") {
-    timeline = timeline.concat(RPM_TFa);
-  } else {
-    timeline = timeline.concat(RPM_TFb);
-  }
+  timeline = timeline.concat((test_form == "a") ? RPM_TFa : RPM_TFb);
 
   jsPsych.init({
     timeline: timeline,

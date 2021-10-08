@@ -69,20 +69,20 @@ jsPsych.plugins['rpm'] = (function() {
 
     // Insert CSS.
     new_html += `<style>
-    .rpm-container {
-      width: 100vw;
-      height: 100vh;
+    .jspsych-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    p {
+      margin-block-start: 0px;
+      margin-block-end: 0px;
     }
     .rpm-stimulus {
 
       /* Stimlus position */
       position: relative;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-      transform: translateX(-50%);
-
-      /* Stimlus padding */
-      margin-top: 30px;
 
     }
     .rpm-stimulus img {
@@ -97,32 +97,10 @@ jsPsych.plugins['rpm'] = (function() {
       border: 2px solid #000000;
 
     }
-    .rpm-feedback {
-
-      /* Stimlus position */
-      position: relative;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-      transform: translateX(-50%);
-
-      /* Stimlus padding */
-      margin-top: 30px;
-      margin-bottom: 30px;
-
-    }
-    .rpm-feedback p {
-      font-size: 30px;
-      font-weight: bold;
-      margin-block-start: 0;
-      margin-block-end: 0;
-    }
     .rpm-choice-grid {
 
       /* Grid position */
       position: relative;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-      transform: translateX(-50%);
 
       /* Grid size */
       width: calc(${trial.col_wrap} * 160px);
@@ -150,10 +128,20 @@ jsPsych.plugins['rpm'] = (function() {
     .rpm-choice-grid .rpm-choice img:hover {
       opacity: 0.5;
     }
+    .rpm-feedback {
+      position: relative;
+      height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .rpm-feedback p {
+      font-size: 30px;
+      font-weight: bold;
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
     </style>`;
-
-    // Initialize container.
-    new_html += '<div class="rpm-container">';
 
     // Draw RPM stimulus.
     new_html += '<div class="rpm-stimulus">';
@@ -168,7 +156,7 @@ jsPsych.plugins['rpm'] = (function() {
     // Randomize choice order.
     var item_order = [...Array(trial.choices.length).keys()];
     if (trial.randomize_choice_order) {
-       item_order = jsPsych.randomization.shuffle(item_order);
+      item_order = jsPsych.randomization.shuffle(item_order);
     }
 
     // Draw RPM choices.
@@ -180,14 +168,19 @@ jsPsych.plugins['rpm'] = (function() {
     })
     new_html += '</div>';
 
-    // Close container
-    new_html += '</div>';
-
     display_element.innerHTML = new_html;
 
     //---------------------------------------//
     // Response handling.
     //---------------------------------------//
+
+    // confirm screen resolution
+    const screen_resolution = [window.innerWidth, window.innerHeight];
+    if (screen_resolution[0] < 700 || screen_resolution[1] < 600) {
+      var minimum_resolution = 0;
+    } else {
+      var minimum_resolution = 1;
+    }
 
     // start time
     var start_time = performance.now();
@@ -220,7 +213,7 @@ jsPsych.plugins['rpm'] = (function() {
 
       // measure response time
       var end_time = performance.now();
-      var rt = (end_time - start_time) / 1000;
+      var rt = end_time - start_time;
 
       // store responses.
       response.rt = rt;
@@ -238,13 +231,21 @@ jsPsych.plugins['rpm'] = (function() {
       // kill any remaining setTimeout handlers
       jsPsych.pluginAPI.clearAllTimeouts();
 
+      // confirm image loading
+      const loaded = Array.from(document.getElementsByTagName('img')).map(x => (x.complete) && (x.naturalWidth != 0));
+      const all_loaded = loaded.every(x => x);
+
       // gather the data to store for the trial
       var trial_data = {
-        "stimulus": trial.stimulus,
-        "correct": trial.correct,
-        "choice": response.choice,
-        "accuracy": response.accuracy,
-        "rt": response.rt,
+        stimulus: trial.stimulus,
+        choice_order: item_order,
+        correct: trial.correct,
+        choice: response.choice,
+        accuracy: response.accuracy,
+        rt: response.rt,
+        screen_resolution: screen_resolution,
+        minimum_resolution: minimum_resolution,
+        all_loaded: all_loaded
       };
 
       // clear the display

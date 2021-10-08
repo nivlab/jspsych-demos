@@ -5,6 +5,10 @@
 // Define timing parameters.
 var trial_duration = 30000;     // 30 seconds
 
+// Define screen size parameters.
+var min_width = 700;
+var min_height = 600;
+
 //------------------------------------//
 // Define images for preloading.
 //------------------------------------//
@@ -98,8 +102,8 @@ var rpm_task_tfb = {
   timeline: [
     {
       type: 'screen-check',
-      min_width: 500,
-      min_height: 500
+      min_width: min_width,
+      min_height: min_height
     },
     {
       type: 'html-keyboard-response',
