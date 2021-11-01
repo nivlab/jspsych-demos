@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TLX</title>
+
+  <!-- Load libraries -->
+  <script src="./lib/jspsych-6.3.1/jspsych.js"></script>
+
+  <!-- Load jsPsych plug-ins -->
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-survey-likert.js"></script>
+
+  <!-- Load CSS styles -->
+  <link href="./lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+</head>
+<body></body>
+<script>
+
+  // Display alert message on back/refresh.
+  // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+  function verify_unload(e){
+    e.preventDefault();
+    (e || window.event).returnValue = null;
+    return null;
+  };
+  window.addEventListener("beforeunload", verify_unload);
+
+  // Define NASA-TLX
+  // https://en.wikipedia.org/wiki/NASA-TLX
+  var nasa_tlx = {
+    type: 'survey-likert',
+    questions: [
+      {
+        prompt: "How mentally demanding was the task?",
+        labels: ["Very Low", "", "", "", "", "", "Very High"],
+        required: true,
+        name: 'mental-demand'
+      },
+      {
+        prompt: "How hurried or rushed was the pace of the task?",
+        labels: ["Very Low", "", "", "", "", "", "Very High"],
+        required: true,
+        name: 'temporal-demand'
+      },
+      {
+        prompt: "How successful were you in accomplishing what you were asked to do?",
+        labels: ["Perfect", "", "", "", "", "", "Failure"],
+        required: true,
+        name: 'performance'
+      },
+      {
+        prompt: "How hard did you have to work to accomplish your level of performance?",
+        labels: ["Very Low", "", "", "", "", "", "Very High"],
+        required: true,
+        name: 'effort'
+      },
+      {
+        prompt: "How discouraged, irritated, stressed, and annoyed were you?",
+        labels: ["Very Low", "", "", "", "", "", "Very High"],
+        required: true,
+        name: 'frustration'
+      }
+    ],
+    preamble: '<p>Please answer the questions below. <font color="#c87606">Your answers will not affect your payment or bonus.</font></p>',
+    randomize_question_order: false,
+    scale_width: 500
+  }
+
+  // Initialize timeline.
+  var timeline = [];
+  timeline = timeline.concat(nasa_tlx);
+
+  jsPsych.init({
+    timeline: timeline,
+    show_progress_bar: true,
+    on_finish: function() {
+
+      // Remove requirement to verify redirect
+      window.removeEventListener("beforeunload", verify_unload);
+
+      // Add interactions to the data variable
+      var interaction_data = jsPsych.data.getInteractionData();
+      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+      // Display jsPsych data in viewport.
+      jsPsych.data.displayData();
+
+    }
+  })
+
+</script>
+</html>

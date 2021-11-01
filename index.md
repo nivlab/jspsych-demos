@@ -124,6 +124,14 @@ TABLE OF CONTENTS
 
 > A debriefing form that asks for a participant's appraisal of an experiment (e.g. difficulty, enjoyability), their task strategy, and general feedback.
 
+### NASA Task Load Index
+
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/nasa-tlx) [<b>[Demo]</b>](./tasks/nasa-tlx/experiment.html)
+
+> The [NASA Task Load Index (NASA-TLX)](https://en.wikipedia.org/wiki/NASA-TLX) is a self-report measure that measures perceived task difficulty and participant performance.
+>
+> Note: This version excludes the physical effort question, which is less relevant for most cognitive tasks. Users may want to include this question for online tasks with a physical effort component.
+
 ### Mental health resources
 
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/self-report) [<b>[Demo]</b>](./tasks/self-report/experiment.html?plugin=mha)
