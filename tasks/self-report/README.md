@@ -79,7 +79,7 @@ The survey-demo plugin is an extension of the [survey-data-form](https://www.jsp
 
 #### jspsych-survey-debrief
 
-The survey-debrief plugin is an extension of the [survey-data-form](https://www.jspsych.org/plugins/jspsych-survey-html-form/) plugin. It includes items asking about a participant's appraisal of an experiment (e.g. difficulty, enjoyability) and free response items asking about strategy use and general feedback.
+The survey-debrief plugin is an extension of the [survey-data-form](https://www.jspsych.org/plugins/jspsych-survey-html-form/) plugin. It includes items asking about a participant's appraisal of an experiment (e.g. difficulty, enjoyability) and free response items asking about strategy use and general feedback. Uses items from the [NASA Task Load Index](https://en.wikipedia.org/wiki/NASA-TLX).
 
 #### jspsych-mental-health-alert
 

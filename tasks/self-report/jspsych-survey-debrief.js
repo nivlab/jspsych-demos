@@ -1,6 +1,8 @@
 /**
  * jspsych-survey-debrief
- * a jspsych plugin for a run-of-the-mill feedback survey
+ * author(s): sam zorowitz, dan bennett
+ *
+ * a jspsych plugin for soliciting experiment feedback
  */
 
 jsPsych.plugins['survey-debrief'] = (function() {
@@ -11,6 +13,66 @@ jsPsych.plugins['survey-debrief'] = (function() {
     name: 'survey-debrief',
     description: '',
     parameters: {
+      mental_demand: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Mental demand',
+        default: true,
+        discription: 'If true, include the NASA-TLX mental demand item.'
+      },
+      physical_demand: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Physical demand',
+        default: false,
+        discription: 'If true, include the NASA-TLX physical demand item.'
+      },
+      temporal_demand: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Temporal demand',
+        default: false,
+        discription: 'If true, include the NASA-TLX temporal demand item.'
+      },
+      task_fun: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Task fun',
+        default: false,
+        discription: 'If true, include the custom task fun item.'
+      },
+      task_instructions: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Task instructions',
+        default: true,
+        discription: 'If true, include the custom task instructions item.'
+      },
+      performance: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Performance',
+        default: true,
+        discription: 'If true, include the NASA-TLX performance item.'
+      },
+      effort: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Effort',
+        default: true,
+        discription: 'If true, include the NASA-TLX effort item.'
+      },
+      frustration: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Frustration',
+        default: true,
+        discription: 'If true, include the NASA-TLX frustration item.'
+      },
+      strategy: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Strategy',
+        default: true,
+        discription: 'If true, include free response strategy item.'
+      },
+      feedback: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Feedback',
+        default: true,
+        discription: 'If true, include free response feedback item.'
+      },
       button_label: {
         type: jsPsych.plugins.parameterType.STRING,
         pretty_name: 'Button label',
@@ -30,66 +92,83 @@ jsPsych.plugins['survey-debrief'] = (function() {
 
     // Inject CSS
     html += `<style>
-    .survey-debrief-wrap {
-      height: 100vh;
-      width: 100vw;
-    }
     .survey-debrief-instructions {
+      width: 900px;
       margin: auto;
-      width: 75vw;
-      padding: 0 0 0 0;
       text-align: center;
-      font-size: 1.33vw;
+      font-size: 18px;
       line-height: 1.15em;
+      padding-top: 12px;
     }
     .survey-debrief-container {
       display: grid;
-      grid-template-columns: 40% 60%;
-      grid-template-rows: auto;
-      grid-gap: 2px;
-      width: 75vw;
+      grid-template-columns: 50% 50%;
+      grid-row-gap: 3px;
+      width: 900px;
       margin: auto;
-      background-color: #F8F8F8;
       border-radius: 12px;
     }
-    .survey-debrief-row {
-      display: contents;
-      justify-items: center;
-      text-align: left;
-      font-size: 1.33vw;
+    .survey-debrief-item {
+      display: flex;
+      flex-direction: row;
       line-height: 1.5em;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      background-color: #F8F8F8;
+      align-items: center;
     }
-    .survey-debrief-prompt {
-      padding: 12px 0 12px 15px;
-      border-top: 2px solid #ffffff;
+    .survey-debrief-item[type='prompt'] p {
+      text-align: left;
+      font-size: 16px;
+      padding-left: 16px;
     }
-    .survey-debrief-prompt label {
-      padding: 0 8px 0 0;
-      display: inline-block;
+    .survey-debrief-item[type='response'] {
+      justify-content: space-evenly;
     }
-    .survey-debrief-response {
-      padding: 12px 0 12px 0;
-      border-top: 2px solid #ffffff;
+    .radiogroup {
+      width: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
     }
-    .survey-debrief-response label {
-      padding: 0 8px 0 0;
-      display: inline-block;
+    .radiogroup label {
+      font-size: 15px;
+      display: block;
+      margin-bottom: 4px;
     }
-    .survey-debrief-response input[type=text] {
-      width: 60%;
-      height: 1.66vw;
-      padding: 0.1em 0.2em;
+    .radiogroup input[type="radio"] {
+      position: relative;
+      height: 16px;
+      width: 16px;
+      margin: auto;
+    }
+    .radiogroup input[type="radio"]:before {
+      display: block;
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      -webkit-transform : translateY(-50%);
+      width: 45px;
+      height: 2px;
+      background: #d8dcd6;
+      content: '';
+    }
+    .radiogroup:last-child input[type="radio"]:before {
+      display: none;
+    }
+    .survey-debrief-item[type='response'] input[type=text] {
+      width: 90%;
+      height: 32px;
+      padding: 4px 4px;
       border: 1px solid #ccc;
       border-radius: 4px;
     }
-    .survey-debrief-response input[type="radio"] {
-      height: 1.05vw;
-      width: 1.05vw;
-      margin: 0 6px 0 0;
-    }
     .survey-debrief-footer {
       margin: auto;
-      width: 75vw;
+      width: 900px;
       padding: 0 0 0 0;
       text-align: right;
     }
@@ -106,62 +185,206 @@ jsPsych.plugins['survey-debrief'] = (function() {
     }
     </style>`;
 
-    // Initialize survey.
-    html += '<div class="survey-debrief-wrap"><form id="jspsych-survey-debrief">';
+    // initialize HTML
+    html += '<form id="jspsych-survey-debrief">';
 
-    // Add debriefing header.
+    // add preamble
     html += '<div class=survey-debrief-instructions>';
-    html += '<h2>Debriefing</h2>';
     html += '<p>Please answer the questions below. <font color="#c87606">Your answers will not affect your payment or bonus.</font></p>'
     html += '</div>';
 
-    // Begin debriefing container.
+    // initialize survey container
     html += '<div class="survey-debrief-container">';
 
-    // Item 1: Task difficulty
-    html += '<div class="survey-debrief-row">';
-    html += '<div class="survey-debrief-prompt"><label for="difficulty">How difficult was the task?</label></div>';
-    html += '<div class="survey-debrief-response">';
-    html += '<label><input type="radio" name="difficulty" value="5" required>Very easy</label><br>';
-    html += '<label><input type="radio" name="difficulty" value="4" required>Somewhat easy</label><br>';
-    html += '<label><input type="radio" name="difficulty" value="3" required>Neither easy nor hard</label><br>';
-    html += '<label><input type="radio" name="difficulty" value="2" required>Somewhat hard</label><br>';
-    html += '<label><input type="radio" name="difficulty" value="1" required>Very hard</label>';
-    html += '</div></div>';
+    // mental demand item
+    if (trial.mental_demand) {
 
-    // Item 2: Task enjoyment
-    html += '<div class="survey-debrief-row">';
-    html += '<div class="survey-debrief-prompt"><label for="fun">How fun was the task?</label></div>';
-    html += '<div class="survey-debrief-response">';
-    html += '<label><input type="radio" name="fun" value="5" required>Very fun</label><br>';
-    html += '<label><input type="radio" name="fun" value="4" required>Somewhat fun</label><br>';
-    html += '<label><input type="radio" name="fun" value="3" required>Neither fun nor boring</label><br>';
-    html += '<label><input type="radio" name="fun" value="2" required>Somewhat boring</label><br>';
-    html += '<label><input type="radio" name="fun" value="1" required>Very boring</label>';
-    html += '</div></div>';
+      // add prompt
+      html += '<div class="survey-debrief-item" type="prompt">';
+      html += '<p>How mentally demanding was the task?</p>';
+      html += '</div>';
 
-    // Item 3: Instructions clarity
-    html += '<div class="survey-debrief-row">';
-    html += '<div class="survey-debrief-prompt"><label for="clarity">How clear were the instructions?</label></div>';
-    html += '<div class="survey-debrief-response">';
-    html += '<label><input type="radio" name="clarity" value="5" required>Very clear</label><br>';
-    html += '<label><input type="radio" name="clarity" value="4" required>Somewhat clear</label><br>';
-    html += '<label><input type="radio" name="clarity" value="3" required>Neither clear nor confusing</label><br>';
-    html += '<label><input type="radio" name="clarity" value="2" required>Somewhat confusing</label><br>';
-    html += '<label><input type="radio" name="clarity" value="1" required>Very confusing</label>';
-    html += '</div></div>';
+      // iteratively add response options
+      html += '<div class="survey-debrief-item" type="response">';
+      ['Not at all', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', 'Very much'].forEach((k, v) => {
+        html += '<div class="radiogroup">';
+        html += '<label for="mental-demand">' + k + '</label>';
+        html += '<input type="radio" name="mental-demand" value="' + v + '" required>';
+        html += '</div>';
+      });
+      html += '</div>';
 
-    // Item 4: Task strategies
-    html += '<div class="survey-debrief-row">';
-    html += '<div class="survey-debrief-prompt"><label for="strategy">Did you use any strategies during the task (e.g. write things down)?</label></div>';
-    html += '<div class="survey-debrief-response"><input type="text" name="strategy"></div>';
-    html += '</div>';
+    }
 
-    // Item 5: Additional comments.
-    html += '<div class="survey-debrief-row">';
-    html += '<div class="survey-debrief-prompt"><label for="feedback">Do you have any other comments?</label></div>';
-    html += '<div class="survey-debrief-response"><input type="text" name="feedback"></div>';
-    html += '</div>';
+    // physical demand item
+    if (trial.physical_demand) {
+
+      // add prompt
+      html += '<div class="survey-debrief-item" type="prompt">';
+      html += '<p>How physically demanding was the task?</p>';
+      html += '</div>';
+
+      // iteratively add response options
+      html += '<div class="survey-debrief-item" type="response">';
+      ['Not at all', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', 'Very much'].forEach((k, v) => {
+        html += '<div class="radiogroup">';
+        html += '<label for="physical-demand">' + k + '</label>';
+        html += '<input type="radio" name="physical-demand" value="' + v + '" required>';
+        html += '</div>';
+      });
+      html += '</div>';
+
+    }
+
+    // temporal demand
+    if (trial.temporal_demand) {
+
+      // add prompt
+      html += '<div class="survey-debrief-item" type="prompt">';
+      html += '<p>How hurried or rushed was the pace of the task?</p>';
+      html += '</div>';
+
+      // iteratively add response options
+      html += '<div class="survey-debrief-item" type="response">';
+      ['Not at all', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', 'Very much'].forEach((k, v) => {
+        html += '<div class="radiogroup">';
+        html += '<label for="temporal-demand">' + k + '</label>';
+        html += '<input type="radio" name="temporal-demand" value="' + v + '" required>';
+        html += '</div>';
+      });
+      html += '</div>';
+
+    }
+
+    // task fun item
+    if (trial.task_fun) {
+
+      // add prompt
+      html += '<div class="survey-debrief-item" type="prompt">';
+      html += '<p>How fun was the task?</p>';
+      html += '</div>';
+
+      // iteratively add response options
+      html += '<div class="survey-debrief-item" type="response">';
+      ['Not at all', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', 'Very much'].forEach((k, v) => {
+        html += '<div class="radiogroup">';
+        html += '<label for="task-fun">' + k + '</label>';
+        html += '<input type="radio" name="task-fun" value="' + v + '" required>';
+        html += '</div>';
+      });
+      html += '</div>';
+
+    }
+
+    // task instructions
+    if (trial.task_instructions) {
+
+      // add prompt
+      html += '<div class="survey-debrief-item" type="prompt">';
+      html += '<p>How clear were the task instructions?</p>';
+      html += '</div>';
+
+      // iteratively add response options
+      html += '<div class="survey-debrief-item" type="response">';
+      ['Not at all', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', 'Very much'].forEach((k, v) => {
+        html += '<div class="radiogroup">';
+        html += '<label for="task-instructions">' + k + '</label>';
+        html += '<input type="radio" name="task-instructions" value="' + v + '" required>';
+        html += '</div>';
+      });
+      html += '</div>';
+
+    }
+
+    // subject performance
+    if (trial.performance) {
+
+      // add prompt
+      html += '<div class="survey-debrief-item" type="prompt">';
+      html += '<p>How successful were you in accomplishing what you<br>were asked to do during the task?</p>';
+      html += '</div>';
+
+      // iteratively add response options
+      html += '<div class="survey-debrief-item" type="response">';
+      ['Not at all', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', 'Very much'].forEach((k, v) => {
+        html += '<div class="radiogroup">';
+        html += '<label for="performance">' + k + '</label>';
+        html += '<input type="radio" name="performance" value="' + v + '" required>';
+        html += '</div>';
+      });
+      html += '</div>';
+
+    }
+
+    // subject effort
+    if (trial.effort) {
+
+      // add prompt
+      html += '<div class="survey-debrief-item" type="prompt">';
+      html += '<p>How hard did you have to work to accomplish your<br>level of performance?</p>';
+      html += '</div>';
+
+      // iteratively add response options
+      html += '<div class="survey-debrief-item" type="response">';
+      ['Not at all', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', 'Very much'].forEach((k, v) => {
+        html += '<div class="radiogroup">';
+        html += '<label for="effort">' + k + '</label>';
+        html += '<input type="radio" name="effort" value="' + v + '" required>';
+        html += '</div>';
+      });
+      html += '</div>';
+
+    }
+
+    // subject frustration
+    if (trial.frustration) {
+
+      // add prompt
+      html += '<div class="survey-debrief-item" type="prompt">';
+      html += '<p>How discouraged, irritated, stressed, or annoyed<br>were you during the task?</p>';
+      html += '</div>';
+
+      // iteratively add response options
+      html += '<div class="survey-debrief-item" type="response">';
+      ['Not at all', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', 'Very much'].forEach((k, v) => {
+        html += '<div class="radiogroup">';
+        html += '<label for="frustration">' + k + '</label>';
+        html += '<input type="radio" name="frustration" value="' + v + '" required>';
+        html += '</div>';
+      });
+      html += '</div>';
+
+    }
+
+    // task strategy
+    if (trial.strategy) {
+
+      // add prompt
+      html += '<div class="survey-debrief-item" type="prompt">';
+      html += '<p>Did you use any strategies during the task?<br><small>(e.g. write things down)</small></p>';
+      html += '</div>';
+
+      // add free response option
+      html += '<div class="survey-debrief-item" type="response">';
+      html += '<input type="text" name="strategy">';
+      html += '</div>';
+
+    }
+
+    // additional feedback
+    if (trial.feedback) {
+
+      // add prompt
+      html += '<div class="survey-debrief-item" type="prompt">';
+      html += '<p>Do you have any other comments or feedback?</p>';
+      html += '</div>';
+
+      // add free response option
+      html += '<div class="survey-debrief-item" type="response">';
+      html += '<input type="text" name="feedback">';
+      html += '</div>';
+
+    }
 
     // Close survey-debrief-container.
     html += '</div>';
@@ -172,7 +395,7 @@ jsPsych.plugins['survey-debrief'] = (function() {
     html += '</div>';
 
     // End survey.
-    html += '</form></div>';
+    html += '</form>';
 
     // Display HTML
     display_element.innerHTML = html;
