@@ -1,10 +1,14 @@
-# Apathy Evaluation Scale (AES)
-
-```javascript
+/**
+* Apathy Evaluation Scale (AES)
+*
+* Marin, R. S., Biedrzycki, R. C., & Firinciogullari, S. (1991). Reliability and
+* validity of the Apathy Evaluation Scale. Psychiatry research, 38(2), 143-162.
+*
+**/
 
 var aes = {
   type: 'survey-template',
-  items = [
+  items: [
     "I am interested in things.",
     "I get things done during the day.",
     "Getting things started on my own is important to me.",
@@ -24,20 +28,18 @@ var aes = {
     "I have initiative.",
     "I have motivation."
   ],
-  scale = [
+  scale: [
     "Not at all",
     "Slightly",
     "Somewhat",
     "A lot"
   ],
-  reverse = [
+  reverse: [
     false, false, false, false, false, true, false, false, false,
     true, true, false, false, false, false, false, false, false
   ],
-  instructions = 'For each statement, choose the answer that best describes the your thoughts, feelings, and activity in the past 4 weeks.'
+  instructions: 'For each statement, choose the answer that best describes the your thoughts, feelings, and activity in the past 4 weeks.',
+  scale_repeat: 10,
+  survey_width: 950,
+  item_width: 45
 }
-
-```
-
-## References
-- Marin, R. S., Biedrzycki, R. C., & Firinciogullari, S. (1991). Reliability and validity of the Apathy Evaluation Scale. Psychiatry research, 38(2), 143-162.

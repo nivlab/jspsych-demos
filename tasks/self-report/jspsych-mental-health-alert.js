@@ -1,9 +1,9 @@
 /**
- * jspsych-mental-health-alert
- *
- * plugin for displaying mental health resources
- *
- **/
+* jspsych-mental-health-alert
+*
+* plugin for displaying mental health resources
+*
+**/
 
 jsPsych.plugins["mental-health-alert"] = (function() {
 
