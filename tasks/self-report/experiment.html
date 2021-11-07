@@ -30,6 +30,10 @@
   <script src="./surveys/panas.js"></script>
   <script src="./surveys/pswq.js"></script>
   <script src="./surveys/sds.js"></script>
+  <script src="./surveys/shaps.js"></script>
+  <script src="./surveys/sns.js"></script>
+  <script src="./surveys/stai.js"></script>
+  <script src="./surveys/sticsa.js"></script>
 
   <!-- Load CSS styles -->
   <link href="./lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
@@ -76,7 +80,6 @@
   } else if (show_plugin == "mha") {
     timeline = timeline.concat(MHA);
   } else {
-    timeline = timeline.concat(SURVEY);
     timeline = timeline.concat(MHA);
     timeline = timeline.concat(DEMO);
     timeline = timeline.concat(DEBRIEF);

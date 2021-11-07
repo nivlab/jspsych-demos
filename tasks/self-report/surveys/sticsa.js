@@ -1,10 +1,17 @@
-# State-Trait Inventory of Cognitive and Somatic Anxiety
-
-```javascript
+/**
+* State-Trait Inventory of Cognitive and Somatic Anxiety
+*
+* Roberts KE, Hart TA, Eastwood JD (2016) Factor structure and validity of the
+* State-Trait Inventory for Cognitive and Somatic Anxiety. Psychol Assess 28:134–146.
+*
+* Styck KM, Rodriguez MC, Yi EH (2020) Dimensionality of the State-Trait Inventory
+* of Cognitive and Somatic Anxiety. Assessment:1073191120953628.
+*
+**/
 
 var sticsa = {
   type: 'survey-template',
-  items = [
+  items: [
     "My heart beats fast",
     "My muscles are tense",
     "I feel agonized over my problems",
@@ -33,15 +40,12 @@ var sticsa = {
     "Moderately",
     "Very Much So"
   ],
-  reverse = [
+  reverse: [
     false, false, false, false, false, false, false, false, false, false, false,
     false, false, false, false, false, false, false, false, false, false
   ],
-  instructions: "Please read each statement carefully and select which response best indicates how often, in general, the statement is true of you."
+  instructions: "Please read each statement carefully and select which response best indicates how often, in general, the statement is true of you.",
+  survey_width: 850,
+  item_width: 45,
+  scale_repeat: 7,
 }
-
-```
-
-## References
-- Roberts KE, Hart TA, Eastwood JD (2016) Factor structure and validity of the State-Trait Inventory for Cognitive and Somatic Anxiety. Psychol Assess 28:134–146.
-- Styck KM, Rodriguez MC, Yi EH (2020) Dimensionality of the State-Trait Inventory of Cognitive and Somatic Anxiety. Assessment:1073191120953628.
