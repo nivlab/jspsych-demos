@@ -4,57 +4,36 @@ Author(s): Sam Zorowitz, Dan Bennett, Dan Mirea
 
 This folder contains template jsPsych code for self-report questionnaires, demographics forms, and debriefing forms.
 
-Please review the [notes](#notes) section before using code in live experiments.
+## Self-report measures
 
-Organization
-------------
-
-    ├── anxiety            <- Self-report measures of anxiety and related symptoms.
-    │   ├── acqr           <- Anxious control qestionnaire
-    │   ├── gad7           <- Generalized anxiety disorder scale
-    │   ├── lsas           <- Liebowitz social anxiety scale
-    │   ├── oci            <- Obsessive compulsive inventory
-    │   ├── pswq           <- Penn state worry questionnaire
-    │   ├── stai           <- State trait anxiety inventory
-    │   ├── sticsa         <- State-trait inventory of cognitive and somatic anxiety
-    │   
-    ├── depression         <- Self-report measures of depression and related symptoms.
-    │   ├── aes            <- Apathy evaluation scale
-    │   ├── sds            <- Zung self-depression scale
-    │   ├── shaps          <- Snaith-Hamilton pleasure scale
-    │   
-    ├── eating             <- Self-report measures of eating disorders and related symptoms.
-    │   ├── eat26          <- Eating attitudes test
-    │   
-    ├── misc               <- Self-report measures of miscellaneous constructs.
-    │   ├── covid          <- COVID behaviors inventory
-    │   
-    ├── mood               <- Self-report measures of mood and affect.
-    │   ├── panas          <- Positive and negative affect schedule
-    │   ├── slider         <- Affective slider scale
-    │   
-    ├── multidomain        <- Self-report measures of multiple syndromes.
-    │   ├── 7u7d           <- 7-up / 7-down scale (depression, mania)
-    │   ├── bisbas         <- Behavioral inhibition / behavioral activation (anxiety, depression)
-    │   ├── dass           <- Depression, anxiety, and stress scale
-    │   
-    ├── self-efficacy      <- Self-report measures of self-efficacy beliefs.
-    │   ├── docs           <- Desirability of control scale
-    │   ├── gse            <- General self-efficacy scale
-    │   ├── nfc6           <- Need for cognition scale
-    │   ├── npoq           <- Negative problem orientation questionnaire
-    │   
-    ├── substance          <- Self-report measures of substance use.
-    │   ├── audit          <- Alcohol use disorders identification test
-    │   
-    ├── uncertainty        <- Self-report measures of uncertainty tolerance and information seeking.
-    │   ├── ius12          <- Intolerance of uncertainty scale
-    │   ├── nfcs           <- Need for closure scale
-    │   
-    ├── jspsych-mental-health-alert.js     <- Mental health resources for participants
-    ├── jspsych-survey-debrief.js          <- Experiment debriefing form
-    ├── jspsych-survey-demo.js             <- NIMH demographics form
-    ├── jspsych-survey-template.js         <- Core survey template plugin
+| Links | Survey | Description | IRB Approval |
+|-------|:-------|:------------|:-------------|
+|       | 7-up 7-down | Measure of hypomania and depression symptoms | Niv, Daw |
+|       | Affective slider | Measure of state mood & arousal | Niv, Daw |
+|       | Alcohol use disorders identification test | Measure of alcohol use | Niv, Daw |
+|       | Anxious control questionnaire | Measure of perceived self-efficacy (over anxiety, threat) | Daw |
+|       | Apathy evaluation scale | Measure of apathy and amotivation | Daw |
+|       | Behavioral inhibition / activation scales | Measure of reward/punishment motivation | Niv, Daw |
+|       | COVID beliefs & behaviors | Measure of factors related to COVID-19 | Niv |
+|       | Depression, anxiety, & stress scales | Measure of depression, anxiety, & stress symptoms | Niv |
+|       | Druge use disorders identification test | Measure of drug use | Niv |
+|       | Eating attitudes test | Measure of eating disorder symptoms | Daw |
+|       | Generalized anxiety disorder scale | Measure of anxiety symptoms | Niv, Daw |
+|       | General self-efficacy scale | Measure of perceived self-efficacy | Daw |
+|       | Inventory of depression & anxiety symptoms | Measure of depression & anxiety symptoms | Niv |
+|       | Intolerance of uncertainty scale | Measure of uncertainty intolerance | Niv |
+|       | Liebowitz Social Anxiety Scale | Measure of social anxiety | Daw |
+|       | Need for cognition scale | Measure of desire for cognitive effort  | Daw |
+|       | Need for closure scale | Measure of uncertainty intolerance | Niv |
+|       | Negative problem orientation scale | Measure of perceived self-efficacy | Daw |
+|       | Obsessive-compulsive inventory | Measure of compulsivity symptoms | Daw |
+|       | Positive and negative affect schedule | Measure of positive/negative affect | Niv, Daw |
+|       | Penn State worry questionnaire | Measure of worry symptoms | Niv, Daw |
+|       | Self-depression scale | Measure of depression symptoms | Daw |
+|       | Snaith-Hamilton anhedonia scale | Measure of anhedonia & depression symptoms | Niv |
+|       | Self-Evaluation of Negative Symptoms | Measure of negative symptoms | Niv |
+|       | State-trait anxiety inventory | Measure of negative affect | Niv, Daw |
+|       | State-Trait Inventory of Cognitive and Somatic Anxiety | Measure of anxiety symptoms | Niv |
 
 ## Plugins
 
