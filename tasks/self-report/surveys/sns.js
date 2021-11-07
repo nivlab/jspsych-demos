@@ -48,7 +48,7 @@ var sns = {
     "Strongly<br>disagree"
   ],
   reverse: [
-    false, false, false, false, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, false, false, false, false,
     false, false, false, false, false, false, false, false, false, false
   ],
   instructions: 'For each statement, choose the response which best corresponds to your current feelings based on the previous week.',
