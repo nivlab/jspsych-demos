@@ -4,57 +4,36 @@ Author(s): Sam Zorowitz, Dan Bennett, Dan Mirea
 
 This folder contains template jsPsych code for self-report questionnaires, demographics forms, and debriefing forms.
 
-Please review the [notes](#notes) section before using code in live experiments.
+## Self-report measures
 
-Organization
-------------
-
-    ├── anxiety            <- Self-report measures of anxiety and related symptoms.
-    │   ├── acqr           <- Anxious control qestionnaire
-    │   ├── gad7           <- Generalized anxiety disorder scale
-    │   ├── lsas           <- Liebowitz social anxiety scale
-    │   ├── oci            <- Obsessive compulsive inventory
-    │   ├── pswq           <- Penn state worry questionnaire
-    │   ├── stai           <- State trait anxiety inventory
-    │   ├── sticsa         <- State-trait inventory of cognitive and somatic anxiety
-    │   
-    ├── depression         <- Self-report measures of depression and related symptoms.
-    │   ├── aes            <- Apathy evaluation scale
-    │   ├── sds            <- Zung self-depression scale
-    │   ├── shaps          <- Snaith-Hamilton pleasure scale
-    │   
-    ├── eating             <- Self-report measures of eating disorders and related symptoms.
-    │   ├── eat26          <- Eating attitudes test
-    │   
-    ├── misc               <- Self-report measures of miscellaneous constructs.
-    │   ├── covid          <- COVID behaviors inventory
-    │   
-    ├── mood               <- Self-report measures of mood and affect.
-    │   ├── panas          <- Positive and negative affect schedule
-    │   ├── slider         <- Affective slider scale
-    │   
-    ├── multidomain        <- Self-report measures of multiple syndromes.
-    │   ├── 7u7d           <- 7-up / 7-down scale (depression, mania)
-    │   ├── bisbas         <- Behavioral inhibition / behavioral activation (anxiety, depression)
-    │   ├── dass           <- Depression, anxiety, and stress scale
-    │   
-    ├── self-efficacy      <- Self-report measures of self-efficacy beliefs.
-    │   ├── docs           <- Desirability of control scale
-    │   ├── gse            <- General self-efficacy scale
-    │   ├── nfc6           <- Need for cognition scale
-    │   ├── npoq           <- Negative problem orientation questionnaire
-    │   
-    ├── substance          <- Self-report measures of substance use.
-    │   ├── audit          <- Alcohol use disorders identification test
-    │   
-    ├── uncertainty        <- Self-report measures of uncertainty tolerance and information seeking.
-    │   ├── ius12          <- Intolerance of uncertainty scale
-    │   ├── nfcs           <- Need for closure scale
-    │   
-    ├── jspsych-mental-health-alert.js     <- Mental health resources for participants
-    ├── jspsych-survey-debrief.js          <- Experiment debriefing form
-    ├── jspsych-survey-demo.js             <- NIMH demographics form
-    ├── jspsych-survey-template.js         <- Core survey template plugin
+| Survey | Description | IRB Approval |
+|:-------|:------------|:-------------|
+| [7-up 7-down](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/7u7d.js) | Measure of hypomania and depression symptoms | Niv, Daw |
+| [Affective slider](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/affective-slider.js) | Measure of state mood & arousal | Niv, Daw |
+| [Alcohol use disorders identification test](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-survey-audit.js) | Measure of alcohol use | Niv, Daw |
+| [Anxious control questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/acqr.js) | Measure of perceived self-efficacy | Daw |
+| [Apathy evaluation scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/aes.js) | Measure of apathy and amotivation | Daw |
+| [Behavioral inhibition / activation scales](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/bisbas.js) | Measure of reward / punishment motivation | Niv, Daw |
+| [COVID beliefs & behaviors](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-survey-covid.js) | Measure of factors related to COVID-19 | Niv |
+| [Depression, anxiety, & stress scales](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/dass.js) | Measure of depression, anxiety, & stress symptoms | Niv |
+| [Drug use disorders identification test](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-survey-dudit.js) | Measure of drug use | Niv |
+| [Eating attitudes test](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/eat26.js) | Measure of eating disorder symptoms | Daw |
+| [Generalized anxiety disorder scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/gad7.js) | Measure of anxiety symptoms | Niv, Daw |
+| [General self-efficacy scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/gse.js) | Measure of perceived self-efficacy | Daw |
+| [Inventory of depression & anxiety symptoms](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/idas.js) | Measure of depression & anxiety symptoms | Niv |
+| [Intolerance of uncertainty scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/ius12.js) | Measure of uncertainty intolerance | Niv |
+| [Liebowitz Social Anxiety Scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/lsas.js) | Measure of social anxiety | Daw |
+| [Need for cognition scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/nfc6.js) | Measure of desire for cognitive effort  | Daw |
+| [Need for closure scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/nfcs.js) | Measure of uncertainty intolerance | Niv |
+| [Negative problem orientation questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/npoq.js) | Measure of perceived self-efficacy | Daw |
+| [Obsessive-compulsive inventory](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/oci.js) | Measure of compulsivity symptoms | Daw |
+| [Positive & negative affect schedule](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/panas.js) | Measure of positive / negative affect | Niv, Daw |
+| [Penn State worry questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/pswq.js) | Measure of worry symptoms | Niv, Daw |
+| [Self-depression scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/sds.js) | Measure of depression symptoms | Daw |
+| [Snaith-Hamilton anhedonia scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/shaps.js) | Measure of anhedonia & depression symptoms | Niv |
+| [Self-evaluation of negative symptoms](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/sns.js) | Measure of negative symptoms | Niv |
+| [State-trait anxiety inventory](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/stai.js) | Measure of negative affect | Niv, Daw |
+| [State-trait inventory of cognitive & somatic anxiety](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/sticsa.js) | Measure of anxiety symptoms | Niv |
 
 ## Plugins
 

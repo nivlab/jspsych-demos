@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Self Report</title>
+  <title>Self-report</title>
 
   <!-- Load libraries -->
   <script src="./lib/jspsych-6.3.1/jspsych.js"></script>
@@ -11,6 +11,37 @@
   <script src="./jspsych-survey-debrief.js"></script>
   <script src="./jspsych-survey-template.js"></script>
   <script src="./jspsych-mental-health-alert.js"></script>
+
+  <!-- Load template surveys -->
+  <script src="./surveys/7u7d.js"></script>
+  <script src="./surveys/acqr.js"></script>
+  <script src="./surveys/aes.js"></script>
+  <script src="./surveys/bisbas.js"></script>
+  <script src="./surveys/dass.js"></script>
+  <script src="./surveys/eat26.js"></script>
+  <script src="./surveys/gad7.js"></script>
+  <script src="./surveys/gse.js"></script>
+  <script src="./surveys/idas.js"></script>
+  <script src="./surveys/ius12.js"></script>
+  <script src="./surveys/lsas.js"></script>
+  <script src="./surveys/nfc6.js"></script>
+  <script src="./surveys/nfcs.js"></script>
+  <script src="./surveys/npoq.js"></script>
+  <script src="./surveys/oci.js"></script>
+  <script src="./surveys/panas.js"></script>
+  <script src="./surveys/pswq.js"></script>
+  <script src="./surveys/sds.js"></script>
+  <script src="./surveys/shaps.js"></script>
+  <script src="./surveys/sns.js"></script>
+  <script src="./surveys/stai.js"></script>
+  <script src="./surveys/sticsa.js"></script>
+
+  <!-- Load special surveys -->
+  <script src="./special/jspsych-survey-audit.js"></script>
+  <script src="./special/jspsych-survey-dudit.js"></script>
+  <script src="./special/jspsych-survey-covid.js"></script>
+  <script src="./special/jspsych-affective-slider.js"></script>
+  <script src="./special/affective-slider.js"></script>
 
   <!-- Load CSS styles -->
   <link href="./lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
@@ -42,31 +73,12 @@
     type: 'mental-health-alert'
   }
 
-  // Define survey.
-  var SURVEY = {
-    type: 'survey-template',
-    items: [
-      "Feeling nervous, anxious, or on edge",
-      "Not being able to stop or control worrying",
-      "Worrying too much about different things",
-      "Trouble relaxing",
-      "Being so restless that it's hard to sit still",
-      "Becoming easily annoyed or irritable",
-      "Feeling afraid as if something awful might happen"
-    ],
-    scale: [
-      "Not at all",
-      "Several days",
-      "Over half the days",
-      "Nearly every day"
-    ],
-    reverse: [
-    false, false, false, false, false, false, false
-    ],
-    instructions: 'Over the last 2 weeks, how often have you been bothered by the following problems?',
-    survey_width: 950,
-    item_width: 40
-  }
+  // Define random survey.
+  var [SURVEY] = jsPsych.randomization.sampleWithoutReplacement([
+    seven_up_seven_down, acqr, aes, bisbas, dass, eat26, gad7, gse,
+    idas, ius12, lsas, nfc6, nfcs, npoq, oci, panas, pswq, sds, shaps,
+    sns, stai, sticsa
+  ]);
 
   // Query URL
   const urlParams = new URLSearchParams(window.location.search);
@@ -84,9 +96,9 @@
     timeline = timeline.concat(MHA);
   } else {
     timeline = timeline.concat(SURVEY);
-    timeline = timeline.concat(MHA);
     timeline = timeline.concat(DEMO);
     timeline = timeline.concat(DEBRIEF);
+    timeline = timeline.concat(MHA);
   }
 
   jsPsych.init({
