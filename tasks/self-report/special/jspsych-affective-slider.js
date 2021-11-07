@@ -1,5 +1,14 @@
+/**
+* jspsych-affective-slider
+*
+* author(s): Dan Bennett
+*
+* Betella, A., & Verschure, P. F. (2016). The affective slider: A digital self-
+* assessment scale for the measurement of human emotions. PloS one, 11(2), e0148037.
+*
+*/
 
-jsPsych.plugins["affective_slider"] = (function() {
+jsPsych.plugins["affective-slider"] = (function() {
 
   var plugin = {};
 
@@ -8,7 +17,7 @@ jsPsych.plugins["affective_slider"] = (function() {
 
   // specify input arguments of plugin
   plugin.info = {
-    name: 'affective_slider',
+    name: 'affective-slider',
     parameters: {
       prompt: {
         type: jsPsych.plugins.parameterType.STRING, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
@@ -247,55 +256,55 @@ jsPsych.plugins["affective_slider"] = (function() {
     } // end _StimulusOnload function
 
     function _windowToCanvas(canvas, x, y) {
-       var bbox = canvas.getBoundingClientRect();
+      var bbox = canvas.getBoundingClientRect();
 
-       return { x: x - bbox.left * (canvas.width  / bbox.width),
-                y: y - bbox.top  * (canvas.height / bbox.height)
-              };
+      return { x: x - bbox.left * (canvas.width  / bbox.width),
+        y: y - bbox.top  * (canvas.height / bbox.height)
+      };
     }; //end _windowToCanvas function
 
     function _OnMouseMove(e) {
 
-       var loc = _windowToCanvas(canvas, e.clientX, e.clientY);
-       if ( loc.x < canvas.width/2 - trial.track_dimensions[0]/2 + trial.tab_dimensions[0]/2) {
-         display.tab_loc = -trial.track_dimensions[0]/2 + trial.tab_dimensions[0]/2
-       } else if ( loc.x > canvas.width/2 + trial.track_dimensions[0]/2 - trial.tab_dimensions[0]/2)  {
-         display.tab_loc = trial.track_dimensions[0]/2 - trial.tab_dimensions[0]/2
-       } else {
-         display.tab_loc = loc.x - (canvas.width / 2)
-       };
-       DrawSlider();
+      var loc = _windowToCanvas(canvas, e.clientX, e.clientY);
+      if ( loc.x < canvas.width/2 - trial.track_dimensions[0]/2 + trial.tab_dimensions[0]/2) {
+        display.tab_loc = -trial.track_dimensions[0]/2 + trial.tab_dimensions[0]/2
+      } else if ( loc.x > canvas.width/2 + trial.track_dimensions[0]/2 - trial.tab_dimensions[0]/2)  {
+        display.tab_loc = trial.track_dimensions[0]/2 - trial.tab_dimensions[0]/2
+      } else {
+        display.tab_loc = loc.x - (canvas.width / 2)
+      };
+      DrawSlider();
 
     }; // end _OnMouseMove function
 
     function _OnMouseClick(e) {
 
-       var loc = _windowToCanvas(canvas, e.clientX, e.clientY);
+      var loc = _windowToCanvas(canvas, e.clientX, e.clientY);
 
-       if (
-         (loc.x > canvas.width/2 + trial.track_offset[0] - trial.track_dimensions[0] / 2) &&
-         (loc.x < canvas.width/2 + trial.track_offset[0] + trial.track_dimensions[0] / 2) &&
-         (loc.y > canvas.height/2 + trial.track_offset[1] - trial.track_dimensions[1] / 2) &&
-         (loc.y < canvas.height/2 + trial.track_offset[1] + trial.track_dimensions[1] / 2)
-       ){
+      if (
+        (loc.x > canvas.width/2 + trial.track_offset[0] - trial.track_dimensions[0] / 2) &&
+        (loc.x < canvas.width/2 + trial.track_offset[0] + trial.track_dimensions[0] / 2) &&
+        (loc.y > canvas.height/2 + trial.track_offset[1] - trial.track_dimensions[1] / 2) &&
+        (loc.y < canvas.height/2 + trial.track_offset[1] + trial.track_dimensions[1] / 2)
+      ){
 
-         // turn off tab location updating
-         canvas.removeEventListener('mousemove', _OnMouseMove);
+        // turn off tab location updating
+        canvas.removeEventListener('mousemove', _OnMouseMove);
 
-         // change tab colour and draw it
-         display.tab_type = trial.AS_stimuli[7];
-         DrawSlider();
+        // change tab colour and draw it
+        display.tab_type = trial.AS_stimuli[7];
+        DrawSlider();
 
-         // calculate chosen location as a proportion of the scale
-         response.raw_loc = loc.x;
-         response.loc = (loc.x - (canvas.width/2 - trial.track_dimensions[0]/2)) / trial.track_dimensions[0];
+        // calculate chosen location as a proportion of the scale
+        response.raw_loc = loc.x;
+        response.loc = (loc.x - (canvas.width/2 - trial.track_dimensions[0]/2)) / trial.track_dimensions[0];
 
-         // set a timer and finish the trial
-         jsPsych.pluginAPI.setTimeout(function() {
-           EndTrial();
-         }, trial.post_click_duration);
+        // set a timer and finish the trial
+        jsPsych.pluginAPI.setTimeout(function() {
+          EndTrial();
+        }, trial.post_click_duration);
 
-       }
+      }
 
 
     }; // end _OnMouseMove function
