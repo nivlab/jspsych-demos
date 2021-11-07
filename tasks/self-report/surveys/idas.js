@@ -1,6 +1,12 @@
-# Inventory of Depression and Anxiety Symptoms
-
-```javascript
+/**
+* Inventory of Depression and Anxiety Symptoms
+*
+* Watson, D., O’Hara, M. W., Naragon-Gainey, K., Koffel, E., Chmielewski, M.,
+* Kotov, R., ... & Ruggero, C. J. (2012). Development and validation of new
+* anxiety and bipolar symptom scales for an expanded version of the IDAS
+* (the IDAS-II). Assessment, 19(4), 399-420.
+*
+**/
 
 var idas = {
   type: 'survey-template',
@@ -39,7 +45,7 @@ var idas = {
     "It took a lot of effort for me to get going",
     "I checked things over and over again",
     "I felt the urge to check to make sure I had done something",
-    "I found myself checking things, even though I knew it wasn’t necessary",
+    "I found myself checking things, even though I knew it wasn't necessary",
     "I avoided handling dirty things",
     "I avoided using public restrooms",
     "I had difficulty touching something that was dirty",
@@ -103,10 +109,8 @@ var idas = {
     false, false, false, false, false, false, false, false, false, false,
     false, false, false, false, false, false, false, false, false, false,
   ],
-  instructions: "Below is a list of feelings, sensations, problems, and experiences that people sometimes have. Read each item to determine how well it describes your recent feelings and experiences during the past two weeks, including today."
+  instructions: "Below is a list of feelings, sensations, problems, and experiences that people sometimes have. Read each item to determine how well it describes your recent feelings and experiences during the past two weeks, including today.",
+  survey_width: 950,
+  item_width: 45,
+  scale_repeat: 8,
 }
-
-```
-
-## References
-- Watson, D., O’Hara, M. W., Naragon-Gainey, K., Koffel, E., Chmielewski, M., Kotov, R., ... & Ruggero, C. J. (2012). Development and validation of new anxiety and bipolar symptom scales for an expanded version of the IDAS (the IDAS-II). Assessment, 19(4), 399-420.
