@@ -1,6 +1,17 @@
-# Negative Problem Orientation Questionnaire
-
-```javascript
+/**
+* Negative Problem Orientation Questionnaire
+*
+* Robichaud, M., & Dugas, M. J. (2005). Negative problem orientation (Part I): psychometric
+* properties of a new measure. Behaviour research and therapy, 43(3), 391-401.
+*
+* Robichaud, M., & Dugas, M. J. (2005). Negative problem orientation (Part II): Construct
+* validity and specificity to worry. Behaviour Research and Therapy, 43(3), 403-412.
+*
+* Fergus, T. A., Valentiner, D. P., Wu, K. D., & McGrath, P. B. (2015). Examining
+* the symptom-level specificity of negative problem orientation in a clinical sample.
+* Cognitive Behaviour Therapy, 44(2), 153-161.
+*
+**/
 
 var npoq = {
   type: 'survey-template',
@@ -19,22 +30,18 @@ var npoq = {
     "I consider problems to be obstacles that interfere with my functioning."
   ],
   scale: [
-    "Not at all true of me",
-    "Slightly true of me",
-    "Moderately true of me",
-    "Very true of me",
-    "Extremely true of me"
+    "Not at all<br>true of me",
+    "Slightly<br>true of me",
+    "Moderately<br>true of me",
+    "Very<br>true of me",
+    "Extremely<br>true of me"
   ],
   reverse: [
     false, false, false, false, false, false,
     false, false, false, false, false, false
   ],
-  instructions: "Please use the scale below to indicate to what extent each of the following items corresponds to the way you react or think when confronted with a problem."
+  instructions: "Please use the scale below to indicate to what extent each of the following items corresponds to the way you react or think when confronted with a problem.",
+  survey_width: 950,
+  item_width: 45,
+  scale_repeat: 6,
 }
-
-```
-
-## References
-- Robichaud, M., & Dugas, M. J. (2005). Negative problem orientation (Part I): psychometric properties of a new measure. Behaviour research and therapy, 43(3), 391-401.
-- Robichaud, M., & Dugas, M. J. (2005). Negative problem orientation (Part II): Construct validity and specificity to worry. Behaviour Research and Therapy, 43(3), 403-412.
-- Fergus, T. A., Valentiner, D. P., Wu, K. D., & McGrath, P. B. (2015). Examining the symptom-level specificity of negative problem orientation in a clinical sample. Cognitive Behaviour Therapy, 44(2), 153-161.

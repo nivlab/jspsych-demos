@@ -1,10 +1,15 @@
-# Obsessive-Compulsive Inventory (OCI)
-
-```javascript
+/**
+* Obsessive-Compulsive Inventory (OCI)
+*
+* Foa, E. B., Huppert, J. D., Leiberg, S., Langner, R., Kichic, R., Hajcak, G.,
+* & Salkovskis, P. M. (2002). The Obsessive-Compulsive Inventory: development and
+* validation of a short version. Psychological assessment, 14(4), 485.
+*
+**/
 
 var oci = {
   type: 'survey-template',
-  items = [
+  items: [
     "I have saved up so many things that they get in the way.",
     "I check things more often than necessary.",
     "I get upset if objects are not arranged properly. ",
@@ -24,21 +29,19 @@ var oci = {
     "I wash my hands more often and longer than necessary",
     "I frequently get nasty thoughts and have difficulty in getting rid of them."
   ],
-  scale = [
+  scale: [
     "Not at all",
     "A little",
     "Moderately",
     "A lot",
     "Extremely"
   ],
-  reverse = [
+  reverse: [
     false, false, false, false, false, false, false, false, false,
     false, false, false, false, false, false, false, false, false
   ],
-  instructions = 'The following statements refer to experiences that many people have in their everyday lives. Select the description that best describes how much that experience has distressed or bothered you during the past month.'
+  instructions: 'The following statements refer to experiences that many people have in their everyday lives. Select the description that best describes how much that experience has distressed or bothered you during the past month.',
+  survey_width: 950,
+  item_width: 50,
+  scale_repeat: 6,
 }
-
-```
-
-## References
-- Foa, E. B., Huppert, J. D., Leiberg, S., Langner, R., Kichic, R., Hajcak, G., & Salkovskis, P. M. (2002). The Obsessive-Compulsive Inventory: development and validation of a short version. Psychological assessment, 14(4), 485.
