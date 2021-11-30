@@ -26,7 +26,7 @@ var nfc6 = {
     "Somewhat<br>uncharacteristic<br>of me",
     "Uncertain",
     "Somewhat<br>characteristic<br>of me",
-    "Extremely<br>uncharacteristic<br>of me"
+    "Extremely<br>characteristic<br>of me"
   ],
   reverse: [
     false, false, true, true, false, false
@@ -56,7 +56,7 @@ var nfc10 = {
     "Somewhat<br>uncharacteristic<br>of me",
     "Uncertain",
     "Somewhat<br>characteristic<br>of me",
-    "Extremely<br>uncharacteristic<br>of me"
+    "Extremely<br>characteristic<br>of me"
   ],
   reverse: [
     false, false, true, true, true, false, false, false, false, false
