@@ -6,11 +6,17 @@
   <!-- Load libraries -->
   <script src="./lib/jspsych-6.3.1/jspsych.js"></script>
 
+  <!-- Load experiment -->
+  <script src="./js/dsct-experiment.js"></script>
+
   <!-- Load jsPsych plug-ins -->
-  <script src="./jspsych-dsct.js"></script>
+  <script src="./js/jspsych-dsct.js"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-preload.js"></script>
 
   <!-- Load CSS styles -->
   <link href="./lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+
 </head>
 <body></body>
 <script>
@@ -24,26 +30,27 @@
   };
   window.addEventListener("beforeunload", verify_unload);
 
-  // Predefine stimuli
-  const stimuli = jsPsych.randomization.shuffle([
-    '<img src="./img/algiz.png"></img>',
-    '<img src="./img/ansuz.png"></img>',
-    '<img src="./img/berkanan.png"></img>',
-    '<img src="./img/calc.png"></img>',
-    '<img src="./img/cen.png"></img>',
-    '<img src="./img/dagaz.png"></img>',
-    '<img src="./img/isaz.png"></img>',
-    '<img src="./img/jeran.png"></img>',
-    '<img src="./img/uruz.png"></img>',
-  ]);
+  // Define image preloading.
+  var PRELOAD = {
+    type: 'preload',
+    images: [img_files],
+    message: 'Loading images. This may take a moment depending on your internet connection.',
+    error_message: '<p>The experiment failed to load. Please try restarting your browser.</p><p>If this error persists after 2-3 tries, please contact the experimenter.</p>',
+    continue_after_error: false,
+    show_progress_bar: true,
+    max_load_time: 30000
+  }
 
-  var trial = {
-    type: 'dsct',
-    stimuli: stimuli
+  // Define experiment fullscreen.
+  var FULLSCREEN = {
+    type: 'fullscreen',
+    fullscreen_mode: true
   }
 
   // Initialize timeline.
   var timeline = [];
+  // timeline = timeline.concat(PRELOAD);
+  // timeline = timeline.concat(FULLSCREEN);
   timeline = timeline.concat(trial);
 
   jsPsych.init({

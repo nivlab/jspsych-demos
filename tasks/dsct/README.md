@@ -1,3 +1,3 @@
-# Digital symbol coding test
+# Digit symbol coding test
 
 Author(s): Sam Zorowitz

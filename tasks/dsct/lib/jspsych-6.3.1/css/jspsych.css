@@ -100,10 +100,10 @@
 
 .jspsych-slider {
   appearance: none;
-  -webkit-appearance: none; 
+  -webkit-appearance: none;
   -moz-appearance: none;
-  width: 100%; 
-  background: transparent; 
+  width: 100%;
+  background: transparent;
 }
 .jspsych-slider:focus {
   outline: none;
@@ -175,7 +175,7 @@
   color: #555;
   border-bottom: 1px solid #dedede;
   background-color: #f9f9f9;
-  margin-bottom: 1em;
+  margin-bottom: 0em;
   text-align: center;
   padding: 8px 0px;
   width: 100%;

@@ -23,6 +23,7 @@ jsPsych.plugins["dsct"] = (function() {
       },
       target: {
         type: jsPsych.plugins.parameterType.HTML_STRING,
+        array: true,
         pretty_name: 'Prompt',
         description: 'Any content here will be displayed below the stimulus.'
       },
@@ -60,45 +61,60 @@ jsPsych.plugins["dsct"] = (function() {
 
     // Insert CSS
     new_html += `<style>
+    .jspsych-content-wrapper {
+      background: #404040;
+    }
     .dsct-stimulus-grid {
       position: relative;
       display: grid;
       grid-template-rows: 1fr 1fr;
       grid-auto-flow: column;
+      grid-column-gap: 15px;
+    }
+    .dsct-target-grid {
+      position: relative;
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-auto-flow: column;
+      justify-content: center;
     }
     .dsct-stimulus {
       position: relative;
-      width: 80px;
+      width: 70px;
       display: flex;
       justify-content: center;
     }
     .dsct-stimulus:nth-of-type(2n+1) {
-      border-left: 2px solid black;
-      border-top: 2px solid black;
-      border-bottom: 2px solid black;
-    }
-    .dsct-stimulus:nth-last-child(2) {
-      border-right: 2px solid black;
+      border: 1px solid black;
+      border-radius: 1px;
     }
     .dsct-stimulus p {
-      margin-block-start: 0.25em;
+      color: white;
       font-size: 24px;
+      margin-block-start: 0.25em;
     }
     .dsct-stimulus img {
-      max-height: 80px;
+      max-height: 70px;
       max-width: 100%;
       object-fit: contain;
       padding: 5px;
+      filter: invert(95%);
+      -webkit-filter: invert(95%);
     }
     </style>`;
 
-    //
+    // Draw stimulus grid.
     new_html += '<div class="dsct-stimulus-grid">';
     trial.stimuli.forEach((j, i) => {
       new_html += '<div class="dsct-stimulus">' + j + '</div>';
       new_html += '<div class="dsct-stimulus"><p>' + (i+1) + '</p></div>';
     });
+    new_html += '</div>';
 
+    // Draw target grid.
+    new_html += '<div class="dsct-target-grid">';
+    new_html += '<div class="dsct-stimulus">' + trial.stimuli[0] + '</div>';
+    new_html += '<div class="dsct-stimulus"><p>' + 1 + '</p></div>';
     new_html += '</div>';
 
     // draw
