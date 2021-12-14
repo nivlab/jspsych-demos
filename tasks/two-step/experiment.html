@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<html>
+<head>
+  <title>Two-Step Task</title>
+
+  <!-- Load libraries -->
+  <script src="./lib/jquery-3.3.1/jquery.min.js"></script>
+  <script src="./lib/jspsych-6.3.1/jspsych.js"></script>
+
+  <!-- Load experiment -->
+  <!-- Note: the order matters for the following imports -->
+  <script src="./js/two-step-drifts.js" type="text/javascript"></script>
+  <script src="./js/two-step-experiment.js" type="text/javascript"></script>
+  <script src="./js/two-step-instructions.js" type="text/javascript"></script>
+
+  <!-- Load jsPsych plug-ins -->
+  <script src="./js/jspsych-alien-practice.js" type="text/javascript"></script>
+  <script src="./js/jspsych-two-step-trial.js" type="text/javascript"></script>
+  <script src="./js/jspsych-two-step-instructions.js" type="text/javascript"></script>
+  <script src="./js/jspsych-two-step-comprehension.js" type="text/javascript"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-preload.js"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-call-function.js"></script>
+
+  <!-- Load CSS styles -->
+  <link href="./lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  <link href="./css/two-step-css.min.css" rel="stylesheet" type="text/css"></link>
+
+</head>
+<body></body>
+<script>
+
+  // Define global variables.
+  var low_quality = false;
+
+  // Define image preloading.
+  var PRELOAD = {
+    type: 'preload',
+    images: preload_images,
+    message: 'Loading images. This may take a moment depending on your internet connection.',
+    error_message: '<p>The experiment failed to load. Please try restarting your browser.</p><p>If this error persists after 2-3 tries, please contact the experimenter.</p>',
+    continue_after_error: false,
+    show_progress_bar: true,
+    max_load_time: 30000
+  }
+
+  // Define experiment fullscreen.
+  var FULLSCREEN = {
+    type: 'fullscreen',
+    fullscreen_mode: true
+  }
+
+  // Define timeline, blocks, and number of trials in a block.
+  var timeline = [];
+  timeline = timeline.concat(PRELOAD);
+  timeline = timeline.concat(FULLSCREEN);
+  timeline = timeline.concat(INSTRUCTIONS);
+  timeline = timeline.concat(READY_01);
+  timeline = timeline.concat(TWO_STEP_TASK.slice(0,100));
+  timeline = timeline.concat(READY_02);
+  timeline = timeline.concat(TWO_STEP_TASK.slice(100,201));
+  timeline = timeline.concat(FINISHED);
+
+  jsPsych.init({
+    timeline: timeline,
+    show_progress_bar: true,
+    exclusions: {min_width: 600, min_height: 500},
+    on_finish: function() {
+
+      // Add interactions to the data variable
+      var interaction_data = jsPsych.data.getInteractionData();
+      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+      // Display jsPsych data in viewport.
+      jsPsych.data.displayData();
+
+    }
+  })
+
+</script>
+</html>
