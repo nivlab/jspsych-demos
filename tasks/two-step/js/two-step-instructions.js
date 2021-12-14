@@ -38,9 +38,6 @@ const instructions_1a = {
   aliens: practice_info.aliens,
   on_start: function(trial) {
 
-    // pass message to nivturk
-    pass_message('starting instructions 1');
-
     // if first loop, include additional messages.
     if (jsPsych.data.get().filter({quiz: 1}).count() == 0) {
       trial.pages.unshift(
@@ -251,9 +248,6 @@ const instructions_2a = {
   aliens: practice_info.aliens,
   on_start: function(trial) {
 
-    // passage message to nivturk
-    pass_message('starting instructions 2');
-
     // if first loop, include additional messages.
     if (jsPsych.data.get().filter({quiz: 2}).count() == 0) {
       trial.pages.unshift(
@@ -430,9 +424,6 @@ const instructions_3a = {
   add_rocks: [false, false, false, false, false, false, false],
   aliens: practice_info.aliens,
   on_start: function(trial) {
-
-    // passage message to nivturk
-    pass_message('starting instructions 3');
 
     // if first loop, include additional messages.
     if (jsPsych.data.get().filter({quiz: 3}).count() == 0) {

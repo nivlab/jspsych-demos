@@ -45,7 +45,7 @@ const task_info = {
   rocket_colors: mapping.slice(2,4).map(function(i) {return rocket_colors[i]} ),
   rocket_names: mapping.slice(2,4).map(function(i) {return color_names[i]} ),
   aliens: jsPsych.randomization.shuffle([1,2,3,4]).map((j,i) => {
-    return '../static/img/aliens_svg/A'+j+'-'+color_names[mapping[i<2?0:1]]+'.svg'
+    return './img/aliens_svg/A'+j+'-'+color_names[mapping[i<2?0:1]]+'.svg'
   })
 }
 
@@ -57,7 +57,7 @@ const practice_info = {
   rocket_colors: mapping.slice(0,2).map(function(i) {return rocket_colors[i]} ),
   rocket_names: mapping.slice(0,2).map(function(i) {return color_names[i]} ),
   aliens: jsPsych.randomization.shuffle([1,2,3,4]).map((j,i) => {
-    return '../static/img/aliens_svg/P'+j+'-'+color_names[mapping[i<2?2:3]]+'.svg'
+    return './img/aliens_svg/P'+j+'-'+color_names[mapping[i<2?2:3]]+'.svg'
   })
 }
 
@@ -179,10 +179,7 @@ var READY_01 = {
     "<p>Great job! You've finished the instructions.</p><p>We'll get started with the real game now.</p>",
     "<p>In the real game, you will see new planets, aliens, and rocket ships.</p><p>However, the rules of the game <b>have not changed</b>.</p>",
     "Get ready to begin <b>Block 1/2</b>. It will take ~8 minutes.<br>Press next when you're ready to start.",
-  ],
-  on_finish: function(trial) {
-    pass_message('starting block 1');
-  }
+  ]
 }
 
 var READY_02 = {
@@ -190,10 +187,7 @@ var READY_02 = {
   pages: [
     "Take a break for a few moments and press any button when you are ready to continue.",
     "Get ready to begin <b>Block 2/2</b>. It will take ~8 minutes.<br>Press next when you're ready to start.",
-  ],
-  on_finish: function(trial) {
-    pass_message('starting block 2');
-  }
+  ]
 }
 
 //---------------------------------------//
@@ -205,10 +199,7 @@ const instructions_04 = {
   type: 'two-step-instructions',
   pages: [
     "<p>Great job! You've finished the task.</p><p>Before you finish, we have a couple of short questions for you.</p>",
-  ],
-  on_finish: function(trial) {
-    pass_message('starting final section');
-  }
+  ]
 }
 
 // Define comprehension check.
