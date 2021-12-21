@@ -62,14 +62,27 @@ jsPsych.plugins["dsct"] = (function() {
     // Insert CSS
     new_html += `<style>
     .jspsych-content-wrapper {
-      background: #404040;
+      background: #eef3f8;
+    }
+    .dsct-container {
+      position: relative;
+      width: 740px;
+      height: 440px;
+      background: #ffffff;
+      border: 1px solid grey;
+      border-radius: 9px;
     }
     .dsct-stimulus-grid {
       position: relative;
       display: grid;
       grid-template-rows: 1fr 1fr;
       grid-auto-flow: column;
-      grid-column-gap: 15px;
+      grid-column-gap: 20px;
+      padding: 10px;
+      margin-bottom: 50px;
+      background: #f2f2f2;
+      border-radius: 8px;
+      border-bottom: 1px solid grey;
     }
     .dsct-target-grid {
       position: relative;
@@ -80,28 +93,41 @@ jsPsych.plugins["dsct"] = (function() {
     }
     .dsct-stimulus {
       position: relative;
-      width: 70px;
+      width: 60px;
       display: flex;
       justify-content: center;
+      align-items: center;
     }
     .dsct-stimulus:nth-of-type(2n+1) {
-      border: 1px solid black;
-      border-radius: 1px;
+      background: #F8F8F8;
+      border: 1px solid grey;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+    .dsct-stimulus:nth-of-type(2n) {
+      background: #FFFFFF;
+      border: 1px solid grey;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
     }
     .dsct-stimulus p {
-      color: white;
-      font-size: 24px;
-      margin-block-start: 0.25em;
+      color: black;
+      font-size: 28px;
+      margin-block-start: 0em;
+      margin-block-end: 0em;
     }
     .dsct-stimulus img {
-      max-height: 70px;
+      max-height: 50px;
       max-width: 100%;
       object-fit: contain;
       padding: 5px;
-      filter: invert(95%);
-      -webkit-filter: invert(95%);
+      filter: invert(33%) sepia(85%) saturate(341%) hue-rotate(142deg) brightness(101%) contrast(91%);
+      -webkit-filter: invert(33%) sepia(85%) saturate(341%) hue-rotate(142deg) brightness(101%) contrast(91%);
     }
     </style>`;
+
+    // Draw container.
+    new_html += '<div class="dsct-container">';
 
     // Draw stimulus grid.
     new_html += '<div class="dsct-stimulus-grid">';
@@ -117,7 +143,10 @@ jsPsych.plugins["dsct"] = (function() {
     new_html += '<div class="dsct-stimulus"><p>' + 1 + '</p></div>';
     new_html += '</div>';
 
-    // draw
+    // Close container.
+    new_html += '</div>';
+
+    // Draw stimuli to screen.
     display_element.innerHTML = new_html;
 
     // ---------------------------------- //
