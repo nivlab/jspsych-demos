@@ -94,6 +94,7 @@ jsPsych.plugins["dsct"] = (function() {
       grid-template-rows: 1fr 1fr;
       grid-auto-flow: column;
       justify-content: center;
+      animation: appear 0.3s;
     }
     .dsct-stimulus {
       position: relative;
@@ -158,6 +159,11 @@ jsPsych.plugins["dsct"] = (function() {
     .dsct-container .dsct-button:nth-of-type(2n) {
       right: 20%;
     }
+    @-webkit-keyframes appear {
+      0% { opacity: 0; }
+      90% { opacity: 0; }
+      100% { opacity: 1; }
+    }
     </style>`;
 
     // Draw container.
@@ -173,8 +179,8 @@ jsPsych.plugins["dsct"] = (function() {
 
     // Draw target grid.
     new_html += '<div class="dsct-target-grid">';
-    new_html += '<div class="dsct-stimulus">' + trial.stimuli[0] + '</div>';
-    new_html += '<div class="dsct-stimulus"><p>' + 1 + '</p></div>';
+    new_html += '<div class="dsct-stimulus">' + trial.stimuli[trial.target[0]] + '</div>';
+    new_html += '<div class="dsct-stimulus"><p>' + (trial.target[1] + 1) + '</p></div>';
     new_html += '</div>';
 
     // Draw buttons.
