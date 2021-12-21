@@ -61,6 +61,10 @@ jsPsych.plugins["dsct"] = (function() {
 
     // Insert CSS
     new_html += `<style>
+    p {
+      margin-block-start: 0em;
+      margin-block-end: 0em;
+    }
     .jspsych-content-wrapper {
       background: #eef3f8;
     }
@@ -93,14 +97,21 @@ jsPsych.plugins["dsct"] = (function() {
     }
     .dsct-stimulus {
       position: relative;
-      width: 60px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
+    .dsct-stimulus-grid .dsct-stimulus {
+      width: 60px;
+    }
+    .dsct-target-grid .dsct-stimulus {
+      width: 80px;
+    }
     .dsct-stimulus:nth-of-type(2n+1) {
       background: #F8F8F8;
-      border: 1px solid grey;
+      border-top: 1px solid grey;
+      border-left: 1px solid grey;
+      border-right: 1px solid grey;
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
     }
@@ -110,19 +121,42 @@ jsPsych.plugins["dsct"] = (function() {
       border-bottom-left-radius: 4px;
       border-bottom-right-radius: 4px;
     }
-    .dsct-stimulus p {
-      color: black;
-      font-size: 28px;
-      margin-block-start: 0em;
-      margin-block-end: 0em;
-    }
     .dsct-stimulus img {
-      max-height: 50px;
       max-width: 100%;
       object-fit: contain;
       padding: 5px;
       filter: invert(33%) sepia(85%) saturate(341%) hue-rotate(142deg) brightness(101%) contrast(91%);
       -webkit-filter: invert(33%) sepia(85%) saturate(341%) hue-rotate(142deg) brightness(101%) contrast(91%);
+    }
+    .dsct-stimulus-grid .dsct-stimulus img {
+      max-height: 48px;
+    }
+    .dsct-stimulus-grid .dsct-stimulus p {
+      font-size: 24px;
+    }
+    .dsct-target-grid .dsct-stimulus img {
+      max-height: 64px;
+    }
+    .dsct-target-grid .dsct-stimulus p {
+      font-size: 36px;
+    }
+    .dsct-container .dsct-button {
+      position: absolute;
+      bottom: 1%;
+      width: 96px;
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid grey;
+      border-radius: 4px;
+      font-size: 15px;
+    }
+    .dsct-container .dsct-button:nth-of-type(2n+1) {
+      left: 20%;
+    }
+    .dsct-container .dsct-button:nth-of-type(2n) {
+      right: 20%;
     }
     </style>`;
 
@@ -142,6 +176,10 @@ jsPsych.plugins["dsct"] = (function() {
     new_html += '<div class="dsct-stimulus">' + trial.stimuli[0] + '</div>';
     new_html += '<div class="dsct-stimulus"><p>' + 1 + '</p></div>';
     new_html += '</div>';
+
+    // Draw buttons.
+    new_html += '<div class="dsct-button"><p>< Same</p></div>';
+    new_html += '<div class="dsct-button"><p>Different ></p></div>';
 
     // Close container.
     new_html += '</div>';
