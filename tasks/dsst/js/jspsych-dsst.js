@@ -1,17 +1,17 @@
 /**
-* jspsych-dsmt
+* jspsych-dsst
 * Sam Zorowitz
 *
 * plugin for running one trial of the digit symbol matching task
 *
 **/
 
-jsPsych.plugins["dsmt"] = (function() {
+jsPsych.plugins["dsst"] = (function() {
 
   var plugin = {};
 
   plugin.info = {
-    name: 'dsmt',
+    name: 'dsst',
     description: '',
     parameters: {
       stimuli: {
@@ -72,7 +72,7 @@ jsPsych.plugins["dsmt"] = (function() {
     .jspsych-content-wrapper {
       background: #eef3f8;
     }
-    .dsmt-container {
+    .dsst-container {
       position: relative;
       width: 740px;
       height: 440px;
@@ -80,7 +80,7 @@ jsPsych.plugins["dsmt"] = (function() {
       border: 1px solid grey;
       border-radius: 9px;
     }
-    .dsmt-stimulus-grid {
+    .dsst-stimulus-grid {
       position: relative;
       display: grid;
       grid-template-rows: 1fr 1fr;
@@ -92,7 +92,7 @@ jsPsych.plugins["dsmt"] = (function() {
       border-radius: 8px;
       border-bottom: 1px solid grey;
     }
-    .dsmt-target-grid {
+    .dsst-target-grid {
       position: relative;
       display: grid;
       grid-template-rows: 1fr 1fr;
@@ -100,19 +100,19 @@ jsPsych.plugins["dsmt"] = (function() {
       justify-content: center;
       animation: appear ${trial.iti_duration / 1000}s;
     }
-    .dsmt-stimulus {
+    .dsst-stimulus {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    .dsmt-stimulus-grid .dsmt-stimulus {
+    .dsst-stimulus-grid .dsst-stimulus {
       width: 60px;
     }
-    .dsmt-target-grid .dsmt-stimulus {
+    .dsst-target-grid .dsst-stimulus {
       width: 80px;
     }
-    .dsmt-stimulus:nth-of-type(2n+1) {
+    .dsst-stimulus:nth-of-type(2n+1) {
       background: #F8F8F8;
       border-top: 1px solid grey;
       border-left: 1px solid grey;
@@ -120,29 +120,30 @@ jsPsych.plugins["dsmt"] = (function() {
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
     }
-    .dsmt-stimulus:nth-of-type(2n) {
+    .dsst-stimulus:nth-of-type(2n) {
       background: #FFFFFF;
       border: 1px solid grey;
       border-bottom-left-radius: 4px;
       border-bottom-right-radius: 4px;
     }
-    .dsmt-stimulus img {
-      max-width: 100%;
+    .dsst-stimulus img {
       object-fit: contain;
       padding: 5px;
       filter: invert(33%) sepia(85%) saturate(341%) hue-rotate(142deg) brightness(101%) contrast(91%);
       -webkit-filter: invert(33%) sepia(85%) saturate(341%) hue-rotate(142deg) brightness(101%) contrast(91%);
     }
-    .dsmt-stimulus-grid .dsmt-stimulus img {
-      max-height: 48px;
+    .dsst-stimulus-grid .dsst-stimulus img {
+      width: 44px;
+      height: 44px;
     }
-    .dsmt-stimulus-grid .dsmt-stimulus p {
+    .dsst-stimulus-grid .dsst-stimulus p {
       font-size: 24px;
     }
-    .dsmt-target-grid .dsmt-stimulus img {
-      max-height: 72px;
+    .dsst-target-grid .dsst-stimulus img {
+      width: 66px;
+      height: 66px;
     }
-    .dsmt-target-grid .dsmt-stimulus p {
+    .dsst-target-grid .dsst-stimulus p {
       font-size: 36px;
     }
     @-webkit-keyframes appear {
@@ -153,20 +154,20 @@ jsPsych.plugins["dsmt"] = (function() {
     </style>`;
 
     // Draw container.
-    new_html += '<div class="dsmt-container">';
+    new_html += '<div class="dsst-container">';
 
     // Draw stimulus grid.
-    new_html += '<div class="dsmt-stimulus-grid">';
+    new_html += '<div class="dsst-stimulus-grid">';
     trial.stimuli.forEach((j, i) => {
-      new_html += '<div class="dsmt-stimulus">' + j + '</div>';
-      new_html += '<div class="dsmt-stimulus"><p>' + ((i % 3)+1) + '</p></div>';
+      new_html += '<div class="dsst-stimulus">' + j + '</div>';
+      new_html += '<div class="dsst-stimulus"><p>' + ((i % 3)+1) + '</p></div>';
     });
     new_html += '</div>';
 
     // Draw target grid.
-    new_html += '<div class="dsmt-target-grid">';
-    new_html += '<div class="dsmt-stimulus">' + trial.stimuli[trial.target] + '</div>';
-    new_html += '<div class="dsmt-stimulus"><p id="target"></p></div>';
+    new_html += '<div class="dsst-target-grid">';
+    new_html += '<div class="dsst-stimulus">' + trial.stimuli[trial.target] + '</div>';
+    new_html += '<div class="dsst-stimulus"><p id="target"></p></div>';
     new_html += '</div>';
 
     // Close container.

@@ -11,14 +11,14 @@ const valid_responses = ['1', '2', '3'];
 // Define images for preloading.
 const img_files = [
   './img/asterisk.png',
-  './img/diamond.png',
+  './img/bracket.png',
   './img/record.png',
   './img/squiggles.png',
   './img/triangle.png',
   './img/corner.png',
   './img/dots.png',
   './img/circle.png',
-  './img/abstract.png',
+  './img/epsilon.png',
 ];
 
 //---------------------------------------//
@@ -29,7 +29,7 @@ const img_files = [
 const stimuli = jsPsych.randomization.shuffle(img_files.map(x => '<img src="' + x + '"></img>'));
 
 // Predefine trials.
-var DSMT = [];
+var dsst = [];
 
 for (let i = 0; i < 30; i++) {
 
@@ -41,7 +41,7 @@ for (let i = 0; i < 30; i++) {
 
     // Define single match trial.
     const trial = {
-      type: 'dsmt',
+      type: 'dsst',
       stimuli: stimuli,
       target: j,
       valid_responses: valid_responses
@@ -61,6 +61,6 @@ for (let i = 0; i < 30; i++) {
   block = jsPsych.randomization.shuffle(block);
 
   // Append trials.
-  DSMT = DSMT.concat(block);
+  dsst = dsst.concat(block);
 
 }
