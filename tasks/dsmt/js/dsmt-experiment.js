@@ -10,15 +10,15 @@ const valid_responses = ['1', '2', '3'];
 
 // Define images for preloading.
 const img_files = [
-  './img/algiz.png',
-  './img/ansuz.png',
-  './img/berkanan.png',
-  './img/calc.png',
-  './img/cen.png',
-  './img/dagaz.png',
-  './img/isaz.png',
-  './img/jeran.png',
-  './img/uruz.png'
+  './img/asterisk.png',
+  './img/diamond.png',
+  './img/record.png',
+  './img/squiggles.png',
+  './img/triangle.png',
+  './img/corner.png',
+  './img/dots.png',
+  './img/circle.png',
+  './img/abstract.png',
 ];
 
 //---------------------------------------//

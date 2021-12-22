@@ -50,14 +50,7 @@ jsPsych.plugins["dsmt"] = (function() {
         pretty_name: 'ITI duration',
         default: 150,
         description: 'How long to hide stimuli before trial starts.'
-      },
-      response_ends_trial: {
-        type: jsPsych.plugins.parameterType.BOOL,
-        pretty_name: 'Response ends trial',
-        default: true,
-        description: 'If true, trial will end when subject makes a response.'
-      },
-
+      }
     }
   }
 
@@ -105,6 +98,7 @@ jsPsych.plugins["dsmt"] = (function() {
       grid-template-rows: 1fr 1fr;
       grid-auto-flow: column;
       justify-content: center;
+      animation: appear ${trial.iti_duration / 1000}s;
     }
     .dsmt-stimulus {
       position: relative;
@@ -150,6 +144,11 @@ jsPsych.plugins["dsmt"] = (function() {
     }
     .dsmt-target-grid .dsmt-stimulus p {
       font-size: 36px;
+    }
+    @-webkit-keyframes appear {
+      0% { opacity: 0; }
+      90% { opacity: 0; }
+      100% { opacity: 1; }
     }
     </style>`;
 
