@@ -2,7 +2,7 @@
 // Define parameters.
 //---------------------------------------//
 
-const valid_responses = ['arrowleft', 'arrowright'];
+const valid_responses = ['1', '2', '3'];
 
 //---------------------------------------//
 // Define images for preloading.
@@ -29,9 +29,9 @@ const img_files = [
 const stimuli = jsPsych.randomization.shuffle(img_files.map(x => '<img src="' + x + '"></img>'));
 
 // Predefine trials.
-var DSCT = [];
+var DSMT = [];
 
-for (let i = 0; i < 25; i++) {
+for (let i = 0; i < 30; i++) {
 
   // Initialize block of trials.
   var block = [];
@@ -41,36 +41,9 @@ for (let i = 0; i < 25; i++) {
 
     // Define single match trial.
     const trial = {
-      type: 'dsct',
+      type: 'dsmt',
       stimuli: stimuli,
-      target: [j, j],
-      valid_responses: valid_responses
-    }
-
-    // Define conditional node.
-    // const trial_node = {
-    //   timeline: [trial],
-    // }
-
-    // Append.
-    block.push(trial);
-
-  }
-
-  // Add mismatching trials.
-  for (let j = 0; j < 9; j++) {
-
-    // Define distractor.
-    while (true) {
-      var k = Math.floor(Math.random() * 10);
-      if (j != k) {break};
-    }
-
-    // Define single mismatch trial.
-    const trial = {
-      type: 'dsct',
-      stimuli: stimuli,
-      target: [j, k],
+      target: j,
       valid_responses: valid_responses
     }
 
@@ -88,6 +61,6 @@ for (let i = 0; i < 25; i++) {
   block = jsPsych.randomization.shuffle(block);
 
   // Append trials.
-  DSCT = DSCT.concat(block);
+  DSMT = DSMT.concat(block);
 
 }
