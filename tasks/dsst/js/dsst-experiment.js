@@ -17,50 +17,64 @@ const img_files = [
   './img/triangle.png',
   './img/corner.png',
   './img/dots.png',
-  './img/circle.png',
+  './img/ring.png',
   './img/epsilon.png',
 ];
 
-//---------------------------------------//
-// Define digit symbol coding task.
-//---------------------------------------//
-
 // Predefine stimuli order.
-const stimuli = jsPsych.randomization.shuffle(img_files.map(x => '<img src="' + x + '"></img>'));
+const stimuli = jsPsych.randomization.shuffle(img_files);
 
-// Predefine trials.
-var dsst = [];
+//---------------------------------------//
+// Define instructions.
+//---------------------------------------//
 
-for (let i = 0; i < 30; i++) {
+var instructions_01 = {
+  type: 'dsst',
+  stimuli: ['./img/circle.png', './img/square.png', './img/triangle.png'],
+  target: 0,
+  valid_responses: valid_responses[0],
+  data: {block: 0}
+}
 
-  // Initialize block of trials.
-  var block = [];
+//---------------------------------------//
+// Define block 1.
+//---------------------------------------//
 
-  // Add matching trials.
-  for (let j = 0; j < 9; j++) {
+// Predefine trial order.
+var DSST_01 = [];
+repeatShuffles([0,0,0,1,1,1,2,2,2], 25).forEach(k => {
 
-    // Define single match trial.
-    const trial = {
-      type: 'dsst',
-      stimuli: stimuli,
-      target: j,
-      valid_responses: valid_responses
-    }
-
-    // Define conditional node.
-    // const trial_node = {
-    //   timeline: [trial],
-    // }
-
-    // Append.
-    block.push(trial);
-
+  // Define single trial.
+  const trial = {
+    type: 'dsst',
+    stimuli: stimuli.slice(0,3),
+    target: k,
+    valid_responses: valid_responses[k],
+    data: {block: 1}
   }
 
-  // Randomize trial order.
-  block = jsPsych.randomization.shuffle(block);
+  // Append trial.
+  DSST_01.push(trial)
 
-  // Append trials.
-  dsst = dsst.concat(block);
+});
+
+//---------------------------------------//
+// Define utility functions.
+//---------------------------------------//
+
+// Convenience function to generate concatenated array of arrays,
+// where base array is iteratively shuffled.
+function repeatShuffles(arr, n) {
+
+  // Preallocate space
+  var arrays = []
+
+  // Iteratively append shuffled array.
+  for (let i = 0; i < n; i++) {
+    arrays.push(jsPsych.randomization.shuffle(arr));
+  }
+
+  // Return flattened array.
+  return [].concat.apply([], arrays)
 
 }

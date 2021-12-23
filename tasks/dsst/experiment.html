@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Digit Symbol Matching Task</title>
+  <title>Digit Symbol Substitution Task</title>
 
   <!-- Load libraries -->
   <script src="./lib/jspsych-6.3.1/jspsych.js"></script>
@@ -16,6 +16,7 @@
 
   <!-- Load CSS styles -->
   <link href="./lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  <link href="./css/dsst-css.min.css" rel="stylesheet" type="text/css"></link>
 
 </head>
 <body></body>
@@ -51,10 +52,12 @@
   var timeline = [];
   // timeline = timeline.concat(PRELOAD);
   // timeline = timeline.concat(FULLSCREEN);
-  timeline = timeline.concat(dsst);
+  timeline = timeline.concat(instructions_01);
+  timeline = timeline.concat(DSST_01);
 
   jsPsych.init({
     timeline: timeline,
+    show_progress_bar: true,
     on_finish: function() {
 
       // Remove requirement to verify redirect
