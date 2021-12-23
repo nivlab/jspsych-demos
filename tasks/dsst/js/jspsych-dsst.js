@@ -96,7 +96,7 @@ jsPsych.plugins["dsst"] = (function() {
 
     // confirm screen resolution
     const screen_resolution = [window.innerWidth, window.innerHeight];
-    if (screen_resolution[0] < 740 || screen_resolution[1] < 440) {
+    if (screen_resolution[0] < 360 || screen_resolution[1] < 360) {
       var minimum_resolution = 0;
     } else {
       var minimum_resolution = 1;

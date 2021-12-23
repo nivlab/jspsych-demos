@@ -3,12 +3,6 @@
 /* ---------------------------------- */
 
 /* Override jsPsych defaults */
-p {
-  margin-block-start: 0em;
-  margin-block-end: 0em;
-}
-
-/* Override jsPsych defaults */
 .jspsych-content-wrapper {
   background: #eef3f8;
 }
@@ -32,6 +26,12 @@ p {
   border: 1px solid grey;
   border-radius: 8px;
 
+}
+
+/* Override jsPsych defaults */
+.dsst-container p {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
 }
 
 /* stimulus grid object */
