@@ -9,8 +9,8 @@ const trial_duration = null;             // No time limit
 const randomize_item_order = true;       // Randomize item order
 const randomize_choice_order = true;     // Randomize choice order
 
-// Define aesthetics.
-const margin_vertical = '15px';          // Vertical margin of the button(s)
+// Define prompt.
+const prompt = "Which of the words above is closest to the meaning of the word in capital letters?"
 
 //---------------------------------------//
 // Define vocabulary test.
@@ -173,10 +173,10 @@ items.forEach((item, i) => {
   // Define trial.
   const trial = {
     type: 'html-button-response',
-    stimulus: item.stimulus,
+    stimulus: '<h3>' + item.stimulus + '</h3>',
     choices: choices,
+    prompt: "<p><i><small>" + prompt + "</small></i></p>",
     trial_duration: trial_duration,
-    margin_vertical: margin_vertical,
     data: {item: item.item, correct: order.indexOf(item.correct)},
     on_finish: function(data) {
 
@@ -206,12 +206,10 @@ items.forEach((item, i) => {
 // Define instructions.
 //---------------------------------------//
 
-// specify guessing, specify time limit
-
 var instructions_01 = {
   type: 'instructions',
   pages: [
-    "<p><b>Vocabulary Test</b><p>In this game, you will see a series of words.</p><p>Your task is to choose one word that comes closest to the meaning of the word in capital letters.</p><p>Now let's practice...</p>"
+    `<h3>Vocabulary Test</h3>In this task, you will be shown a series of words. Your goal is to select one word<br>that comes closest to the meaning of the word in capital letters.</p><p>Now let's  practice. Press the "Next" button to get started.</p>`
   ],
   allow_keys: true,
   show_clickable_nav: true,
@@ -221,17 +219,54 @@ var instructions_01 = {
 
 var practice = {
   type: 'html-button-response',
-  stimulus: "BEAST",
+  stimulus: "<h3>BEAST</h3>",
   choices: ["afraid", "words", "large", "animal", "separate"],
   trial_duration: trial_duration,
-  margin_vertical: margin_vertical,
-  data: {item: "practice", correct: 3}
+  data: {item: "practice", correct: 3},
+  on_start: function(trial) {
+
+    // Check if previously run.
+    const isRepeat = jsPsych.data.get().filter({item: "practice"}).count();
+
+    // If not repeat, then add instructions.
+    if (isRepeat == 0) {
+
+      trial.prompt = "<p><i><small>" + prompt + "</small></i></p>";
+
+    // If repeat, update instructions.
+    } else {
+
+      trial.prompt = "<p><i><small>Not quite! Look carefully - which word is closest in meaning?</small></i></p>";
+
+    }
+
+  }
+
+}
+
+var practice_node = {
+  timeline: [practice],
+  loop_function: function(data) {
+
+    // Score trial.
+    [data] = data.values();
+    data.accuracy = (data.correct == data.response) ? 1 : 0;
+
+    // Repeat trial if incorrect.
+    if (data.accuracy == 1) {
+      return false;
+    } else {
+      return true;
+    }
+
+  }
 }
 
 var instructions_02 = {
   type: 'instructions',
   pages: [
-    "Great job!"
+    '<p>Great job! Now you understand what to do.</p><p>Now, we will move onto the real words.</p>',
+    '<p>There are 20 words in total and no time limit.</p><p>Take as much time as you need and try to be as accurate as you can be.</p><p>If you really do not know an answer, then you should guess.</p><p>You will <u>not</u> receive feedback after you make your choice.</p><p>Press the "Next" button to get started.</p>'
   ],
   allow_keys: true,
   show_clickable_nav: true,
@@ -239,4 +274,8 @@ var instructions_02 = {
   button_label_next: "Next"
 }
 
-var INSTRUCTIONS = [instructions_01, practice, instructions_02];
+var INSTRUCTIONS = [
+  instructions_01,
+  practice_node,
+  instructions_02
+];
