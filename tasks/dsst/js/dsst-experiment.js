@@ -2,27 +2,32 @@
 // Define parameters.
 //---------------------------------------//
 
+// Define response parameters.
 const valid_responses = ['1', '2', '3'];
 
+// Define block length.
+const block_length = 30000;
+
 //---------------------------------------//
 // Define images for preloading.
 //---------------------------------------//
 
-// Define images for preloading.
-const img_files = [
+// Initialize images for preloading.
+var img_files = jsPsych.randomization.shuffle([
   './img/circle.png',
   './img/square.png',
-  './img/triangle.png',
-  './img/asterisk.png',
-  './img/bracket.png',
-  './img/record.png',
-  './img/squiggles.png',
-  './img/corner.png',
-  './img/dots.png',
-  './img/ring.png',
-  './img/epsilon.png',
-  './img/diamond.png',
-];
+  './img/triangle.png'
+]);
+
+// Randomize image arrays.
+const arrays = jsPsych.randomization.shuffle([
+  jsPsych.randomization.shuffle(['./img/asterisk.png', './img/bracket.png', './img/record.png']),
+  jsPsych.randomization.shuffle(['./img/squiggles.png', './img/corner.png', './img/dots.png']),
+  jsPsych.randomization.shuffle(['./img/epsilon.png', './img/ring.png', './img/diamond.png']),
+]);
+
+// Concatenate image arrays.
+img_files = [].concat.apply(img_files, arrays);
 
 //---------------------------------------//
 // Define instructions.
@@ -75,7 +80,14 @@ var instructions_02 = {
   allow_keys: true,
   show_clickable_nav: true,
   button_label_previous: "Prev",
-  button_label_next: "Next"
+  button_label_next: "Next",
+  on_finish: function(data) {
+
+    // Define block 1 start time.
+    // Note: if this is deleted, the entire task will break.
+    block_1_start = data.time_elapsed;
+
+  }
 }
 
 var INSTRUCTIONS = [
@@ -87,6 +99,11 @@ var INSTRUCTIONS = [
 //---------------------------------------//
 // Define DSST blocks.
 //---------------------------------------//
+
+// Predefine start times.
+var block_1_start = null;
+var block_2_start = null;
+var block_3_start = null;
 
 // Define Block 1.
 var DSST_01 = [];
@@ -101,8 +118,26 @@ repeatShuffles([0,0,0,1,1,1,2,2,2], 25).forEach(k => {
     data: {block: 1}
   }
 
+  // Define trial node.
+  const trial_node = {
+    timeline: [trial],
+    conditional_function: function() {
+
+      // Get data from most recent trial.
+      [data] = jsPsych.data.get().last(1).values();
+
+      // Check if time limit has been exceeded.
+      if (data.time_elapsed - block_1_start >= block_length) {
+        return false;
+      } else {
+        return true;
+      }
+
+    }
+  }
+
   // Append trial.
-  DSST_01.push(trial)
+  DSST_01.push(trial_node)
 
 });
 
@@ -119,8 +154,26 @@ repeatShuffles([0,0,0,1,1,1,2,2,2], 25).forEach(k => {
     data: {block: 2}
   }
 
+  // Define trial node.
+  const trial_node = {
+    timeline: [trial],
+    conditional_function: function() {
+
+      // Get data from most recent trial.
+      [data] = jsPsych.data.get().last(1).values();
+
+      // Check if time limit has been exceeded.
+      if (data.time_elapsed - block_2_start >= block_length) {
+        return false;
+      } else {
+        return true;
+      }
+
+    }
+  }
+
   // Append trial.
-  DSST_02.push(trial)
+  DSST_02.push(trial_node)
 
 });
 
@@ -137,8 +190,26 @@ repeatShuffles([0,0,0,1,1,1,2,2,2], 25).forEach(k => {
     data: {block: 3}
   }
 
+  // Define trial node.
+  const trial_node = {
+    timeline: [trial],
+    conditional_function: function() {
+
+      // Get data from most recent trial.
+      [data] = jsPsych.data.get().last(1).values();
+
+      // Check if time limit has been exceeded.
+      if (data.time_elapsed - block_3_start >= block_length) {
+        return false;
+      } else {
+        return true;
+      }
+
+    }
+  }
+
   // Append trial.
-  DSST_03.push(trial)
+  DSST_03.push(trial_node)
 
 });
 
@@ -155,7 +226,14 @@ var PAUSE_01 = {
   allow_keys: true,
   show_clickable_nav: true,
   button_label_previous: "Prev",
-  button_label_next: "Next"
+  button_label_next: "Next",
+  on_finish: function(data) {
+
+    // Define block 2 start time.
+    // Note: if this is deleted, the entire task will break.
+    block_2_start = data.time_elapsed;
+
+  }
 }
 
 var PAUSE_02 = {
@@ -167,13 +245,20 @@ var PAUSE_02 = {
   allow_keys: true,
   show_clickable_nav: true,
   button_label_previous: "Prev",
-  button_label_next: "Next"
+  button_label_next: "Next",
+  on_finish: function(data) {
+
+    // Define block 3 start time.
+    // Note: if this is deleted, the entire task will break.
+    block_3_start = data.time_elapsed;
+
+  }
 }
 
 var FINISHED = {
   type: 'instructions',
   pages: [
-    `p>Great job! You've finished the task.</p><p>Press "Next" to end the experiment.</p>`
+    `<p>Great job! You've finished the task.</p><p>Press "Next" to end the experiment.</p>`
   ],
   show_clickable_nav: true,
   button_label_previous: "Prev",

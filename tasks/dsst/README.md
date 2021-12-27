@@ -2,10 +2,7 @@
 
 Author(s): Sam Zorowitz
 
-A variant of the digit symbol matching test, which is based on a well-validated and widely used measure of processing speed (e.g. WAIS digit symbol coding or digit symbol substitution tests). Task has been modified to minimize the need for visual scanning and instead encourages incidental learning.
-
-TO-DO
-- timer
+A variant of the [digit symbol matching test](https://www.testmybrain.org/tests/DigSymbCoding/DSC.html), which is based on a well-validated and widely used measure of processing speed (e.g. WAIS digit symbol coding or digit symbol substitution tests). Task has been modified to minimize the need for visual scanning and instead encourages incidental learning.
 
 ## References
 - Danthiir, V., Wilhelm, O., Schulze, R., & Roberts, R. D. (2005). Factor structure and validity of paper-and-pencil measures of mental speed: Evidence for a higher-order model?. Intelligence, 33(5), 491-514.
