@@ -107,6 +107,12 @@ TABLE OF CONTENTS
 
 > A jsPsych implementation of the symmetry span test ([Unsworth et al. 2005](https://doi.org/10.3758/BF03192720)), adapted from [Mahi Luthra](https://github.com/mahiluthra/working_memory_tests).
 
+### Vocabulary test
+
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/vocabulary) [<b>[Demo]</b>](./tasks/vocabulary/experiment.html)
+
+> A jsPsych implementation of the 20-item [test my brain](https://www.testmybrain.org/tests/wordsum/index_v3e.html) vocabulary test. 
+
 <hr>
 
 ## Self-Report Plugins
