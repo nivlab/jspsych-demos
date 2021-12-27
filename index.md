@@ -62,6 +62,13 @@ TABLE OF CONTENTS
 
 > An implementation of the horizons task ([Wilson et al. 2014](https://doi.org/10.1037/a0038199)) using Javascript and CSS.
 
+### Two-step task
+
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/two-step) [<b>[Demo]</b>](./tasks/two-step/experiment.html)
+
+> A space-themed version of the two-step task. Inspired by [Decker et al. (2016)](https://doi.org/10.1177%2F0956797616639301); adapted from [Nussenbaum et al. (2020)](https://doi.org/10.1525/collabra.17213).
+
+
 <hr>
 
 ## Decision-making Tasks
@@ -105,6 +112,12 @@ TABLE OF CONTENTS
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/dsst) [<b>[Demo]</b>](./tasks/dsst/experiment.html)
 
 > A jsPsych implementation of the [digit symbol matching test](https://www.testmybrain.org/tests/DigSymbCoding/DSC.html). 
+
+### Vocabulary test
+
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/vocabulary) [<b>[Demo]</b>](./tasks/vocabulary/experiment.html)
+
+> A jsPsych implementation of the 20-item [test my brain](https://www.testmybrain.org/tests/wordsum/index_v3e.html) vocabulary test. 
 
 <hr>
 
@@ -165,4 +178,3 @@ TABLE OF CONTENTS
 <i>Niv lab members</i>: There are jsPsych tasks that have already been developed but are not at a point where they can be publicly shared. These include:
 
 - Pavlovian-instrumental transfer task (contact Sam)
-- Two-step task (contact Sam)

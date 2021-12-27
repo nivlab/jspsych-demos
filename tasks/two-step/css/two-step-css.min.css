@@ -1,0 +1,401 @@
+/* ---------------------------------- */
+/* Define parameters                  */
+/* ---------------------------------- */
+
+/* Controls scale of game */
+:root {
+  --height: 500px;
+  --width: 540px;
+}
+
+/* Container object for game */
+.two-step-container {
+
+  /* two-step container position */
+  position: relative;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%);
+
+  /* two-step container size */
+  height: 90vh;
+  max-height: 576px;
+  min-height: 400px;
+
+  width: 90vw;
+  max-width: 1024px;
+  min-width: 600px;
+
+  /* two-step container border */
+  border: 2px solid black;
+  border-radius: 4px;
+
+}
+
+/* ---------------------------------- */
+/* Landscape CSS                      */
+/* ---------------------------------- */
+
+/* Starry sky background */
+.landscape-sky {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.landscape-sky[state="1"] {
+  background: #4B79A1;
+  background: -webkit-linear-gradient(to top, #283E51, #0A2342);
+  background: linear-gradient(to top, #283E51, #0A2342);
+  background: -olinear-gradient(to top, #283E51, #0A2342);
+}
+.landscape-sky[state="2"] {
+  background: #000000;
+  background: -webkit-linear-gradient(to top, #202020, #000000);
+  background: linear-gradient(to top, #202020, #000000);
+  background: -olinear-gradient(to top, #202020, #000000);
+}
+.landscape-sky .stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: url(../img/background-stars.png) repeat top center;
+}
+.landscape-sky[state="2"] .stars {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+/* Planet ground background */
+.landscape-ground {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.landscape-ground[state='1'] {
+  height: calc(0.15 * var(--width));;
+  background: lightgrey;
+}
+.landscape-ground[state='2'] {
+  height: calc(0.25 * var(--width));;
+  background: grey;
+}
+.landscape-ground[state='2']::after {
+  content: '';
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 70%, rgba(0, 0, 0, 0.5) 100%);
+  background: -webkit-linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 70%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+/* ---------------------------------- */
+/* Tower CSS                          */
+/* ---------------------------------- */
+
+.tower {
+
+  /* tower position */
+  position: absolute;
+  bottom: 5%;
+  /* -webkit-transform: translate(-50%, 0%); */
+  /* transform: translate(-50%, 0%); */
+
+  /* tower size */
+  height: calc(0.40 * var(--width));
+  width: calc(0.06 * var(--width));
+
+  /* tower aesthetics */
+  border: calc(0.01 * var(--width)) solid grey;
+  background:
+  repeating-linear-gradient(45deg, transparent, transparent calc(0.01 * var(--width)), gray calc(0.01 * var(--width)), gray calc(0.016 * var(--width)), transparent calc(0.016 * var(--width)), transparent calc(0.06 * var(--width))),
+  repeating-linear-gradient(-45deg, transparent, transparent calc(0.01 * var(--width)), gray calc(0.01 * var(--width)), gray calc(0.016 * var(--width)), transparent calc(0.016 * var(--width)), transparent calc(0.06 * var(--width)));
+
+}
+.tower[side='0'] {
+  left: calc(50% - 0.5 * var(--width) + 5px);
+}
+.tower[side='1'] {
+  right: calc(50% - 0.5 * var(--width) + 5px);
+}
+.tower[state='2'] {
+  display: none;
+}
+.tower .arm {
+
+  /* tower arm position */
+  position: absolute;
+  top: 30%;
+
+  /* tower arm size */
+  height: 10%;
+  width: 150%;
+
+  /* tower arm aesthetics */
+  border: 3px solid grey;
+  background-image:
+  repeating-linear-gradient(45deg, transparent, transparent calc(0.012 * var(--width)), gray calc(0.012 * var(--width)), gray calc(0.014 * var(--width)), transparent calc(0.016 * var(--width)), transparent calc(0.030 * var(--width))),
+  repeating-linear-gradient(-45deg, transparent, transparent calc(0.012 * var(--width)), gray calc(0.012 * var(--width)), gray calc(0.014 * var(--width)), transparent calc(0.016 * var(--width)), transparent calc(0.030 * var(--width)));
+
+}
+.tower[side='0'] .arm {
+  left: 100%;
+}
+.tower[side='1'] .arm {
+  right: 100%;
+}
+.platform {
+
+  /* platform position */
+  position: absolute;
+  bottom: 5%;
+
+  /* platform size */
+  height: calc(0.02 * var(--width));
+  width: calc(0.21 * var(--width));
+
+  /* platform aesthetics */
+  background: grey;
+  border-radius: 2px;
+
+}
+.platform[side='0'] {
+  left: calc(50% - 0.5 * var(--width) + 0.06 * var(--width) + 25px);
+}
+.platform[side='1'] {
+  right: calc(50% - 0.5 * var(--width) + 0.06 * var(--width) + 25px);
+}
+.platform[state='2'] {
+  display: none;
+}
+
+/* ---------------------------------- */
+/* Rocket CSS                         */
+/* ---------------------------------- */
+
+.rocket {
+  position: absolute;
+  bottom: calc(5% + 0.40 * var(--width));
+  -webkit-transform: translate(0%, 100%);
+  transform: translate(0%, 100%);
+
+  width: calc(0.12 * var(--width));
+  height: calc(0.27 * var(--width));
+  z-index: 0;
+}
+.rocket[state='1'][side='0'] {
+  left: calc(50% - 0.35 * var(--width));
+}
+.rocket[state='1'][side='1'] {
+  right: calc(50% - 0.35 * var(--width));
+}
+.rocket[state='2'] {
+  left: calc(50% - 0.45 * var(--width));
+  bottom: calc(0.175 * var(--width));
+  -webkit-transform: translate(-50%, 0%) scale(0.5);
+  transform: translate(-50%, 0%) scale(0.5);
+}
+.rocket-body {
+  position: relative;
+  width: calc(0.12 * var(--width));
+  height: calc(0.27 * var(--width));
+  background-color: #dadada;
+  border-radius: 100% 100% 20% 20%;
+}
+.rocket-body::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5%;
+  -webkit-transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%);
+  width: 60%;
+  height: 5%;
+  background-color: #554842;
+  border-bottom-right-radius: 60%;
+  border-bottom-left-radius: 60%;
+}
+.rocket-window {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: calc(0.054 * var(--width));
+  height: calc(0.054 * var(--width));
+  border: 3px solid #b4b2b2;
+  border-radius: 50%;
+  position: absolute;
+}
+.rocket-studs {
+  position: absolute;
+  left: 50%;
+  top: 75%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: calc(0.018 * var(--width));
+  height: calc(0.018 * var(--width));
+  background: #C0C0C0;
+  border-radius: 50%;
+}
+.rocket-studs::before {
+  content: "";
+  position: absolute;
+  left: calc(-0.018 * var(--width));
+  top: calc(-0.018 * var(--width));
+  width: calc(0.018 * var(--width));
+  height: calc(0.018 * var(--width));
+  background: #C0C0C0;
+  border-radius: 50%;
+}
+.rocket-studs::after {
+  content: "";
+  position: absolute;
+  left: calc(0.018 * var(--width));
+  top: calc(-0.018 * var(--width));
+  width: calc(0.018 * var(--width));
+  height: calc(0.018 * var(--width));
+  background: #C0C0C0;
+  border-radius: 50%;
+}
+.rocket-fin {
+  position: absolute;
+  height: 30%;
+  width: calc(0.0833 * var(--width));
+  z-index: -1;
+}
+.rocket-fin[side='0'] {
+  left: -40%;
+  top: 70%;
+  border-top-left-radius: 80%;
+  border-bottom-left-radius: 20%;
+}
+.rocket-fin[side='1'] {
+  right: -40%;
+  top: 70%;
+  border-top-right-radius: 80%;
+  border-bottom-right-radius: 20%;
+}
+.rocket-fire {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 50%;
+  height: 20%;
+  background: #FFA127;
+  border-radius: 0 0 70% 70%;
+  z-index: -1;
+  animation: flame 1.2s infinite;
+}
+.rocket-fire::after {
+  content: "";
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 50%;
+  height: 70%;
+  background: #FF6345;
+  border-radius: 0 0 50% 50%;
+}
+@keyframes flame {
+  0% { transform: translate(-50%, 0%) scale(1, 1) }
+  50% { transform: translate(-50%, 0%) scale(1.02, 1.15) }
+  100% {transform: translate(-50%, 0%) scale(1, 1) }
+}
+
+/* ---------------------------------- */
+/* Alien CSS                          */
+/* ---------------------------------- */
+
+.alien {
+
+  /* alien position */
+  position: absolute;
+  bottom: 5%;
+
+  /* alien position */
+  width: calc(0.50 * var(--width));
+
+}
+.alien[state='1'] {
+  display: none;
+}
+.alien[state='2'][side='0'] {
+  left: calc(50% - 0.25 * var(--width));
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.alien[state='2'][side='1'] {
+  right: calc(50% - 0.25 * var(--width));
+  -webkit-transform: translateX(50%);
+  transform: translateX(50%);
+}
+.alien::after {
+  content: '';
+  position: absolute;
+  left: 53%;
+  bottom: -22%;
+  width: 50%;
+  height: 60%;
+  background: black;
+  border-radius: 50%;
+  opacity: 0.1;
+  transform: translateX(-50%) perspective(200px) rotateX(80deg);
+  z-index: -1;
+}
+
+.alien img {
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: calc(0.38 * var(--width));
+  object-fit: contain;
+}
+
+/* ---------------------------------- */
+/* Rewards CSS                        */
+/* ---------------------------------- */
+
+.diamond, .rock {
+
+  /* rewards position */
+  position: absolute;
+  bottom: calc(5% + 0.405 * var(--width));
+
+  /* rewards size */
+  width: calc(0.17 * var(--width));
+  height: calc(0.17 * var(--width));
+
+  /* rewards aesthetics */
+  display: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+}
+.diamond {
+  background-image: url('../img/gems.png');
+}
+.rock {
+  background-image: url('../img/rocks.png');
+}
+.diamond[status='chosen'][side='0'], .rock[status='chosen'][side='0'] {
+  display: inherit;
+  left: calc(50% - 0.245 * var(--width));
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.diamond[status='chosen'][side='1'], .rock[status='chosen'][side='1'] {
+  display: inherit;
+  right: calc(50% - 0.245 * var(--width));
+  -webkit-transform: translateX(50%);
+  transform: translateX(50%);
+}
