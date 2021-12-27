@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Digit Symbol Substitution Task</title>
+
+  <!-- Load libraries -->
+  <script src="./lib/jspsych-6.3.1/jspsych.js"></script>
+
+  <!-- Load experiment -->
+  <script src="./js/dsst-experiment.js"></script>
+
+  <!-- Load jsPsych plug-ins -->
+  <script src="./js/jspsych-dsst.js"></script>
+  <script src="./js/jspsych-dsst-instructions.js"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-preload.js"></script>
+  <script src="./lib/jspsych-6.3.1/plugins/jspsych-instructions.js"></script>
+
+  <!-- Load CSS styles -->
+  <link href="./lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  <link href="./css/dsst-css.min.css" rel="stylesheet" type="text/css"></link>
+
+</head>
+<body></body>
+<script>
+
+  // Display alert message on back/refresh.
+  // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+  function verify_unload(e){
+    e.preventDefault();
+    (e || window.event).returnValue = null;
+    return null;
+  };
+  window.addEventListener("beforeunload", verify_unload);
+
+  // Define image preloading.
+  var PRELOAD = {
+    type: 'preload',
+    images: [img_files],
+    message: 'Loading images. This may take a moment depending on your internet connection.',
+    error_message: '<p>The experiment failed to load. Please try restarting your browser.</p><p>If this error persists after 2-3 tries, please contact the experimenter.</p>',
+    continue_after_error: false,
+    show_progress_bar: true,
+    max_load_time: 30000
+  }
+
+  // Define experiment fullscreen.
+  var FULLSCREEN = {
+    type: 'fullscreen',
+    fullscreen_mode: true
+  }
+
+  // Initialize timeline.
+  var timeline = [];
+  timeline = timeline.concat(PRELOAD);
+  timeline = timeline.concat(FULLSCREEN);
+  timeline = timeline.concat(INSTRUCTIONS);
+  timeline = timeline.concat(DSST_01);
+  timeline = timeline.concat(PAUSE_01);
+  timeline = timeline.concat(DSST_02);
+  timeline = timeline.concat(PAUSE_02);
+  timeline = timeline.concat(DSST_03);
+  timeline = timeline.concat(FINISHED);
+
+  jsPsych.init({
+    timeline: timeline,
+    show_progress_bar: true,
+    on_finish: function() {
+
+      // Remove requirement to verify redirect
+      window.removeEventListener("beforeunload", verify_unload);
+
+      // Add interactions to the data variable
+      var interaction_data = jsPsych.data.getInteractionData();
+      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+      // Display jsPsych data in viewport.
+      jsPsych.data.displayData();
+
+    }
+  })
+
+</script>
+</html>
