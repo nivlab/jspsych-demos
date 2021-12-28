@@ -2,7 +2,7 @@
 
 Author(s): Sam Zorowitz
 
-A jsPsych implementation of the 20-item [test my brain](https://www.testmybrain.org/tests/wordsum/index_v3e.html) vocabulary test. Original code available on [OSF](https://osf.io/w7jgv/).
+A jsPsych implementation of the 20-item [test my brain](https://www.testmybrain.org/tests/wordsum/index_v3e.html) vocabulary test. Original code available on [OSF](https://osf.io/w7jgv/). Administration time is 2.5 minutes on average.
 
 ## Psychometrics
 
