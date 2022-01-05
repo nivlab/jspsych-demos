@@ -10,5 +10,6 @@ The following are JavaScript-based libraries for extending experiments, collecti
 - [jsQUEST](https://github.com/kurokida/jsQUEST): Bayesian adaptive psychometric method for measuring thresholds in online experiments.
 - [MouseView](https://github.com/u01ai11/MouseView.js): Attention-tracking using mouse position (an online alternative to online eye tracking).
 - [jeelizPupillometry](https://github.com/jeeliz/jeelizPupillometry): Real-time pupillometry in the web browser using a 4K webcam video feed processed by this WebGL/Javascript library.
+- [jspsych-psychophysics](https://jspsychophysics.hes.kyushu-u.ac.jp/): Plugins for running online/Web-based psychophysical experiments using jsPsych.
 
 [back](./)
