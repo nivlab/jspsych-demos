@@ -13,7 +13,9 @@ This folder contains template jsPsych code for self-report questionnaires, demog
 | [Alcohol use disorders identification test](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-survey-audit.js) | Measure of alcohol use | Niv, Daw |
 | [Anxious control questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/acqr.js) | Measure of perceived self-efficacy | Daw |
 | [Apathy evaluation scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/aes.js) | Measure of apathy and amotivation | Daw |
+| [Adult ADHD Self-Report Scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/asrs.js) | Measure of ADHD symptoms | Niv |
 | [Behavioral inhibition / activation scales](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/bisbas.js) | Measure of reward / punishment motivation | Niv, Daw |
+| [Childhood trauma questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/ctq.js) | Measure of childhood trauma | Niv |
 | [COVID beliefs & behaviors](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-survey-covid.js) | Measure of factors related to COVID-19 | Niv |
 | [Depression, anxiety, & stress scales](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/dass.js) | Measure of depression, anxiety, & stress symptoms | Niv |
 | [Drug use disorders identification test](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-survey-dudit.js) | Measure of drug use | Niv |
