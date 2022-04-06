@@ -48,6 +48,7 @@
 
   <!-- Load CSS styles -->
   <link href="../../lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+
 </head>
 <body></body>
 <script>
@@ -102,8 +103,9 @@
     timeline = timeline.concat(SURVEY);
   } else if (show_plugin == "mha") {
     timeline = timeline.concat(MHA);
-  } else {
+  } elise if (show_plugin == "checklist") {
     timeline = timeline.concat(CHECKLIST)
+  } else {
     timeline = timeline.concat(SURVEY);
   }
 
