@@ -62,6 +62,10 @@
   };
   window.addEventListener("beforeunload", verify_unload);
 
+  //---------------------------------------//
+  // Define surveys.
+  //---------------------------------------//
+
   // Define demographics form.
   var DEMO = {
     type: 'survey-demo'
@@ -88,6 +92,44 @@
     idas, ius12, lsas, nfc10, nfcs, npoq, oci, panas, pswq, sds, shaps, sns,
     stai, sticsa
   ]);
+
+  // Define disorder checklist.
+  var checklist_page_01 = {
+    type: 'disorder-checklist'
+  }
+
+  var checklist_page_02 = {
+    timeline: [{
+      type: 'survey-template',
+      items: ['test'],
+      scale: ['Self', 'Professional', 'Both'],
+      instructions: "Of the mental health conditions you have been diagnosed with, who diagnosed you?",
+      scale_repeat: 10,
+      survey_width: 650,
+      item_width: 40,
+      on_start: function(trial) {
+        const [data] = jsPsych.data.get().last(1).values();
+        trial.items = data.diagnoses;
+        trial.reverse = data.diagnoses.map(x => false);
+      }
+    }],
+    conditional_function: function() {
+      const [data] = jsPsych.data.get().last(1).values();
+      if (data.diagnoses.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  var CHECKLIST = {
+    timeline: [checklist_page_01, checklist_page_02]
+  }
+
+  //---------------------------------------//
+  // Define timeline.
+  //---------------------------------------//
 
   // Query URL
   const urlParams = new URLSearchParams(window.location.search);
