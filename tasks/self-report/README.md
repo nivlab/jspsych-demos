@@ -27,6 +27,8 @@ This folder contains template jsPsych code for self-report questionnaires, demog
 | [Inventory of depression & anxiety symptoms](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/idas.js) | Measure of depression & anxiety symptoms | Niv |
 | [Intolerance of uncertainty scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/ius12.js) | Measure of uncertainty intolerance | Niv |
 | [Liebowitz Social Anxiety Scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/lsas.js) | Measure of social anxiety | Daw |
+| [Maltreatment and Abuse Chronology of Exposure scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/mace) | Measure of childhood maltreatment | Niv |
+| [Motivation and Pleasure Scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/map) | Measure of negative symptoms | Niv |
 | [Need for cognition scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/nfc6.js) | Measure of desire for cognitive effort  | Daw |
 | [Need for closure scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/nfcs.js) | Measure of uncertainty intolerance | Niv |
 | [Negative problem orientation questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/npoq.js) | Measure of perceived self-efficacy | Daw |
