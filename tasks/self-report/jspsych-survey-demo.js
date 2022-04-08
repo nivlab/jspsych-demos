@@ -132,8 +132,8 @@ jsPsych.plugins['survey-demo'] = (function() {
     html += '<div class="survey-demo-row">';
     html += '<div class="survey-demo-prompt"><label for="gender-categorical">What is your gender?</label></div>';
     html += '<div class="survey-demo-response">';
-    html += '<label><input type="radio" name="gender-categorical" value="Male" required>Male</label>';
-    html += '<label><input type="radio" name="gender-categorical" value="Female" required>Female</label>';
+    html += '<label><input type="radio" name="gender-categorical" value="Man" required>Man</label>';
+    html += '<label><input type="radio" name="gender-categorical" value="Woman" required>Woman</label>';
     html += '<label><input type="radio" name="gender-categorical" value="Rather not say" required>Rather not say</label>';
     html += '<label style="padding: 0 0.5em 0 0;"><input type="radio" name="gender-categorical" value="Other" required>Other</label>';
     html += '<input type="text" name="gender-free-response" maxlength="24" size="10"></label>';

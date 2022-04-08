@@ -4,7 +4,7 @@
   <title>Self-report</title>
 
   <!-- Load libraries -->
-  <script src="./lib/jspsych-6.3.1/jspsych.js"></script>
+  <script src="../../lib/jspsych-6.3.1/jspsych.js"></script>
 
   <!-- Load jsPsych plug-ins -->
   <script src="./jspsych-survey-demo.js"></script>
@@ -39,14 +39,16 @@
   <script src="./surveys/sticsa.js"></script>
 
   <!-- Load special surveys -->
+  <script src="./special/jspsych-affective-slider.js"></script>
+  <script src="./special/jspsych-disorder-checklist.js"></script>
   <script src="./special/jspsych-survey-audit.js"></script>
   <script src="./special/jspsych-survey-dudit.js"></script>
   <script src="./special/jspsych-survey-covid.js"></script>
-  <script src="./special/jspsych-affective-slider.js"></script>
   <script src="./special/affective-slider.js"></script>
 
   <!-- Load CSS styles -->
-  <link href="./lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  <link href="../../lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+
 </head>
 <body></body>
 <script>
@@ -59,6 +61,10 @@
     return null;
   };
   window.addEventListener("beforeunload", verify_unload);
+
+  //---------------------------------------//
+  // Define surveys.
+  //---------------------------------------//
 
   // Define demographics form.
   var DEMO = {
@@ -75,12 +81,55 @@
     type: 'mental-health-alert'
   }
 
+  // Define disorder checklist.
+  var CHECKLIST = {
+    type: 'disorder-checklist'
+  }
+
   // Define random survey.
   var [SURVEY] = jsPsych.randomization.sampleWithoutReplacement([
     seven_up_seven_down, acqr, aes, asrs, bisbas, dass, ctq, eat26, gad7, gse,
     idas, ius12, lsas, nfc10, nfcs, npoq, oci, panas, pswq, sds, shaps, sns,
     stai, sticsa
   ]);
+
+  // Define disorder checklist.
+  var checklist_page_01 = {
+    type: 'disorder-checklist'
+  }
+
+  var checklist_page_02 = {
+    timeline: [{
+      type: 'survey-template',
+      items: ['test'],
+      scale: ['Self', 'Professional', 'Both'],
+      instructions: "Of the mental health conditions you have been diagnosed with, who diagnosed you?",
+      scale_repeat: 10,
+      survey_width: 650,
+      item_width: 40,
+      on_start: function(trial) {
+        const [data] = jsPsych.data.get().last(1).values();
+        trial.items = data.diagnoses;
+        trial.reverse = data.diagnoses.map(x => false);
+      }
+    }],
+    conditional_function: function() {
+      const [data] = jsPsych.data.get().last(1).values();
+      if (data.diagnoses.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  var CHECKLIST = {
+    timeline: [checklist_page_01, checklist_page_02]
+  }
+
+  //---------------------------------------//
+  // Define timeline.
+  //---------------------------------------//
 
   // Query URL
   const urlParams = new URLSearchParams(window.location.search);
@@ -96,11 +145,10 @@
     timeline = timeline.concat(SURVEY);
   } else if (show_plugin == "mha") {
     timeline = timeline.concat(MHA);
+  } else if (show_plugin == "checklist") {
+    timeline = timeline.concat(CHECKLIST)
   } else {
     timeline = timeline.concat(SURVEY);
-    timeline = timeline.concat(DEMO);
-    timeline = timeline.concat(DEBRIEF);
-    timeline = timeline.concat(MHA);
   }
 
   jsPsych.init({
