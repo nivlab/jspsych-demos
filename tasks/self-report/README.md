@@ -26,8 +26,10 @@ This folder contains template jsPsych code for self-report questionnaires, demog
 | [Drug use disorders identification test](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-survey-dudit.js) | Measure of drug use | Niv |
 | [Eating attitudes test](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/eat26.js) | Measure of eating disorder symptoms | Daw |
 | [Generalized anxiety disorder scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/gad7.js) | Measure of anxiety symptoms | Niv, Daw |
+| [General behavior inventory](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/gbi.js) | Measure of mania and depressive symptoms | Niv |
 | [General self-efficacy scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/gse.js) | Measure of perceived self-efficacy | Daw |
 | [HiTOP Internalizing Battery](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/hitop.js) | Measure of internalizing symptoms | Niv |
+| [Hypomanic personality scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/hps.js) | Measure of hypomanic personality | Niv |
 | [International trauma questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/itq.js) | Measure of adverse childhood experiences | Niv |
 | [Inventory of depression & anxiety symptoms](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/idas.js) | Measure of depression & anxiety symptoms | Niv |
 | [Intolerance of uncertainty scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/ius12.js) | Measure of uncertainty intolerance | Niv |
