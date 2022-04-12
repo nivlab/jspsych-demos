@@ -49,6 +49,7 @@ This folder contains template jsPsych code for self-report questionnaires, demog
 | [Schizotypal personality questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/spq.js) | Measure of schizotypal personality | Niv |
 | [Self-evaluation of negative symptoms](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/sns.js) | Measure of negative symptoms | Niv |
 | [Snaith-Hamilton anhedonia scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/shaps.js) | Measure of anhedonia & depression symptoms | Niv |
+| [SONA prescreening form](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-sona-screening.js) | Prescreening items for SONA participants | Niv |
 | [State-trait anxiety inventory](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/stai.js) | Measure of negative affect | Niv, Daw |
 | [State-trait inventory of cognitive & somatic anxiety](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/sticsa.js) | Measure of anxiety symptoms | Niv |
 
