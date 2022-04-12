@@ -309,7 +309,7 @@ var pid5 = {
     false, false, false, false, false, false, true, false, false, false,
 
     // Depressivity
-    false, false, false, false, false, false, false, false, false, false, false, false, false, false
+    false, false, false, false, false, false, false, false, false, false, false, false, false, false,
 
     // Distractibility
     false, false, false, false, false, false, false, false, false,
