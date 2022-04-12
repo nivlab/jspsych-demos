@@ -16,6 +16,7 @@ This folder contains template jsPsych code for self-report questionnaires, demog
 | [Anxious control questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/acqr.js) | Measure of perceived self-efficacy | Daw |
 | [Apathy evaluation scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/aes.js) | Measure of apathy and amotivation | Daw |
 | [Autism spectrum quotient](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/aq10.js) | Measure of Autism spectrum behaviors | Niv |
+| [Adult ADHD Self-Report Scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/asrs.js) | Measure of ADHD symptoms | Niv |
 | [Barratt impulsivity scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/bis11.js) | Measure of impulse control | Niv, Daw |
 | [Behavioral inhibition / activation scales](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/bisbas.js) | Measure of reward / punishment motivation | Niv, Daw |
 | [Cannabis use inventory](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-survey-dfaq.js) | Measure of cannabis use | Niv |
@@ -48,6 +49,7 @@ This folder contains template jsPsych code for self-report questionnaires, demog
 | [Penn State worry questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/pswq.js) | Measure of worry symptoms | Niv, Daw |
 | [Ruminative thought style questionnaire ](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/rts.js) | Measure of ruminative tendencies | Niv |
 | [Schizotypal personality questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/spq.js) | Measure of schizotypal personality | Niv |
+| [Snaith-Hamilton anhedonia scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/shaps.js) | Measure of anhedonia & depression symptoms | Niv |
 | [Self-evaluation of negative symptoms](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/sns.js) | Measure of negative symptoms | Niv |
 | [Snaith-Hamilton anhedonia scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/shaps.js) | Measure of anhedonia & depression symptoms | Niv |
 | [SONA prescreening form](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-sona-screening.js) | Prescreening items for SONA participants | Niv |
