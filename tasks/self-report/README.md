@@ -31,6 +31,7 @@ This folder contains template jsPsych code for self-report questionnaires, demog
 | [HiTOP Internalizing Battery](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/hitop.js) | Measure of internalizing symptoms | Niv |
 | [Hypomanic personality scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/hps.js) | Measure of hypomanic personality | Niv |
 | [International trauma questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/itq.js) | Measure of adverse childhood experiences | Niv |
+| [International Personality Item Pool](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/ipip.js) | Measure of personality | Niv, Daw |
 | [Inventory of depression & anxiety symptoms](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/idas.js) | Measure of depression & anxiety symptoms | Niv |
 | [Intolerance of uncertainty scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/ius12.js) | Measure of uncertainty intolerance | Niv |
 | [Liebowitz Social Anxiety Scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/lsas.js) | Measure of social anxiety | Daw |
