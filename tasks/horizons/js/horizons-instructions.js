@@ -149,7 +149,7 @@ var READY_02 = {
 
 // Define finish screen.
 var FINISHED = {
-  type: 'pit-instructions',
+  type: 'instructions',
   pages: [
     "Great job! You've finished the task.",
   ],
