@@ -111,13 +111,13 @@ TABLE OF CONTENTS
 
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/dsst) [<b>[Demo]</b>](./tasks/dsst/experiment.html)
 
-> A jsPsych implementation of the [digit symbol matching test](https://www.testmybrain.org/tests/DigSymbCoding/DSC.html). 
+> A jsPsych implementation of the [digit symbol matching test](https://www.testmybrain.org/tests/DigSymbCoding/DSC.html).
 
 ### Vocabulary test
 
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/vocabulary) [<b>[Demo]</b>](./tasks/vocabulary/experiment.html)
 
-> A jsPsych implementation of the 20-item [test my brain](https://www.testmybrain.org/tests/wordsum/index_v3e.html) vocabulary test. 
+> A jsPsych implementation of the 20-item [test my brain](https://www.testmybrain.org/tests/wordsum/index_v3e.html) vocabulary test.
 
 <hr>
 
@@ -170,11 +170,3 @@ TABLE OF CONTENTS
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/screen-check) [<b>[Demo]</b>](./tasks/screen-check/experiment.html?min_width=12000&min_height=8000)
 
 > Plugin to verify that a participant's browser window meets a minimal screen resolution.
-
-<hr>
-
-## Code upon request / WIP
-
-<i>Niv lab members</i>: There are jsPsych tasks that have already been developed but are not at a point where they can be publicly shared. These include:
-
-- Pavlovian-instrumental transfer task (contact Sam)
