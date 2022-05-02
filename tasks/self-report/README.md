@@ -24,6 +24,7 @@ This folder contains template jsPsych code for self-report questionnaires, demog
 | [COVID beliefs & behaviors](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-survey-covid.js) | Measure of factors related to COVID-19 | Niv |
 | [Depressive attributions questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/daq.js) | Measure of depressive attributions | Niv |
 | [Depression, anxiety, & stress scales](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/dass.js) | Measure of depression, anxiety, & stress symptoms | Niv |
+| [Disorder checklist](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-disorder-checklist.js) | Measure of psychiatric diagnoses | Niv |
 | [Drug use disorders identification test](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-survey-dudit.js) | Measure of drug use | Niv |
 | [Eating attitudes test](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/eat26.js) | Measure of eating disorder symptoms | Daw |
 | [Generalized anxiety disorder scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/gad7.js) | Measure of anxiety symptoms | Niv, Daw |
