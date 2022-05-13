@@ -21,18 +21,33 @@ jsPsych.plugins['disorder-checklist'] = (function() {
     //---------------------------------------//
 
     const disorders = [
-      "Major depressive disorder",
-      "Seasonal affective disorder",
-      "Bipolar disorder (type 1 or 2)",
-      "Generalized anxiety disorder",
-      "Posttraumatic stress disorder",
-      "Obsessive-compulsive disorder",
-      "Specific phobia",
-      "Autism spectrum disorder",
+      "Agoraphobia",
+      "Alcohol dependence",
       "Anorexia nervosa",
-      "Bulimia nervosa",
+      "Attention deficit hyperactivity disorder (ADHD)",
+      "Autism spectrum disorder",
       "Binge eating disorder",
-      "Eating disorder (not otherwise specified)"
+      "Bipolar I disorder",
+      "Bipolar II disorder",
+      "Body dysmorphic disorder",
+      "Borderline personality disorder",
+      "Bulimia nervosa",
+      "Dysthymia",
+      "Eating disorder (not otherwise specified)",
+      "Generalized anxiety disorder",
+      "Major depressive disorder",
+      "Obsessive-compulsive disorder (OCD)",
+      "Panic disorder",
+      "Post-traumatic stress disorder (PTSD)",
+      "Premenstrual dysphoric disorder",
+      "Schizoaffective disorder",
+      "Schizophrenia",
+      "Schizotypal personality disorder",
+      "Social anxiety disorder",
+      "Specific phobia",
+      "Substance dependence / addiction",
+      "Tourette syndrome",
+      "Trichotillomania",
     ];
 
     //---------------------------------------//
