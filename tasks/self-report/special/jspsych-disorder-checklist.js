@@ -1,3 +1,10 @@
+/* jspsych-disorder-checklist.js
+ * a jspsych plugin for assessing psychiatric disorder diagnoses.
+ *
+ * authors: Sam Zorowitz, Jamie Chiu
+ *
+ */
+
 jsPsych.plugins['disorder-checklist'] = (function() {
 
   var plugin = {};
