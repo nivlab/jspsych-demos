@@ -1,3 +1,10 @@
+/* jspsych-disorder-checklist.js
+ * a jspsych plugin for assessing psychiatric disorder diagnoses.
+ *
+ * authors: Sam Zorowitz, Jamie Chiu
+ *
+ */
+
 jsPsych.plugins['disorder-checklist'] = (function() {
 
   var plugin = {};
@@ -153,7 +160,7 @@ jsPsych.plugins['disorder-checklist'] = (function() {
     </style>`;
 
     // Add prompt.
-    html += '<p>Have you ever been diagnosed with any of the mental health conditions below?<br><small>Please select all that apply, or leave blank if you prefer not to stay.</small></p>'
+    html += '<p>Have you ever been diagnosed with any of the mental health conditions below?<br><small>Please select all that apply (including past and/or current diagnoses), or leave blank if you prefer not to say.</small></p>'
 
     // Open container.
     html += '<div class="checklist-container">';
