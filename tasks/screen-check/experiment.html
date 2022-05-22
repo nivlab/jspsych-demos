@@ -4,13 +4,13 @@
   <title>Screen Check</title>
 
   <!-- Load libraries -->
-  <script src="../../lib/jspsych-6.3.1/jspsych.js"></script>
+  <script src="../../lib/jspsych-7.2.1/jspsych.js"></script>
 
   <!-- Load jsPsych plug-ins -->
   <script src="./jspsych-screen-check.js"></script>
 
   <!-- Load CSS styles -->
-  <link href="../../lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  <link href="../../lib/jspsych-7.2.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
 </head>
 <body></body>
 <script>
@@ -31,18 +31,16 @@
 
   // Define screen check
   var screen_check = {
-    type: 'screen-check',
+    type: jsPsychScreenCheck,
     min_width: min_width,
     min_height: min_height
   }
 
   // Initialize timeline.
-  var timeline = [];
-  timeline = timeline.concat(screen_check);
+  var timeline = [screen_check];
 
-  jsPsych.init({
-    timeline: timeline,
-    show_progress_bar: true,
+  // Initialize jsPsych.
+  var jsPsych = initJsPsych({
     on_finish: function() {
 
       // Remove requirement to verify redirect
@@ -56,7 +54,10 @@
       jsPsych.data.displayData();
 
     }
-  })
+  });
+
+  // Execute timeline.
+  jsPsych.run(timeline);
 
 </script>
 </html>
