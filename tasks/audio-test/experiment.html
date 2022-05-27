@@ -80,12 +80,16 @@
           we will ask you to tell us what word you heard.\
           This allows us to verify that your audio is working."
   };
+
+  // get random id
+  var idx = jsPsych.randomization.sampleWithoutReplacement([0,1,2,3],1);
+
   // define audio test
   var audio_test = {
     prompt:'Please type the word that you heard in the box below.<br>(HINT: it is an animal)',
     type: jsPsychAudioTest,
-    stimulus: stimuli[0],
-    correct_response:responses[0],
+    stimulus: stimuli[idx],
+    correct_response:responses[idx],
     loop_function: function(data){
     if(data.values()[1].response.button == 1){
       return true; // loop again!

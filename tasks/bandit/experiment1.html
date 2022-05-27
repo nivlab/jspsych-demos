@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+
+    <!-- read in js libraries -->
+    <script src="../../lib/jspsych-7.2.1/jspsych.js"></script>
+
+    <!-- read in jsPsych plugins -->
+    <script src="../../lib/jspsych-7.2.1/dist/plugin-preload.js"></script>
+    <script src="../../lib/jspsych-7.2.1/dist/plugin-fullscreen.js"></script>
+    <script src="../../lib/jspsych-7.2.1/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../../lib/jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
+    <script src="./js/bandit.js"></script>
+
+    <!-- read in static variables for running experiment -->
+    <script src="./js/bandit-runsheet.js"></script>
+    <script src="./js/bandit-stimuli.js"></script>
+    <script src="./js/bandit-queues.js"></script>
+
+    <!-- read in stylesheets -->
+    <link href="../../lib/jspsych-7.2.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+
+  </head>
+  <body></body>
+  <script>
+
+  // Display alert message on back/refresh.
+  // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+  function verify_unload(e){
+    e.preventDefault();
+    (e || window.event).returnValue = null;
+    return null;
+  };
+  window.addEventListener("beforeunload", verify_unload);
+
+
+  //------------------------------------
+  // Messages and landing pages
+  //------------------------------------
+
+  // define welcome message
+  var welcome = {
+    type: "html-keyboard-response",
+    stimulus: "Welcome to the experiment. Press any key to begin."
+  };
+
+  // define block end message
+  var block_end = {
+    type: "html-keyboard-response",
+    stimulus: "End of block. Take a break. and press any key to continue when you are ready.",
+    on_finish: function(data){ // this is added here to re-randomise queues before the start of each new block
+      for (var i = 0; i < face_queues.length; i++){
+        rfq[i] = jsPsych.randomization.repeat(face_queues[i], 1);
+        rpq[i] = jsPsych.randomization.repeat(place_queues[i], 1)
+      }
+      queues.rfq = rfq;
+      queues.rpq = rpq;
+      queues.null_trial_queue = [];
+      counter.block += 1;
+      counter.trial = 1;
+    }
+  };
+
+  // define experiment end message
+  var expt_end = {
+    type: "html-keyboard-response",
+    stimulus: "End of experiment. Press any key to quit."
+  };
+
+  //------------------------------------
+  // Functions to turn fullscreen on/off
+  //------------------------------------
+
+  var fullscreen_on = {
+    type: jsPsychFullscreen,
+    fullscreen_mode: true,
+    message: '<p>The experiment will switch to full screen mode when you press the button below.</p><p>Where possible, please stay in full screen mode for the entire experiment.</p>'
+  };
+
+  var fullscreen_off = {
+    type: jsPsychFullscreen,
+    fullscreen_mode: false
+  };
+
+  //------------------------------------
+  // Define and randomise experimental variables
+  //------------------------------------
+
+  // randomise face and place payout queues, and place them in a global variable (so they can be accessed and manipulated independently of the jsPsych trial structure). This randomisation will be done afresh in each block changeover
+  var rfq = [[],[]];
+  var rpq = [[],[]];
+  for (var i = 0; i < face_queues.length; i++){
+    rfq[i] = jsPsych.randomization.repeat(face_queues[i], 1);
+    rpq[i] = jsPsych.randomization.repeat(place_queues[i], 1)
+  }
+
+  // specify queues
+  var queues = {};
+  queues.rfq = rfq;
+  queues.rpq = rpq;
+  queues.null_trial_queue = [];
+
+  // randomise allocation of image numbers to payout numbers
+  var face_image_allocation = jsPsych.randomization.sampleWithoutReplacement([...Array(face_images.length).keys()], queues.rpq.length);
+  var place_image_allocation = jsPsych.randomization.sampleWithoutReplacement([...Array(face_images.length).keys()], queues.rpq.length);
+
+  // set up block and trial counters
+  var counter = {};
+  counter.block = 1;
+  counter.trial = 1;
+  counter.n_blocks = 2;
+
+  //------------------------------------
+  // Define experimental blocks
+  //------------------------------------
+
+  // define what a conditioning block is
+  var face_conditioning_block = {
+    timeline_variables: face_conditioning_stimuli,
+    randomize_order: true,
+    timeline:
+    [{
+      type: 'bandit',
+      face_stimuli: face_images,
+      place_stimuli: place_images,
+      image_allocation: face_image_allocation,
+      feedback_images: feedback_images,
+      n_trials: face_conditioning_stimuli.length,
+      choice_type: jsPsych.timelineVariable('choice_type'),
+      left_image_type: jsPsych.timelineVariable('left_image_type'),
+      left_image_number: jsPsych.timelineVariable('left_image_number'),
+      right_image_type: jsPsych.timelineVariable('right_image_type'),
+      right_image_number: jsPsych.timelineVariable('right_image_number')
+    }],
+
+  };
+
+  // define what a conditioning block is
+  var place_conditioning_block = {
+    timeline_variables: place_conditioning_stimuli,
+    randomize_order: true,
+    timeline:
+    [{
+      type: 'bandit',
+      face_stimuli: face_images,
+      place_stimuli: place_images,
+      image_allocation: place_image_allocation,
+      feedback_images: feedback_images,
+      n_trials: place_conditioning_stimuli.length,
+      choice_type: jsPsych.timelineVariable('choice_type'),
+      left_image_type: jsPsych.timelineVariable('left_image_type'),
+      left_image_number: jsPsych.timelineVariable('left_image_number'),
+      right_image_type: jsPsych.timelineVariable('right_image_type'),
+      right_image_number: jsPsych.timelineVariable('right_image_number')
+    }],
+
+  };
+
+  // define preload
+  // automatically preload all stimuli files based on the timeline
+  var preload = {
+    type: jsPsychPreload,
+    auto_preload: true,
+    message: 'Loading sounds. This may take a moment depending on your internet connection.',
+    // on_error: function(file) {
+    //     console.log('Error: ',file);
+    //   },
+    //   on_success: function(file) {
+    //     console.log('Loaded: ',file);
+    //   }
+  }
+
+  //------------------------------------
+  // Put it all in a timeline
+  //------------------------------------
+
+  // Add variables to timeline in relevant order
+  var timeline = [
+    preload,
+    welcome,                      // landing page
+    fullscreen_on,                // turn fullscreen mode on
+    face_conditioning_block,      // run a learning block with face images
+    block_end,                    // show block-end screen
+    place_conditioning_block,     // run a learning block with place images
+    expt_end,                     // show experiment-end screen
+    fullscreen_off                // turn fullscreen mode off
+
+  ];
+
+  //------------------------------------
+  // Set up and run the experiment
+  //------------------------------------
+  var jsPsych = initJsPsych({
+    show_progress_bar: true,
+    use_webaudio:true,
+    //override_safe_mode:true,
+    on_finish: function() {
+
+      // Remove requirement to verify redirect
+      window.removeEventListener("beforeunload", verify_unload);
+
+      // Add interactions to the data variable
+      var interaction_data = jsPsych.data.getInteractionData();
+      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+      // Display jsPsych data in viewport.
+      jsPsych.data.displayData();
+
+    }
+  });
+
+  jsPsych.run(timeline);
+
+  </script>
+</html>
