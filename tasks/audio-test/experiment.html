@@ -4,14 +4,15 @@
   <title>Audio Test</title>
 
   <!-- Load libraries -->
-  <script src="../../lib/jspsych-6.3.1/jspsych.js"></script>
+  <script src="../../lib/jspsych-7.2.1/jspsych.js"></script>
 
   <!-- Load jsPsych plug-ins -->
   <script src="./audio-test.js"></script>
-  <script src="../../lib/jspsych-6.3.1/plugins/jspsych-preload.js"></script>
+  <script src="../../lib/jspsych-7.2.1/dist/plugin-preload.js"></script>
+  <script src="../../lib/jspsych-7.2.1/dist/plugin-html-button-response.js"></script>
 
   <!-- Load CSS styles -->
-  <link href="../../lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  <link href="../../lib/jspsych-7.2.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
 </head>
 <body></body>
 <script>
@@ -32,28 +33,12 @@
     './audio/audio3.mp3',
     './audio/audio4.mp3',
   ];
-
-  // define preload
-  var preload = {
-    type: 'preload',
-    audio: [stimuli],
-    message: 'Loading sounds. This may take a moment depending on your internet connection.'
-  }
-
-  // define audio test
-  var audio_test = {
-    type: 'audio-test',
-    stimulus: stimuli
-  }
-
-  // Initialize timeline.
-  var timeline = [];
-  timeline = timeline.concat(preload);
-  timeline = timeline.concat(audio_test);
-
-  jsPsych.init({
-    timeline: timeline,
+  const responses = ['tiger', 'shark', 'turtle', 'fish'];
+  // init Psych
+  var jsPsych = initJsPsych({
     show_progress_bar: true,
+    use_webaudio:true,
+    //override_safe_mode:true,
     on_finish: function() {
 
       // Remove requirement to verify redirect
@@ -67,7 +52,57 @@
       jsPsych.data.displayData();
 
     }
-  })
+  });
+
+  // define preload
+  // automatically preload all stimuli files based on the timeline
+  var preload = {
+    type: jsPsychPreload,
+    auto_preload: true,
+    message: 'Loading sounds. This may take a moment depending on your internet connection.',
+    // on_error: function(file) {
+    //     console.log('Error: ',file);
+    //   },
+    //   on_success: function(file) {
+    //     console.log('Loaded: ',file);
+    //   }
+  }
+  //welocome
+  var welcome = {
+    type: jsPsychHtmlButtonResponse,
+    choices:['Continue'],
+    stimulus: "Welcome to the experiment.\
+          In order to complete this experiment, you will need to have your\
+          computer audio on. If you do not have computer audio,\
+          you will not be able to complete this experiment.\
+          <br><br>We will now test your audio. When you press the button below,\
+          you will hear a word being spoken.<br><br>On the following screen,\
+          we will ask you to tell us what word you heard.\
+          This allows us to verify that your audio is working."
+  };
+  // define audio test
+  var audio_test = {
+    prompt:'Please type the word that you heard in the box below.<br>(HINT: it is an animal)',
+    type: jsPsychAudioTest,
+    stimulus: stimuli[0],
+    correct_response:responses[0],
+    loop_function: function(data){
+    if(data.values()[1].response.button == 1){
+      return true; // loop again!
+    } else {
+      return false; // continue
+    }
+  }
+  };
+
+  // Initialize timeline.
+  var timeline = [];
+  timeline = timeline.concat(preload);
+  timeline = timeline.concat(welcome);
+  timeline = timeline.concat(audio_test);
+
+
+  jsPsych.run(timeline);
 
 </script>
 </html>
