@@ -2,7 +2,7 @@ var jsPsychBandit = (function (jspsych) {
   'use strict';
 
   const info = {
-      name: "image-keyboard-response",
+      name: "bandit",
       parameters: {
           /** The array of paths to face stimuli */
           face_stimuli: {
@@ -318,7 +318,6 @@ var jsPsychBandit = (function (jspsych) {
 
           // function to draw background
           function DrawBackground(){
-
             // draw the background
             ctx.fillStyle = trial.background_colour;
             ctx.fillRect(0, 0, trial.canvas_dimensions[0], trial.canvas_dimensions[1]);
