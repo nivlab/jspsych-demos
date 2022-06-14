@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
 
     <!-- read in js libraries -->
-    <script src="../../lib/jspsych-6.3.1/jspsych.js"></script>
+    <script src="../../lib/jspsych-7.2.1/jspsych.js"></script>
 
     <!-- read in jsPsych plugins -->
-    <script src="../../lib/jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
-    <script src="../../lib/jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
+    <script src="../../lib/jspsych-7.2.1/dist/plugin-preload.js"></script>
+    <script src="../../lib/jspsych-7.2.1/dist/plugin-fullscreen.js"></script>
+    <script src="../../lib/jspsych-7.2.1/dist/plugin-html-keyboard-response.js"></script>
     <script src="./js/bandit.js"></script>
 
     <!-- read in static variables for running experiment -->
@@ -17,27 +18,75 @@
     <script src="./js/bandit-queues.js"></script>
 
     <!-- read in stylesheets -->
-    <link href="../../lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+    <link href="../../lib/jspsych-7.2.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
 
   </head>
   <body></body>
   <script>
 
+  // Display alert message on back/refresh.
+  // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+  function verify_unload(e){
+    e.preventDefault();
+    (e || window.event).returnValue = null;
+    return null;
+  };
+  window.addEventListener("beforeunload", verify_unload);
 
+
+  //------------------------------------
+  // set up jsPsych
+  //------------------------------------
+
+  var jsPsych = initJsPsych({
+    show_progress_bar: true,
+    use_webaudio:true,
+    //override_safe_mode:true,
+    on_finish: function() {
+
+      // Remove requirement to verify redirect
+      window.removeEventListener("beforeunload", verify_unload);
+
+      // Add interactions to the data variable
+      var interaction_data = jsPsych.data.getInteractionData();
+      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+      // Display jsPsych data in viewport.
+      jsPsych.data.displayData();
+
+    }
+  });
+
+  /* create timeline */
+   var timeline = [];
+
+  /* preload images */
+   var preload = {
+     type: jsPsychPreload,
+     auto_preload: true,
+     message: 'Loading sounds. This may take a moment depending on your internet connection.',
+     // on_error: function(file) {
+     //     console.log('Error: ',file);
+     //   },
+     //   on_success: function(file) {
+     //     console.log('Loaded: ',file);
+     //   }
+   }
+   timeline.push(preload);
   //------------------------------------
   // Messages and landing pages
   //------------------------------------
 
   // define welcome message
   var welcome = {
-    type: "html-keyboard-response",
+    type: jsPsychHtmlKeyboardResponse,
     stimulus: "Welcome to the experiment. Press any key to begin."
   };
 
   // define block end message
   var block_end = {
-    type: "html-keyboard-response",
-    stimulus: "End of block. Take a break. and press any key to continue when you are ready.",
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: "End of block. Take a break. Press any key to continue when you are ready.",
     on_finish: function(data){ // this is added here to re-randomise queues before the start of each new block
       for (var i = 0; i < face_queues.length; i++){
         rfq[i] = jsPsych.randomization.repeat(face_queues[i], 1);
@@ -53,7 +102,7 @@
 
   // define experiment end message
   var expt_end = {
-    type: "html-keyboard-response",
+    type: jsPsychHtmlKeyboardResponse,
     stimulus: "End of experiment. Press any key to quit."
   };
 
@@ -62,13 +111,13 @@
   //------------------------------------
 
   var fullscreen_on = {
-    type: "fullscreen",
+    type: jsPsychFullscreen,
     fullscreen_mode: true,
     message: '<p>The experiment will switch to full screen mode when you press the button below.</p><p>Where possible, please stay in full screen mode for the entire experiment.</p>'
   };
 
   var fullscreen_off = {
-    type: "fullscreen",
+    type: jsPsychFullscreen,
     fullscreen_mode: false
   };
 
@@ -110,7 +159,7 @@
     randomize_order: true,
     timeline:
     [{
-      type: 'bandit',
+      type: jsPsychBandit,
       face_stimuli: face_images,
       place_stimuli: place_images,
       image_allocation: face_image_allocation,
@@ -131,7 +180,7 @@
     randomize_order: true,
     timeline:
     [{
-      type: 'bandit',
+      type: jsPsychBandit,
       face_stimuli: face_images,
       place_stimuli: place_images,
       image_allocation: place_image_allocation,
@@ -146,13 +195,14 @@
 
   };
 
+
+
   //------------------------------------
   // Put it all in a timeline
   //------------------------------------
 
   // Add variables to timeline in relevant order
-  var timeline = [
-
+  timeline = [
     welcome,                      // landing page
     fullscreen_on,                // turn fullscreen mode on
     face_conditioning_block,      // run a learning block with face images
@@ -164,24 +214,10 @@
   ];
 
   //------------------------------------
-  // Set up and run the experiment
+  // run the experiment
   //------------------------------------
 
-  jsPsych.init({
-    timeline: timeline,
-    show_preload_progress_bar: true,
-    preload_images: [face_images, place_images, feedback_images],
-    on_finish: function() {
-
-      // add interactions to the data variable
-      var interaction_data = jsPsych.data.getInteractionData();
-      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
-
-      // Display jsPsych data in viewport.
-      jsPsych.data.displayData();
-
-    }
-  });
+  jsPsych.run(timeline);
 
   </script>
 </html>
