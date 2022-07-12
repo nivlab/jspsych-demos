@@ -438,12 +438,28 @@ const quiz_block = {
 // Define instructions block.
 //------------------------------------//
 
+var INSTRUCTIONS_SKIP = {
+  type: 'html-keyboard-response',
+  stimulus: '<p>You are starting a demo of the <b>risk sensitivity task.</b></p><p>To see the instructions, press the "1" key. To skip them, press the "2" key.</p>',
+  choices: ["1","2"]
+}
+
 // Define instructions loop.
-var INSTRUCTIONS = [
-  instructions_01,
-  practice_block_01,
-  instructions_02,
-  practice_block_02,
-  instructions_03,
-  quiz_block
-];
+var INSTRUCTIONS = {
+  timeline: [
+    instructions_01,
+    practice_block_01,
+    instructions_02,
+    practice_block_02,
+    instructions_03,
+    quiz_block
+  ],
+  conditional_function: function(){
+    var data = jsPsych.data.get().last(1).values()[0];
+    if(jsPsych.pluginAPI.compareKeys(data.response, '2')){
+      return false;
+    } else {
+      return true;
+    }
+  }
+};
