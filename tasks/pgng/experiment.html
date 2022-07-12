@@ -19,6 +19,7 @@
   <script src="../screen-check/jspsych-screen-check.js" type="text/javascript"></script>
   <script src="../../lib/jspsych-6.3.1/plugins/jspsych-instructions.js" type="text/javascript"></script>
   <script src="../../lib/jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
+  <script src="../../lib/jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
 
   <!-- Load CSS styles -->
   <link href="../../lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
@@ -46,6 +47,7 @@
   // Define timeline.
   var timeline = [];
   timeline = timeline.concat(FULLSCREEN);
+  timeline = timeline.concat(INSTRUCTIONS_SKIP);
   timeline = timeline.concat(INSTRUCTIONS);
   timeline = timeline.concat(READY);
   timeline = timeline.concat(PGNG);
