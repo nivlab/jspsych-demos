@@ -42,13 +42,19 @@ TABLE OF CONTENTS
 
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/mrst) [<b>[Demo]</b>](./tasks/mrst/experiment.html)
 
-> A modified version of the risk sensitive learning task ([Niv et al. 2012](https://doi.org/10.1523/JNEUROSCI.5498-10.2012)) developed & used by Livia Qoshe for her honor's thesis work in Niv lab.
+> A modified version of the risk sensitive learning task ([Niv et al. 2012](https://doi.org/10.1523/JNEUROSCI.5498-10.2012)).
 
 ### Risky investment task
 
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/investment) [<b>[Demo]</b>](./tasks/investment/experiment.html)
 
 > A stock market-themed risky investment task implemented using Javascript and CSS. Similar in framing to [Zhang et al. (2015)](https://doi.org/10.1111/tops.12143). Designed to study risk sensitive reinforcement learning behaviors.
+
+### Pavlovian go/no-go task
+
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/pgng) [<b>[Demo]</b>](./tasks/pgng/experiment.html)
+
+> A robot-themed version of the Pavlovian go/no-go task implemented using Javascript and CSS. 
 
 ### Relative value learning task
 

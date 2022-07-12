@@ -1,60 +1,4 @@
-/* ---------------------------------- */
-/* Task layout CSS                    */
-/* ---------------------------------- */
-
-/* Container for screen */
-.mrst-container {
-  height: 100vh;
-  width: 100vw;
-  background-color: #606060;
-}
-
-/* Grid layout for game objects */
-.mrst-grid {
-
-  /* Grid position */
-  position: absolute;
-  left: 50%;
-  top: 52%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-
-  /* Grid size */
-  width: 600px;
-  height: 340px;
-
-  /* Grid parameters */
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 300px 40px;
-  justify-content: center;
-  align-items: center;
-  grid-column-gap: 100px;
-
-}
-
-/* Container for game objects */
-.mrst-grid-item {
-
-  /* Container position */
-  position: relative;
-  width: 100%;
-  height: 100%;
-
-  /* Container parameters */
-  display: grid;
-  justify-content: center;
-  align-items: center;
-
-  /* Container aesthetics */
-  background-color: transparent;
-
-}
-
-/* Certain points */
-.mrst-grid-item p {
-  font-size: 44px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
 /* ---------------------------------- */
 /* Flip card CSS                      */
@@ -63,31 +7,34 @@
 /* Parent class of playing card */
 .flip-card {
 
-  /* Card position */
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  /* Flip card position */
+  position: relative;
 
-  /* Card size */
-  width: 100%;
-  height: 100%;
+  /* Flip card size */
+  width: 200px;
+  height: 250px;
 
-  /* Card parameters */
+  /* Flip card styling */
+  margin: 15px 0px 20px 0px;
   background-color: transparent;
   perspective: 1000px; /* enables 3d effect */
 
 }
 
-/* This container is needed to position the front and back side */
+/* This container is needed to position the face-down side */
 .flip-card-inner {
+
+  /* Inner position */
   position: relative;
+
+  /* Inner size */
   width: 100%;
   height: 100%;
-  text-align: center;
+
+  /* Inner styling */
   transform-style: preserve-3d;
   border-radius: 12px;
+
 }
 .flip-card[face="up"] .flip-card-inner {
   transform: rotateY(180deg);
@@ -96,37 +43,41 @@
   transform: rotateY(0deg);
 }
 
-/* Do an horizontal flip on key press */
-.flip-card[status="flip"] .flip-card-inner {
+/* Make card flip over on key press */
+.flip-card[status="feedback"] .flip-card-inner {
   transform: rotateY(180deg);
   transition: transform 0.2s;
 }
 
-/* Position the front and back side */
-.flip-card-front, .flip-card-back {
+.flip-card-down, .flip-card-up {
 
-  /* Card position */
+  /* Card face position */
   position: absolute;
 
-  /* Card size */
+  /* Card face size */
   width: 100%;
   height: 100%;
 
-  /* Card parameters */
-  -webkit-backface-visibility: visible;
-  -webkit-backface-visibility: hidden; /* Safari */
-  backface-visibility: hidden;
+  /* Card face layout */
+  display: grid;
+  justify-content: center;
+  align-items: center;
 
-  /* Card aesthetics */
+  /* Card face styling */
   background: #EEE;
   border-radius: 6px;
   border: 2px solid #101010;
   box-shadow: 0 8px 12px 1px rgba( 0, 0, 0, 0.2 );
 
+  /* Card face visibility */
+  -webkit-backface-visibility: visible;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+
 }
 
-/* Card suit */
-.flip-card-front img {
+/* Card suit (face-down) */
+.flip-card-down img {
 
   /* Suit position */
   position: absolute;
@@ -143,35 +94,42 @@
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 
-  /* Suit aesthetics */
+  /* Suit styling */
   -webkit-filter: invert(90%);
   filter: invert(90%);
 
 }
 
 /* Error-catching: hide suit when card flips */
-.flip-card[status="flip"] .flip-card-inner .flip-card-front img {
+.flip-card[status="feedback"] .flip-card-inner .flip-card-down img {
   display: none;
 }
 
-/* Style the back side */
-.flip-card-back {
+/* Face-up card */
+.flip-card-up {
+
+  /* Card position */
   transform: rotateY(180deg);
-  background-color: #F8F8F8;
+
+  /* Card layout */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
   align-items: center;
+
+  /* Card styling */
+  background-color: #F8F8F8;
+
 }
 
-/* Card points */
-.flip-card-back p {
-  font-size: 44px;
+.flip-card-up p {
+  color: black;
+  font-size: 46px;
 }
 
 /* Card corners */
-.flip-card-back .bottom-right-corner, .flip-card-back .top-left-corner {
+.flip-card-up .bottom-right-corner, .flip-card-up .top-left-corner {
 
   /* Corner positions */
   position: absolute;
@@ -181,14 +139,14 @@
   height: 15%;
 
 }
-.flip-card-back .top-left-corner {
+.flip-card-up .top-left-corner {
   left: 2.5%;
   top: 2.5%;
   border-top: 3px solid #EEE;
   border-left: 3px solid #EEE;
   border-top-left-radius: 12px;
 }
-.flip-card-back .bottom-right-corner {
+.flip-card-up .bottom-right-corner {
   right: 2.5%;
   bottom: 2.5%;
   border-bottom: 3px solid #EEE;
@@ -196,46 +154,28 @@
   border-bottom-right-radius: 12px;
 }
 
-/* ---------------------------------- */
-/* Choice Indicators CSS              */
-/* ---------------------------------- */
+.flip-card .choice-indicator {
 
-.choice-indicator {
-
-  /* Indicator parameters */
-  width: 0;
-  height: 0;
+  /* Indicator position */
+  position: absolute;
+  top: calc(20px + 100%);
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
 
   /* Indicator size */
+  width: 0;
+  height: 0;
   border-left: 25px solid transparent;
   border-right: 25px solid transparent;
   border-bottom: 25px solid transparent;
-
-}
-.choice-indicator[status="choice"] {
   border-bottom-color: #D3D3D3;
+
+  /* Indicator styling */
+  visibility: hidden;
+
 }
 
-/* ---------------------------------- */
-/* Instructions CSS                   */
-/* ---------------------------------- */
-
-/* Container for instructions */
-.instructions-container {
-  height: 100vh;
-  width: 100vw;
-  background-color: #606060;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-}
-.instructions-item {
-  position: relative;
-  width: 100vw;
-  font-size: 18px
-}
-.instructions-item p {
-  color: #fcfcfc;
+.flip-card .choice-indicator[status="select"] {
+  visibility: visible;
 }
