@@ -13,6 +13,24 @@ jsPsych.plugins['mrst-comprehension'] = (function() {
     name: 'mrst-comprehension',
     description: '',
     parameters: {
+      prompts: {
+        type: jsPsych.plugins.parameterType.HTML_STRING,
+        array: true,
+        pretty_name: 'Prompts',
+        description: 'Comprehension check questions'
+      },
+      options: {
+        type: jsPsych.plugins.parameterType.HTML_STRING,
+        array: true,
+        pretty_name: 'Options',
+        description: 'Comprehension check question options'
+      },
+      correct: {
+        type: jsPsych.plugins.parameterType.STRING,
+        array: true,
+        pretty_name: 'Correct',
+        description: 'Answers to comprehension check questions'
+      },
       button_label: {
         type: jsPsych.plugins.parameterType.STRING,
         pretty_name: 'Button label',
@@ -32,23 +50,7 @@ jsPsych.plugins['mrst-comprehension'] = (function() {
     }
 
     // ---------------------------------- //
-    // Section 1: Define Prompts          //
-    // ---------------------------------- //
-
-    // Define comprehension check questions.
-    var prompts = [
-      "<b><i>True</i> or <i>False</i>:</b>&nbsp;&nbsp;I will use the left/right arrow keys to choose which deck to draw from.",
-      "<b><i>True</i> or <i>False</i>:</b>&nbsp;&nbsp;Some decks have more +10 cards than others.",
-      "<b><i>True</i> or <i>False</i>:</b>&nbsp;&nbsp;The cards are reshuffled after every turn.",
-      "<b><i>True</i> or <i>False</i>:</b>&nbsp;&nbsp;I will earn points even for the cards I <i>don't</i> choose.",
-      "<b><i>True</i> or <i>False</i>:</b>&nbsp;&nbsp;The points I earn will affect my performance bonus.",
-    ];
-
-    // Define correct answers.
-    var correct = ["true", "true", "true", "false", "true"];
-
-    // ---------------------------------- //
-    // Section 2: Define HTML             //
+    // Section 1: Define HTML             //
     // ---------------------------------- //
 
     // Initialize HTML
@@ -56,29 +58,24 @@ jsPsych.plugins['mrst-comprehension'] = (function() {
 
     // Insert CSS
     html += `<style>
-    body {
-      height: 100vh;
-      max-height: 100vh;
-      overflow: hidden;
-      position: fixed;
+    .jspsych-content-wrapper {
+      background: #808080;
     }
     .comprehension-box {
-      position: absolute;
-      top: 10%;
-      left: 50%;
-      -webkit-transform: translate3d(-50%, 0, 0);
-      transform: translate3d(-50%, 0, 0);
-      width: 70%;
-      height: 100%;
+      position: relative;
+      width: 800px;
       line-height: 1.5em;
+      color: black;
+      background: white;
+      border: 2px solid black;
+      border-radius: 12px;
     }
     .comprehension-box .jspsych-survey-multi-choice-question {
       margin-top: 0em;
       margin-bottom: 1.0em;
       text-align: left;
-      padding-left: 2em;
+      padding-left: 1.5em;
       font-size: 18px;
-      color: #F5F5F5;
     }
     .comprehension-box .jspsych-survey-multi-choice-horizontal .jspsych-survey-multi-choice-text {
       text-align: left;
@@ -104,31 +101,29 @@ jsPsych.plugins['mrst-comprehension'] = (function() {
 
     // Show preamble text
     html += '<div class="comprehension-box">'
-    html += '<div class="jspsych-survey-multi-choice-preamble"><h4 style="font-size: 20px; margin-block-start: 1em; margin-block-end: 1.5em; color: #F5F5F5">Please answer the questions below:</div>';
+    html += '<div class="jspsych-survey-multi-choice-preamble"><h4 style="font-size: 20px; margin-block-start: 1em; margin-block-end: 1.5em;">Please answer the questions below:</div>';
 
     // Initialize form element
     html += '<form id="jspsych-survey-multi-choice-form">';
 
     // Iteratively add comprehension questions.
-    for (i = 0; i < prompts.length; i++) {
+    for (i = 0; i < trial.prompts.length; i++) {
 
       // Initialize item
       html += `<div id="jspsych-survey-multi-choice-${i}" class="jspsych-survey-multi-choice-question jspsych-survey-multi-choice-horizontal" data-name="Q${i}">`;
 
       // Add question text
-      html += `<p class="jspsych-survey-multi-choice-text survey-multi-choice">${prompts[i]}</p>`;
+      html += `<p class="jspsych-survey-multi-choice-text survey-multi-choice">${trial.prompts[i]}</p>`;
 
-      // Option 1: True
-      html += `<div id="jspsych-survey-multi-choice-option-${i}-0" class="jspsych-survey-multi-choice-option">`;
-      html += `<input type="radio" name="jspsych-survey-multi-choice-response-${i}" id="jspsych-survey-multi-choice-response-${i}-0" value=true required>`;
-      html += `<label class="jspsych-survey-multi-choice-text" for="jspsych-survey-multi-choice-response-${i}-0">True</label>`;
-      html += '</div>';
+      // Iteratively add options.
+      for (j = 0; j < trial.options[i].length; j++) {
 
-      // Option 2: False
-      html += `<div id="jspsych-survey-multi-choice-option-${i}-1" class="jspsych-survey-multi-choice-option">`;
-      html += `<input type="radio" name="jspsych-survey-multi-choice-response-${i}" id="jspsych-survey-multi-choice-response-${i}-1" value=false required>`;
-      html += `<label class="jspsych-survey-multi-choice-text" for="jspsych-survey-multi-choice-response-${i}-1">False</label>`;
-      html += '</div>';
+        html += `<div id="jspsych-survey-multi-choice-option-${i}-${j}" class="jspsych-survey-multi-choice-option">`;
+        html += `<input type="radio" name="jspsych-survey-multi-choice-response-${i}" id="jspsych-survey-multi-choice-response-${i}-${j}" value="${trial.options[i][j]}" required>`;
+        html += `<label class="jspsych-survey-multi-choice-text" for="jspsych-survey-multi-choice-response-${i}-${j}">${trial.options[i][j]}</label>`;
+        html += '</div>';
+
+      }
 
       // Close item
       html += '</div>';
@@ -136,7 +131,7 @@ jsPsych.plugins['mrst-comprehension'] = (function() {
     }
 
     // add submit button
-    html += '<input type="submit" id="'+plugin_id_name+'-next" class="'+plugin_id_name+' jspsych-btn"' + (trial.button_label ? ' value="'+trial.button_label + '"': '') + '"></input>';
+    html += '<input type="submit" id="'+plugin_id_name+'-next" class="'+plugin_id_name+' jspsych-btn"' + (trial.button_label ? ' value="'+trial.button_label + '"': '') + '" style="margin-bottom: 12px;"></input>';
 
     // End HTML
     html += '</form>';
@@ -165,7 +160,7 @@ jsPsych.plugins['mrst-comprehension'] = (function() {
       // Gather responses
       var responses = [];
       var num_errors = 0;
-      for (var i=0; i<prompts.length; i++) {
+      for (var i=0; i<trial.prompts.length; i++) {
 
         // Find matching question.
         var match = display_element.querySelector('#jspsych-survey-multi-choice-'+i);
@@ -175,7 +170,7 @@ jsPsych.plugins['mrst-comprehension'] = (function() {
         responses.push(val)
 
         // Check accuracy
-        if ( correct[i] != val ) {
+        if ( trial.correct[i] != val ) {
           num_errors++;
         }
 

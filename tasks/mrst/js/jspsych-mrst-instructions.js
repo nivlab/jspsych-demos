@@ -13,22 +13,70 @@ jsPsych.plugins['mrst-instructions'] = (function() {
     description: '',
     parameters: {
       pages: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
-        pretty_name: 'Pages',
-        default: undefined,
+        type: jsPsych.plugins.parameterType.COMPLEX,
         array: true,
-        description: 'Each element of the array is the content for a single page.'
+        pretty_name: 'Pages',
+        nested: {
+          prompt: {
+            type: jsPsych.plugins.parameterType.STRING,
+            pretty_name: 'Prompt',
+            default: undefined,
+            description: 'Instructions text for the page.'
+          },
+          img: {
+            type: jsPsych.plugins.parameterType.HTML_STRING,
+            pretty_name: 'Stock color',
+            default: null,
+            description: 'Hex code for the stock color.'
+          },
+          show_cards: {
+            type: jsPsych.plugins.parameterType.BOOL,
+            pretty_name: 'Show cards',
+            default: false,
+            description: 'If true, show the card stimuli.'
+          },
+          stimulus: {
+            type: jsPsych.plugins.parameterType.HTML_STRING,
+            pretty_name: 'Card picture',
+            default: './img/animals/rabbit-shape.svg',
+            description: 'The picture for the face-down card.'
+          },
+          color: {
+            type: jsPsych.plugins.parameterType.HTML_STRING,
+            pretty_name: 'Card color',
+            default: '#3d85c690',
+            description: 'The color for the face-down card.'
+          },
+          points: {
+            type: jsPsych.plugins.parameterType.FLOAT,
+            pretty_name: 'Points',
+            default: '10',
+            description: 'The number of points on the back of the face-down card.'
+          },
+          face: {
+            type: jsPsych.plugins.parameterType.FLOAT,
+            pretty_name: 'Face',
+            default: 'down',
+            description: 'The face direction of the card ("down", "up").'
+          },
+          choice: {
+            type: jsPsych.plugins.parameterType.INT,
+            pretty_name: 'Phase',
+            default: null,
+            description: 'Phase of trial (hide = -1, choice = 0, feedback = 1).'
+          },
+        }
       },
       key_forward: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jsPsych.plugins.parameterType.KEY,
         pretty_name: 'Key forward',
-        default: 'arrowright',
+        default: 'ArrowRight',
         description: 'The key the subject can press in order to advance to the next page.'
       },
       key_backward: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jsPsych.plugins.parameterType.KEY,
         pretty_name: 'Key backward',
-        default: 'arrowleft',
+        default: 'ArrowLeft',
         description: 'The key that the subject can press to return to the previous page.'
       },
       button_label_previous: {
@@ -52,6 +100,7 @@ jsPsych.plugins['mrst-instructions'] = (function() {
     // Define parameters.
     //---------------------------------------//
 
+    // Initialize variables.
     var current_page = 0;
     var view_history = [];
     var start_time = performance.now();
@@ -61,35 +110,158 @@ jsPsych.plugins['mrst-instructions'] = (function() {
     // Define functions.
     //---------------------------------------//
 
+    function btnListener(evt){
+      evt.target.removeEventListener('click', btnListener);
+      if(this.id === "jspsych-instructions-back"){
+        back();
+      }
+      else if(this.id === 'jspsych-instructions-next'){
+        next();
+      }
+    }
+
     function show_current_page() {
 
       // Initialize html.
       var html = "";
 
-      // Add CSS.
-      html += '<style>body {height: 100vh; max-height: 100vh; position: fixed;} </style></div>';
+      // HACK: adjust stimuli scale
+      const scale = 0.8;
 
-      // Start wrapper.
-      html += '<div class="instructions-container">';
+      // Insert CSS.
+      const style = `<style>
+      .jspsych-content-wrapper {
+        background: #808080;
+      }
+      .jspsych-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      p {
+        margin-block-start: 0px;
+        margin-block-end: 0px;
+      }
+      .task-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 80px;
+      }
+      .flip-card .choice-indicator {
+        top: calc(100% + 10px);
+        visibility: visible;
+        border-bottom-color: #D3D3D3;
+      }
+      .instructions {
 
-      // Add instructions text.
-      html += '<div class="instructions-item">';
-      html += trial.pages[current_page];
+        position: relative;
+        width: 650px;
+        height: 120px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        margin: 25px 0px 5px 0px;
+        background: white;
+        border: 2px solid black;
+        border-radius: 12px;
+
+      }
+      .instructions p {
+        font-size: 18px;
+        line-height: 1.4em;
+        margin-bottom: 12px;
+      }
+      .instructions p:last-of-type {
+        margin-bottom: 0px;
+      }
+      </style>`;
+      html += style;
+
+      // Draw card (if applicable).
+      if (trial.pages[current_page].show_cards) {
+
+        // Define wrapper
+        html += '<div class="task-content">';
+
+        // Define mapping of actions to sides.
+        var order = [0,1];
+
+        // Iteratively draw cards
+        order.forEach((j, i) => {
+
+          // Define constants.
+          const face = (j > 0) ? trial.pages[current_page].face : 'up';
+          const color = (j > 0) ? trial.pages[current_page].color : 'grey';
+          const points = (j > 0) ? trial.pages[current_page].points : 5;
+
+          // Initialize card container.
+          html += '<div class="flip-card" id="flip-card-' + j + '" face="' + face + '">';
+
+          // Draw card contents
+          html += '<div class="flip-card-inner">';
+
+          // Draw face-up side
+          html += '<div class="flip-card-up">';
+          html += `<div class="top-left-corner" style="border-top-color: ${color}; border-left-color: ${color}"></div>`;
+          html += `<div class="bottom-right-corner" style="border-bottom-color: ${color}; border-right-color: ${color}"></div>`;
+          html += '<p id="points">' + points + '</p>';
+          html += '</div>';
+
+          // Draw face-down side
+          if (j > 0) {
+            html += `<div class="flip-card-down" style="background: ${color}">`;
+            html += `<img src="${trial.pages[current_page].stimulus}">`;
+            html += '</div>';
+          }
+
+          // Finish card contents
+          html += '</div>';    // Close flip-card-inner
+
+          // Draw choice indicators
+          if (trial.pages[current_page].choice == j) {
+            html += '<div class="choice-indicator"></div>';
+          }
+
+          // Finish card
+          html += '</div>';    // Close flip-card
+
+        });
+
+        html += '</div>';
+
+      };
+
+      // Draw image
+      if (trial.pages[current_page].img != null) {
+        html += '<img src="' + trial.pages[current_page].img + '" style="max-width: 600px">';
+      }
+
+      // Draw prompt
+      html += '<div class="instructions">';
+      html += trial.pages[current_page].prompt;
       html += '</div>';
 
-      // Add instructions navigation.
+      // Draw navigational elements.
+      var nav_html = "<div class='jspsych-instructions-nav'>";
       var allowed = (current_page > 0 )? '' : "disabled='disabled'";
-      var nav_html = "<div class='jspsych-instructions-nav' style='padding: 10px 0px;'>";
-      nav_html += "<button id='jspsych-instructions-back' class='jspsych-btn' style='margin-right: 5px;' "+allowed+">&lt; "+trial.button_label_previous+"</button>";
-      nav_html += "<button id='jspsych-instructions-next' class='jspsych-btn'"+
-      "style='margin-left: 5px;'>"+trial.button_label_next+
-      " &gt;</button></div>";
+      nav_html += "<button id='jspsych-instructions-back' class='jspsych-btn' style='margin-right: 5px;' "+allowed+">&lt; " + trial.button_label_previous + "</button>";
+      nav_html += "<button id='jspsych-instructions-next' class='jspsych-btn' style='margin-left: 5px;'>" + trial.button_label_next + " &gt;</button></div>";
       html += nav_html;
 
-      html += '</div>';
-
-      // draw HTML
+      // Display HTML
       display_element.innerHTML = html;
+
+      // Add button listners
+      if (current_page != 0) {
+        display_element.querySelector('#jspsych-instructions-back').addEventListener('click', btnListener);
+      }
+      display_element.querySelector('#jspsych-instructions-next').addEventListener('click', btnListener);
 
       // Enable backwards navigation.
       if (current_page != 0) {
@@ -99,16 +271,6 @@ jsPsych.plugins['mrst-instructions'] = (function() {
       // Enable forwards navigation.
       display_element.querySelector('#jspsych-instructions-next').addEventListener('click', btnListener);
 
-    }
-
-    function btnListener(evt){
-      evt.target.removeEventListener('click', btnListener);
-      if(this.id === "jspsych-instructions-back"){
-        back();
-      }
-      else if(this.id === 'jspsych-instructions-next'){
-        next();
-      }
     }
 
     function next() {
