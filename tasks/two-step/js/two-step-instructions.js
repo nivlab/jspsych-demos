@@ -505,13 +505,29 @@ const instructions_loop_3a = {
 // Define instructions timeline
 //---------------------------------------//
 
-var INSTRUCTIONS = [
-  instructions_loop_1a,
-  instructions_loop_1b,
-  instructions_loop_2a,
-  instructions_loop_2b,
-  instructions_loop_3a
-]
+var INSTRUCTIONS_SKIP = {
+  type: 'html-keyboard-response',
+  stimulus: '<p>You are starting a demo of the <b>two-step task.</b></p><p>To see the instructions, press the "1" key. To skip them, press the "2" key.</p>',
+  choices: ["1","2"]
+}
+
+var INSTRUCTIONS = {
+  timeline: [
+    instructions_loop_1a,
+    instructions_loop_1b,
+    instructions_loop_2a,
+    instructions_loop_2b,
+    instructions_loop_3a
+  ],
+  conditional_function: function(){
+        var data = jsPsych.data.get().last(1).values()[0];
+        if(jsPsych.pluginAPI.compareKeys(data.response, '2')){
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
 
 //---------------------------------------//
 // Define useful functions
