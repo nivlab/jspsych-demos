@@ -3,7 +3,7 @@
 //---------------------------------------//
 
 // Define bandit parameters.
-const probs = [0.20, 0.40, 0.60, 0.80];
+const probs = [0.50, 0.50, 0.50, 0.50];
 
 // Define response parameters.
 const valid_responses = ['arrowleft', 'arrowright'];
