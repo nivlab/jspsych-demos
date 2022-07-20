@@ -36,7 +36,7 @@ This folder contains template jsPsych code for self-report questionnaires, demog
 | [International Personality Item Pool](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/ipip.js) | Measure of personality | Niv, Daw |
 | [Inventory of depression & anxiety symptoms](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/idas.js) | Measure of depression & anxiety symptoms | Niv |
 | [Intolerance of uncertainty scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/ius12.js) | Measure of uncertainty intolerance | Niv |
-| [Liebowitz Social Anxiety Scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/lsas.js) | Measure of social anxiety | Daw |
+| [Liebowitz Social Anxiety Scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/lsas.js) | Measure of social anxiety | Niv, Daw |
 | [Maltreatment and Abuse Chronology of Exposure scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/mace) | Measure of childhood maltreatment | Niv |
 | [Motivation and Pleasure Scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/map) | Measure of negative symptoms | Niv |
 | [Need for cognition scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/nfc6.js) | Measure of desire for cognitive effort  | Daw |
@@ -55,7 +55,7 @@ This folder contains template jsPsych code for self-report questionnaires, demog
 | [Snaith-Hamilton anhedonia scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/shaps.js) | Measure of anhedonia & depression symptoms | Niv |
 | [SONA prescreening form](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-sona-screening.js) | Prescreening items for SONA participants | Niv |
 | [State-trait anxiety inventory](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/stai.js) | Measure of negative affect | Niv, Daw |
-| [State-trait inventory of cognitive & somatic anxiety](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/sticsa.js) | Measure of anxiety symptoms | Daw |
+| [State-trait inventory of cognitive & somatic anxiety](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/sticsa.js) | Measure of anxiety symptoms | Niv, Daw |
 
 ## Plugins
 
