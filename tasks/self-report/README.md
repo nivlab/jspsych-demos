@@ -44,6 +44,7 @@ This folder contains template jsPsych code for self-report questionnaires, demog
 | [Negative problem orientation questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/npoq.js) | Measure of perceived self-efficacy | Daw |
 | [Obsessive-compulsive inventory](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/oci.js) | Measure of compulsivity symptoms | Daw |
 | [Inventory of Feelings and Experiences](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/olife.js) | Measure of schizotypy symptoms | Niv |
+| [Patient health questionnaire (PHQ-9)](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/phq9.js) | Measure of depression severity | Niv |
 | [Personality inventory for the DSM-5](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/pid5.js) | Measure of maladaptive personality | Niv |
 | [Positive & negative affect schedule](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/panas.js) | Measure of positive / negative affect | Niv, Daw |
 | [Positive overgeneralization scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/pog.js) | Measure of positive overgeneralization | Niv |
