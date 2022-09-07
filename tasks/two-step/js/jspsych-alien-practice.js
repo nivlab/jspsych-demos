@@ -1,70 +1,79 @@
+
 /**
 * jspsych-two-step
-* Sam Zorowitz, Branson Byers, Gili Karni
 *
+*  @author Sam Zorowitz, Branson Byers, Gili Karni
 * plugin to run a practice trial of the second stage of the two-step task
 **/
 
-jsPsych.plugins["alien-practice"] = (function() {
+function noenter() {
+	  return !(window.event && window.event.keyCode == 13);
+	}
 
-  var plugin = {};
+var jsPsychAlienPractice = (function (jspsych) {
+  'use strict';
 
-  plugin.info = {
-    name: 'alien-practice',
+  const info = {
+
+    name: "alien-practice",
     description: '',
     parameters: {
       outcomes: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         array: true,
         pretty_name: 'Outcomes',
         description: 'Reward outcome for each bandit (reward = 1, no reward = 0)'
       },
       aliens: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         array: true,
         pretty_name: 'Aliens',
         description: 'Paths to alien images (length 2 array).'
       },
       planet_color: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         pretty_name: 'Planet color',
         description: 'Colors of the alien planet.'
       },
       randomize: {
-        type: jsPsych.plugins.parameterType.BOOL,
+        type: jspsych.ParameterType.BOOL,
         pretty_name: 'Randomize',
         default: true,
         description: 'Randomize left/right positions of aliens.'
       },
       valid_responses: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jspsych.ParameterType.KEYCODE,
         array: true,
         pretty_name: 'Valid responses',
         default: ['arrowleft', 'arrowright'],
         description: 'The keys the subject is allowed to press to respond to the stimulus.'
       },
       choice_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Choice duration',
         default: null,
         description: 'How long to listen for responses before trial ends.'
       },
       feedback_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Trial duration',
         default: 1000,
         description: 'How long to show feedback before it ends.'
       },
       iti_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Inter-trial interval duration',
         default: 1000,
         description: 'How long to hide stimuli on start of trial.'
       }
     }
-  }
+  };
 
-  plugin.trial = function(display_element, trial) {
+  class AlienPracticePlugin {
+    constructor(jsPsych) {
+        this.jsPsych = jsPsych;
+    }
+    trial(display_element, trial, on_load) {
 
     //---------------------------------------//
     // Define HTML.
@@ -240,6 +249,9 @@ jsPsych.plugins["alien-practice"] = (function() {
     };
 
   };
+}
+  AlienPracticePlugin.info = info;
 
-  return plugin;
-})();
+  return AlienPracticePlugin;
+
+})(jsPsychModule);

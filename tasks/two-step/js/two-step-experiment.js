@@ -31,11 +31,9 @@ const rocket_colors = ['#48a782','#955db9','#a75248','#486ea7'];
 const font_colors = ['#398667','#754198','#aa5349','#416598'];
 const color_names = ['green','purple','red','blue'];
 
+
+
 // Define stimulus assignments.
-const mapping = jsPsych.randomization.shuffle([
-    jsPsych.randomization.shuffle([0,1]),
-    jsPsych.randomization.shuffle([2,3]),
-]).flat();
 
 // Define task stimuli.
 const task_info = {

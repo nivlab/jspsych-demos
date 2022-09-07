@@ -4,79 +4,85 @@
 *
 * plugin for running the instructions for the two step task
 **/
+function noenter() {
+	  return !(window.event && window.event.keyCode == 13);
+	}
 
-jsPsych.plugins["two-step-instructions"] = (function() {
+var jsPsychTwoStepInstructions = (function (jspsych) {
+  'use strict';
 
-  var plugin = {};
-
-  plugin.info = {
-    name: 'two-step-instructions',
+  const info = {
+    name: "two-step-instructions",
     description: '',
     parameters: {
       pages: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         pretty_name: 'Pages',
         array: true,
         description: 'Each element of the array is the content for a single page.'
       },
       aliens: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         array: true,
         pretty_name: 'Aliens',
         default: [],
         description: 'Paths to alien images'
       },
       add_aliens: {
-        type: jsPsych.plugins.parameterType.BOOL,
+        type: jspsych.ParameterType.BOOL,
         pretty_name:'Do or do not draw aliens?',
         array: true,
         default: [],
         description: 'Decides if aliens appear on this instructions slide.'
       },
       add_diamonds: {
-        type: jsPsych.plugins.parameterType.BOOL,
+        type: jspsych.ParameterType.BOOL,
         pretty_name:'Do or do not draw diamonds?',
         array: true,
         default: [],
         description: 'Decides if diamonds appear on this instructions slide.'
       },
       add_rocks: {
-        type: jsPsych.plugins.parameterType.BOOL,
+        type: jspsych.ParameterType.BOOL,
         pretty_name:'Do or do not draw rocks?',
         array: true,
         default: [],
         description: 'Decides if rocks appear on this instructions slide.'
       },
       add_rockets: {
-        type: jsPsych.plugins.parameterType.BOOL,
+        type: jspsych.ParameterType.BOOL,
         pretty_name:'Show the rockets. ',
         array: true,
         default: [],
         description: 'Decides if the rockets appear on this instructions slide.'
       },
       rocket_colors: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         array: true,
         default: ['#a75248','#486ea7'],
         pretty_name: 'Rocket colors',
         description: 'Colors of the state 1 left/right rockets (red, blue, green, purple)'
       },
       key_forward: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jspsych.ParameterType.KEYCODE,
         pretty_name: 'Key forward',
         default: 'ArrowRight',
         description: 'The key the subject can press in order to advance to the next page.'
       },
       key_backward: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jspsych.ParameterType.KEYCODE,
         pretty_name: 'Key backward',
         default: 'ArrowLeft',
         description: 'The key that the subject can press to return to the previous page.'
       }
     }
-  }
+  };
 
-  plugin.trial = function(display_element, trial) {
+  class TwoStepInstructionsPlugin {
+    constructor(jsPsych) {
+        this.jsPsych = jsPsych;
+    }
+    trial(display_element, trial, on_load) {
 
     //---------------------------------------//
     // Section 1: Define HTML.
@@ -374,6 +380,9 @@ jsPsych.plugins["two-step-instructions"] = (function() {
       persist: false
     });
   };
+}
+TwoStepInstructionsPlugin.info = info;
 
-  return plugin;
-})();
+return TwoStepInstructionsPlugin;
+
+})(jsPsychModule);
