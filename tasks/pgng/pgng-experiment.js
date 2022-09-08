@@ -9,21 +9,30 @@ runsheets = jsPsych.randomization.shuffle(runsheets)
 const rune_sets = ['elianto','bacs1','bacs2'];
 const rune_prob = [1.00, 0.00, 0.00];
 
+// robots colors:
+// red has been tested and shown no priming no-go effect UNLESS combined with green.
+var color1 = {name:'blue',
+             scanner:'#3366ff99',
+             outcome:'#1a3ea7'};
+var color2 = { name:'red',
+              scanner:'#f73b6a7A',
+              outcome: '#930a25'};
+
 // Define aesthetics.
 if ( Math.random() < 1 ) {
-  var instr_color_win    = 'blue';
-  var scanner_color_win  = '#3366ff99';
-  var outcome_color_win  = '#1a3ea7';
-  var instr_color_lose   = 'red';
-  var scanner_color_lose = '#f73b6a7A';
-  var outcome_color_lose = '#930a25';
+  var instr_color_win    = color1.name;//'blue';
+  var scanner_color_win  = color1.scanner;//'#3366ff99';
+  var outcome_color_win  = color1.outcome;//'#1a3ea7';
+  var instr_color_lose   = color2.name;//'red';
+  var scanner_color_lose = color2.scanner;//'#f73b6a7A';
+  var outcome_color_lose = color2.outcome;//'#930a25';
 } else {
-  var instr_color_win    = 'red';
-  var scanner_color_win  = '#f73b6a7A';
-  var outcome_color_win  = '#930a25';
-  var instr_color_lose   = 'blue';
-  var scanner_color_lose = '#3366ff99';
-  var outcome_color_lose = '#1a3ea7';
+  var instr_color_win    = color2.name;//'red';
+  var scanner_color_win  = color2.scanner;//'#f73b6a7A';
+  var outcome_color_win  = color2.outcome;//'#930a25';
+  var instr_color_lose   = color1.name;//'blue';
+  var scanner_color_lose = color1.scanner;//'#3366ff99';
+  var outcome_color_lose = color1.outcome;//'#1a3ea7';
 }
 
 // Define go key.
