@@ -62,7 +62,7 @@ for (i = 0; i < 10; i++) {
 
     // Define trial.
     const trial = {
-      type: 'rst-trial',
+      type: jsPsychRSTTrial,
       beach_left: contexts[conditions[i][j]],
       beach_right: contexts[conditions[i][1-j]],
       outcome_left: jsPsych.randomization.repeat(outcomes[conditions[i][j]],1)[0],

@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
 
     <!-- load some libraries -->
-    <script src="../../lib/jspsych-6.3.1/jspsych.js"></script>
+    <script src="../../lib/jspsych-7.2.1/jspsych.js"></script>
 
     <!-- load some built-in jspsych modules -->
-    <script src="../../lib/jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
-    <script src="../../lib/jspsych-6.3.1/plugins/jspsych-html-button-response.js"></script>
-    <script src="../../lib/jspsych-6.3.1/plugins/jspsych-survey-multi-choice.js"></script>
-    <script src="../../lib/jspsych-6.3.1/plugins/jspsych-survey-text.js"></script>
-    <script src="../../lib/jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
-    <link href="../../lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+    <script src="../../lib/jspsych-7.2.1/plugins/plugin-html-keyboard-response.js"></script>
+    <script src="../../lib/jspsych-7.2.1/plugins/plugin-html-button-response.js"></script>
+    <script src="../../lib/jspsych-7.2.1/plugins/plugin-survey-multi-choice.js"></script>
+    <script src="../../lib/jspsych-7.2.1/plugins/plugin-survey-text.js"></script>
+    <script src="../../lib/jspsych-7.2.1/plugins/plugin-fullscreen.js"></script>
+    <link href="../../lib/jspsych-7.2.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
 
     <!-- load custom plugins to run the task -->
     <script src="./js/turk-rsl.js"></script>
@@ -26,6 +26,33 @@
   <body></body>
   <script>
 
+  // Display alert message on back/refresh.
+  // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+  function verify_unload(e){
+    e.preventDefault();
+    (e || window.event).returnValue = null;
+    return null;
+  };
+  window.addEventListener("beforeunload", verify_unload);
+
+  var jsPsych = initJsPsych({
+    show_progress_bar: true,
+    use_webaudio:true,
+    //override_safe_mode:true,
+    on_finish: function() {
+
+      // Remove requirement to verify redirect
+      window.removeEventListener("beforeunload", verify_unload);
+
+      // Add interactions to the data variable
+      var interaction_data = jsPsych.data.getInteractionData();
+      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+      // Display jsPsych data in viewport.
+      jsPsych.data.displayData();
+
+    }
+  });
 
   //------------------------------------
   // welcome messages and landing pages
@@ -33,13 +60,13 @@
 
   // define welcome message
   var welcome = {
-    type: "html-keyboard-response",
+    type: jsPsychHtmlKeyboardResponse,
     stimulus: "Welcome to the risk-sensitive learning task demo. Press any key to get started."
   };
 
   // define experiment end message
   var expt_end = {
-    type: "html-keyboard-response",
+    type: jsPsychHtmlKeyboardResponse,
     stimulus: "End of demo."
   };
 
@@ -63,7 +90,7 @@
     randomize_order: true,
     timeline:
     [{
-      type: 'turk-rsl',
+      type: jsPsychTurkRSL,
       stimuli: stimulus_images,
       image_allocation: image_allocation,
       feedback_images: feedback_images,
@@ -81,7 +108,7 @@
 
   // continuous value elictation slider
   var continuous_value_elicitation = {
-    type: 'probability-elicitation',
+    type: jsPsychProbabilityElicitation,
     slider_images: slider_images,
     orchard_images: stimulus_images,
     image_allocation: image_allocation
@@ -105,21 +132,8 @@
   //  run the experiment
   //------------------------------------
 
-  jsPsych.init({
-    timeline: timeline,
-    show_preload_progress_bar: true,
-    preload_images: [stimulus_images, feedback_images],
-    on_finish: function() {
+  jsPsych.run(timeline);
 
-      // add interactions to the data variable
-      var interaction_data = jsPsych.data.getInteractionData();
-      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
-
-      // Display jsPsych data in viewport.
-      jsPsych.data.displayData();
-
-    }
-  });
 
   </script>
 </html>

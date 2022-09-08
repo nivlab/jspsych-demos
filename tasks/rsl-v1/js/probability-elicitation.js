@@ -1,100 +1,108 @@
+/**
+ * jspsych-rst-trial
+ * Sam Zorowitz, Gili Karni
+ *
+ * supporting plugin for running one trial of the risk sensitivity task
+ *
+ **/
+function noenter() {
+	  return !(window.event && window.event.keyCode == 13);
+	}
 
-jsPsych.plugins["probability-elicitation"] = (function() {
+var jsPsychProbabilityElicitation = (function (jspsych) {
+  'use strict';
 
-  var plugin = {};
-
-  // preload the affective slider images
-  jsPsych.pluginAPI.registerPreload('probability-elicitation', 'slider_images', 'image');
-  jsPsych.pluginAPI.registerPreload('probability-elicitation', 'orchard_images', 'image');
-
-  // specify input arguments of plugin
-  plugin.info = {
-    name: 'probability-elicitation',
+  const info = {
+    name:  'probability-elicitation',
     parameters: {
       upper_prompt: {
-        type: jsPsych.plugins.parameterType.STRING, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
+        type: jspsych.ParameterType.STRING, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
         default: 'How good was this orchard in the context of the task?',
         description: 'The prompt to be placed at the top of the screen'
       },
       lower_prompt: {
-        type: jsPsych.plugins.parameterType.STRING, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
+        type: jspsych.ParameterType.STRING, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
         default: 'Click directly on the slider to enter your response.',
         description: 'The prompt to be placed at the bottom of the screen'
       },
       prompt_font: {
-        type: jsPsych.plugins.parameterType.STRING, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
+        type: jspsych.ParameterType.STRING, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
         default: "20px Arial",
         description: 'A string specifying the size and font'
       },
       slider_images: {
-        type: jsPsych.plugins.parameterType.STRING, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
+        type: jspsych.ParameterType.STRING, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
         default: null,
         description: 'The array of paths to slider images'
       },
       orchard_images: {
-        type: jsPsych.plugins.parameterType.STRING, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
+        type: jspsych.ParameterType.STRING, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
         default: null,
         description: 'The array of paths to orchard images'
       },
       orchard_offset: {
-        type: jsPsych.plugins.parameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
+        type: jspsych.ParameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
         default: [0, -70],
         description: 'The offset [horizontal, vertica] of the centre of the track from the centre of the canvas in pixels'
       },
       orchard_dimensions: {
-        type: jsPsych.plugins.parameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
+        type: jspsych.ParameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
         default: [240, 170],
         description: 'Orchard stimulus dimensions in pixels [width, height]'
       },
       canvas_dimensions: {
-        type: jsPsych.plugins.parameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
+        type: jspsych.ParameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
         default: [1000, 500],
         description: 'The dimensions [width, height] of the html canvas on which things are drawn'
       },
       track_dimensions: {
-        type: jsPsych.plugins.parameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
+        type: jspsych.ParameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
         default: [700, 45],
         description: 'The dimensions [width, height] of the track for the slider'
       },
       track_offset: {
-        type: jsPsych.plugins.parameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
+        type: jspsych.ParameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
         default: [0, 100],
         description: 'The offset [horizontal, vertica] of the centre of the track from the centre of the canvas in pixels'
       },
       tab_dimensions: {
-        type: jsPsych.plugins.parameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
+        type: jspsych.ParameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
         default: [35, 35],
         description: 'The dimensions [width, height] of the tab for the affective slider'
       },
       background_colour: {
-        type: jsPsych.plugins.parameterType.STRING,
+        type: jspsych.ParameterType.STRING,
         default: "#878787",
         description: 'The background colour'
       },
       post_click_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         default: 1000,
         description: 'Time (in milliseconds) to show the chosen slider post-choice'
       },
       initial_silent_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         default: 1000,
         description: 'Time (in milliseconds) before the screen shows the slider'
       },
       initial_blank_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         default: 500,
         description: 'Time (in milliseconds) before the screen shows the display'
       },
       image_allocation: {
-        type:jsPsych.plugins.parameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
+        type:jspsych.ParameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
         default: [0, 1, 2, 3],
         description: 'The mapping to subject-specific images (allows randomisation of visual stimuli)'
       }
     }
   }; // end plugin.info
 
-  plugin.trial = function(display_element, trial) {
+  class ProbabilityElicitationPlugin {
+      constructor(jsPsych) {
+          this.jsPsych = jsPsych;
+      }
+      trial(display_element, trial, on_load) {
 
     // add a canvas to the HTML_STRING, store its context, and draw a blank background
     var new_html = '<canvas id="trial_canvas" width="'+trial.canvas_dimensions[0]+'" height="'+trial.canvas_dimensions[1]+'"></canvas>';
@@ -311,6 +319,9 @@ jsPsych.plugins["probability-elicitation"] = (function() {
 
   }; // end plugin.trial
 
-  return plugin;
+}
+ProbabilityElicitationPlugin.info = info;
 
-})(); // end plugin function
+return ProbabilityElicitationPlugin;
+
+})(jsPsychModule); // end plugin function

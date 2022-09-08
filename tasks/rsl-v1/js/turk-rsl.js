@@ -1,106 +1,112 @@
-jsPsych.plugins['turk-rsl'] = (function() {
+/**
+ * jspsych-rst-trial
+ * Sam Zorowitz, Gili Karni
+ *
+ * plugin for running one trial of the risk sensitivity task
+ *
+ **/
+function noenter() {
+	  return !(window.event && window.event.keyCode == 13);
+	}
 
-  var plugin = {};
+var jsPsychTurkRSL = (function (jspsych) {
+  'use strict';
 
-  // ask jsPsych to preload the images
-  jsPsych.pluginAPI.registerPreload('turk-rsl', 'stimuli', 'image');
-  jsPsych.pluginAPI.registerPreload('turk-rsl', 'feedback_images', 'image');
-
-  plugin.info = {
-    name: 'turk-rsl',
+  const info = {
+      name: 'turk-rsl',
     parameters: {
       stimuli: {
-        type:jsPsych.plugins.parameterType.STRING, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
+        type:jspsych.ParameterType.STRING, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
         default: null,
         description: 'The array of paths to stimuli'
       },
       feedback_images: {
-        type:jsPsych.plugins.parameterType.STRING, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
+        type:jspsych.ParameterType.STRING, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
         default: null,
         description: 'The array of paths to feedback images'
       },
       image_allocation: {
-        type:jsPsych.plugins.parameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
+        type:jspsych.ParameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
         default: [0, 1, 2, 3],
         description: 'The mapping to subject-specific images (allows randomisation of visual stimuli)'
       },
       canvas_dimensions: {
-        type:jsPsych.plugins.parameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
+        type:jspsych.ParameterType.INT, // BOOL, STRING, INT, FLOAT, FUNCTION, KEYCODE, SELECT, HTML_STRING, IMAGE, AUDIO, VIDEO, OBJECT, COMPLEX
         default: [1000, 600],
         description: 'The dimensions [width, height] of the html canvas on which things are drawn'
       },
       background_colour: {
-        type: jsPsych.plugins.parameterType.STRING,
+        type: jspsych.ParameterType.STRING,
         default: '#878787',
         description: 'The colour of the background'
       },
       stimulus_offset: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Stimulus offset',
         default: [340, 0],
         description: 'The offset [horizontal, vertica] of the centre of each stimulus from the centre of the canvas in pixels'
       },
       stimulus_dimensions: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Stimulus dimensions',
         default: [240, 170],
         description: 'Stimulus dimensions in pixels [width, height]'
       },
       left_key: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jspsych.ParameterType.KEYCODE,
         pretty_name: 'Left key',
         default: 'arrowleft',
         description: 'The key to be pressed to select the left planet'
       },
       right_key: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jspsych.ParameterType.KEYCODE,
         pretty_name: 'Right key',
         default: 'arrowright',
         description: 'The key to be pressed to select the right planet'
       },
       choice_listen_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Choice window duration',
         default: 100000,
         description: 'How long to wait for a response (in milliseconds).'
       },
       choice_display_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Choice display duration',
         default: 1500,
         description: 'How long to display the response (in milliseconds).'
       },
       feedback_display_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Feedback display duration',
         default: 2000,
         description: 'How long to display the feedback (in milliseconds).'
       },
       iti_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Duration of inter-trial interval',
         default: 1500,
         description: 'How long to display a blank screen between trials (in milliseconds).'
       },
       selection_pen_width: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Width of selection box',
         default: 10,
         description: 'Thickness (in pixels) of the selection box'
       },
       selection_colour: {
-        type: jsPsych.plugins.parameterType.STRING,
+        type: jspsych.ParameterType.STRING,
         default: '#000000', // #FFFFFF is white
         description: 'The colour of the selection box'
       },
       feedback_offset: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Feedback offset',
         default: [0, 0],
         description: 'The offset [horizontal, vertica] of the centre of the feedback from the centre of the canvas in pixels'
       },
       feedback_height: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Feedback dimensions',
         default: 150,
         description: 'Desired height of feedback image(in pixels)'
@@ -108,7 +114,12 @@ jsPsych.plugins['turk-rsl'] = (function() {
     }
   }
 
-  plugin.trial = function(display_element, trial) {
+  class TurkRSLPlugin {
+    constructor(jsPsych) {
+        this.jsPsych = jsPsych;
+    }
+
+    trial(display_element, trial, on_load) {
 
     // add a canvas to the HTML_STRING, store its context, and draw a blank background
     var new_html = '<canvas id="trial_canvas" width="'+trial.canvas_dimensions[0]+'" height="'+trial.canvas_dimensions[1]+'"></canvas>';
@@ -396,6 +407,10 @@ jsPsych.plugins['turk-rsl'] = (function() {
 
   } // end plugin.trial
 
-  return plugin;
+}
 
-})(); // end plugin function
+TurkRSLPlugin.info = info;
+
+return TurkRSLPlugin;
+
+})(jsPsychModule); // end plugin function

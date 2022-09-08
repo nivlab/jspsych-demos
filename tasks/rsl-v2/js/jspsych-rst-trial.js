@@ -1,54 +1,56 @@
 /**
  * jspsych-rst-trial
- * Sam Zorowitz
+ * Sam Zorowitz, Gili Karni
  *
  * plugin for running one trial of the risk sensitivity task
  *
  **/
+ function noenter() {
+ 	  return !(window.event && window.event.keyCode == 13);
+ 	}
 
-jsPsych.plugins["rst-trial"] = (function() {
+ var jsPsychRSTTrial = (function (jspsych) {
+   'use strict';
 
-  var plugin = {};
-
-  plugin.info = {
+   const info = {
     name: 'rst-trial',
     description: '',
     parameters: {
       beach_left: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         pretty_name: 'Stimulus',
         description: 'The HTML string to be displayed'
       },
       beach_right: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         pretty_name: 'Stimulus',
         description: 'The HTML string to be displayed'
       },
       outcome_left: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Stimulus',
         description: 'The HTML string to be displayed'
       },
       outcome_right: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Stimulus',
         description: 'The HTML string to be displayed'
       },
       choices: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jspsych.ParameterType.KEYCODE,
         array: true,
         pretty_name: 'Choices',
         default: [37,39],
         description: 'The keys the subject is allowed to press to respond to the stimulus.'
       },
       choice_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Trial duration',
         default: null,
         description: 'How long to show trial before it ends.'
       },
       feedback_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Trial duration',
         default: 2000,
         description: 'How long to show feedback before it ends.'
@@ -56,7 +58,11 @@ jsPsych.plugins["rst-trial"] = (function() {
     }
   }
 
-  plugin.trial = function(display_element, trial) {
+  class RSTTrialPlugin {
+      constructor(jsPsych) {
+          this.jsPsych = jsPsych;
+      }
+      trial(display_element, trial, on_load) {
 
     // ---------------------------------- //
     // Section 1: Define HTML             //
@@ -244,7 +250,7 @@ jsPsych.plugins["rst-trial"] = (function() {
     };
 
     // Start the response listener
-    if (trial.choices != jsPsych.NO_KEYS) {
+    if (trial.choices != "NO_KEYS") {
       var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
         callback_function: after_response,
         valid_responses: trial.choices,
@@ -263,5 +269,9 @@ jsPsych.plugins["rst-trial"] = (function() {
 
   };
 
-  return plugin;
-})();
+}
+RSTTrialPlugin.info = info;
+
+return RSTTrialPlugin;
+
+})(jsPsychModule);

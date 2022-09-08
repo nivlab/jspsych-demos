@@ -1,23 +1,23 @@
 <!DOCTYPE html>
+<meta charset="UTF-8">
+
 <html>
     <head>
         <title>Fishing Game</title>
 
         <!-- Load libraries -->
         <script src="../../lib/jquery-3.3.1/jquery.min.js"></script>
-        <script src="../../lib/jspsych-6.3.1/jspsych.js"></script>
-
-        <!-- Load experiment -->
-        <script src="./js/rst-experiment.js" type="text/javascript"></script>
+        <script src="../../lib/jspsych-7.2.1/jspsych.js"></script>
 
         <!-- Load jsPsych plug-ins -->
         <script src="./js/jspsych-rst-trial.js" type="text/javascript"></script>
-        <script src="../../lib/jspsych-6.3.1/plugins/jspsych-instructions.js" type="text/javascript"></script>
-        <script src="../../lib/jspsych-6.3.1/plugins/jspsych-preload.js" type="text/javascript"></script>
-        <script src="../../lib/jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
+
+        <script src="../../lib/jspsych-7.2.1/plugins/plugin-instructions.js" type="text/javascript"></script>
+        <script src="../../lib/jspsych-7.2.1/plugins/plugin-preload.js" type="text/javascript"></script>
+        <script src="../../lib/jspsych-7.2.1/plugins/plugin-fullscreen.js"></script>
 
         <!-- Load CSS styles -->
-        <link href="../../lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+        <link href="../../lib/jspsych-7.2.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
         <link href="./css/fishing-competition.min.css" rel="stylesheet" type="text/css"></link>
 
     </head>
@@ -26,11 +26,36 @@
 
     // Display alert message on back/refresh.
     // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
-    window.addEventListener("beforeunload", function (e) {
+    function verify_unload(e){
       e.preventDefault();
       (e || window.event).returnValue = null;
       return null;
+    };
+    window.addEventListener("beforeunload", verify_unload);
+
+
+    var jsPsych = initJsPsych({
+      show_progress_bar: true,
+      use_webaudio:true,
+      //override_safe_mode:true,
+      on_finish: function() {
+
+        // Remove requirement to verify redirect
+        window.removeEventListener("beforeunload", verify_unload);
+
+        // Add interactions to the data variable
+        var interaction_data = jsPsych.data.getInteractionData();
+        jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+        // Display jsPsych data in viewport.
+        jsPsych.data.displayData();
+
+      }
     });
+    </script>
+    <!-- Load experiment -->
+    <script src="./js/rst-experiment.js" type="text/javascript"></script>
+    <script>
 
     // Define images to preload.
     preload_images = [
@@ -52,20 +77,20 @@
 
     // Define image preloading.
     var PRELOAD = {
-      type: 'preload',
+      type: jsPsychPreload,
       images: preload_images,
       message: 'Loading images. This may take a moment depending on your internet connection.'
     }
 
     // Define experiment fullscreen.
     var FULLSCREEN = {
-      type: 'fullscreen',
+      type: jsPsychFullscreen,
       fullscreen_mode: true
     }
 
     // Define instructions.
     var INSTRUCTIONS = {
-      type: 'instructions',
+      type: jsPsychInstructions,
       pages: [
         "<p>In this game, you will be fishing at different beaches.</p><p>You can tell each beach apart by the surfboard in the sand.</p>",
         "<p>Your goal is to try to find at which beach you can catch the most fish.</p><p>You will catch more fish at some beaches than others.</p>",
@@ -85,21 +110,8 @@
     timeline = timeline.concat(INSTRUCTIONS);
     timeline = timeline.concat(rst_trials);
 
-    jsPsych.init({
-      timeline: timeline,
-      show_progress_bar: true,
-      preload_images: preload_images,
-      on_finish: function() {
+    jsPsych.run(timeline);
 
-        // Add interactions to the data variable
-        var interaction_data = jsPsych.data.getInteractionData();
-        jsPsych.data.get().addToLast({interactions: interaction_data.json()});
-
-        // Display jsPsych data in viewport.
-        jsPsych.data.displayData();
-
-      }
-    })
 
     </script>
 </html>
