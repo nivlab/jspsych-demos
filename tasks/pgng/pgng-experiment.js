@@ -106,7 +106,7 @@ for (let i=0; i<runsheets.length; i++) {
       // Define screen check.
       const screen_check = {
         timeline: [{
-          type: 'screen-check',
+          type: jsPsychScreenCheck,
           min_width: min_width,
           min_height: min_height
         }],
@@ -121,7 +121,7 @@ for (let i=0; i<runsheets.length; i++) {
 
       // Define trial.
       const trial = {
-        type: 'pgng-trial',
+        type: jsPsychPgngTrial,
         robot_rune: runes[i][stimulus],
         scanner_color: valence == 'win' ? scanner_color_win : scanner_color_lose,
         outcome_color: valence == 'win' ? outcome_color_win : outcome_color_lose,
@@ -170,7 +170,7 @@ for (let i=0; i<runsheets.length; i++) {
 
 // Define ready screen.
 var READY = {
-  type: 'pgng-instructions',
+  type: jsPsychPgngInstructions,
   pages: [
     "Great job! You've passed the comprehension check.",
     "Get ready to begin the task demo.<br>Press next when you're ready to start.",

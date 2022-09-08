@@ -6,73 +6,76 @@
  *
  **/
 
-jsPsych.plugins["pgng-trial"] = (function() {
+function noenter() {
+   return !(window.event && window.event.keyCode == 13);
+ }
 
-  var plugin = {};
+var jsPsychPgngTrial = (function (jspsych) {
+  'use strict';
 
-  plugin.info = {
-    name: 'pgng-trial',
+  const info = {
+   name: 'pgng-trial',
     description: '',
     parameters: {
       robot_rune: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         pretty_name: 'Robot rune',
         description: 'Filename of rune image in static folder.'
       },
       scanner_color: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         pretty_name: 'Scanner color',
         description: 'Color of scanner light.'
       },
       outcome_correct: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         pretty_name: 'Outcome correct',
         default: '+10',
         description: 'Outcome to present on correct action.',
       },
       outcome_incorrect: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         pretty_name: 'Outcome incorrect',
         default: '-10',
         description: 'Outcome to present on incorrect action.',
       },
       outcome_color: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         pretty_name: 'Outcome color',
         description: 'Color of outcome text.'
       },
       correct: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jspsych.ParameterType.KEYCODE,
         pretty_name: 'Correct response',
         description: 'Correct response for trial.'
       },
       rune_set: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         pretty_name: 'Rune font',
         default: 'elianto',
         description: 'Rune font style [elianto, bacs1, bacs2].'
       },
       valid_responses: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jspsych.ParameterType.KEYCODE,
         array: true,
         pretty_name: 'Choices',
         default: [" "],
         description: 'The keys the subject is allowed to press to respond to the stimulus.'
       },
       animation_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Animation duration',
         default: 1500,
         description: 'How long before keyboard listener should start.'
       },
       trial_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Trial duration',
         default: 1500,
         description: 'How long to show trial before it ends.'
       },
       feedback_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Feedback duration',
         default: 1000,
         description: 'How long to show feedback before it ends.'
@@ -80,7 +83,12 @@ jsPsych.plugins["pgng-trial"] = (function() {
     }
   }
 
-  plugin.trial = function(display_element, trial) {
+
+    class PgngTrialPlugin {
+        constructor(jsPsych) {
+            this.jsPsych = jsPsych;
+        }
+        trial(display_element, trial, on_load) {
 
     //---------------------------------------//
     // Define HTML.
@@ -273,7 +281,7 @@ jsPsych.plugins["pgng-trial"] = (function() {
     };
 
     // Start the response listener
-    if (trial.valid_responses != jsPsych.NO_KEYS) {
+    if (trial.valid_responses != "NO_KEYS") {
 
       // Task keyboardListener
       var keyboardListener = "";
@@ -307,5 +315,9 @@ jsPsych.plugins["pgng-trial"] = (function() {
 
   };
 
-  return plugin;
-})();
+}
+PgngTrialPlugin.info = info;
+
+return PgngTrialPlugin;
+
+})(jsPsychModule);

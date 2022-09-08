@@ -1,45 +1,56 @@
 /**
  * jspsych-pgng-comprehension
- * Sam Zorowitz
+ * Sam Zorowitz, Gili Karni
  *
  * plugin for running the comprehension check for the Pavlovian go/no-go task
  *
  **/
 
-jsPsych.plugins['pgng-comprehension'] = (function() {
-  var plugin = {};
+ function noenter() {
+ 	  return !(window.event && window.event.keyCode == 13);
+ 	}
 
-  plugin.info = {
+ var jsPsychPgngComprehension = (function (jspsych) {
+   'use strict';
+
+   const info = {
     name: 'pgng-comprehension',
     description: '',
     parameters: {
       prompts: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         array: true,
         pretty_name: 'Prompts',
         description: 'Comprehension check questions'
       },
       options: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         array: true,
         pretty_name: 'Options',
         description: 'Comprehension check question options'
       },
       correct: {
-        type: jsPsych.plugins.parameterType.STRING,
+        type: jspsych.ParameterType.STRING,
         array: true,
         pretty_name: 'Correct',
         description: 'Answers to comprehension check questions'
       },
       button_label: {
-        type: jsPsych.plugins.parameterType.STRING,
+        type: jspsych.ParameterType.STRING,
         pretty_name: 'Button label',
         default:  'Continue',
         description: 'Label of the button.'
       }
     }
   }
-  plugin.trial = function(display_element, trial) {
+
+
+
+  class PgngComprehensionPlugin {
+      constructor(jsPsych) {
+          this.jsPsych = jsPsych;
+      }
+      trial(display_element, trial, on_load) {
 
     // Plug-in setup
     var plugin_id_name = "jspsych-survey-multi-choice";
@@ -175,5 +186,9 @@ jsPsych.plugins['pgng-comprehension'] = (function() {
     var startTime = performance.now();
   };
 
-  return plugin;
-})();
+}
+PgngComprehensionPlugin.info = info;
+
+return PgngComprehensionPlugin;
+
+})(jsPsychModule);

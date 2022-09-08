@@ -1,48 +1,51 @@
 /**
  * jspsych-pgng-instructions
- * Sam Zorowitz
+ * Sam Zorowitz, Gili Karni
  *
  * plugin for running the instructions for the Pavlovian go/no-go task
  *
  **/
 
-jsPsych.plugins["pgng-instructions"] = (function() {
+ function noenter() {
+ 	  return !(window.event && window.event.keyCode == 13);
+ 	}
 
-  var plugin = {};
+ var jsPsychPgngInstructions = (function (jspsych) {
+   'use strict';
 
-  plugin.info = {
-    name: 'pgng-instructions',
+   const info = {
+    name:  'pgng-instructions',
     description: '',
     parameters: {
       pages: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         pretty_name: 'Pages',
         default: undefined,
         array: true,
         description: 'Each element of the array is the content for a single page.'
       },
       robot_runes: {
-        type: jsPsych.plugins.parameterType.STRING,
+        type: jspsych.ParameterType.STRING,
         pretty_name: 'Robot rune',
         array: true,
         default: [],
         description: 'Filenames of rune images in static folder. Should be same length as pages.'
       },
       scanner_colors: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         pretty_name: 'Scanner color',
         array: true,
         default: [],
         description: 'Color of scanner light. Should be same length as pages.'
       },
       key_forward: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jspsych.ParameterType.KEYCODE,
         pretty_name: 'Key forward',
         default: 'ArrowRight',
         description: 'The key the subject can press in order to advance to the next page.'
       },
       key_backward: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jspsych.ParameterType.KEYCODE,
         pretty_name: 'Key backward',
         default: 'ArrowLeft',
         description: 'The key that the subject can press to return to the previous page.'
@@ -50,7 +53,11 @@ jsPsych.plugins["pgng-instructions"] = (function() {
     }
   }
 
-  plugin.trial = function(display_element, trial) {
+  class PgngInstructionsPlugin {
+      constructor(jsPsych) {
+          this.jsPsych = jsPsych;
+      }
+      trial(display_element, trial, on_load) {
 
     //---------------------------------------//
     // Define HTML.
@@ -257,5 +264,9 @@ jsPsych.plugins["pgng-instructions"] = (function() {
     });
   };
 
-  return plugin;
-})();
+}
+PgngInstructionsPlugin.info = info;
+
+return PgngInstructionsPlugin;
+
+})(jsPsychModule);
