@@ -4,41 +4,44 @@
 * plugin for running the instructions of the modified risk sensitivity task
 */
 
-jsPsych.plugins['mrst-instructions'] = (function() {
+function noenter() {
+	  return !(window.event && window.event.keyCode == 13);
+	}
 
-  var plugin = {};
+var jsPsychMRSTInstructions = (function (jspsych) {
+  'use strict';
 
-  plugin.info = {
-    name: 'instructions',
+  const info = {
+      name: 'instructions',
     description: '',
     parameters: {
       pages: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         pretty_name: 'Pages',
         default: undefined,
         array: true,
         description: 'Each element of the array is the content for a single page.'
       },
       key_forward: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jspsych.ParameterType.KEYCODE,
         pretty_name: 'Key forward',
         default: 'arrowright',
         description: 'The key the subject can press in order to advance to the next page.'
       },
       key_backward: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jspsych.ParameterType.KEYCODE,
         pretty_name: 'Key backward',
         default: 'arrowleft',
         description: 'The key that the subject can press to return to the previous page.'
       },
       button_label_previous: {
-        type: jsPsych.plugins.parameterType.STRING,
+        type: jspsych.ParameterType.STRING,
         pretty_name: 'Button label previous',
         default: 'Prev',
         description: 'The text that appears on the button to go backwards.'
       },
       button_label_next: {
-        type: jsPsych.plugins.parameterType.STRING,
+        type: jspsych.ParameterType.STRING,
         pretty_name: 'Button label next',
         default: 'Next',
         description: 'The text that appears on the button to go forwards.'
@@ -46,7 +49,13 @@ jsPsych.plugins['mrst-instructions'] = (function() {
     }
   }
 
-  plugin.trial = function(display_element, trial) {
+
+  class MRSTInstructionsPlugin {
+      constructor(jsPsych) {
+          this.jsPsych = jsPsych;
+      }
+      trial(display_element, trial, on_load) {
+
 
     //---------------------------------------//
     // Define parameters.
@@ -196,6 +205,10 @@ jsPsych.plugins['mrst-instructions'] = (function() {
     });
 
   };
+}
 
-  return plugin;
-})();
+MRSTInstructionsPlugin.info = info;
+
+return MRSTInstructionsPlugin;
+
+})(jsPsychModule);

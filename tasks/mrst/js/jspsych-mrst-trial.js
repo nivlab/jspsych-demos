@@ -6,61 +6,64 @@
 *
 **/
 
-jsPsych.plugins["mrst-trial"] = (function() {
+function noenter() {
+	  return !(window.event && window.event.keyCode == 13);
+	}
 
-  var plugin = {};
+var jsPsychMRSTTrial = (function (jspsych) {
+  'use strict';
 
-  plugin.info = {
-    name: 'mrst-trial',
+  const info = {
+      name:  'mrst-trial',
     description: '',
     parameters: {
       card_position: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Card position (1 = left, 0 = right)',
         description: ''
       },
       card_color: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         pretty_name: 'Card color',
         default: 'grey',
         description: ''
       },
       card_suit: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         pretty_name: 'Card suit',
         description: ''
       },
       card_points: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Card points',
         description: ''
       },
       certain_points: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Certain points',
         description: ''
       },
       valid_responses: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jspsych.ParameterType.KEYCODE,
         array: true,
         pretty_name: 'Valid responses',
         default: ['arrowleft','arrowright'],
         description: 'The keys the subject is allowed to press to respond to the stimulus.'
       },
       choice_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Trial duration',
         default: 10000,
         description: 'How long to show trial before it ends.'
       },
       confirmation_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Confirmation duration',
         default: 500,
         description: 'How long to show choice confirmation before it ends.'
       },
       feedback_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Feedback duration',
         default: 1000,
         description: 'How long to show feedback before it ends.'
@@ -68,7 +71,11 @@ jsPsych.plugins["mrst-trial"] = (function() {
     }
   }
 
-  plugin.trial = function(display_element, trial) {
+  class MRSTTrialPlugin {
+      constructor(jsPsych) {
+          this.jsPsych = jsPsych;
+      }
+      trial(display_element, trial, on_load) {
 
     //---------------------------------------//
     // Define HTML.
@@ -262,6 +269,9 @@ jsPsych.plugins["mrst-trial"] = (function() {
     }
 
   };
+}
+  MRSTTrialPlugin.info = info;
 
-  return plugin;
-})();
+  return MRSTTrialPlugin;
+
+})(jsPsychModule);

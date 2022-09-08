@@ -119,7 +119,7 @@ for (let i = 0; i < 3; i++) {
 
     // Define trial.
     var trial = {
-      type: "mrst-trial",
+      type: jsPsychMRSTTrial,
       card_position: info.card_position,
       card_suit: info.card_suit,
       card_color: info.card_color,
@@ -183,7 +183,7 @@ for (let i = 0; i < 3; i++) {
 
 // Define ready screen.
 var READY_01 = {
-  type: 'mrst-instructions',
+  type: jsPsychMRSTInstructions,
   pages: [
     "<p>Great job! You've passed the comprehension check.</p>",
     "<p>We will now begin the experiment.</p><p>The experiment will be broken into three parts.</p>",
@@ -196,7 +196,7 @@ var READY_01 = {
 }
 
 var READY_02 = {
-  type: 'mrst-instructions',
+  type: jsPsychMRSTInstructions,
   pages: [
     "<p>Take a break for a few moments and press any button when you are ready to continue.</p>",
     "<p>Get ready to begin <b>Block 2/3</b>. It will take ~3 minutes.</p><p>Press next when you're ready to start.</p>",
@@ -207,7 +207,7 @@ var READY_02 = {
 }
 
 var READY_03 = {
-  type: 'mrst-instructions',
+  type: jsPsychMRSTInstructions,
   pages: [
     "<p>Take a break for a few moments and press any button when you are ready to continue.</p>",
     "<p>Get ready to begin <b>Block 3/3</b>. It will take ~3 minutes.</p><p>Press next when you're ready to start.</p>",
@@ -219,7 +219,7 @@ var READY_03 = {
 
 // Define finish screen.
 var FINISHED = {
-  type: 'mrst-instructions',
+  type: jsPsychMRSTInstructions,
   pages: [
     "Great job! You've finished the task.",
   ],

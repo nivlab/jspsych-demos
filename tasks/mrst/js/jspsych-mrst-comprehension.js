@@ -6,22 +6,30 @@
  *
  **/
 
-jsPsych.plugins['mrst-comprehension'] = (function() {
-  var plugin = {};
+ function noenter() {
+ 	  return !(window.event && window.event.keyCode == 13);
+ 	}
 
-  plugin.info = {
-    name: 'mrst-comprehension',
+ var jsPsychMRSTComprehension = (function (jspsych) {
+   'use strict';
+
+   const info = {
+       name:  'mrst-comprehension',
     description: '',
     parameters: {
       button_label: {
-        type: jsPsych.plugins.parameterType.STRING,
+        type: jspsych.ParameterType.STRING,
         pretty_name: 'Button label',
         default:  'Continue',
         description: 'Label of the button.'
       }
     }
   }
-  plugin.trial = function(display_element, trial) {
+  class MRSTComprehensionPlugin {
+  constructor(jsPsych) {
+      this.jsPsych = jsPsych;
+  }
+  trial(display_element, trial, on_load) {
 
     // Plug-in setup
     var plugin_id_name = "jspsych-survey-multi-choice";
@@ -198,6 +206,9 @@ jsPsych.plugins['mrst-comprehension'] = (function() {
 
     var startTime = performance.now();
   };
+  }
+  MRSTComprehensionPlugin.info = info;
 
-  return plugin;
-})();
+  return MRSTComprehensionPlugin;
+
+  })(jsPsychModule);

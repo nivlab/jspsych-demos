@@ -5,21 +5,18 @@
 
   <!-- Load libraries -->
   <script src="../../lib/jquery-3.3.1/jquery.min.js"></script>
-  <script src="../../lib/jspsych-6.3.1/jspsych.js"></script>
-
-  <!-- Load expeirment -->
-  <script src="./js/mrst-experiment.js"></script>
-  <script src="./js/mrst-instructions.js"></script>
+  <script src="../../lib/jspsych-7.2.1/jspsych.js"></script>
 
   <!-- Load jsPsych plug-ins -->
   <script src="./js/jspsych-mrst-trial.js"></script>
   <script src="./js/jspsych-mrst-instructions.js"></script>
   <script src="./js/jspsych-mrst-comprehension.js"></script>
-  <script src="../../lib/jspsych-6.3.1/plugins/jspsych-preload.js"></script>
-  <script src="../../lib/jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
+
+  <script src="../../lib/jspsych-7.2.1/plugins/plugin-preload.js"></script>
+  <script src="../../lib/jspsych-7.2.1/plugins/plugin-fullscreen.js"></script>
 
   <!-- Load CSS styles -->
-  <link href="../../lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  <link href="../../lib/jspsych-7.2.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
   <link href="./css/mrst-css.min.css" rel="stylesheet" type="text/css"></link>
 
 </head>
@@ -35,16 +32,41 @@
   };
   window.addEventListener("beforeunload", verify_unload);
 
+  var jsPsych = initJsPsych({
+    show_progress_bar: true,
+    use_webaudio:true,
+    //override_safe_mode:true,
+    on_finish: function() {
+
+      // Remove requirement to verify redirect
+      window.removeEventListener("beforeunload", verify_unload);
+
+      // Add interactions to the data variable
+      var interaction_data = jsPsych.data.getInteractionData();
+      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+      // Display jsPsych data in viewport.
+      jsPsych.data.displayData();
+
+    }
+  });
+
+  </script>
+  <!-- Load expeirment -->
+  <script src="./js/mrst-experiment.js"></script>
+  <script src="./js/mrst-instructions.js"></script>
+  <script>
+
   // Define image preloading.
   var PRELOAD = {
-    type: 'preload',
+    type: jsPsychPreload,
     images: preload_images,
     message: 'Loading images. This may take a moment depending on your internet connection.'
   }
 
   // Define experiment fullscreen.
   var FULLSCREEN = {
-    type: 'fullscreen',
+    type: jsPsychFullscreen,
     fullscreen_mode: true
   }
 
@@ -61,23 +83,8 @@
   timeline = timeline.concat(MRST.slice(100, 150));
   timeline = timeline.concat(FINISHED);
 
-  jsPsych.init({
-    timeline: timeline,
-    show_progress_bar: true,
-    on_finish: function() {
 
-      // Remove requirement to verify redirect
-      window.removeEventListener("beforeunload", verify_unload);
-
-      // Add interactions to the data variable
-      var interaction_data = jsPsych.data.getInteractionData();
-      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
-
-      // Display jsPsych data in viewport.
-      jsPsych.data.displayData();
-
-    }
-  })
+  jsPsych.run(timeline);
 
 </script>
 </html>

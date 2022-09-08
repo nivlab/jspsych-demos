@@ -32,7 +32,7 @@ const style = "width:auto; height:auto; max-width:100%; max-height:450px;";
 //------------------------------------//
 
 instructions01 = {
-  type: 'mrst-instructions',
+  type: jsPsychMRSTInstructions,
   pages: [
     `<img src="./img/instructions/instructions01.png" style="${style}"></img>`,
     `<img src="./img/instructions/instructions02.png" style="${style}"></img>`,
@@ -52,7 +52,7 @@ instructions01 = {
 
 practice = {
   timeline: [{
-    type: "mrst-trial",
+    type: jsPsychMRSTTrial,
     card_position: jsPsych.timelineVariable('card_position'),
     card_suit: jsPsych.timelineVariable('card_suit'),
     card_color: jsPsych.timelineVariable('card_color'),
@@ -83,7 +83,7 @@ practice = {
 //------------------------------------//
 
 instructions02 = {
-  type: 'mrst-instructions',
+  type: jsPsychMRSTInstructions,
   pages: [
     `<img src="./img/instructions/instructions12.png" style="${style}"></img>`,
     `<img src="./img/instructions/instructions13.png" style="${style}"></img>`,
@@ -95,7 +95,7 @@ instructions02 = {
 }
 
 var comprehension = {
-  type: 'mrst-comprehension'
+  type: jsPsychMRSTComprehension
 }
 
 //------------------------------------//
