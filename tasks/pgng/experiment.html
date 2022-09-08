@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pavlovian go/no-go task</title>
+
+  <!-- Load libraries -->
+  <script src="../../lib/jquery-3.3.1/jquery.min.js"></script>
+  <script src="../../lib/jspsych-6.3.1/jspsych.js"></script>
+
+  <!-- Load experiment -->
+  <script src="./pgng-runsheets.js" type="text/javascript"></script>
+  <script src="./pgng-experiment.js" type="text/javascript"></script>
+  <script src="./pgng-instructions.js" type="text/javascript"></script>
+
+  <!-- Load jsPsych plug-ins -->
+  <script src="./jspsych-pgng-trial.js" type="text/javascript"></script>
+  <script src="./jspsych-pgng-instructions.js" type="text/javascript"></script>
+  <script src="./jspsych-pgng-comprehension.js" type="text/javascript"></script>
+  <script src="../screen-check/jspsych-screen-check.js" type="text/javascript"></script>
+  <script src="../../lib/jspsych-6.3.1/plugins/jspsych-instructions.js" type="text/javascript"></script>
+  <script src="../../lib/jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
+  <script src="../../lib/jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
+
+  <!-- Load CSS styles -->
+  <link href="../../lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  <link href="./css/factory-css.min.css" rel="stylesheet" type="text/css"></link>
+
+</head>
+<body></body>
+<script>
+
+  // Display alert message on back/refresh.
+  // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+  function verify_unload(e){
+    e.preventDefault();
+    (e || window.event).returnValue = null;
+    return null;
+  };
+  window.addEventListener("beforeunload", verify_unload);
+
+  // Define experiment fullscreen.
+  var FULLSCREEN = {
+    type: 'fullscreen',
+    fullscreen_mode: true,
+  }
+
+  // Define timeline.
+  var timeline = [];
+  timeline = timeline.concat(FULLSCREEN);
+  timeline = timeline.concat(INSTRUCTIONS_SKIP);
+  timeline = timeline.concat(INSTRUCTIONS);
+  timeline = timeline.concat(READY);
+  timeline = timeline.concat(PGNG);
+
+  jsPsych.init({
+    timeline: timeline,
+    show_progress_bar: true,
+    on_finish: function() {
+
+      // Remove requirement to verify redirect
+      window.removeEventListener("beforeunload", verify_unload);
+
+      // Add interactions to the data variable
+      var interaction_data = jsPsych.data.getInteractionData();
+      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+      // Display jsPsych data in viewport.
+      jsPsych.data.displayData();
+
+    }
+  })
+
+</script>
+</html>
