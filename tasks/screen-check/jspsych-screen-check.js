@@ -1,10 +1,13 @@
 /**
 * jspsych-screen-check
-* Sam Zorowitz
+* Sam Zorowitz, Gili Karni
 *
 * plugin for ensuring a participant's viewport meets minimum size requirements
 *
 **/
+function noenter() {
+	  return !(window.event && window.event.keyCode == 13);
+	}
 
 var jsPsychScreenCheck = (function (jspsych) {
   'use strict';
