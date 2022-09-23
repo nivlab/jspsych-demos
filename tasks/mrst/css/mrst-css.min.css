@@ -2,6 +2,15 @@
 /* Task layout CSS                    */
 /* ---------------------------------- */
 
+/* overwrite jspsych defaults */
+#jspsych-progressbar-container {
+  margin-bottom: 0em;
+}
+
+.jspsych-content {
+  max-width: 100%;
+}
+
 /* Container for screen */
 .mrst-container {
   height: 100vh;
