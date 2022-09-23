@@ -6,48 +6,60 @@
  *
  **/
 
-jsPsych.plugins['two-step-comprehension'] = (function() {
-  var plugin = {};
+ function noenter() {
+ 	  return !(window.event && window.event.keyCode == 13);
+ 	}
 
-  plugin.info = {
-    name: 'two-step-comprehension',
+ var jsPsychTwoStepComprehension = (function (jspsych) {
+   'use strict';
+
+   const info = {
+    name: "two-step-comprehension'",
     description: '',
     parameters: {
       prompts: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         array: true,
         pretty_name: 'Prompts',
         description: 'Comprehension check questions'
       },
       options: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         array: true,
         pretty_name: 'Options',
         description: 'Comprehension check question options'
       },
       correct: {
-        type: jsPsych.plugins.parameterType.STRING,
+        type: jspsych.ParameterType.STRING,
         array: true,
         pretty_name: 'Correct',
         description: 'Answers to comprehension check questions'
       },
       button_label: {
-        type: jsPsych.plugins.parameterType.STRING,
+        type: jspsych.ParameterType.STRING,
         pretty_name: 'Button label',
         default:  'Continue',
         description: 'Label of the button.'
       }
     }
   }
-  plugin.trial = function(display_element, trial) {
+
+
+  class TwoStepComprehensionPlugin {
+      constructor(jsPsych) {
+          this.jsPsych = jsPsych;
+      }
+      trial(display_element, trial, on_load) {
+
 
     // Plug-in setup
     var plugin_id_name = "jspsych-survey-multi-choice";
     var plugin_id_selector = '#' + plugin_id_name;
-    var _join = function( /*args*/ ) {
+
+    var _join = function() {
       var arr = Array.prototype.slice.call(arguments, _join.length);
       return arr.join(separator = '-');
-    }
+    };
 
     // ---------------------------------- //
     // Section 1: Define HTML             //
@@ -122,7 +134,7 @@ jsPsych.plugins['two-step-comprehension'] = (function() {
     html += '<div class="landscape-ground" state="1"></div>';
 
     // form element
-    var trial_form_id = _join(plugin_id_name, "form");
+    var trial_form_id = plugin_id_name+"form";//_join(plugin_id_name, "form");
     display_element.innerHTML += '<form id="'+trial_form_id+'"></form>';
 
     // Show preamble text
@@ -133,7 +145,7 @@ jsPsych.plugins['two-step-comprehension'] = (function() {
     html += '<form id="jspsych-survey-multi-choice-form">';
 
     // Iteratively add comprehension questions.
-    for (i = 0; i < trial.prompts.length; i++) {
+    for (let i = 0; i < trial.prompts.length; i++) {
 
       // Initialize item
       html += `<div id="jspsych-survey-multi-choice-${i}" class="jspsych-survey-multi-choice-question jspsych-survey-multi-choice-horizontal" data-name="Q${i}">`;
@@ -142,7 +154,7 @@ jsPsych.plugins['two-step-comprehension'] = (function() {
       html += `<p class="jspsych-survey-multi-choice-text survey-multi-choice">${trial.prompts[i]}</p>`;
 
       // Iteratively add options.
-      for (j = 0; j < trial.options[i].length; j++) {
+      for (let j = 0; j < trial.options[i].length; j++) {
 
         // Option 1: True
         html += `<div id="jspsych-survey-multi-choice-option-${i}-${j}" class="jspsych-survey-multi-choice-option">`;
@@ -217,5 +229,9 @@ jsPsych.plugins['two-step-comprehension'] = (function() {
     var startTime = performance.now();
   };
 
-  return plugin;
-})();
+}
+  TwoStepComprehensionPlugin.info = info;
+
+  return TwoStepComprehensionPlugin;
+
+  })(jsPsychModule);

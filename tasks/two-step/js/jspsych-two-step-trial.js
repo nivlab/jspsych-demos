@@ -5,83 +5,85 @@
 * Plug-in to run two-step task trial
 **/
 
-jsPsych.plugins["two-step-trial"] = (function() {
+function noenter() {
+	  return !(window.event && window.event.keyCode == 13);
+	}
 
-  var plugin = {};
-
-  plugin.info = {
-    name: 'two-step-trial',
+var jsPsychTwoStepTrial = (function (jspsych) {
+  'use strict';
+  const info = {
+      name: 'two-step-trial',
     description: '',
     parameters: {
       transition: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Transition',
         description: 'State transition (common = 1, uncommon = 0).'
       },
       outcomes: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         array: true,
         pretty_name: 'Outcomes',
         description: 'Reward outcome for each bandit (reward = 1, no reward = 0).'
       },
       rocket_colors: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         array: true,
         pretty_name: 'Rocket colors',
         description: 'Colors of the state 1 left/right rockets.'
       },
       planet_colors: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         array: true,
         pretty_name: 'Planet colors',
         description: 'Colors of the state 2 planets.'
       },
       aliens: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
+        type: jspsych.ParameterType.HTML_STRING,
         array: true,
         pretty_name: 'Aliens',
         description: 'Paths to alien images (length 4 array).'
       },
       randomize_s1: {
-        type: jsPsych.plugins.parameterType.BOOL,
+        type: jspsych.ParameterType.BOOL,
         pretty_name: 'Randomize (state 1)',
         default: true,
         description: 'Randomize left/right positions of state 1 rockets.'
       },
       randomize_s2: {
-        type: jsPsych.plugins.parameterType.BOOL,
+        type: jspsych.ParameterType.BOOL,
         pretty_name: 'Randomize (state 2)',
         default: true,
         description: 'Randomize left/right positions of state 2 aliens.'
       },
       valid_responses_s1: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jspsych.ParameterType.KEYCODE,
         array: true,
         pretty_name: 'Valid responses',
         default: ['arrowleft', 'arrowright'],
         description: 'The keys the subject is allowed to press to respond during the first state.'
       },
       valid_responses_s2: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jspsych.ParameterType.KEYCODE,
         array: true,
         pretty_name: 'Valid responses',
         default: ['arrowleft', 'arrowright'],
         description: 'The keys the subject is allowed to press to respond during the second state.'
       },
       choice_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Choice duration',
         default: null,
         description: 'How long to listen for responses before trial ends.'
       },
       feedback_duration: {
-        type: jsPsych.plugins.parameterType.INT,
+        type: jspsych.ParameterType.INT,
         pretty_name: 'Trial duration',
         default: 1000,
         description: 'How long to show feedback before it ends.'
       },
       animation: {
-        type: jsPsych.plugins.parameterType.BOOL,
+        type: jspsych.ParameterType.BOOL,
         pretty_name: 'Animation',
         default: true,
         desscription: 'Display animations during trial (true / false).'
@@ -89,7 +91,12 @@ jsPsych.plugins["two-step-trial"] = (function() {
     }
   }
 
-  plugin.trial = function(display_element, trial) {
+  class TwoStepTrialPlugin {
+    constructor(jsPsych) {
+        this.jsPsych = jsPsych;
+    }
+    trial(display_element, trial, on_load) {
+
 
     //---------------------------------------//
     // Section 1: Define HTML.
@@ -366,5 +373,9 @@ jsPsych.plugins["two-step-trial"] = (function() {
 
   };
 
-  return plugin;
-})();
+}
+TwoStepTrialPlugin.info = info;
+
+return TwoStepTrialPlugin;
+
+})(jsPsychModule);
