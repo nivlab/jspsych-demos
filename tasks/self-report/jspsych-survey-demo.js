@@ -130,16 +130,28 @@ jsPsych.plugins['survey-demo'] = (function() {
 
     // Item 2: Gender
     html += '<div class="survey-demo-row">';
-    html += '<div class="survey-demo-prompt"><label for="gender-categorical">What is your gender?</label></div>';
+    html += '<div class="survey-demo-prompt"><label for="gender">How would you describe your gender?</label></div>';
     html += '<div class="survey-demo-response">';
-    html += '<label><input type="radio" name="gender-categorical" value="Man" required>Man</label>';
-    html += '<label><input type="radio" name="gender-categorical" value="Woman" required>Woman</label>';
-    html += '<label><input type="radio" name="gender-categorical" value="Rather not say" required>Rather not say</label>';
-    html += '<label style="padding: 0 0.5em 0 0;"><input type="radio" name="gender-categorical" value="Other" required>Other</label>';
-    html += '<input type="text" name="gender-free-response" maxlength="24" size="10"></label>';
+    html += '<label><input type="radio" name="gender" value="Man" required>Man</label><br>';
+    html += '<label><input type="radio" name="gender" value="Woman" required>Woman</label><br>';
+    html += '<label><input type="radio" name="gender" value="Nonbinary or genderfluid" required>Nonbinary or genderfluid</label><br>';
+    html += '<label style="padding: 0 0.5em 0 0;"><input type="radio" name="gender" value="I use a different term" required>I use a different term</label>';
+    html += '<input type="text" name="gender-free-response" maxlength="24" size="10"></label><br>';
+    html += '<label><input type="radio" name="gender" value="Rather not say" required>Rather not say</label>';
     html += '</div></div>';
 
-    // Item 3: Ethnicity
+    // Item 3: Sex
+    html += '<div class="survey-demo-row">';
+    html += '<div class="survey-demo-prompt"><label for="sex">What sex were you assigned at birth, meaning on your birth certificate?</label></div>';
+    html += '<div class="survey-demo-response">';
+    html += '<label><input type="radio" name="sex" value="Male" required>Male</label><br>';
+    html += '<label><input type="radio" name="sex" value="Female" required>Female</label><br>';
+    html += '<label style="padding: 0 0.5em 0 0;"><input type="radio" name="sex" value="Another term" required>Another term</label>';
+    html += '<input type="text" name="sex-free-response" maxlength="24" size="10"></label><br>';
+    html += '<label><input type="radio" name="sex" value="Rather not say" required>Rather not say</label>';
+    html += '</div></div>';
+
+    // Item 4: Ethnicity
     html += '<div class="survey-demo-row">';
     html += '<div class="survey-demo-prompt"><label for="ethnicity">What is your ethnicity?</label></div>';
     html += '<div class="survey-demo-response">';
@@ -149,7 +161,7 @@ jsPsych.plugins['survey-demo'] = (function() {
     html += '<label><input type="radio" name="ethnicity" value="Rather not say" required>Rather not say</label>';
     html += '</div></div>';
 
-    // Item 4: Race
+    // Item 5: Race
     html += '<div class="survey-demo-row">';
     html += '<div class="survey-demo-prompt"><label for="race">What is your race?<br><small>(Choose all that apply)</small></label></div>';
     html += '<div class="survey-demo-response">';
@@ -161,7 +173,7 @@ jsPsych.plugins['survey-demo'] = (function() {
     html += '<label><input type="checkbox" name="race" value="Rather not say">Rather not say</label>';
     html += '</div></div>';
 
-    // Item 5: Education
+    // Item 6: Education
     html += '<div class="survey-demo-row">';
     html += '<div class="survey-demo-prompt"><label for="education">What is the highest level of schooling you have completed?</label></div>';
     html += '<div class="survey-demo-response">';
