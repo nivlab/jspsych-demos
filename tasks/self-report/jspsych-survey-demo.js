@@ -134,7 +134,7 @@ jsPsych.plugins['survey-demo'] = (function() {
     html += '<div class="survey-demo-response">';
     html += '<label><input type="radio" name="gender" value="Man" required>Man</label><br>';
     html += '<label><input type="radio" name="gender" value="Woman" required>Woman</label><br>';
-    html += '<label><input type="radio" name="gender" value="Nonbinary or genderfluid" required>Nonbinary or genderfluid</label><br>';
+    html += '<label><input type="radio" name="gender" value="Non-binary" required>Non-binary</label><br>';
     html += '<label style="padding: 0 0.5em 0 0;"><input type="radio" name="gender" value="I use a different term" required>I use a different term</label>';
     html += '<input type="text" name="gender-free-response" maxlength="24" size="10"></label><br>';
     html += '<label><input type="radio" name="gender" value="Rather not say" required>Rather not say</label>';
