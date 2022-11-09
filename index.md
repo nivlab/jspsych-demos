@@ -22,7 +22,7 @@ TABLE OF CONTENTS
 
 ### 3-arm reversal learning task
 
-[<b>[Code]</b>](https://github.com/nivlab/ThreeArmJS) [<b>[Demo]</b>](https://nivlab.github.io/ThreeArmJS)
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/3arm) [<b>[Demo]</b>](./tasks/3arm/experiment.html)
 
 > A gamified, fishing-themed 3-arm reversal learning task implemented using Javascript and CSS.
 
@@ -54,7 +54,7 @@ TABLE OF CONTENTS
 
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/pgng) [<b>[Demo]</b>](./tasks/pgng/experiment.html)
 
-> A robot-themed version of the Pavlovian go/no-go task implemented using Javascript and CSS. 
+> A robot-themed version of the Pavlovian go/no-go task implemented using Javascript and CSS.
 
 ### Relative value learning task
 

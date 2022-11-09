@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fishing Game</title>
+
+  <!-- Load libraries -->
+  <script src="../../lib/jquery-3.3.1/jquery.min.js"></script>
+  <script src="../../lib/jspsych-6.3.1/jspsych.js"></script>
+
+  <!-- Load experiment -->
+  <script src="./js/three-arm-experiment.js" type="text/javascript"></script>
+
+  <!-- Load jsPsych plug-ins -->
+  <script src="./js/jspsych-three-arm-trial.js" type="text/javascript"></script>
+  <script src="../../lib/jspsych-6.3.1/plugins/jspsych-instructions.js" type="text/javascript"></script>
+
+  <!-- Load CSS styles -->
+  <link href="../../lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  <link href="./css/fishing-competition.min.css" rel="stylesheet" type="text/css"></link>
+
+</head>
+<body></body>
+<script>
+
+  // Display alert message on back/refresh.
+  // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+  function verify_unload(e){
+    e.preventDefault();
+    (e || window.event).returnValue = null;
+    return null;
+  };
+  window.addEventListener("beforeunload", verify_unload);
+
+  // Define timeline.
+  var timeline = [];
+  timeline = timeline.concat(instructions);      // Instructions
+  timeline = timeline.concat(trials);            // Bandit task
+
+  jsPsych.init({
+    timeline: timeline,
+    show_progress_bar: true,
+    preload_images: preload_images,
+    on_finish: function() {
+
+      // Remove requirement to verify redirect
+      window.removeEventListener("beforeunload", verify_unload);
+
+      // Add interactions to the data variable
+      var interaction_data = jsPsych.data.getInteractionData();
+      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+      // Display jsPsych data in viewport.
+      jsPsych.data.displayData();
+
+    }
+  })
+
+</script>
+</html>
