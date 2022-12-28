@@ -7,7 +7,7 @@ The consent.html displays the text of an IRB-approved consent form.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Decision Making Experiment - Informed Consent Form</title>
-  <link rel="stylesheet" href="tacit-css.min.css"/>
+  <link rel="stylesheet" href="/static/css/tacit-css.min.css"/>
 </head>
 <body>
 
@@ -48,6 +48,11 @@ The consent.html displays the text of an IRB-approved consent form.
     In this experiment, you will be presented with a series of visual stimuli on a computer screen and/or auditory stimuli via standard speakers or headphones and asked to perform simple decisions in response to these stimuli.
   </p>
 
+  <!-- Only for in-person studies using eye-trackiing -->
+  <!-- <p>
+    Your eye position and pupil size may be monitored and recorded. You may be asked to rest your head on a chin rest and minimize head movement throughout the experiment.
+  </p> -->
+
   <!-- Risks or discomforts -->
   <h2>Risks or discomforts as a result of participation:</h2>
   <p>
@@ -56,7 +61,7 @@ The consent.html displays the text of an IRB-approved consent form.
 
   <!-- Only for studies using questionnaires -->
   <p>
-    This study includes questions related to mental health: about your emotions and reactions to being placed in certain situations, and the levels at which you may identify with certain thoughts or feelings. Some participants may find these questions troubling. The experimenters are not clinicians and not in a position to diagnose any disorders or offer medical advice. If the questions trouble you, we urge you to seek further advice or information from healthcare professionals. At the end of the questionnaires, and again at the completion of the experiment, we will provide you with resources for learning more about mental health conditions and for seeking support.
+    This study includes questions related to mental health: about your emotions and reactions to being placed in certain situations, and the levels at which you may identify with certain thoughts or feelings. Some participants may find these questions troubling. The experimenters are not in a position to diagnose any disorders or offer medical advice. If the questions trouble you, we urge you to seek further advice or information from healthcare professionals. At the end of the experiment, we will provide you with resources for learning more about mental health conditions and for seeking support.
   </p>
 
   <p>
@@ -67,6 +72,19 @@ The consent.html displays the text of an IRB-approved consent form.
       <li>Do you take disappointments so keenly that you can't put them out of your mind?</li>
   </ul>
   </p>
+
+  <!-- Only for studies using negative emotion inducing images or videos -->
+  <!-- <p>
+    This study includes stimuli that induce positive and negative emotions, including anger, fear, and disgust. Some of these stimuli involve very disturbing and graphic contents, which some participants may find troubling.
+  </p>
+  <p>
+    Examples of such stimuli, described in words, are:
+    <ul>
+      <li>Image or video of a person getting hit by a car</li>
+      <li>Image of mummified bodies</li>
+      <li>Video of live worms in a bowl</li>
+    </ul>
+  </p> -->
 
   <!-- Benefits -->
   <h2>Benefits as a result of participation:</h2>
@@ -91,7 +109,7 @@ The consent.html displays the text of an IRB-approved consent form.
   <p>
     You may not benefit directly from allowing your study data to be shared with NDA. The study data provided to NDA may help researchers around the world learn more about mental health and substance use and how to help others who have problems with mental health and substance use. NIMH will also report to Congress and on its website about the different studies using NDA data. You will not be contacted directly about the study data you contributed to the NDA.
   </p>
-
+  
   <p>
     This research is covered by a Certificate of Confidentiality from the NIH. Researchers with this Certificate will not disclose or use information that may identify you in any federal, state, or local civil, criminal, administrative, legislative, or other action, suit, or proceeding, even if there is a court subpoena. Exceptions include: a) A federal, state, or local law that requires disclosure, such as reasonable cause to believe that a child has been subjected to child abuse or acts of child abuse. b) Your explicit approval for the researchers to release your name and/or personally identifiable information.
   </p>
@@ -123,6 +141,16 @@ The consent.html displays the text of an IRB-approved consent form.
       <li>Office of Research Integrity and Assurance</li>
       <li>Email: irb@princeton.edu</li>
     </ul>
+  </p>
+  <p> If you wish to save a copy of the consent form, click the Print button to print and/or save as PDF: 
+    <br>
+    <button onclick="printFunction()">Print or Save Consent Form</button>
+    <script>
+          function printFunction() { 
+            window.print(); 
+          }
+    </script>
+    <br>
   </p>
 
   <hr>
