@@ -149,9 +149,9 @@ VOCABULARY = [];
 
 // Predefine fixation cross.
 const fixation = {
-  type: 'html-keyboard-response',
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: '<div style="font-size: 48px"></div>',
-  choices: jsPsych.NO_KEYS,
+  choices: 'NO_KEYS',
   trial_duration: 600
 }
 
@@ -172,7 +172,7 @@ items.forEach((item, i) => {
 
   // Define trial.
   const trial = {
-    type: 'html-button-response',
+    type: jsPsychHtmlButtonResponse,
     stimulus: '<h3>' + item.stimulus + '</h3>',
     choices: choices,
     prompt: "<p><i><small>" + prompt + "</small></i></p>",
@@ -207,7 +207,7 @@ items.forEach((item, i) => {
 //---------------------------------------//
 
 var instructions_01 = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     `<h3>Vocabulary Test</h3>In this task, you will be shown a series of words. Your goal is to select one word<br>that comes closest to the meaning of the word in capital letters.</p><p>Now let's  practice. Press the "Next" button to get started.</p>`
   ],
@@ -218,7 +218,7 @@ var instructions_01 = {
 }
 
 var practice = {
-  type: 'html-button-response',
+  type: jsPsychHtmlButtonResponse,
   stimulus: "<h3>BEAST</h3>",
   choices: ["afraid", "words", "large", "animal", "separate"],
   trial_duration: trial_duration,
@@ -263,7 +263,7 @@ var practice_node = {
 }
 
 var instructions_02 = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     '<p>Great job! Now you understand what to do.</p><p>Now, we will move onto the real words.</p>',
     '<p>There are 20 words in total and no time limit.</p><p>Take as much time as you need and try to be as accurate as you can be.</p><p>If you really do not know an answer, then you should guess.</p><p>You will <u>not</u> receive feedback after you make your choice.</p><p>Press the "Next" button to get started.</p>'
