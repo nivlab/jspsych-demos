@@ -7,22 +7,13 @@
   <script src="../../lib/jspsych-7.3.1/jspsych.js"></script>
 
   <!-- Load jsPsych plug-ins -->
-  <script src="./jspsych-screen-check.js"></script>
+  <script src="./plugin-screen-check.js"></script>
 
   <!-- Load CSS styles -->
   <link href="../../lib/jspsych-7.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
 </head>
 <body></body>
 <script>
-
-  // Display alert message on back/refresh.
-  // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
-  function verify_unload(e){
-    e.preventDefault();
-    (e || window.event).returnValue = null;
-    return null;
-  };
-  window.addEventListener("beforeunload", verify_unload);
 
   // Query URL
   const urlParams = new URLSearchParams(window.location.search);
@@ -42,9 +33,6 @@
   // Initialize jsPsych.
   var jsPsych = initJsPsych({
     on_finish: function() {
-
-      // Remove requirement to verify redirect
-      window.removeEventListener("beforeunload", verify_unload);
 
       // Add interactions to the data variable
       var interaction_data = jsPsych.data.getInteractionData();
