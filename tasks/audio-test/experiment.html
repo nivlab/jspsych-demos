@@ -25,11 +25,15 @@
     './audio/audio4.mp3',
   ];
 
-  // define preload
+  // Define image preloading.
   var preload = {
     type: jsPsychPreload,
     audio: [stimuli],
-    message: 'Loading sounds. This may take a moment depending on your internet connection.'
+    message: 'Loading images. This may take a moment depending on your internet connection.',
+    error_message: '<p>The experiment failed to load. Please try restarting your browser.</p><p>If this error persists after 2-3 tries, please contact the experimenter.</p>',
+    continue_after_error: false,
+    show_progress_bar: true,
+    max_load_time: 30000
   }
 
   // define audio test
