@@ -10,7 +10,7 @@ var n_loops = 0;
 //---------------------------------------//
 // Define instructions (section 1a)
 //---------------------------------------//
-// The purpose of this section is to introduce the “alien space trading” mechanic.
+// The purpose of this section is to introduce the "alien space trading" mechanic.
 // The key pieces of information to communicate are:
 //   - The two planets and their respective aliens
 //   - Trading with aliens for treasure or junk
@@ -19,7 +19,7 @@ var n_loops = 0;
 
 // Define instructions screens.
 const instructions_1a = {
-  type: 'two-step-instructions',
+  type: jsPsychTwoStepInstructions,
   pages: [
     "<p>In this game, you will be visiting different alien planets<br>in search of treasure.</p>",
     `<p>Each planet has two aliens on it. For example:</p><p>The <b><font color='${practice_info.font_colors[2]}'>${practice_info.planet_names[0]}</font></b> aliens live on the <b><font color='${practice_info.font_colors[2]}'>${practice_info.planet_names[0]}</font></b> planet.</p><p>The <b><font color='${practice_info.font_colors[3]}'>${practice_info.planet_names[1]}</font></b> aliens live on the <b><font color='${practice_info.font_colors[3]}'>${practice_info.planet_names[1]}</font></b> planet.</p>`,
@@ -51,7 +51,7 @@ const instructions_1a = {
 
 // Define section 1 comprehension check.
 const quiz_1 = {
-  type: 'two-step-comprehension',
+  type: jsPsychTwoStepComprehension,
   prompts: [
     "To choose an alien to trade with, which keys do you use?",
     "<i>True</i> or <i>False</i>:&nbsp;Your goal is to figure out which aliens are most likely to give treasure.",
@@ -72,7 +72,7 @@ const quiz_1 = {
 
 const instructions_1a_help_node = {
   timeline: [{
-    type: 'two-step-instructions',
+    type: jsPsychTwoStepInstructions,
     pages: [
       "<p>You did not answer all of the quiz questions correctly.</p><p>Please review the following instructions carefully.</p>"
     ],
@@ -122,7 +122,7 @@ var instructions_loop_1a = {
 // Define instructions screens.
 const instructions_1b_node = {
   timeline: [{
-    type: 'two-step-instructions',
+    type: jsPsychTwoStepInstructions,
     pages: [
       "<p>Great job! Now let's practice with two aliens.</p><p>On the next screen, use the <b>left/right arrow keys</b> on your keyboard to choose an alien to trade with. You will have 10 chances to figure out which alien is more likely to give you treasure.</p>",
       // "<p><b>Hint:</b> The aliens will sometimes switch the side of the screen<br>they are on. The side an alien appears on does not change<br>how likely it is to give you treasure.</p>"
@@ -151,7 +151,7 @@ var practice_1_counter = 0;
 // Define section 1 practice
 const practice_1_node = {
   timeline: [{
-    type: 'alien-practice',
+    type: jsPsychTwoStepAlienPractice,
     outcomes: [],
     aliens: practice_info.aliens.slice(0,2),
     planet_color: practice_info.planet_colors[0],
@@ -187,7 +187,7 @@ const practice_1_node = {
 
 const practice_1_help_node = {
   timeline: [{
-    type: 'two-step-instructions',
+    type: jsPsychTwoStepInstructions,
     pages: [
       "<p>Seems like you're having trouble.</p><p>Remember, you are trying to find the alien that  gives you treasure<br><b>most of the time</b>.</p>",
       "<p>Let's try again.</p><p>On the next screen, use the <b>left/right arrow keys</b> on your keyboard to choose an alien to trade with. You will have 10 more chances to figure out which alien is more likely to give you treasure.</p>"
@@ -232,7 +232,7 @@ const instructions_loop_1b = {
 //   - Keyboard keys for making choices
 
 const instructions_2a = {
-  type: 'two-step-instructions',
+  type: jsPsychTwoStepInstructions,
   pages: [
     "<p>Next, you will learn how to travel to the alien planets.</p>",
     `<p>To visit a planet, you will pick a rocket ship to travel on.</p><p>Below are two example rocket ships to pick from:<br>the <b><font color='${practice_info.font_colors[0]}'>${practice_info.rocket_names[0]}</font></b> and <b><font color='${practice_info.font_colors[1]}'>${practice_info.rocket_names[1]}</font></b> rocket ships.</p>`,
@@ -260,7 +260,7 @@ const instructions_2a = {
 
 // Define section 1 comprehension check.
 const quiz_2 = {
-  type: 'two-step-comprehension',
+  type: jsPsychTwoStepComprehension,
   prompts: [
     "To choose a rocket ship to travel on, which keys do you use?",
     "<i>True</i> or <i>False</i>:&nbsp;&nbsp;Rocket ships will always travel to the same planets.",
@@ -281,7 +281,7 @@ const quiz_2 = {
 
 const instructions_2a_help_node = {
   timeline: [{
-    type: 'two-step-instructions',
+    type: jsPsychTwoStepInstructions,
     pages: [
       "<p>You did not answer all of the quiz questions correctly.</p><p>Please review the following instructions carefully.</p>"
     ],
@@ -329,7 +329,7 @@ var instructions_loop_2a = {
 //---------------------------------------//
 
 const instructions_2b = {
-  type: 'two-step-instructions',
+  type: jsPsychTwoStepInstructions,
   pages: [
     "<p>Now, let's practice 10 turns of the whole game.</p><p>On the next screen, use the <b>left/right arrow keys</b> on your keyboard to choose a rocket ship. Then, when you arrive at a planet, use the left/right arrow keys again to pick an alien.</p>",
     "<p><b>Remember:</b> a rocket ship will fly mostly to one planet,</p><p>but sometimes it'll take you to the other planet!</p>",
@@ -346,7 +346,7 @@ const instructions_2b = {
 // Define section 2 practice
 const practice_2 = {
   timeline: [{
-    type: 'two-step-trial',
+    type: jsPsychTwoStepTrial,
     transition: 1,
     outcomes: [],
     rocket_colors: practice_info.rocket_colors,
@@ -408,7 +408,7 @@ const instructions_loop_2b = {
 //     the desired planet
 
 const instructions_3a = {
-  type: 'two-step-instructions',
+  type: jsPsychTwoStepInstructions,
   pages: [
     "<p>At the end of the game, the total amount of treasure you've collected</p><p>will be converted into a <b>performance bonus</b>.</p>",
     "<p>Your goal is to try and collect as much treasure as you can!</p>",
@@ -437,7 +437,7 @@ const instructions_3a = {
 
 // Define section 1 comprehension check.
 const quiz_3 = {
-  type: 'two-step-comprehension',
+  type: jsPsychTwoStepComprehension,
   prompts: [
     "<i>True</i> or <i>False</i>:&nbsp;&nbsp;How likely an alien is to give you treasure changes slowly over time.",
     "<i>True</i> or <i>False</i>:&nbsp;&nbsp;How likely an alien is to give you treasure depends on the rocket ship you choose.",
@@ -458,7 +458,7 @@ const quiz_3 = {
 
 const instructions_3a_help_node = {
   timeline: [{
-    type: 'two-step-instructions',
+    type: jsPsychTwoStepInstructions,
     pages: [
       "<p>You did not answer all of the quiz questions correctly.</p><p>Please review the following instructions carefully.</p>"
     ],
@@ -506,7 +506,7 @@ const instructions_loop_3a = {
 //---------------------------------------//
 
 var INSTRUCTIONS_SKIP = {
-  type: 'html-keyboard-response',
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: '<p>You are starting a demo of the <b>two-step task.</b></p><p>To see the instructions, press the "1" key. To skip them, press the "2" key.</p>',
   choices: ["1","2"]
 }
@@ -535,7 +535,7 @@ var INSTRUCTIONS = {
 
 // end experiment early if participant exceeds maximum instructions loops
 var end_experiment = {
-  type: 'call-function',
+  type: jsPsychCallFunction,
   func: function() {
     if (n_loops >= max_loops) {
       low_quality = true;

@@ -112,7 +112,7 @@ for (let i=0; i < outcomes.length; i++){
 
   // Define trial.
   const trial = {
-    type: 'two-step-trial',
+    type: jsPsychTwoStepTrial,
     transition: transitions[i],
     outcomes:  outcomes[i],
     rocket_colors: task_info.rocket_colors,
@@ -174,7 +174,7 @@ for (let i=0; i < outcomes.length; i++){
 
 // Define ready screen.
 var READY_01 = {
-  type: 'two-step-instructions',
+  type: jsPsychTwoStepInstructions,
   pages: [
     "<p>Great job! You've finished the instructions.</p><p>We'll get started with the real game now.</p>",
     "<p>In the real game, you will see new planets, aliens, and rocket ships.</p><p>However, the rules of the game <b>have not changed</b>.</p>",
@@ -183,7 +183,7 @@ var READY_01 = {
 }
 
 var READY_02 = {
-  type: 'two-step-instructions',
+  type: jsPsychTwoStepInstructions,
   pages: [
     "Take a break for a few moments and press any button when you are ready to continue.",
     "Get ready to begin <b>Block 2/2</b>. It will take ~8 minutes.<br>Press next when you're ready to start.",
@@ -196,7 +196,7 @@ var READY_02 = {
 
 // Define finish screen.
 const instructions_04 = {
-  type: 'two-step-instructions',
+  type: jsPsychTwoStepInstructions,
   pages: [
     "<p>Great job! You've finished the task.</p><p>Before you finish, we have a couple of short questions for you.</p>",
   ]
@@ -204,7 +204,7 @@ const instructions_04 = {
 
 // Define comprehension check.
 const quiz_04 = {
-  type: 'two-step-comprehension',
+  type: jsPsychTwoStepComprehension,
   prompts: [
     `Which rocket ship went mostly to the <b><font color='${task_info.font_colors[0]}'>${task_info.planet_names[0]}</font></b> planet?`,
     `Which rocket ship went mostly to the <b><font color='${task_info.font_colors[1]}'>${task_info.planet_names[1]}</font></b> planet?`,
