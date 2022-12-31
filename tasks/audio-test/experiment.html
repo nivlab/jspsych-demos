@@ -4,26 +4,18 @@
   <title>Audio Test</title>
 
   <!-- Load libraries -->
-  <script src="../../lib/jspsych-6.3.1/jspsych.js"></script>
+  <script src="../../lib/jspsych-7.3.1/jspsych.js"></script>
 
   <!-- Load jsPsych plug-ins -->
-  <script src="./audio-test.js"></script>
-  <script src="../../lib/jspsych-6.3.1/plugins/jspsych-preload.js"></script>
+  <script src="./plugin-audio-test.js"></script>
+  <script src="../../lib/jspsych-7.3.1/plugins/plugin-preload.js"></script>
 
   <!-- Load CSS styles -->
-  <link href="../../lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  <link href="../../lib/jspsych-7.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+
 </head>
 <body></body>
 <script>
-
-  // Display alert message on back/refresh.
-  // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
-  function verify_unload(e){
-    e.preventDefault();
-    (e || window.event).returnValue = null;
-    return null;
-  };
-  window.addEventListener("beforeunload", verify_unload);
 
   // randomly sample audio file
   const stimuli = [
@@ -33,16 +25,20 @@
     './audio/audio4.mp3',
   ];
 
-  // define preload
+  // Define image preloading.
   var preload = {
-    type: 'preload',
+    type: jsPsychPreload,
     audio: [stimuli],
-    message: 'Loading sounds. This may take a moment depending on your internet connection.'
+    message: 'Loading audio. This may take a moment depending on your internet connection.',
+    error_message: '<p>The experiment failed to load. Please try restarting your browser.</p><p>If this error persists after 2-3 tries, please contact the experimenter.</p>',
+    continue_after_error: false,
+    show_progress_bar: true,
+    max_load_time: 30000
   }
 
   // define audio test
   var audio_test = {
-    type: 'audio-test',
+    type: jsPsychAudioTest,
     stimulus: stimuli
   }
 
@@ -51,13 +47,9 @@
   timeline = timeline.concat(preload);
   timeline = timeline.concat(audio_test);
 
-  jsPsych.init({
-    timeline: timeline,
-    show_progress_bar: true,
+  // Initialize jsPsych.
+  var jsPsych = initJsPsych({
     on_finish: function() {
-
-      // Remove requirement to verify redirect
-      window.removeEventListener("beforeunload", verify_unload);
 
       // Add interactions to the data variable
       var interaction_data = jsPsych.data.getInteractionData();
@@ -67,7 +59,10 @@
       jsPsych.data.displayData();
 
     }
-  })
+  });
+
+  // Execute timeline.
+  jsPsych.run(timeline);
 
 </script>
 </html>

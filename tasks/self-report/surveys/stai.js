@@ -10,7 +10,7 @@
 **/
 
 var stai = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "I feel pleasant.",
     "I feel nervous and restless.",

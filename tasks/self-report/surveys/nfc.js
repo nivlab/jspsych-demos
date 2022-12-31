@@ -12,7 +12,7 @@
 **/
 
 var nfc6 = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "I would prefer complex to simple problems.",
     "I like to have the responsibility of handling a situation that requires a lot of thinking.",
@@ -38,7 +38,7 @@ var nfc6 = {
 }
 
 var nfc10 = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "I would prefer complex to simple problems.",
     "I like to have the responsibility of handling a situation that requires a lot of thinking.",

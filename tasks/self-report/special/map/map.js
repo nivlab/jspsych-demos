@@ -10,7 +10,7 @@
 
 // Social pleasure
 var map_01 = {
-  type: 'survey-map',
+  type: jsPsychSurveyMap,
   questions: [
     {
       item: 'In the past week, what is the <i>most</i> pleasure you experienced from being with other people?',
@@ -35,7 +35,7 @@ var map_01 = {
 
 // Recreational or work pleasure
 var map_02 = {
-  type: 'survey-map',
+  type: jsPsychSurveyMap,
   questions: [
     {
       item: 'In the past week, what is the <i>most</i> pleasure you experienced from hobbies, recreation, or from work?',
@@ -60,7 +60,7 @@ var map_02 = {
 
 // Feelings and motivations about close, caring relationships
 var map_03 = {
-  type: 'survey-map',
+  type: jsPsychSurveyMap,
   questions: [
     {
       item: 'When it comes to close relationships with your <i>family members</i>, how important have these relationships been to you over the past week?',
@@ -85,7 +85,7 @@ var map_03 = {
 
 // Motivation and effort to engage in activities
 var map_04 = {
-  type: 'survey-map',
+  type: jsPsychSurveyMap,
   questions: [
     {
       item: 'In the past week, how <i>motivated</i> have you been to be around other people and do things with them?',

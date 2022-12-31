@@ -8,7 +8,7 @@
 **/
 
 var oci = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "I have saved up so many things that they get in the way.",
     "I check things more often than necessary.",

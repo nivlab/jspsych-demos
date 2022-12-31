@@ -19,7 +19,7 @@
 
 // 16-item version
 var pswq = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "If I don't have enough time to do everything, I do not worry about it.",                // Q1; to be reverse-scored; included in full version
     "My worries overwhelm me.",                                                              // Q2; included in 8-item and full version
@@ -57,7 +57,7 @@ var pswq = {
 
 // 8-item version
 var pswq_v8 = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "My worries overwhelm me.",                                                              // Q2; included in 8-item and full version
     "Many situations make me worry.",                                                        // Q4; included in 3-item, 8-item, and full version
@@ -87,7 +87,7 @@ var pswq_v8 = {
 
 // 3-item version
 var pswq_v3 = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "Many situations make me worry.",                                                        // Q4; included in 3-item, 8-item, and full version
     "Once I start worrying, I can't stop.",                                                  // Q14; included in 3-item and full version

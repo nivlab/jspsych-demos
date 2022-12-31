@@ -14,7 +14,7 @@
 **/
 
 var acqr = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
 
     // Emotional control subscale

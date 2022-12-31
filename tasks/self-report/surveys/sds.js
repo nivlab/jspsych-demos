@@ -7,7 +7,7 @@
 **/
 
 var sds = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "I feel down-hearted and blue.",
     "Morning is when I feel the best.",

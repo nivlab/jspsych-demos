@@ -1,7 +1,5 @@
 # Self-Report
 
-Author(s): Sam Zorowitz, Dan Bennett, Dan Mirea
-
 This folder contains template jsPsych code for self-report questionnaires, demographics forms, and debriefing forms.
 
 ## Self-report measures
@@ -12,20 +10,20 @@ This folder contains template jsPsych code for self-report questionnaires, demog
 | [Adverse childhood experience questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/ace.js) | Measure of adverse childhood experiences | Niv |
 | [Adult ADHD Self-Report Scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/asrs.js) | Measure of ADHD symptoms | Niv |
 | [Affective slider](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/affective-slider.js) | Measure of state mood & arousal | Niv, Daw |
-| [Alcohol use disorders identification test](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-survey-audit.js) | Measure of alcohol use | Niv, Daw |
+| [Alcohol use disorders identification test](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/plugin-survey-audit.js) | Measure of alcohol use | Niv, Daw |
 | [Anxious control questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/acqr.js) | Measure of perceived self-efficacy | Daw |
 | [Apathy evaluation scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/aes.js) | Measure of apathy and amotivation | Daw |
 | [Autism spectrum quotient](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/aq10.js) | Measure of Autism spectrum behaviors | Niv |
 | [Adult ADHD Self-Report Scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/asrs.js) | Measure of ADHD symptoms | Niv |
 | [Barratt impulsivity scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/bis11.js) | Measure of impulse control | Niv, Daw |
 | [Behavioral inhibition / activation scales](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/bisbas.js) | Measure of reward / punishment motivation | Niv, Daw |
-| [Cannabis use inventory](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-survey-dfaq.js) | Measure of cannabis use | Niv |
+| [Cannabis use inventory](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/plugin-survey-dfaq.js) | Measure of cannabis use | Niv |
 | [Childhood trauma questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/ctq.js) | Measure of childhood trauma | Niv |
-| [COVID beliefs & behaviors](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-survey-covid.js) | Measure of factors related to COVID-19 | Niv |
+| [COVID beliefs & behaviors](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/plugin-survey-covid.js) | Measure of factors related to COVID-19 | Niv |
 | [Depressive attributions questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/daq.js) | Measure of depressive attributions | Niv |
 | [Depression, anxiety, & stress scales](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/dass.js) | Measure of depression, anxiety, & stress symptoms | Niv |
-| [Disorder checklist](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-disorder-checklist.js) | Measure of psychiatric diagnoses | Niv |
-| [Drug use disorders identification test](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-survey-dudit.js) | Measure of drug use | Niv |
+| [Disorder checklist](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/plugin-disorder-checklist.js) | Measure of psychiatric diagnoses | Niv |
+| [Drug use disorders identification test](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/plugin-survey-dudit.js) | Measure of drug use | Niv |
 | [Eating attitudes test](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/eat26.js) | Measure of eating disorder symptoms | Daw |
 | [Generalized anxiety disorder scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/gad7.js) | Measure of anxiety symptoms | Niv, Daw |
 | [General behavior inventory](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/gbi.js) | Measure of mania and depressive symptoms | Niv |
@@ -54,7 +52,7 @@ This folder contains template jsPsych code for self-report questionnaires, demog
 | [Snaith-Hamilton anhedonia scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/shaps.js) | Measure of anhedonia & depression symptoms | Niv |
 | [Self-evaluation of negative symptoms](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/sns.js) | Measure of negative symptoms | Niv |
 | [Snaith-Hamilton anhedonia scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/shaps.js) | Measure of anhedonia & depression symptoms | Niv |
-| [SONA prescreening form](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/jspsych-sona-screening.js) | Prescreening items for SONA participants | Niv |
+| [SONA prescreening form](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/special/plugin-sona-screening.js) | Prescreening items for SONA participants | Niv |
 | [State-trait anxiety inventory](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/stai.js) | Measure of negative affect | Niv, Daw |
 | [State-trait inventory of cognitive & somatic anxiety](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/sticsa.js) | Measure of anxiety symptoms | Niv, Daw |
 

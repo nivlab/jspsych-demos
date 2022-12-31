@@ -8,7 +8,7 @@
 **/
 
 var gad7 = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "Feeling nervous, anxious, or on edge",
     "Not being able to stop or control worrying",

@@ -37,6 +37,17 @@ preload_images = [
   "./img/instructions09.png",
 ];
 
+// Define image preloading.
+var preload = {
+  type: jsPsychPreload,
+  images: preload_images,
+  message: 'Loading images. This may take a moment depending on your internet connection.',
+  error_message: '<p>The experiment failed to load. Please try restarting your browser.</p><p>If this error persists after 2-3 tries, please contact the experimenter.</p>',
+  continue_after_error: false,
+  show_progress_bar: true,
+  max_load_time: 30000
+}
+
 //------------------------------------//
 // Define instructions block.
 //------------------------------------//
@@ -46,7 +57,7 @@ const style = "width:auto; height:auto; max-width:100%; max-height:80vh;";
 
 // Define instructions sequence.
 var instructions = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     `<img src='./img/instructions01.png' style="${style}"<./img>`,
     `<img src='./img/instructions02.png' style="${style}"<./img>`,
@@ -114,7 +125,7 @@ for (i = 0; i < outcomes.length; i++) {
 
   // Define trial.
   const trial = {
-    type: 'three-arm-trial',
+    type: jsPsychThreeArmTrial,
     contexts: contexts,
     outcomes: outcomes[i],
     choices: choices,

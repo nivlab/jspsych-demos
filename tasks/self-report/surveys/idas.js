@@ -9,7 +9,7 @@
 **/
 
 var idas = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "I blamed myself for things",
     "I felt depressed",

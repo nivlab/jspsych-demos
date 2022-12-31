@@ -13,7 +13,7 @@
 **/
 
 var seven_up_seven_down = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
 
     // Hypomania subscale

@@ -35,7 +35,7 @@ const style = "width:auto; height:auto; max-width:100%; max-height:75vh;";
 
 // Instructions (part 01)
 var INSTRUCTIONS_01 = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     `<img src='./img/instructions01.png' style="${style}"></img>`,
     `<img src='./img/instructions02.png' style="${style}"></img>`,
@@ -55,7 +55,7 @@ var INSTRUCTIONS_01 = {
 
 // Practice games
 var PRACTICE_H5 = {
-  type: "horizons-trial",
+  type: jsPsychHorizonsTrial,
   horizon: 5,
   rewards_L: [44, 57, 74, 72, 62],
   rewards_R: [31, 33, 24, 39, 29],
@@ -64,7 +64,7 @@ var PRACTICE_H5 = {
 }
 
 var PRACTICE_H10 = {
-  type: "horizons-trial",
+  type: jsPsychHorizonsTrial,
   horizon: 10,
   rewards_L: [64, 50, 57, 35, 52, 38, 44, 61, 39, 38],
   rewards_R: [70, 69, 76, 71, 75, 58, 81, 84, 57, 61],
@@ -74,7 +74,7 @@ var PRACTICE_H10 = {
 
 // Instructions (part 02)
 var INSTRUCTIONS_02 = {
-  type: "instructions",
+  type: jsPsychInstructions,
   pages: [
     `<img src='./img/instructions11.png' style="${style}"></img>`,
     `<img src='./img/instructions12.png' style="${style}"></img>`,
@@ -88,7 +88,7 @@ var INSTRUCTIONS_02 = {
 
 // Comprehension check.
 var COMPREHENSION = {
-  type: 'horizons-comprehension'
+  type: jsPsychHorizonsComprehension
 }
 
 // Define instructions loop.
@@ -126,10 +126,10 @@ var INSTRUCTIONS = {
 //------------------------------------//
 
 var READY_01 = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     "Great job! You've passed the comprehension check.",
-    "Get ready to begin <b>Block 1/2</b>. It will take ~6 minutes.<br>Press next when you're ready to start.",
+    "Get ready to begin <b>Block 1/2</b>.<br>Press next when you're ready to start.",
   ],
   show_clickable_nav: true,
   button_label_previous: "Prev",
@@ -137,10 +137,10 @@ var READY_01 = {
 }
 
 var READY_02 = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     "Take a break for a few moments and press any button when you are ready to continue.",
-    "Get ready to begin <b>Block 2/2</b>. It will take ~6 minutes.<br>Press next when you're ready to start.",
+    "Get ready to begin <b>Block 2/2</b>.<br>Press next when you're ready to start.",
   ],
   show_clickable_nav: true,
   button_label_previous: "Prev",
@@ -149,7 +149,7 @@ var READY_02 = {
 
 // Define finish screen.
 var FINISHED = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     "Great job! You've finished the task.",
   ],

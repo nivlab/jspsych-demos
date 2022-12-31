@@ -47,7 +47,7 @@ items.forEach((j, i) => {
   // Define screen check.
   const screen_check = {
     timeline: [{
-      type: 'screen-check',
+      type: jsPsychScreenCheck,
       min_width: min_width,
       min_height: min_height
     }],
@@ -62,9 +62,9 @@ items.forEach((j, i) => {
 
   // Define fixation.
   const fixation = {
-    type: 'html-keyboard-response',
+    type: jsPsychHtmlKeyboardResponse,
     stimulus: '',
-    choices: jsPsych.NO_KEYS,
+    choices: 'NO_KEYS',
     trial_duration: 1200,
     on_start: function(trial) {
       const k = jsPsych.data.get().filter({trial_type: 'mars', item_set: 3}).count();
@@ -74,7 +74,7 @@ items.forEach((j, i) => {
 
   // Define trial.
   const trial = {
-    type: 'mars',
+    type: jsPsychMars,
     item: j,
     shape_set: shape_set,
     distractor: distractor,

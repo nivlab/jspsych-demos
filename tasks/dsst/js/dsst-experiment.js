@@ -34,7 +34,7 @@ img_files = [].concat.apply(img_files, arrays);
 //---------------------------------------//
 
 var instructions_01 = {
-  type: 'dsst-instructions',
+  type: jsPsychDsstInstructions,
   pages: [
     "<p>In this task, you will see a series of symbols.<br>Each symbol is paired with a number (top row).</p>",
     "<p>When you see a symbol pop up, your task is to enter its<br>number using the 1,2,3 keys on your keyboard.</p>",
@@ -50,7 +50,7 @@ var instructions_01 = {
 
 var practice = {
   timeline: [{
-    type: 'dsst',
+    type: jsPsychDsst,
     stimuli: img_files.slice(0,3),
     target: jsPsych.timelineVariable('target'),
     valid_responses: jsPsych.timelineVariable('valid_responses')
@@ -73,7 +73,7 @@ var practice = {
 }
 
 var instructions_02 = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     `<p>Great job! Now we will get stared with the actual task.</p><p>You will have 90 seconds to complete as many trials as possible.</p><p>Try to work as quickly as you can. You will get a break every 30 seconds.</p><p>Press the "Next" button when you're ready to start.</p>`
   ],
@@ -111,7 +111,7 @@ repeatShuffles([0,0,0,1,1,1,2,2,2], 25).forEach(k => {
 
   // Define single trial.
   const trial = {
-    type: 'dsst',
+    type: jsPsychDsst,
     stimuli: img_files.slice(3,6),
     target: k,
     valid_responses: valid_responses[k],
@@ -147,7 +147,7 @@ repeatShuffles([0,0,0,1,1,1,2,2,2], 25).forEach(k => {
 
   // Define single trial.
   const trial = {
-    type: 'dsst',
+    type: jsPsychDsst,
     stimuli: img_files.slice(6,9),
     target: k,
     valid_responses: valid_responses[k],
@@ -183,7 +183,7 @@ repeatShuffles([0,0,0,1,1,1,2,2,2], 25).forEach(k => {
 
   // Define single trial.
   const trial = {
-    type: 'dsst',
+    type: jsPsychDsst,
     stimuli: img_files.slice(9,12),
     target: k,
     valid_responses: valid_responses[k],
@@ -218,7 +218,7 @@ repeatShuffles([0,0,0,1,1,1,2,2,2], 25).forEach(k => {
 //---------------------------------------//
 
 var PAUSE_01 = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     '<p>Take a break for a few moments and press "Next" when you are ready to continue.</p>',
     "<p>Get ready to begin <b>Block 2/3</b></p><p>Press next when you're ready to start.</p>",
@@ -237,7 +237,7 @@ var PAUSE_01 = {
 }
 
 var PAUSE_02 = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     '<p>Take a break for a few moments and press "Next" when you are ready to continue.</p>',
     "<p>Get ready to begin <b>Block 3/3</b></p><p>Press next when you're ready to start.</p>",
@@ -256,7 +256,7 @@ var PAUSE_02 = {
 }
 
 var FINISHED = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     `<p>Great job! You've finished the task.</p><p>Press "Next" to end the experiment.</p>`
   ],

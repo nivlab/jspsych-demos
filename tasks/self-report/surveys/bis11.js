@@ -13,7 +13,7 @@
 **/
 
 var bis11 = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
 
     // Attentional impulsivity

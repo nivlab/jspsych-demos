@@ -17,7 +17,7 @@
 **/
 
 var dass = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
 
     // Depression subscale

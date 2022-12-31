@@ -7,7 +7,7 @@
 **/
 
 var aes = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "I am interested in things.",
     "I get things done during the day.",

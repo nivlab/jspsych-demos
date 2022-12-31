@@ -10,7 +10,7 @@
 **/
 
 var rts = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "I find that my mind often goes over things again and again.",
     "When I have a problem, it will gnaw on my mind for a long time.",

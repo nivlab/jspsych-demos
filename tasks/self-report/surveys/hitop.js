@@ -15,7 +15,7 @@
 **/
 
 var hitop = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
 
     // Depression / anxiety
