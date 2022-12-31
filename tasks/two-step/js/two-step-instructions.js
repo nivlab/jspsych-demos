@@ -528,18 +528,3 @@ var INSTRUCTIONS = {
         }
     }
 }
-
-//---------------------------------------//
-// Define useful functions
-//---------------------------------------//
-
-// end experiment early if participant exceeds maximum instructions loops
-var end_experiment = {
-  type: jsPsychCallFunction,
-  func: function() {
-    if (n_loops >= max_loops) {
-      low_quality = true;
-      jsPsych.endExperiment();
-    }
-  }
-}

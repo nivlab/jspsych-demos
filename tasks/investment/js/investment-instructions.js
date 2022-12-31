@@ -7,21 +7,6 @@ const max_errors = 0;
 const max_loops = 6;
 var n_loops = 0;
 
-//---------------------------------------//
-// Define useful functions
-//---------------------------------------//
-
-// end experiment early if participant exceeds maximum instructions loops
-var end_experiment = {
-  type: jsPsychCallFunction,
-  func: function() {
-    if (n_loops >= max_loops) {
-      low_quality = true;
-      jsPsych.endExperiment();
-    }
-  }
-}
-
 //------------------------------------//
 // Define instructions (part 1).
 //------------------------------------//
@@ -398,8 +383,6 @@ var instructions_loop_2 = {
 // Define instructions loop.
 var INSTRUCTIONS = [
   instructions_loop_1,
-  end_experiment,
   practice_block,
   instructions_loop_2,
-  end_experiment
 ];
