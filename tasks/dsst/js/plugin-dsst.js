@@ -168,7 +168,7 @@ var jsPsychDsst = (function (jspsych) {
           allow_held_key: false
         });
       }, trial.iti_duration);
-      
+
       // end trial if trial_duration is set
       if (trial.trial_duration !== null) {
         jsPsych.pluginAPI.setTimeout(function() {
@@ -176,7 +176,7 @@ var jsPsychDsst = (function (jspsych) {
         }, trial.trial_duration + trial.iti_duration);
       }
 
-    };
+    }
   };
   DsstPlugin.info = info;
 
