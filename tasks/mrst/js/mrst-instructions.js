@@ -12,7 +12,7 @@ const max_errors = 0;
 //------------------------------------//
 
 var instructions_01 = {
-  type: 'mrst-instructions',
+  type: jsPsychMrstInstructions,
   pages: [
     {
       prompt: "<p>We are now beginning the <b>Double or Nothing</b> card game.</p><p>Use the buttons below, or your keyboard's arrow keys,<br>to navigate the instructions.</p>",
@@ -82,7 +82,7 @@ var practice_01_loops = 0;
 
 // Practice trial #1
 const practice_01_trial = {
-  type: 'mrst-trial',
+  type: jsPsychMrstTrial,
   stimulus: './img/animals/rabbit-shape.svg',
   color: '#3d85c690',
   points: '10',
@@ -122,7 +122,7 @@ const practice_01_node = {
 
 // Practice help #1
 const practice_01_help = {
-  type: 'mrst-instructions',
+  type: jsPsychMrstInstructions,
   pages: [
     {
       prompt: "<p>Seems like you're having trouble.</p>",
@@ -153,7 +153,7 @@ const practice_01_help_node = {
 
 // Practice counter #1
 const practice_01_incrementer = {
-  type: 'call-function',
+  type: jsPsychCallFunction,
   func: function(){ practice_01_loops++; }
 }
 
@@ -178,7 +178,7 @@ const practice_block_01 = {
 //------------------------------------//
 
 var instructions_02 = {
-  type: 'mrst-instructions',
+  type: jsPsychMrstInstructions,
   pages: [
     {
       prompt: "<p>Great job! As you learned, the rabbit card was lucky and gave you</p><p>10 points <i>most</i> of the time you chose it (but not every time).</p>",
@@ -212,7 +212,7 @@ var practice_02_loops = 0;
 
 // Practice trial #2
 const practice_02_trial = {
-  type: 'mrst-trial',
+  type: jsPsychMrstTrial,
   stimulus: './img/animals/horse-black-shape.svg',
   color: '#6aa84f91',
   points: '10',
@@ -252,7 +252,7 @@ const practice_02_node = {
 
 // Practice help #2
 const practice_02_help = {
-  type: 'mrst-instructions',
+  type: jsPsychMrstInstructions,
   pages: [
     {
       prompt: "<p>Seems like you're having trouble.</p>",
@@ -283,7 +283,7 @@ const practice_02_help_node = {
 
 // Practice counter #2
 const practice_02_incrementer = {
-  type: 'call-function',
+  type: jsPsychCallFunction,
   func: function(){ practice_02_loops++; }
 }
 
@@ -308,7 +308,7 @@ const practice_block_02 = {
 //------------------------------------//
 
 instructions_03 = {
-  type: 'mrst-instructions',
+  type: jsPsychMrstInstructions,
   pages: [
     {
       prompt: "<p>Good job! Now you know how to play the game.</p><p>Before we start the real game, here are some final details.</p>",
@@ -342,7 +342,7 @@ instructions_03 = {
 var n_comp_loops = 0;
 
 var quiz = {
-  type: 'mrst-comprehension',
+  type: jsPsychMrstComprehension,
   prompts: [
     "<b><i>True</i> or <i>False</i>:</b>&nbsp;&nbsp;Some animal cards are luckier than others.",
     "<b><i>True</i> or <i>False</i>:</b>&nbsp;&nbsp;I will earn points for the card I <u>did not</u> choose.",
@@ -372,7 +372,7 @@ var quiz = {
 }
 
 var instructions_review = {
-  type: 'mrst-instructions',
+  type: jsPsychMrstInstructions,
   pages: [
     {
       prompt: "<p>You did not answer all of the quiz questions correctly.</p><p>Please review the following instructions carefully.</p>",
@@ -439,7 +439,7 @@ const quiz_block = {
 //------------------------------------//
 
 var INSTRUCTIONS_SKIP = {
-  type: 'html-keyboard-response',
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: '<p>You are starting a demo of the <b>risk sensitivity task.</b></p><p>To see the instructions, press the "1" key. To skip them, press the "2" key.</p>',
   choices: ["1","2"]
 }

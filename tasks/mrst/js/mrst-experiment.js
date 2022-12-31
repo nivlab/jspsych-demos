@@ -69,7 +69,7 @@ for (let i = 0; i < 1; i++) {
       // Define screen check.
       const screen_check = {
         timeline: [{
-          type: 'screen-check',
+          type: jsPsychScreenCheck,
           min_width: min_width,
           min_height: min_height
         }],
@@ -84,7 +84,7 @@ for (let i = 0; i < 1; i++) {
 
       // Define trial
       var trial = {
-        type: 'mrst-trial',
+        type: jsPsychMrstTrial,
         stimulus: stimuli[k],
         color: colors[k],
         points: points,
@@ -150,7 +150,7 @@ for (let i = 0; i < 1; i++) {
 
 // Define ready screen.
 var READY = {
-  type: 'mrst-instructions',
+  type: jsPsychMrstInstructions,
   pages: [
     {
       prompt: "<p>Get ready to begin the task demo.</p><p>Press next when you're ready to start.</p>",
