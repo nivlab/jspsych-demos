@@ -41,3 +41,40 @@ var game_03 = {
 }
 
 var HORIZONS = jsPsych.randomization.shuffle([game_01, game_02, game_03]);
+
+//------------------------------------//
+// Define transition screens.
+//------------------------------------//
+
+var READY_01 = {
+  type: jsPsychInstructions,
+  pages: [
+    "Great job! You've passed the comprehension check.",
+    "Get ready to begin <b>Block 1/2</b>.<br>Press next when you're ready to start.",
+  ],
+  show_clickable_nav: true,
+  button_label_previous: "Prev",
+  button_label_next: "Next",
+}
+
+var READY_02 = {
+  type: jsPsychInstructions,
+  pages: [
+    "Take a break for a few moments and press any button when you are ready to continue.",
+    "Get ready to begin <b>Block 2/2</b>.<br>Press next when you're ready to start.",
+  ],
+  show_clickable_nav: true,
+  button_label_previous: "Prev",
+  button_label_next: "Next",
+}
+
+// Define finish screen.
+var FINISHED = {
+  type: jsPsychInstructions,
+  pages: [
+    "Great job! You've finished the task.",
+  ],
+  show_clickable_nav: true,
+  button_label_previous: "Prev",
+  button_label_next: "Next",
+}

@@ -91,6 +91,16 @@ var COMPREHENSION = {
   type: jsPsychHorizonsComprehension
 }
 
+//------------------------------------//
+// Define instructions block.
+//------------------------------------//
+
+var INSTRUCTIONS_SKIP = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: '<p>You are starting a demo of the <b>Pavlovian go/no-go task.</b></p><p>To see the instructions, press the "1" key. To skip them, press the "2" key.</p>',
+  choices: ["1","2"]
+}
+
 // Define instructions loop.
 var INSTRUCTIONS = {
   timeline: [
@@ -108,52 +118,18 @@ var INSTRUCTIONS = {
     // Check if instructions should repeat.
     if (num_errors > max_errors) {
       num_loops++;
-      if (num_loops >= max_loops) {
-        low_quality = true;
-        return false;
-      } else {
-        return true;
-      }
+      return true;
     } else {
       return false;
     }
 
+  },
+  conditional_function: function(){
+    var data = jsPsych.data.get().last(1).values()[0];
+    if(jsPsych.pluginAPI.compareKeys(data.response, '2')){
+      return false;
+    } else {
+      return true;
+    }
   }
-}
-
-//------------------------------------//
-// Define transition screens.
-//------------------------------------//
-
-var READY_01 = {
-  type: jsPsychInstructions,
-  pages: [
-    "Great job! You've passed the comprehension check.",
-    "Get ready to begin <b>Block 1/2</b>.<br>Press next when you're ready to start.",
-  ],
-  show_clickable_nav: true,
-  button_label_previous: "Prev",
-  button_label_next: "Next",
-}
-
-var READY_02 = {
-  type: jsPsychInstructions,
-  pages: [
-    "Take a break for a few moments and press any button when you are ready to continue.",
-    "Get ready to begin <b>Block 2/2</b>.<br>Press next when you're ready to start.",
-  ],
-  show_clickable_nav: true,
-  button_label_previous: "Prev",
-  button_label_next: "Next",
-}
-
-// Define finish screen.
-var FINISHED = {
-  type: jsPsychInstructions,
-  pages: [
-    "Great job! You've finished the task.",
-  ],
-  show_clickable_nav: true,
-  button_label_previous: "Prev",
-  button_label_next: "Next",
 }
