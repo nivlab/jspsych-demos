@@ -22,7 +22,7 @@ var missed_responses = 0;
 //---------------------------------------//
 
 var instructions_01 = {
-  type: 'palminteri-instructions',
+  type: jsPsychRvlInstructions,
   pages: [
     "We are now starting the experiment.<br><br>Use the buttons below (or the left/right arrow keys) to navigate the instructions.",
     "In this task, you are a space explorer picking your robot crew.<br>The robots will look like the ones below.",
@@ -38,7 +38,7 @@ var instructions_01 = {
 }
 
 var practice_block_01 = {
-  type: 'palminteri-practice',
+  type: jsPsychRvlPractice,
   symbol_L: "V",
   symbol_R: "U",
   outcome_L: "zero",
@@ -49,7 +49,7 @@ var practice_block_01 = {
 }
 
 var instructions_02 = {
-  type: 'palminteri-instructions',
+  type: jsPsychRvlInstructions,
   pages: [
     "Great job! Now let's try for one more set of robots."
   ],
@@ -58,7 +58,7 @@ var instructions_02 = {
 }
 
 var practice_block_02 = {
-  type: 'palminteri-practice',
+  type: jsPsychRvlPractice,
   symbol_L: "W",
   symbol_R: "R",
   outcome_L: "lose",
@@ -69,7 +69,7 @@ var practice_block_02 = {
 }
 
 var instructions_03 = {
-  type: 'palminteri-instructions',
+  type: jsPsychRvlInstructions,
   pages: [
     "During the task, there will be many robots to test.<br>Remember to pay close attention to their symbols.",
     "Your job is to try to select the best robot on each trial.<br>Even though you will learn the test results for both robots,<br>you will only earn points for the robot you test.",
@@ -81,7 +81,7 @@ var instructions_03 = {
 }
 
 var comprehension = {
-  type: 'palminteri-comprehension'
+  type: jsPsychRvlComprehension
 }
 
 var instructions = {
@@ -101,12 +101,7 @@ var instructions = {
     // Check if instructions should repeat.
     if (num_errors > max_errors) {
       num_loops++;
-      if (num_loops >= max_loops) {
-        low_quality = true;
-        return false;
-      } else {
-        return true;
-      }
+      return true;
     } else {
       return false;
     }
@@ -114,16 +109,8 @@ var instructions = {
   }
 }
 
-var comprehension_check = {
-  type: 'call-function',
-  func: function(){},
-  on_finish: function(trial) {
-    if (low_quality) { jsPsych.endExperiment(); }
-  }
-}
-
 var ready = {
-  type: 'palminteri-instructions',
+  type: jsPsychRvlInstructions,
   pages: [
     "Great job! You've passed the comprehension check.",
     "Get ready to begin the experiment.<br>Press next when you're ready to start.",
@@ -135,7 +122,7 @@ var ready = {
 //---------------------------------------//
 
 var instructions_05 = {
-  type: 'palminteri-instructions',
+  type: jsPsychRvlInstructions,
   pages: [
     "That's the end of the learning phase. Great job!",
     "In this next part, you will select which robots you would like to join your team.",
@@ -146,7 +133,7 @@ var instructions_05 = {
 }
 
 var instructions_06 = {
-  type: 'palminteri-instructions',
+  type: jsPsychRvlInstructions,
   pages: [
     "That's the end of the selection phase. Great job!",
     "Take a break for a few moments and<br>click next when you are ready to continue.",
@@ -182,7 +169,7 @@ for (i = 0; i < 12; i++) {
 
     // Append trial (LR).
     var LR = {
-      type: 'palminteri-learning',
+      type: jsPsychRvlLearning,
       symbol_L: symbol_array[2*j+0],
       symbol_R: symbol_array[2*j+1],
       outcome_L: jsPsych.randomization.sampleWithoutReplacement([val,val,val,'zero'],1)[0],
@@ -227,7 +214,7 @@ for (i = 0; i < 12; i++) {
 
     // Append trial (RL).
     var RL = {
-      type: 'palminteri-learning',
+      type: jsPsychRvlLearning,
       symbol_L: symbol_array[2*j+1],
       symbol_R: symbol_array[2*j+0],
       outcome_L: jsPsych.randomization.sampleWithoutReplacement(['zero','zero','zero',val],1)[0],
@@ -297,7 +284,7 @@ for (i = 0; i < 8; i++) {
 
       // Append trial.
       var probe = {
-        type: 'palminteri-probe',
+        type: jsPsychRvlProbe,
         symbol_L: symbol_array[i],
         symbol_R: symbol_array[j],
         choices: ['arrowleft','arrowright'],
@@ -376,7 +363,7 @@ for (i = 0; i < 12; i++) {
 
     // Append trial (LR).
     var LR = {
-      type: 'palminteri-learning',
+      type: jsPsychRvlLearning,
       symbol_L: symbol_array[2*j+0],
       symbol_R: symbol_array[2*j+1],
       outcome_L: jsPsych.randomization.sampleWithoutReplacement([val,val,val,'zero'],1)[0],
@@ -421,7 +408,7 @@ for (i = 0; i < 12; i++) {
 
     // Append trial (RL).
     var RL = {
-      type: 'palminteri-learning',
+      type: jsPsychRvlLearning,
       symbol_L: symbol_array[2*j+1],
       symbol_R: symbol_array[2*j+0],
       outcome_L: jsPsych.randomization.sampleWithoutReplacement(['zero','zero','zero',val],1)[0],
@@ -491,7 +478,7 @@ for (i = 8; i < 16; i++) {
 
       // Append trial.
       var probe = {
-        type: 'palminteri-probe',
+        type: jsPsychRvlProbe,
         symbol_L: symbol_array[i],
         symbol_R: symbol_array[j],
         choices: ['arrowleft','arrowright'],
@@ -546,7 +533,7 @@ probe_phase_2 = jsPsych.randomization.repeat(probe_phase_2, 1);
 
 // Complete screen
 var complete = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     "Great job! You have completed the experiment."
   ],
