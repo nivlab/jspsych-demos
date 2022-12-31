@@ -141,7 +141,6 @@ for (let i=0; i < outcomes.length; i++){
         // Increment counter. Check if experiment should end.
         missed_responses++;
         if (missed_responses >= missed_threshold) {
-          low_quality = true;
           jsPsych.endExperiment();
         }
 

@@ -188,7 +188,6 @@ for (i = 0; i < 12; i++) {
           // Increment counter. Check if experiment should end.
           missed_responses++;
           if (missed_responses >= missed_threshold) {
-            low_quality = true;
             jsPsych.endExperiment();
           }
 
@@ -233,7 +232,6 @@ for (i = 0; i < 12; i++) {
           // Increment counter. Check if experiment should end.
           missed_responses++;
           if (missed_responses >= missed_threshold) {
-            low_quality = true;
             jsPsych.endExperiment();
           }
 
@@ -300,7 +298,6 @@ for (i = 0; i < 8; i++) {
             // Increment counter. Check if experiment should end.
             missed_responses++;
             if (missed_responses >= missed_threshold) {
-              low_quality = true;
               jsPsych.endExperiment();
             }
 
@@ -382,7 +379,6 @@ for (i = 0; i < 12; i++) {
           // Increment counter. Check if experiment should end.
           missed_responses++;
           if (missed_responses >= missed_threshold) {
-            low_quality = true;
             jsPsych.endExperiment();
           }
 
@@ -427,7 +423,6 @@ for (i = 0; i < 12; i++) {
           // Increment counter. Check if experiment should end.
           missed_responses++;
           if (missed_responses >= missed_threshold) {
-            low_quality = true;
             jsPsych.endExperiment();
           }
 
@@ -494,7 +489,6 @@ for (i = 8; i < 16; i++) {
             // Increment counter. Check if experiment should end.
             missed_responses++;
             if (missed_responses >= missed_threshold) {
-              low_quality = true;
               jsPsych.endExperiment();
             }
 
