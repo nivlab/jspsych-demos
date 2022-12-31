@@ -25,7 +25,7 @@ images_practice.push('./img/practice/p1_T1.webp')
 //---------------------------------------//
 
 var instructions_01 = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     `<p>In this task, you will be shown a 3x3 grid of patterns. The last one, in the bottom right-hand corner, <b>will be missing:</b></p><img src="./img/practice/p1_M1.png" style="${style}"</img><p>You will need to select <b>which of the four possible patterns</b> along the bottom <b>fits into the gap</b>:</p><img src="./img/practice/p1_T1.png" style="${style}"</img>`,
     '<p>The task contains a shuffled mix of easy, medium and hard puzzles.</p><p>You will have <b>30 seconds</b> to complete each puzzle.</p><p>Try to be as accurate as you can be.</p><p>If you cannot solve the puzzle before time runs out, then you should guess.</p>',
@@ -38,7 +38,7 @@ var instructions_01 = {
 }
 
 var instructions_02 = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     '<p>Great job! Now you understand what to do.</p>',
     '<p>Now, we will move onto the real puzzles.</p><p>There are 3 puzzles in total. You will have <b>30 seconds</b> to complete each one.<br>For these puzzles, you will <u>not</u> receive feedback after you make your choice.</p><p>At the end of the game, your total number of correct answers will be converted<br>into a <b>performance bonus</b>. So try your hardest to solve the puzzles! </p><p>Press the "next" button to get started.</p>'
@@ -60,7 +60,7 @@ for (let i = 0; i < 3; i++) {
 
   // Define trial.
   const practice_trial = {
-    type: 'mars',
+    type: jsPsychMars,
     item: i+1,
     shape_set: 1,
     distractor: 'pd',
@@ -98,7 +98,7 @@ for (let i = 0; i < 3; i++) {
 // Define screen check.
 const screen_check = {
   timeline: [{
-    type: 'screen-check',
+    type: jsPsychScreenCheck,
     min_width: min_width,
     min_height: min_height
   }],

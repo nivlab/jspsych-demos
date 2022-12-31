@@ -5,39 +5,33 @@
 
   <!-- Load libraries -->
   <script src="../../lib/jquery-3.3.1/jquery.min.js"></script>
-  <script src="../../lib/jspsych-6.3.1/jspsych.js"></script>
+  <script src="../../lib/jspsych-7.3.1/jspsych.js"></script>
+
+  <!-- Initialize jsPsych -->
+  <script src="./js/init-jspsych.js"></script>
+
+  <!-- Load jsPsych plug-ins -->
+  <script src="./js/plugin-mars.js"></script>
+  <script src="./js/plugin-screen-check.js"></script>
+  <script src="../../lib/jspsych-7.3.1/plugins/plugin-instructions.js"></script>
+  <script src="../../lib/jspsych-7.3.1/plugins/plugin-html-keyboard-response.js"></script>
+  <script src="../../lib/jspsych-7.3.1/plugins/plugin-call-function.js"></script>
+  <script src="../../lib/jspsych-7.3.1/plugins/plugin-fullscreen.js"></script>
+  <script src="../../lib/jspsych-7.3.1/plugins/plugin-preload.js"></script>
 
   <!-- Load experiment -->
   <script src="./js/mars-experiment.js"></script>
   <script src="./js/mars-instructions.js"></script>
 
-  <!-- Load jsPsych plug-ins -->
-  <script src="./js/jspsych-mars.js"></script>
-  <script src="./js/jspsych-screen-check.js"></script>
-  <script src="../../lib/jspsych-6.3.1/plugins/jspsych-instructions.js"></script>
-  <script src="../../lib/jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
-  <script src="../../lib/jspsych-6.3.1/plugins/jspsych-call-function.js"></script>
-  <script src="../../lib/jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
-  <script src="../../lib/jspsych-6.3.1/plugins/jspsych-preload.js"></script>
-
   <!-- Load CSS styles -->
-  <link href="../../lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  <link href="../../lib/jspsych-7.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
 </head>
 <body></body>
 <script>
 
-  // Display alert message on back/refresh.
-  // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
-  function verify_unload(e){
-    e.preventDefault();
-    (e || window.event).returnValue = null;
-    return null;
-  };
-  window.addEventListener("beforeunload", verify_unload);
-
   // Define image preloading.
   var PRELOAD = {
-    type: 'preload',
+    type: jsPsychPreload,
     images: [images_task, images_practice],
     message: 'Loading images. This may take a moment depending on your internet connection.',
     error_message: '<p>The experiment failed to load. Please try restarting your browser.</p><p>If this error persists after 2-3 tries, please contact the experimenter.</p>',
@@ -48,7 +42,7 @@
 
   // Define experiment fullscreen.
   var FULLSCREEN = {
-    type: 'fullscreen',
+    type: jsPsychFullscreen,
     fullscreen_mode: true
   }
 
@@ -59,23 +53,8 @@
   timeline = timeline.concat(INSTRUCTIONS);
   timeline = timeline.concat(MARS);
 
-  jsPsych.init({
-    timeline: timeline,
-    show_progress_bar: true,
-    on_finish: function() {
-
-      // Remove requirement to verify redirect
-      window.removeEventListener("beforeunload", verify_unload);
-
-      // Add interactions to the data variable
-      var interaction_data = jsPsych.data.getInteractionData();
-      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
-
-      // Display jsPsych data in viewport.
-      jsPsych.data.displayData();
-
-    }
-  })
+  // Execute timeline.
+  jsPsych.run(timeline);
 
 </script>
 </html>
