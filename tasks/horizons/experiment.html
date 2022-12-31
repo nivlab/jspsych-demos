@@ -16,6 +16,7 @@
   <script src="../../lib/jspsych-7.3.1/plugins/plugin-instructions.js"></script>
   <script src="../../lib/jspsych-7.3.1/plugins/plugin-preload.js"></script>
   <script src="../../lib/jspsych-7.3.1/plugins/plugin-fullscreen.js"></script>
+  <script src="../../lib/jspsych-7.3.1/plugins/plugin-html-keyboard-response.js"></script>
 
   <!-- Load experiment -->
   <script src="./js/horizons-experiment.js"></script>
@@ -50,6 +51,7 @@
   var timeline = [];
   timeline = timeline.concat(PRELOAD);
   timeline = timeline.concat(FULLSCREEN);
+  timeline = timeline.concat(INSTRUCTIONS_SKIP);
   timeline = timeline.concat(INSTRUCTIONS);
   timeline = timeline.concat(READY_01);
   timeline = timeline.concat(HORIZONS);
