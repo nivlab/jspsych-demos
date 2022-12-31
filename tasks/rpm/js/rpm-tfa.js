@@ -101,14 +101,14 @@ var timeline_variables_tfa = [
 var rpm_task_tfa = {
   timeline: [
     {
-      type: 'screen-check',
+      type: jsPsychScreenCheck,
       min_width: min_width,
       min_height: min_height
     },
     {
-      type: 'html-keyboard-response',
+      type: jsPsychHtmlKeyboardResponse,
       stimulus: '',
-      choices: jsPsych.NO_KEYS,
+      choices: 'NO_KEYS',
       trial_duration: 1200,
       on_start: function(trial) {
         const k = jsPsych.data.get().filter({trial_type: 'rpm', test_form: 'a'}).count();
@@ -116,7 +116,7 @@ var rpm_task_tfa = {
       }
     },
     {
-      type: 'rpm',
+      type: jsPsychRpm,
       stimulus: jsPsych.timelineVariable('stimulus'),
       choices: jsPsych.timelineVariable('choices'),
       correct: jsPsych.timelineVariable('correct'),
@@ -159,7 +159,7 @@ var score_rpm_tfa = function() {
 }
 
 var rpm_score_tfa = {
-  type: 'call-function',
+  type: jsPsychCallFunction,
   func: score_rpm_tfa
 }
 
