@@ -109,7 +109,7 @@ TABLE OF CONTENTS
 
 ### Symmetry span
 
-[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/symmetry_span) [<b>[Demo]</b>](./tasks/symmetry_span/experiment.html)
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/symmetry-span) [<b>[Demo]</b>](./tasks/symmetry-span/experiment.html)
 
 > A jsPsych implementation of the symmetry span test ([Unsworth et al. 2005](https://doi.org/10.3758/BF03192720)), adapted from [Mahi Luthra](https://github.com/mahiluthra/working_memory_tests).
 
@@ -143,11 +143,11 @@ TABLE OF CONTENTS
 
 > A demographics form that includes the demographic items required by the NIMH (e.g. age, gender, ethnicity, race) plus education.
 
-### Debriefing form
+### Feedback form
 
-[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/self-report) [<b>[Demo]</b>](./tasks/self-report/experiment.html?plugin=debrief)
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/self-report) [<b>[Demo]</b>](./tasks/self-report/experiment.html?plugin=feedback)
 
-> A debriefing form that asks for a participant's appraisal of an experiment (e.g. difficulty, enjoyability), their task strategy, and general feedback.
+> A feedback form that asks for a participant's appraisal of an experiment (e.g. difficulty, enjoyability), their task strategy, and general feedback.
 
 ### Mental health resources
 

@@ -60,15 +60,6 @@
 <body></body>
 <script>
 
-  // Display alert message on back/refresh.
-  // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
-  function verify_unload(e){
-    e.preventDefault();
-    (e || window.event).returnValue = null;
-    return null;
-  };
-  window.addEventListener("beforeunload", verify_unload);
-
   //---------------------------------------//
   // Define surveys.
   //---------------------------------------//

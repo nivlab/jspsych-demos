@@ -127,7 +127,7 @@ var jsPsychAudioTest = (function (jspsych) {
         display_element.innerHTML = html;
 
         // start time
-        var start_time = performance.now();
+        var startTime = performance.now();
 
         // start audio
         if (context !== null) {
