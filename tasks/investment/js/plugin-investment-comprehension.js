@@ -1,10 +1,28 @@
-var jsPsychHorizonsComprehension = (function (jspsych) {
+var jsPsychInvestmentComprehension = (function (jspsych) {
   'use strict';
 
   const info = {
-    name: 'horizons-comprehension',
+    name: 'investment-comprehension',
     description: '',
     parameters: {
+      prompts: {
+        type: jspsych.ParameterType.HTML_STRING,
+        array: true,
+        pretty_name: 'Prompts',
+        description: 'Comprehension check questions'
+      },
+      options: {
+        type: jspsych.ParameterType.HTML_STRING,
+        array: true,
+        pretty_name: 'Options',
+        description: 'Comprehension check question options'
+      },
+      correct: {
+        type: jspsych.ParameterType.STRING,
+        array: true,
+        pretty_name: 'Correct',
+        description: 'Answers to comprehension check questions'
+      },
       button_label: {
         type: jspsych.ParameterType.STRING,
         pretty_name: 'Button label',
@@ -15,13 +33,13 @@ var jsPsychHorizonsComprehension = (function (jspsych) {
   }
 
   /**
-  * jspsych-horizons-comprehension
+  * jspsych-investment-comprehension
   * Sam Zorowitz
   *
-  * plugin for running the comprehension check for the horizons task
+  * plugin for running the comprehension check for the investment game
   *
   **/
-  class HorizonsComprehensionPlugin {
+  class InvestmentComprehensionPlugin {
     constructor(jsPsych) {
       this.jsPsych = jsPsych;
     }
@@ -36,21 +54,7 @@ var jsPsychHorizonsComprehension = (function (jspsych) {
       }
 
       // ---------------------------------- //
-      // Section 1: Define Prompts          //
-      // ---------------------------------- //
-
-      // Define comprehension check questions.
-      var prompts = [
-        "<b><i>True</i> or <i>False</i>:</b>&nbsp;&nbsp;One machine will always be better on average than the other. ",
-        "<b><i>True</i> or <i>False</i>:</b>&nbsp;&nbsp;A machine will pay out the same number of points every play.",
-        "<b><i>True</i> or <i>False</i>:</b>&nbsp;&nbsp;The points I earn will affect my performance bonus.",
-      ];
-
-      // Define correct answers.
-      var correct = ["true", "false", "true"];
-
-      // ---------------------------------- //
-      // Section 2: Define HTML             //
+      // Section 1: Define HTML             //
       // ---------------------------------- //
 
       // Initialize HTML
@@ -58,27 +62,29 @@ var jsPsychHorizonsComprehension = (function (jspsych) {
 
       // Insert CSS
       html += `<style>
-      .horizons-wrap {
+      body {
         height: 100vh;
-        width: 100vw;
+        max-height: 100vh;
       }
       .comprehension-box {
-        position: absolute;
-        top: 10%;
-        left: 50%;
-        -webkit-transform: translate3d(-50%, 0, 0);
-        transform: translate3d(-50%, 0, 0);
-        width: 70%;
-        height: 100%;
-        background: #ffffff;
-        line-height: 1.25em;
+        position: relative;
+        width: 650px;
+        line-height: 1.5em;
+      }
+      .comprehension-box .jspsych-survey-multi-choice-preamble h4 {
+        font-size: 20px;
+        text-align: center;
+        padding-left: 1.9em;
+        margin-block-start: 1em;
+        margin-block-end: 1.5em;
+        color: #000000;
       }
       .comprehension-box .jspsych-survey-multi-choice-question {
         margin-top: 0em;
         margin-bottom: 1.0em;
         text-align: left;
-        padding-left: 2em;
-        font-size: 1.33vw;
+        font-size: 18px;
+        color: #000000;
       }
       .comprehension-box .jspsych-survey-multi-choice-horizontal .jspsych-survey-multi-choice-text {
         text-align: left;
@@ -93,10 +99,10 @@ var jsPsychHorizonsComprehension = (function (jspsych) {
         width: 1.2em;
         height: 1.2em;
       }
+      .comprehension-box hr {
+        border: 1px solid #F8F8F8;
+      }
       </style>`;
-
-      // Add factory machine parts (back).
-      html += '<div class="horizons-wrap">';
 
       // form element
       var trial_form_id = _join(plugin_id_name, "form");
@@ -104,33 +110,32 @@ var jsPsychHorizonsComprehension = (function (jspsych) {
 
       // Show preamble text
       html += '<div class="comprehension-box">'
-      html += '<div class="jspsych-survey-multi-choice-preamble"><h4 style="font-size: 1.5vw; margin-block-start: 1em; margin-block-end: 1em">Please answer the questions below:</div>';
+      html += '<div class="jspsych-survey-multi-choice-preamble"><h4>To continue, please answer the questions below:</div>';
 
       // Initialize form element
       html += '<form id="jspsych-survey-multi-choice-form">';
 
       // Iteratively add comprehension questions.
-      for (let i = 0; i < prompts.length; i++) {
+      for (let i = 0; i < trial.prompts.length; i++) {
 
         // Initialize item
         html += `<div id="jspsych-survey-multi-choice-${i}" class="jspsych-survey-multi-choice-question jspsych-survey-multi-choice-horizontal" data-name="Q${i}">`;
 
         // Add question text
-        html += `<p class="jspsych-survey-multi-choice-text survey-multi-choice">${prompts[i]}</p>`;
+        html += `<p class="jspsych-survey-multi-choice-text survey-multi-choice">${trial.prompts[i]}</p>`;
 
-        // Option 1: True
-        html += `<div id="jspsych-survey-multi-choice-option-${i}-0" class="jspsych-survey-multi-choice-option">`;
-        html += `<input type="radio" name="jspsych-survey-multi-choice-response-${i}" id="jspsych-survey-multi-choice-response-${i}-0" value=true required>`;
-        html += `<label class="jspsych-survey-multi-choice-text" for="jspsych-survey-multi-choice-response-${i}-0">True</label>`;
-        html += '</div>';
+        // Iteratively add options.
+        for (let j = 0; j < trial.options[i].length; j++) {
 
-        // Option 2: False
-        html += `<div id="jspsych-survey-multi-choice-option-${i}-1" class="jspsych-survey-multi-choice-option">`;
-        html += `<input type="radio" name="jspsych-survey-multi-choice-response-${i}" id="jspsych-survey-multi-choice-response-${i}-1" value=false required>`;
-        html += `<label class="jspsych-survey-multi-choice-text" for="jspsych-survey-multi-choice-response-${i}-1">False</label>`;
-        html += '</div>';
+          html += `<div id="jspsych-survey-multi-choice-option-${i}-${j}" class="jspsych-survey-multi-choice-option">`;
+          html += `<input type="radio" name="jspsych-survey-multi-choice-response-${i}" id="jspsych-survey-multi-choice-response-${i}-${j}" value="${trial.options[i][j]}" required>`;
+          html += `<label class="jspsych-survey-multi-choice-text" for="jspsych-survey-multi-choice-response-${i}-${j}">${trial.options[i][j]}</label>`;
+          html += '</div>';
+
+        }
 
         // Close item
+        if (i < trial.prompts.length-1) {html += '<hr>';}
         html += '</div>';
 
       }
@@ -140,7 +145,7 @@ var jsPsychHorizonsComprehension = (function (jspsych) {
 
       // End HTML
       html += '</form>';
-      html += '</div></div>';
+      html += '</div>';
 
       // Display HTML
       display_element.innerHTML = html;
@@ -165,7 +170,7 @@ var jsPsychHorizonsComprehension = (function (jspsych) {
         // Gather responses
         var responses = [];
         var num_errors = 0;
-        for (var i=0; i<prompts.length; i++) {
+        for (var i=0; i<trial.prompts.length; i++) {
 
           // Find matching question.
           var match = display_element.querySelector('#jspsych-survey-multi-choice-'+i);
@@ -175,7 +180,7 @@ var jsPsychHorizonsComprehension = (function (jspsych) {
           responses.push(val)
 
           // Check accuracy
-          if ( correct[i] != val ) {
+          if ( trial.correct[i] != val ) {
             num_errors++;
           }
 
@@ -197,11 +202,11 @@ var jsPsychHorizonsComprehension = (function (jspsych) {
       });
 
       var startTime = performance.now();
-      
+
     };
   };
-  HorizonsComprehensionPlugin.info = info;
+  InvestmentComprehensionPlugin.info = info;
 
-  return HorizonsComprehensionPlugin;
+  return InvestmentComprehensionPlugin;
 
 })(jsPsychModule);

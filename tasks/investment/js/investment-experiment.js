@@ -65,7 +65,7 @@ var smartphone_stimuli = [
 //---------------------------------------//
 
 // Preallocate space.
-var MRST = [];
+var INVESTMENT = [];
 
 // Iteratively construct trials.
 var exposure = Array(16).fill(0);
@@ -92,7 +92,7 @@ for (let i = 0; i < 4; i++) {
       // Define screen check.
       const screen_check = {
         timeline: [{
-          type: 'screen-check',
+          type: jsPsychScreenCheck,
           min_width: min_width,
           min_height: min_height
         }],
@@ -107,7 +107,7 @@ for (let i = 0; i < 4; i++) {
 
       // Define trial
       var trial = {
-        type: 'mrst-trial',
+        type: jsPsychInvestmentTrial,
         investments: investments,
         outcome: outcome,
         stock_name: stocks[k],
@@ -157,7 +157,7 @@ for (let i = 0; i < 4; i++) {
       }
 
       // Append trial.
-      MRST.push(trial_node);
+      INVESTMENT.push(trial_node);
 
       // Increment counters
       trial_no++;
@@ -175,12 +175,12 @@ for (let i = 0; i < 4; i++) {
 
 // Define ready screen.
 var READY_01 = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     "<p>Great job! We will now begin the real game.</p><p>The game will be broken into two parts.</p>",
     "<p>You will be able to take a break between each part of the game.</p><p>However, please give your undivided attention during the game.</p>",
     "<p>Remember, to make the most money you should:</p>(1) invest <u>more money</u> in stocks you think have a <u>high chance</u> of doubling your investments</p><p>(2) invest <u>less money</u> in stocks you think have a <u>low chance</u> of doubling your investments</p>",
-    "<p>Get ready to begin <b>Block 1/2</b>. It will take 6-7 minutes.</p><p>Press next when you're ready to start.</p>",
+    "<p>Get ready to begin <b>Block 1/2</b>.</p><p>Press next when you're ready to start.</p>",
   ],
   show_clickable_nav: true,
   button_label_previous: "Prev",
@@ -188,10 +188,10 @@ var READY_01 = {
 }
 
 var READY_02 = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     "<p>Take a break for a few moments and press any button when you are ready to continue.</p>",
-    "<p>Get ready to begin <b>Block 2/2</b>. It will take 6-7 minutes.</p><p>Press next when you're ready to start.</p>",
+    "<p>Get ready to begin <b>Block 2/2</b>.</p><p>Press next when you're ready to start.</p>",
   ],
   show_clickable_nav: true,
   button_label_previous: "Prev",
@@ -199,7 +199,7 @@ var READY_02 = {
 }
 
 var FINISHED = {
-  type: 'instructions',
+  type: jsPsychInstructions,
   pages: [
     "<p>Great job! You've finished the task.</p><p>Before you finish, we have a couple of short questions for you.</p>"
   ],

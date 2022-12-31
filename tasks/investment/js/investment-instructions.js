@@ -13,7 +13,7 @@ var n_loops = 0;
 
 // end experiment early if participant exceeds maximum instructions loops
 var end_experiment = {
-  type: 'call-function',
+  type: jsPsychCallFunction,
   func: function() {
     if (n_loops >= max_loops) {
       low_quality = true;
@@ -27,7 +27,7 @@ var end_experiment = {
 //------------------------------------//
 
 var instructions_1 = {
-  type: 'mrst-instructions',
+  type: jsPsychInvestmentInstructions,
   pages: [
     {
       prompt: "<p>In this game, you'll be playing as an investor in the stock market.</p><p>This is the app you will use to make your investments.</p>",
@@ -119,7 +119,7 @@ var instructions_1 = {
 }
 
 var quiz_1 = {
-  type: 'mrst-comprehension',
+  type: jsPsychInvestmentComprehension,
   prompts: [
     "To make an investment, which keys do you use?",
     "If you invest <u>$5 out of $5</u>, what is the most amount of money you can end a turn with?",
@@ -143,7 +143,7 @@ var quiz_1 = {
 
 const instructions_1_help_node = {
   timeline: [{
-    type: 'instructions',
+    type: jsPsychInstructions,
     pages: [
       "<p>You did not answer all of the quiz questions correctly.</p><p>Please review the following instructions carefully.</p>"
     ],
@@ -189,7 +189,7 @@ var instructions_loop_1 = {
 //------------------------------------//
 
 var practice_text_1 = {
-  type: 'mrst-instructions',
+  type: jsPsychInvestmentInstructions,
   pages: [
     {
       prompt: "<p>Great job! Now we'll practice the game.</p>",
@@ -217,7 +217,7 @@ var practice_text_1 = {
 
 var practice_1 = {
   timeline: [{
-    type: 'mrst-trial',
+    type: jsPsychInvestmentTrial,
     investments: [5, 1],
     outcome: jsPsych.timelineVariable('outcome'),
     stock_name: 'APPL',
@@ -239,7 +239,7 @@ var practice_1 = {
 }
 
 var practice_text_2 = {
-  type: 'mrst-instructions',
+  type: jsPsychInvestmentInstructions,
   pages: [
     {
       prompt: "<p>Great job! As you saw, the APPL stock doubled your investment <i>most</i> of the time (but not every time).</p>",
@@ -264,7 +264,7 @@ var practice_text_2 = {
 
 var practice_2 = {
   timeline: [{
-    type: 'mrst-trial',
+    type: jsPsychInvestmentTrial,
     investments: [5, 1],
     outcome: jsPsych.timelineVariable('outcome'),
     stock_name: 'BBNG',
@@ -299,7 +299,7 @@ var practice_block = {
 //------------------------------------//
 
 instructions_2 = {
-  type: 'mrst-instructions',
+  type: jsPsychInvestmentInstructions,
   pages: [
     {
       prompt: "<p>The total amount of money you've earned by the end of the game<br>will be converted into a <u>performance bonus.</u></p><p>Therefore, you should try to earn as much as possible.</p>",
@@ -329,7 +329,7 @@ instructions_2 = {
 }
 
 var quiz_2 = {
-  type: 'mrst-comprehension',
+  type: jsPsychInvestmentComprehension,
   prompts: [
     "<i>True</i> or <i>False</i>:&nbsp;&nbsp;The chance that a particular stock doubles your investment depends <u>only</u> on that stock.",
     "<i>True</i> or <i>False</i>:&nbsp;&nbsp;The chance that a particular stock doubles your investment <u>stays the same</u> on every turn you see it.",
@@ -350,7 +350,7 @@ var quiz_2 = {
 
 const instructions_2_help_node = {
   timeline: [{
-    type: 'instructions',
+    type: jsPsychInstructions,
     pages: [
       "<p>You did not answer all of the quiz questions correctly.</p><p>Please review the following instructions carefully.</p>"
     ],
