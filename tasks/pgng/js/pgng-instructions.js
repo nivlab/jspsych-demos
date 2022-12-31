@@ -11,7 +11,7 @@ const max_errors = 0;
 //------------------------------------//
 
 var instructions_01 = {
-  type: 'pgng-instructions',
+  type: jsPsychPgngInstructions,
   pages: [
     "Welcome to the <b>Robot Factory</b> game!",
     "In this game, you will be inspecting robots as they move down the assembly line into the <b>scanner</b>.",
@@ -37,7 +37,7 @@ var instructions_01 = {
 }
 
 var instructions_02 = {
-  type: 'pgng-instructions',
+  type: jsPsychPgngInstructions,
   pages: [
     "Now let's practice for another type of safe robot.<br>Try to learn if you should repair this robot (press SPACE)<br>or ignore it (do nothing).",
     "<b>Remember:</b> not every robot will need repair, and<br>you will earn +10 points for the correct action."
@@ -48,7 +48,7 @@ var instructions_02 = {
 }
 
 var instructions_03 = {
-  type: 'pgng-instructions',
+  type: jsPsychPgngInstructions,
   pages: [
     `If the scanner is <b><font color=${outcome_color_lose}>${instr_color_lose}</font></b>, the robot is <b><font color=${outcome_color_lose}>DANGEROUS</font></b>.<br>You will lose only -1 point for correctly repairing or ignoring<br>a dangeorus robot. You will lose -10 points for incorrect actions.`,
     "Now let's practice for a dangerous robot. Try to learn if<br>you should repair it (press SPACE) or ignore it (do nothing).<br><b>Remember:</b> you will lose only -1 points for the correct action.",
@@ -59,7 +59,7 @@ var instructions_03 = {
 }
 
 var instructions_04 = {
-  type: 'pgng-instructions',
+  type: jsPsychPgngInstructions,
   pages: [
     "Now let's practice for another type of dangerous robot.<br>Try to learn if you should repair this robot (press SPACE)<br>or ignore it (do nothing).",
     "<b>Remember:</b> some dangerous robots need repair, and<br>you will lose only -1 points for the correct action."
@@ -70,7 +70,7 @@ var instructions_04 = {
 }
 
 var instructions_05 = {
-  type: 'pgng-instructions',
+  type: jsPsychPgngInstructions,
   pages: [
     "Great job! We're almost ready to begin the game.",
     "<b>Remember:</b> Not all robots of the same type will need repair, but<br>some types of robots will need repair more often than others.",
@@ -90,7 +90,7 @@ var practice_01_counter = 0;
 
 // Practice trial (GW robot)
 const practice_01_trial = {
-  type: 'pgng-trial',
+  type: jsPsychPgngTrial,
   robot_rune: '1',
   scanner_color: scanner_color_win,
   outcome_color: outcome_color_win,
@@ -124,7 +124,7 @@ const practice_01_node = {
 
 // Practice help (GW robot)
 const practice_01_help = {
-  type: 'pgng-instructions',
+  type: jsPsychPgngInstructions,
   pages: [
     "Seems like you're having trouble.",
     "Try repairing this robot (press SPACE).<br>For a safe robot, you will earn +10 points<br>if you make the correct action."
@@ -170,7 +170,7 @@ var practice_02_counter = 0;
 
 // Practice trial (GW robot)
 const practice_02_trial = {
-  type: 'pgng-trial',
+  type: jsPsychPgngTrial,
   robot_rune: '2',
   scanner_color: scanner_color_win,
   outcome_color: outcome_color_win,
@@ -204,7 +204,7 @@ const practice_02_node = {
 
 // Practice help (GW robot)
 const practice_02_help = {
-  type: 'pgng-instructions',
+  type: jsPsychPgngInstructions,
   pages: [
     "Seems like you're having trouble.<br>Remember, not every robot will need repair.",
     "Try ignoring this robot (do nothing).<br>For a safe robot, you will earn +10 points<br>if you make the correct action."
@@ -250,7 +250,7 @@ var practice_03_counter = 0;
 
 // Practice trial (GW robot)
 const practice_03_trial = {
-  type: 'pgng-trial',
+  type: jsPsychPgngTrial,
   robot_rune: '3',
   scanner_color: scanner_color_lose,
   outcome_color: outcome_color_lose,
@@ -284,7 +284,7 @@ const practice_03_node = {
 
 // Practice help (NGAL robot)
 const practice_03_help = {
-  type: 'pgng-instructions',
+  type: jsPsychPgngInstructions,
   pages: [
     "Seems like you're having trouble.",
     "Try ignoring this robot (do nothing).<br>For a dangerous robot, you will lose only -1 point<br>if you make the correct action."
@@ -330,7 +330,7 @@ var practice_04_counter = 0;
 
 // Practice trial (GW robot)
 const practice_04_trial = {
-  type: 'pgng-trial',
+  type: jsPsychPgngTrial,
   robot_rune: '4',
   scanner_color: scanner_color_lose,
   outcome_color: outcome_color_lose,
@@ -364,7 +364,7 @@ const practice_04_node = {
 
 // Practice help (NGAL robot)
 const practice_04_help = {
-  type: 'pgng-instructions',
+  type: jsPsychPgngInstructions,
   pages: [
     "Seems like you're having trouble.",
     "Try repairing this robot (press SPACE).<br>For a dangerous robot, you will lose only -1 point<br>if you make the correct action."
@@ -409,7 +409,7 @@ const practice_block_04 = {
 var n_comp_loops = 0;
 
 var quiz = {
-  type: 'pgng-comprehension',
+  type: jsPsychPgngComprehension,
   prompts: [
     "To <b>repair</b> a robot, what do you do?",
     `When the scanner light is <b><font color=${outcome_color_win}>${instr_color_win}</font></b>, how many points will you earn for a correct action?`,
@@ -439,7 +439,7 @@ var quiz = {
 }
 
 var instructions_review = {
-  type: 'pgng-instructions',
+  type: jsPsychPgngInstructions,
   pages: [
     "<p>You did not answer all of the quiz questions correctly.</p><p>Please review the following instructions carefully.</p>",
     "When a robot enters the scanner, you must decide whether to:<br><b>Repair</b> the robot (press SPACE) <br><b>Ignore</b> the robot (do nothing)",
@@ -486,7 +486,7 @@ const quiz_block = {
 //------------------------------------//
 
 var INSTRUCTIONS_SKIP = {
-  type: 'html-keyboard-response',
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: '<p>You are starting a demo of the <b>Pavlovian go/no-go task.</b></p><p>To see the instructions, press the "1" key. To skip them, press the "2" key.</p>',
   choices: ["1","2"]
 }
