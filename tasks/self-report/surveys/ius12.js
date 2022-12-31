@@ -11,7 +11,7 @@
 **/
 
 var ius12 = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "Unforeseen events upset me greatly.",
     "It frustrates me not having all the information I need.",

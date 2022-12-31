@@ -4,13 +4,16 @@
   <title>Self-report</title>
 
   <!-- Load libraries -->
-  <script src="../../lib/jspsych-6.3.1/jspsych.js"></script>
+  <script src="../../lib/jspsych-7.3.1/jspsych.js"></script>
+
+  <!-- Initialize jsPsych -->
+  <script src="./init-jspsych.js"></script>
 
   <!-- Load jsPsych plug-ins -->
-  <script src="./jspsych-survey-demo.js"></script>
-  <script src="./jspsych-survey-debrief.js"></script>
-  <script src="./jspsych-survey-template.js"></script>
-  <script src="./jspsych-mental-health-alert.js"></script>
+  <script src="./plugin-survey-demo.js"></script>
+  <script src="./plugin-survey-feedback.js"></script>
+  <script src="./plugin-survey-template.js"></script>
+  <script src="./plugin-mental-health-alert.js"></script>
 
   <!-- Load template surveys -->
   <script src="./surveys/7u7d.js"></script>
@@ -43,15 +46,15 @@
   <script src="./surveys/sticsa.js"></script>
 
   <!-- Load special surveys -->
-  <script src="./special/jspsych-affective-slider.js"></script>
-  <script src="./special/jspsych-disorder-checklist.js"></script>
-  <script src="./special/jspsych-survey-audit.js"></script>
-  <script src="./special/jspsych-survey-dudit.js"></script>
-  <script src="./special/jspsych-survey-covid.js"></script>
+  <script src="./special/plugin-affective-slider.js"></script>
+  <script src="./special/plugin-disorder-checklist.js"></script>
+  <script src="./special/plugin-survey-audit.js"></script>
+  <script src="./special/plugin-survey-covid.js"></script>
+  <script src="./special/plugin-survey-dudit.js"></script>
   <script src="./special/affective-slider.js"></script>
 
   <!-- Load CSS styles -->
-  <link href="../../lib/jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  <link href="../../lib/jspsych-7.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
 
 </head>
 <body></body>
@@ -72,22 +75,17 @@
 
   // Define demographics form.
   var DEMO = {
-    type: 'survey-demo'
+    type: jsPsychSurveyDemo
   }
 
-  // Define debriefing form.
-  var DEBRIEF = {
-    type: 'survey-debrief'
+  // Define feedback form.
+  var FEEDBACK = {
+    type: jsPsychSurveyFeedback
   }
 
   // Define mental health alert.
   var MHA = {
-    type: 'mental-health-alert'
-  }
-
-  // Define disorder checklist.
-  var CHECKLIST = {
-    type: 'disorder-checklist'
+    type: jsPsychMentalHealthAlert
   }
 
   // Define random survey.
@@ -99,12 +97,12 @@
 
   // Define disorder checklist.
   var checklist_page_01 = {
-    type: 'disorder-checklist'
+    type: jsPsychDisorderChecklist
   }
 
   var checklist_page_02 = {
     timeline: [{
-      type: 'survey-template',
+      type: jsPsychSurveyTemplate,
       items: ['test'],
       scale: ['Self', 'Professional', 'Both'],
       instructions: "Of the mental health conditions you have been diagnosed with, who diagnosed you?",
@@ -131,6 +129,10 @@
     timeline: [checklist_page_01, checklist_page_02]
   }
 
+  var dudit = {
+    type: jsPsychSurveyCovid
+  }
+
   //---------------------------------------//
   // Define timeline.
   //---------------------------------------//
@@ -143,8 +145,8 @@
   var timeline = [];
   if (show_plugin == "demo") {
     timeline = timeline.concat(DEMO);
-  } else if (show_plugin == "debrief") {
-    timeline = timeline.concat(DEBRIEF);
+  } else if (show_plugin == "feedback") {
+    timeline = timeline.concat(FEEDBACK);
   } else if (show_plugin == "survey") {
     timeline = timeline.concat(SURVEY);
   } else if (show_plugin == "mha") {
@@ -155,23 +157,8 @@
     timeline = timeline.concat(SURVEY);
   }
 
-  jsPsych.init({
-    timeline: timeline,
-    show_progress_bar: true,
-    on_finish: function() {
-
-      // Remove requirement to verify redirect
-      window.removeEventListener("beforeunload", verify_unload);
-
-      // Add interactions to the data variable
-      var interaction_data = jsPsych.data.getInteractionData();
-      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
-
-      // Display jsPsych data in viewport.
-      jsPsych.data.displayData();
-
-    }
-  })
+  // Execute timeline.
+  jsPsych.run(timeline);
 
 </script>
 </html>

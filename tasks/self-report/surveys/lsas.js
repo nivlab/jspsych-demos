@@ -12,7 +12,7 @@
 **/
 
 var lsas = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "Telephoning in public<br><small>(e.g. speaking on the telephone in a public place)</small>",
     "Participating in small groups<br><small>(e.g. having a discussion with a few others)</small>",

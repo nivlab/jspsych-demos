@@ -8,7 +8,7 @@
 **/
 
 var eat26 = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "Am terrified about being overweight.",
     "Avoid eating when I am hungry.",

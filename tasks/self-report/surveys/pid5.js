@@ -11,7 +11,7 @@
 **/
 
 var pid5 = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
 
     // Anhedonia

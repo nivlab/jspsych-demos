@@ -10,7 +10,7 @@
 **/
 
 var sticsa = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "My heart beats fast",
     "My muscles are tense",

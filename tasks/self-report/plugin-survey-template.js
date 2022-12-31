@@ -1,32 +1,35 @@
-var jsPsychSurveyMace = (function (jspsych) {
+var jsPsychSurveyTemplate = (function (jspsych) {
   'use strict';
 
   const info = {
-    name: 'survey-mace',
+    name: 'survey-template',
     description: '',
     parameters: {
       items: {
         type: jspsych.ParameterType.HTML_STRING,
         array: true,
         pretty_name: 'Items',
-        decription: 'The polar questions associated with the survey'
+        decription: 'The questions associated with the survey'
       },
       scale: {
         type: jspsych.ParameterType.HTML_STRING,
         array: true,
         pretty_name: 'Scale',
-        decription: 'The response options associated with the polar questions'
+        decription: 'The response options associated with the survey'
       },
-      conditional_item: {
-        type: jspsych.ParameterType.HTML_STRING,
-        pretty_name: 'Conditional items',
-        decription: 'The conditional questions associated with the survey'
-      },
-      conditional_scale: {
-        type: jspsych.ParameterType.HTML_STRING,
+      reverse: {
+        type: jspsych.ParameterType.BOOL,
         array: true,
-        pretty_name: 'Conditional scale',
-        decription: 'The response options associated with the conditional questions'
+        pretty_name: 'Randomize Question Order',
+        default: [],
+        description: 'If true, the corresponding item will be reverse scored'
+      },
+      infrequency_items: {
+        type: jspsych.ParameterType.INT,
+        array: true,
+        pretty_name: 'Infrequency items',
+        decription: 'Infrequency-check item numbers (0-indexed)',
+        default: null
       },
       instructions: {
         type: jspsych.ParameterType.HTML_STRING,
@@ -36,25 +39,25 @@ var jsPsychSurveyMace = (function (jspsych) {
       randomize_question_order: {
         type: jspsych.ParameterType.BOOL,
         pretty_name: 'Randomize Question Order',
-        default: false,
+        default: true,
         description: 'If true, the order of the questions will be randomized'
+      },
+      scale_repeat: {
+        type: jspsych.ParameterType.INT,
+        pretty_name: 'Scale repeat',
+        default: 10,
+        description: 'The number of items before the scale repeats'
       },
       survey_width: {
         type: jspsych.ParameterType.INT,
         pretty_name: 'Survey width',
-        default: 950,
+        default: 900,
         description: 'The number of pixels occupied by the survey'
       },
       item_width: {
         type: jspsych.ParameterType.INT,
         pretty_name: 'Item width',
         default: 50,
-        description: 'The percentage of a row occupied by an item text'
-      },
-      conditional_item_width: {
-        type: jspsych.ParameterType.INT,
-        pretty_name: 'Item width',
-        default: 20,
         description: 'The percentage of a row occupied by an item text'
       },
       button_label: {
@@ -66,13 +69,13 @@ var jsPsychSurveyMace = (function (jspsych) {
     }
   }
 
-  /* jspsych-survey-condtional.js
-  * a jspsych plugin extension for creating conditional questioannaires
+  /* jspsych-survey-template.js
+  * a jspsych plugin extension for measuring items on a likert scale
   *
-  * authors: Lauri Tuominen
+  * authors: Sam Zorowitz, Dan Bennett
   *
   */
-  class SurveyMacePlugin {
+  class SurveyTemplatePlugin {
     constructor(jsPsych) {
       this.jsPsych = jsPsych;
     }
@@ -87,18 +90,14 @@ var jsPsychSurveyMace = (function (jspsych) {
 
       // Define CSS constants
       const n  = trial.scale.length;              // Number of item responses
-      const n2 = trial.conditional_scale.length;
       const x1 = trial.item_width;                // Width of item prompt (percentage)
       const x2 = (100 - trial.item_width) / n;    // Width of item response (percentage)
-      const c1 = trial.conditional_item_width;
-      const c2 = (100 - trial.conditional_item_width) / n2;    // Width of item response (percentage)
 
       // Insert CSS
       html += `<style>
-
       .survey-template-wrap {
         height: 100vh;
-        width: 100%;
+        width: 100vw;
       }
       .survey-template-instructions {
         width: ${trial.survey_width}px;
@@ -113,15 +112,6 @@ var jsPsychSurveyMace = (function (jspsych) {
         width: ${trial.survey_width}px;
         margin: auto;
         background-color: #F8F8F8;
-        border-radius: 8px;
-      }
-      .survey-template-container-conditional {
-        display: grid;
-        grid-template-columns: ${c1}% repeat(${n2}, ${c2}%);
-        grid-template-rows: auto;
-        width: ${trial.survey_width}px;
-        margin: auto;
-        background-color: #F0F8FF;
         border-radius: 8px;
       }
       .survey-template-row {
@@ -152,13 +142,8 @@ var jsPsychSurveyMace = (function (jspsych) {
       }
       .survey-template-response input[type='radio'] {
         position: relative;
-        width: 20px;
-        height: 20px;
-      }
-      .survey-template-response input[type='checkbox'] {
-        position: relative;
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
       }
       .survey-template-response .pseudo-input {
         position: relative;
@@ -195,10 +180,6 @@ var jsPsychSurveyMace = (function (jspsych) {
         font-size: 13px;
         color: black;
       }
-      .hidden {
-        height: 0;
-        visibility:hidden;
-      }
       /* honeypot css */
       .survey-template-block {
         position: absolute;
@@ -220,67 +201,58 @@ var jsPsychSurveyMace = (function (jspsych) {
       html += '</div>';
 
       // Randomize question order.
-      const item_order = [];
-      for (var i=0; i < trial.items.length; i++){
-        item_order.push(i);
-      }
+      var item_order = [];
+      for (var i=0; i < trial.items.length; i++){ item_order.push(i); }
       if(trial.randomize_question_order){
+
+        // Shuffle item order
         item_order = jsPsych.randomization.shuffle(item_order);
+
+        // check if the first item is an infrequency item; if so, re-shuffle to avoid this
+        while (!(trial.infrequency_items === null) && trial.infrequency_items.toString().includes([item_order[0]])){
+          item_order = jsPsych.randomization.shuffle(item_order);
+        }
+
       }
 
       // Iteratively add items.
+      html += '<div class="survey-template-container">';
+
       for (var i = 0; i < trial.items.length; i++) {
+
         // Define item ID.
-        const qid = ("0" + `${item_order[i]+1}`);
+        const qid = ("0" + `${item_order[i]+1}`).slice(-2);
 
         // Define response values.
-        const polar_values = trial.scale;
+        var values = [];
+        for (var j = 0; j < trial.scale.length; j++){ values.push(j); }
+        if (trial.reverse[item_order[i]]) { values = values.reverse(); }
 
-        const conditional_values = [];
-        for (var j = 1; j <= trial.conditional_scale.length; j++){ conditional_values.push(j); }
-
-        // Add a container and a response header for the polar question
-        html += `<div class="survey-template-container" id="Container_${qid}">`;
-        html += '<div class="survey-template-header"></div>';
-        for (var j = 0; j < trial.scale.length; j++) {
-          html += `<div class="survey-template-header">${trial.scale[j]}</div>`;
+        // Add response headers (every N items).
+        if (i % trial.scale_repeat == 0) {
+          html += '<div class="survey-template-header"></div>';
+          for (var j = 0; j < trial.scale.length; j++) {
+            html += `<div class="survey-template-header">${trial.scale[j]}</div>`;
+          }
         }
-        // Add row for the polar question.
+
+        // Add row.
         html += '<div class="survey-template-row">';
         html += `<div class='survey-template-prompt'>${trial.items[item_order[i]]}</div>`;
-        for (let v of polar_values) {
+        for (var j = 0; j < values.length; j++) {
           html += '<div class="survey-template-response">';
           html += '<div class="pseudo-input"></div>';
-          html += `<input type="radio" name="${qid}" value="${v}" id="Q${qid}.${v}" tabindex="-1" required>`;
+          html += `<input type="radio" name="Q${qid}" value="${values[j]}" id=${j} tabindex="-1" required>`;
           html += "</div>";
         }
         html += '</div>';
-        // container end
-        html += '</div>';
 
-        // Add a container and response header for the conditional question
-        html += `<div class="survey-template-container-conditional hidden" id="Container_${qid}_hidden">`;
-        html += '<div class="survey-template-header" ></div>';
-        for (var j = 0; j < trial.conditional_scale.length; j++) {
-          html += `<div class="survey-template-header">${trial.conditional_scale[j]}</div>`;
-        }
-
-        // Add row for the conditional question
-        html += '<div class="survey-template-row">';
-        html += `<div class='survey-template-prompt'>${trial.conditional_item}</div>`;
-        for (let v of conditional_values) {
-          html += '<div class="survey-template-response">';
-          html += `<input type="checkbox" name="${qid}_ages_${v}" value="${v}" tabindex="-1">`;
-          html += "</div>";
-        }
-        html += '</div>';
-        // finish conditional container
-        html += '</div>';
       }
+      html += '</div>';
 
       // Add submit button.
       html += '<div class="survey-template-footer">';
-      html += `<input type="submit" id="submit-button" value="${trial.button_label}"></input>`;
+      html += `<input type="submit" value="${trial.button_label}"></input>`;
       html += '</div>';
 
       // End form.
@@ -300,83 +272,20 @@ var jsPsychSurveyMace = (function (jspsych) {
 
       // Display HTML
       display_element.innerHTML = html;
-      window.scrollTo(0,0);
-
-      //------------------------------------------//
-      // Functions to create conditional response
-      //------------------------------------------//
-
-      function require_checkboxes(hidden_checkboxes, addvalidate){
-        const checked = []
-        for (let h of hidden_checkboxes){ if (h.checked) checked.push(h) }
-        if (checked.length > 0) {
-          for (let h of hidden_checkboxes) { h.removeAttribute('required'); if(addvalidate) {h.setCustomValidity('')}}
-        } else {
-          for (let h of hidden_checkboxes) { h.required = true; if (addvalidate) {h.setCustomValidity('You must choose at least one response for this question')}}
-        }
-      };
-
-      // Visibility etc of the conditional items
-      const unhide = function(event){
-        // If yes to polar question, unhide the hidden conditional question and vice versa
-        const val = event.target.value;
-        const hidden_target = document.getElementById(event.currentTarget.id.concat('_hidden'))
-        if (val === trial.scale[0]) {
-          hidden_target.style.visibility = 'visible'
-          hidden_target.style.height = 'auto'
-        } else if (val === trial.scale[1]) {
-          hidden_target.style.visibility = 'hidden'
-          hidden_target.style.height = '0px'
-          const hidden_checkboxes = hidden_target.querySelectorAll("[type='checkbox']")
-          for (let h of hidden_checkboxes) { h.removeAttribute('required'); h.setCustomValidity('')}
-        }
-      }
-
-      // attach unhide function to all survey containers
-      const containers = display_element.querySelectorAll(".survey-template-container")
-      for (let c of containers) {c.addEventListener('click',unhide)}
-
-      const toggle_required = function(event){
-        // If hidden checkbox is clicked make all other checkboxes unrequired
-        if (event.target.type != 'checkbox') {return}
-        const hidden_checkboxes = document.getElementById(event.currentTarget.id).querySelectorAll("[type='checkbox']");
-        require_checkboxes(hidden_checkboxes, addvalidate=true)
-      }
-
-      // attach toggle_required function to all conditional survey containers
-      const hidden_containers = display_element.querySelectorAll(".survey-template-container-conditional")
-      for (let h of hidden_containers) {h.addEventListener('click',toggle_required)}
-
-      display_element.querySelector('#submit-button').addEventListener('click', function(){
-        // Adds listener to submit button, checks all hidden containers are made visible and complaines if they don't have at least one checkbox checked
-        const all_hidden_containers = document.querySelectorAll(".survey-template-container-conditional")
-        const containers_made_visible = []
-        for (let h of all_hidden_containers){
-          if (h.style.visibility === 'visible') {containers_made_visible.push(h.id)}
-        }
-        for (let h of containers_made_visible) {
-          const checkboxes =document.getElementById(h).querySelectorAll("[type='checkbox']")
-          if (document.getElementById(h).querySelector('input:checked') == null) {
-            for (let c of checkboxes) {
-              c.setCustomValidity('You must choose at least one response for this question');
-            }
-          } else {
-            for (let c of checkboxes) {
-              c.setCustomValidity('');
-            }
-          }
-        }
-      })
 
       //---------------------------------------//
       // Response handling.
       //---------------------------------------//
 
+      // Scroll to top of screen.
+      window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+      }
+
       // Preallocate space.
       var key_events = [];
       var mouse_events = [];
       var radio_events = [];
-      var checkbox_events = [];
 
       // Add event listener.
       function log_event(event) {
@@ -388,8 +297,6 @@ var jsPsychSurveyMace = (function (jspsych) {
         }
         if (event.target.type == "radio") {
           radio_events.push( response_time )
-        } else if (event.target.type == "checkbox") {
-          checkbox_events.push( response_time )
         }
       }
       document.addEventListener("click", log_event);
@@ -409,6 +316,10 @@ var jsPsychSurveyMace = (function (jspsych) {
         // Extract responses
         var responses = objectifyForm(question_data);
 
+        // Detect heuristic responding
+        var straightlining = detectStraightLining(question_data);
+        var zigzagging = detectZigZagging(question_data, trial.scale);
+
         // Check honeypot.
         var honeypot = serializeArray(display_element.querySelector('#survey-template-form'));
         honeypot = (honeypot.length > 0) ? 1 : 0;
@@ -419,9 +330,10 @@ var jsPsychSurveyMace = (function (jspsych) {
           "rt": response_time,
           "item_order": item_order,
           "radio_events": radio_events,
-          "checkbox_events": checkbox_events,
           "key_events": key_events,
           "mouse_events": mouse_events,
+          "straightlining": straightlining,
+          "zigzagging": zigzagging,
           "honeypot": honeypot
         };
 
@@ -437,7 +349,6 @@ var jsPsychSurveyMace = (function (jspsych) {
       });
 
       var startTime = performance.now();
-
 
       /*!
       * Serialize all form data into an array
@@ -456,24 +367,15 @@ var jsPsychSurveyMace = (function (jspsych) {
           // Don't serialize fields without a name, submits, buttons, file and reset inputs, and disabled fields
           if (!field.name || field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') continue;
 
-          // If a multi-select, get all selections
-          if (field.type === 'select-multiple') {
-            for (var n = 0; n < field.options.length; n++) {
-              if (!field.options[n].selected) continue;
-              serialized.push({
-                name: field.name,
-                value: field.options[n].value
-              });
-            }
-          }
-
           // Convert field data to a query string
-          else if ((field.type !== 'checkbox' && field.type !== 'radio') || field.checked) {
+          if ((field.type !== 'checkbox' && field.type !== 'radio') || field.checked) {
             serialized.push({
               name: field.name,
-              value: field.value
+              position: field.id,
+              value: field.value,
             });
           }
+
         }
 
         return serialized;
@@ -488,10 +390,58 @@ var jsPsychSurveyMace = (function (jspsych) {
         return returnArray;
       }
 
+      // Straight-lining is defined as choosing the same response option (by position)
+      // across the entire survey. We detect this pattern by identifying the maximum
+      // percentage of responses loading onto the same item position.
+      function detectStraightLining(formArray) {
+
+        // Initialize counts
+        let counts = [];
+
+        // Count number of instances per unique response
+        for (let i = 0; i < formArray.length; i++) {
+          let loc = parseInt(formArray[i]['position']);
+          if ( counts[loc] > 0 ) {
+            counts[loc]++;
+          } else {
+            counts[loc] = 1;
+          }
+        }
+
+        // Error-catching: replace empty with zero.
+        counts = Array.from(counts, item => item || 0);
+
+        // Compute and return maximum fraction
+        return Math.max(...counts) / formArray.length;
+
+      }
+
+      // Zig-zagging is defined as choosing adjacent response options (by position)
+      // such that a diagonal pattern emerges across responses (i.e. the zig-zag).
+      // We detect this pattern by identifying the fraction of responses that exhibit
+      // response adjacency (including wrapping).
+      function detectZigZagging(formArray, scale) {
+
+        // Initialize score
+        let score = 0;
+
+        // Compute distance between adjacent responses
+        for (let i = 0; i < formArray.length-1; i++) {
+          let a = parseInt(formArray[i]['position']);
+          let b = parseInt(formArray[i+1]['position']);
+          let delta = Math.abs(a - b);
+          if ( delta == 1 || delta == (scale.length-1) ) { score++ };
+        }
+
+        // Compute and return fraction
+        return score / (formArray.length-1);
+        
+      }
+
     }
   }
-  SurveyMacePlugin.info = info;
+  SurveyTemplatePlugin.info = info;
 
-  return SurveyMacePlugin;
+  return SurveyTemplatePlugin;
 
 })(jsPsychModule);

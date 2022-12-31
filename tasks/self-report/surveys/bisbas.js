@@ -16,7 +16,7 @@
 **/
 
 var bisbas = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
 
     // Behavioral inhibiton scale

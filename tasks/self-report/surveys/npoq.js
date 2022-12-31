@@ -14,7 +14,7 @@
 **/
 
 var npoq = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "I see problems as a threat to my well-being.",
     "I often doubt my capacity to solve problems.",

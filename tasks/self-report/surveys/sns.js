@@ -7,7 +7,7 @@
 **/
 
 var sns = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
 
     // Social withdrawl subscale

@@ -15,7 +15,7 @@
 **/
 
 var ctq = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
 
     // Physical abuse

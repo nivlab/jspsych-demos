@@ -8,7 +8,7 @@
 **/
 
 var gse = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "I can manage to solve difficult problems if I try hard enough.",
     "If someone opposes me, I can find the means and ways to get what I want.",

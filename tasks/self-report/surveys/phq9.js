@@ -8,7 +8,7 @@
 **/
 
 var phq9 = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "Little interest or pleasure in doing things",
     "Feeling down, depressed, or hopeless",

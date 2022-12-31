@@ -12,7 +12,7 @@
 **/
 
 var nfcs = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "I don't like situations that are uncertain.",
     "I dislike questions which could be answered in many different ways.",

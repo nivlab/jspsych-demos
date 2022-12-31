@@ -11,7 +11,7 @@
 **/
 
 var shaps = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "I would enjoy my favorite television or radio show.",
     "I would enjoy being with my family or close friends.",

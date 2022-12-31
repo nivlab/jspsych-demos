@@ -22,7 +22,7 @@ var slider_stimuli = [
 
 // Affective slider
 var slider = {
-  type: 'affective-slider',
+  type: jsPsychAffectiveSlider,
   prompt: 'Please rate your current mood from completely sad (left) to completely happy (right).',
   slider_type: 'valence',
   left_anchor: 2, // indexes into the AS_stimuli array

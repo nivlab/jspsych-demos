@@ -8,7 +8,7 @@
 **/
 
 var panas = {
-  type: 'survey-template',
+  type: jsPsychSurveyTemplate,
   items: [
     "Interested",
     "Distressed",
