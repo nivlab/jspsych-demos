@@ -24,6 +24,12 @@ var jsPsychSurveyTemplate = (function (jspsych) {
         default: [],
         description: 'If true, the corresponding item will be reverse scored'
       },
+      scoring_index: {
+        type: jspsych.ParameterType.INT,
+        pretty_name: 'Scoring index',
+        decription: 'The minimum item score (e.g. 0 if scoring is 0-indexed)',
+        default: 0
+      },
       infrequency_items: {
         type: jspsych.ParameterType.INT,
         array: true,
@@ -225,7 +231,7 @@ var jsPsychSurveyTemplate = (function (jspsych) {
 
         // Define response values.
         var values = [];
-        for (var j = 0; j < trial.scale.length; j++){ values.push(j); }
+        for (var j = trial.scoring_index; j < (trial.scale.length + trial.scoring_index); j++){ values.push(j); }
         if (trial.reverse[item_order[i]]) { values = values.reverse(); }
 
         // Add response headers (every N items).
