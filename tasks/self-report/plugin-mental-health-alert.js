@@ -77,7 +77,7 @@ var jsPsychMentalHealthAlert = (function (jspsych) {
       html += '<p>As a reminder, your responses to the questionnaires will remain strictly anonymous. Your identity is not known to the experimenters.</p>'
 
       // Add paragraph 2.
-      html += '<p>If you are interested in learning more about mental health or in speaking to a professional, we have provided some resources below and on <a href="https://nivlab.princeton.edu/mental-health-resources">our website</a>. You may wish to screenshot this page for your reference.</p>'
+      html += '<p>If you are interested in learning more about mental health or in speaking to a professional, we have provided some resources below and on <a href="https://nivlab.princeton.edu/mental-health-resources" target="_blank">our website</a>. You may wish to screenshot this page for your reference.</p>'
       html += '<hr>';
 
       // US resources
