@@ -13,7 +13,7 @@
   <script src="./plugin-survey-demo.js"></script>
   <script src="./plugin-survey-feedback.js"></script>
   <script src="./plugin-survey-template.js"></script>
-  <script src="./plugin-mental-health-alert.js"></script>
+  <script src="./plugin-mental-health-resources.js"></script>
 
   <!-- Load template surveys -->
   <script src="./surveys/7u7d.js"></script>
@@ -74,9 +74,9 @@
     type: jsPsychSurveyFeedback
   }
 
-  // Define mental health alert.
-  var MHA = {
-    type: jsPsychMentalHealthAlert
+  // Define mental health resources.
+  var MHR = {
+    type: jsPsychMentalHealthResources
   }
 
   // Define random survey.
@@ -140,8 +140,8 @@
     timeline = timeline.concat(FEEDBACK);
   } else if (show_plugin == "survey") {
     timeline = timeline.concat(SURVEY);
-  } else if (show_plugin == "mha") {
-    timeline = timeline.concat(MHA);
+  } else if (show_plugin == "mhr") {
+    timeline = timeline.concat(MHR);
   } else if (show_plugin == "checklist") {
     timeline = timeline.concat(CHECKLIST)
   } else {

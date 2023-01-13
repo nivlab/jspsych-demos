@@ -1,8 +1,8 @@
-var jsPsychMentalHealthAlert = (function (jspsych) {
+var jsPsychMentalHealthResources = (function (jspsych) {
   'use strict';
 
   const info = {
-    name: 'mental-health-alert',
+    name: 'mental-health-resources',
     description: '',
     parameters: {
       button_label: {
@@ -15,14 +15,14 @@ var jsPsychMentalHealthAlert = (function (jspsych) {
   }
 
   /**
-  * jspsych-mental-health-alert
+  * jspsych-mental-health-resources
   *
   * plugin for displaying mental health resources
   *
   * authors: Sam Zorowitz, Yongjing Ren
   *
   **/
-  class MentalHealthAlertPlugin {
+  class MentalHealthResourcesPlugin {
     constructor(jsPsych) {
       this.jsPsych = jsPsych;
     }
@@ -160,8 +160,8 @@ var jsPsychMentalHealthAlert = (function (jspsych) {
       html += '</div>';
 
       // Add submit button
-      html += '<form id="jspsych-mental-health-alert">';
-      html += `<center><input type="submit" id="jspsych-mental-health-alert" value="${trial.button_label}"></input><center>`;
+      html += '<form id="jspsych-mental-health-resources">';
+      html += `<center><input type="submit" id="jspsych-mental-health-resources" value="${trial.button_label}"></input><center>`;
       html += '</form>';
 
       // Display HTML.
@@ -203,7 +203,7 @@ var jsPsychMentalHealthAlert = (function (jspsych) {
         });
       });
 
-      display_element.querySelector('#jspsych-mental-health-alert').addEventListener('submit', function(event) {
+      display_element.querySelector('#jspsych-mental-health-resources').addEventListener('submit', function(event) {
 
         // Wait for response
         event.preventDefault();
@@ -229,8 +229,8 @@ var jsPsychMentalHealthAlert = (function (jspsych) {
 
     };
   }
-  MentalHealthAlertPlugin.info = info;
+  MentalHealthResourcesPlugin.info = info;
 
-  return MentalHealthAlertPlugin;
+  return MentalHealthResourcesPlugin;
 
 })(jsPsychModule);
