@@ -151,7 +151,7 @@ TABLE OF CONTENTS
 
 ### Mental health resources
 
-[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/self-report) [<b>[Demo]</b>](./tasks/self-report/experiment.html?plugin=mha)
+[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/self-report) [<b>[Demo]</b>](./tasks/self-report/experiment.html?plugin=mhr)
 
 > Displays a page with free-to-access mental health resources for participants. Must be included in any  online Niv/Daw lab experiment involving self-report symptom measures.
 
