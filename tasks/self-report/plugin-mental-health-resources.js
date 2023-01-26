@@ -202,7 +202,7 @@ var jsPsychMentalHealthResources = (function (jspsych) {
         document.getElementById('button-row').style['margin-bottom'] = '0';
       }
 
-      // Start with US resources
+      // Initialize resources
       showResources(trial.country);
 
       // Define button event listeners
