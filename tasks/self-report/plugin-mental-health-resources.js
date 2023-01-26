@@ -196,6 +196,9 @@ var jsPsychMentalHealthResources = (function (jspsych) {
         document.getElementById('button-row').style['margin-bottom'] = '0';
       }
 
+      // Start with US resources
+      showResources('us');  
+
       // Define button event listeners
       ['us', 'canada', 'australia', 'new-zealand', 'other'].forEach(country => {
         document.getElementById('button-' + country).addEventListener('click', function() {
