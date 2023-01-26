@@ -5,6 +5,12 @@ var jsPsychMentalHealthResources = (function (jspsych) {
     name: 'mental-health-resources',
     description: '',
     parameters: {
+      country: {
+        type: jspsych.ParameterType.STRING,
+        pretty_name: 'Country',
+        default: 'us',
+        description: 'The country for which resources are first shown (us, canada, australia, new-zealand, other).'
+      },
       button_label: {
         type: jspsych.ParameterType.STRING,
         pretty_name: 'Button label',
@@ -197,7 +203,7 @@ var jsPsychMentalHealthResources = (function (jspsych) {
       }
 
       // Start with US resources
-      showResources('us');  
+      showResources(trial.country);
 
       // Define button event listeners
       ['us', 'canada', 'australia', 'new-zealand', 'other'].forEach(country => {
