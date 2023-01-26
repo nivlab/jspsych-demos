@@ -202,11 +202,16 @@ var jsPsychMentalHealthResources = (function (jspsych) {
         document.getElementById('button-row').style['margin-bottom'] = '0';
       }
 
+      // Define list of countries.
+      const countries = ['us', 'canada', 'australia', 'new-zealand', 'other'];
+
       // Initialize resources
-      showResources(trial.country);
+      if (countries.includes(trial.country.toLowerCase())) {
+        showResources(trial.country.toLowerCase());
+      };
 
       // Define button event listeners
-      ['us', 'canada', 'australia', 'new-zealand', 'other'].forEach(country => {
+      countries.forEach(country => {
         document.getElementById('button-' + country).addEventListener('click', function() {
           hideAllResources(); showResources(country);
         });
