@@ -60,8 +60,8 @@ var ipip_mini = {
     false, false, true, true,
     false, false, true, true,
     false, false, true, true,
+    false, false, true, true,
     false, true, true, true,
-
   ],
   instructions: "The following are some descriptions of people's behaviors. Please use the scale next to each phrase to describe how accurately each statement describes you.",
   survey_width: 950,
