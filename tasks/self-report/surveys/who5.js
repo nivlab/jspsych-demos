@@ -17,16 +17,16 @@ var who5 = {
     "My daily life has been filled with things that interest me.",
   ],
   scale: [
-    "5 - All<br>the time",                // scored as 5
-    "4 - Most of<br>the time",                     // scored as 4
-    "3 - More than<br>half of<br>the time",               // scored as 3
-    "2 - Less than<br>half of<br>the time",                 // scored as 2
-    "1 - Some of<br>the time",                // scored as 1
-    "0 - At no<br>time"                // scored as 0
+    "All<br>the time",                         // scored as 5
+    "Most of<br>the time",                     // scored as 4
+    "More than<br>half of<br>the time",        // scored as 3
+    "Less than<br>half of<br>the time",        // scored as 2
+    "Some of<br>the time",                     // scored as 1
+    "At no<br>time"                            // scored as 0
   ],
-  reverse: Array(5).fill(true), // see WHO5 scoring instructions
-  instructions: `Please indicate for each of the 5 statements which is closest to how you have been feeling over the past 2 weeks.`,
+  reverse: Array(5).fill(true),
+  instructions: `Please indicate for each of the statements which is closest to how you have been feeling over the past 2 weeks.`,
   survey_width: 950,
-  item_width: 50,
+  item_width: 45,
   scale_repeat: 9,
 }
