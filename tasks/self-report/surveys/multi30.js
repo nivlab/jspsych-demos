@@ -1,13 +1,9 @@
 /**
-* MODIFIED version of 
-* 
 * Multitheoretical List of Therapeutic Interventions – 30 Items (MULTI-30).
 *
 * Solomonov, N., McCarthy, K. S., Gorman, B. S., & Barber, J. P. (2019).
 * The multitheoretical list of therapeutic interventions–30 items (MULTI-30).
 * Psychotherapy Research, 29(5), 565-580.
-*
-* NOTE: Instruction and items modified for patient self report across sessions
 *
 **/
 
