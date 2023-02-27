@@ -55,6 +55,7 @@ This folder contains template jsPsych code for self-report questionnaires, demog
 | [Positive Valence Systems Scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/pvss.js) | Measure of the Positive Valence Systems domain | Niv |
 | [Penn State worry questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/pswq.js) | Measure of worry symptoms | Niv, Daw |
 | [Ruminative thought style questionnaire ](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/rts.js) | Measure of ruminative tendencies | Niv |
+| [Readiness for therapy questionnaire ](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/rtq.js) | Measure of readiness for change in therapy | Niv |
 | [Schizotypal personality questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/spq.js) | Measure of schizotypal personality | Niv |
 | [Snaith-Hamilton anhedonia scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/shaps.js) | Measure of anhedonia & depression symptoms | Niv |
 | [Self-evaluation of negative symptoms](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/sns.js) | Measure of negative symptoms | Niv |
