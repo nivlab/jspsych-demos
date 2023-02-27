@@ -1,7 +1,6 @@
 /**
 * WHO-5 Well-Being Index (WHO5), 5 items
 *
-* Accessed via
 * Topp, C. W., Østergaard, S. D., Søndergaard, S., & Bech, P. (2015).
 * The WHO-5 Well-Being Index: a systematic review of the literature.
 * Psychotherapy and psychosomatics, 84(3), 167–176. https://doi.org/10.1159/000376585

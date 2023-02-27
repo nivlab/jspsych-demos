@@ -4,7 +4,7 @@
 * Marks, I. (1986) Behavioural Psychotherapy. Bristol: John Wright
 * [now published by I. Marks, Institute of Psychiatry, London].
 *
-* Accessed from: Mundt, J., Marks, I., Shear, M., & Greist, J. (2002).
+* Mundt, J., Marks, I., Shear, M., & Greist, J. (2002).
 * The Work and Social Adjustment Scale: A simple measure of
 * impairment in functioning. British Journal of Psychiatry,
 * 180(5), 461-464. doi:10.1192/bjp.180.5.461
