@@ -24,6 +24,12 @@ var jsPsychSurveyTemplate = (function (jspsych) {
         default: [],
         description: 'If true, the corresponding item will be reverse scored'
       },
+      scoring_index: {
+        type: jspsych.ParameterType.INT,
+        pretty_name: 'Scoring index',
+        decription: 'The minimum item score (e.g. 0 if scoring is 0-indexed)',
+        default: 0
+      },
       infrequency_items: {
         type: jspsych.ParameterType.INT,
         array: true,
@@ -225,7 +231,7 @@ var jsPsychSurveyTemplate = (function (jspsych) {
 
         // Define response values.
         var values = [];
-        for (var j = 0; j < trial.scale.length; j++){ values.push(j); }
+        for (var j = trial.scoring_index; j < (trial.scale.length + trial.scoring_index); j++){ values.push(j); }
         if (trial.reverse[item_order[i]]) { values = values.reverse(); }
 
         // Add response headers (every N items).
@@ -283,20 +289,22 @@ var jsPsychSurveyTemplate = (function (jspsych) {
       }
 
       // Preallocate space.
-      var key_events = [];
-      var mouse_events = [];
-      var radio_events = [];
+      var key_event_times = [];
+      var mouse_event_times = [];
+      var radio_event_times = [];
+      var radio_event_ids = [];
 
       // Add event listener.
       function log_event(event) {
         const response_time = performance.now() - startTime;
         if (event.screenX > 0) {
-          mouse_events.push( response_time );
+          mouse_event_times.push( response_time );
         } else {
-          key_events.push( response_time );
+          key_event_times.push( response_time );
         }
         if (event.target.type == "radio") {
-          radio_events.push( response_time )
+          radio_event_ids.push( event.srcElement.name )
+          radio_event_times.push( response_time )
         }
       }
       document.addEventListener("click", log_event);
@@ -329,9 +337,10 @@ var jsPsychSurveyTemplate = (function (jspsych) {
           "responses": responses,
           "rt": response_time,
           "item_order": item_order,
-          "radio_events": radio_events,
-          "key_events": key_events,
-          "mouse_events": mouse_events,
+          "radio_event_ids": radio_event_ids,
+          "radio_event_times": radio_event_times,
+          "key_event_times": key_event_times,
+          "mouse_event_times": mouse_event_times,
           "straightlining": straightlining,
           "zigzagging": zigzagging,
           "honeypot": honeypot
