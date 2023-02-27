@@ -6,7 +6,6 @@ This folder contains template jsPsych code for self-report questionnaires, demog
 
 | Survey | Description | IRB Approval |
 |:-------|:------------|:-------------|
-| [6-item Working alliance inventory](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/wai.js) | Measure of working alliance in psychotherapy session | Niv |
 | [7-up 7-down](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/7u7d.js) | Measure of hypomania and depression symptoms | Niv, Daw |
 | [Adverse childhood experience questionnaire](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/ace.js) | Measure of adverse childhood experiences | Niv |
 | [Adult ADHD Self-Report Scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/asrs.js) | Measure of ADHD symptoms | Niv |
@@ -65,7 +64,9 @@ This folder contains template jsPsych code for self-report questionnaires, demog
 | [State-trait inventory of cognitive & somatic anxiety](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/sticsa.js) | Measure of anxiety symptoms | Niv, Daw |
 | [WHO-5 Well-Being Index](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/who5.js) | Measure of subjective well-being | Niv |
 | [WHO Qualify of Life Questionnaire -  BREF](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/whoqol.js) | Measure of perceived quality of life | Niv |
+| [Working alliance inventory](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/wai.js) | Measure of working alliance in psychotherapy session | Niv |
 | [Work and social adjustment scale](https://github.com/nivlab/jspsych-demos/blob/main/tasks/self-report/surveys/wsas.js) | Measure of impairment in functioning | Niv |
+
 
 ## Plugins
 
