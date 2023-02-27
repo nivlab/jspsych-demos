@@ -1,5 +1,5 @@
 /**
-* 6-item Working Alliance Scale (Session Alliance Inventory; patient version)
+* Working Alliance Scale (Session Alliance Inventory; patient version)
 *
 * Falkenström, F., Hatcher, R. L., Skjulsvik, T., Larsson, M. H., & Holmqvist, R. (2015).
 * Development and validation of a 6-item working alliance questionnaire for repeated
@@ -26,7 +26,7 @@ var wai = {
     "Completely"
   ],
   reverse: Array(6).fill(false),
-  instructions: "Below are sentences that describe some of the ways a person might think or feel about his or her therapist. When you read these descriptions, think about your last session only.",
+  instructions: "Below are sentences that describe some of the ways a person might think or feel about their therapist.<br>When you read these descriptions, think about your last session only.",
   survey_width: 950,
   item_width: 45,
   scale_repeat: 6,
