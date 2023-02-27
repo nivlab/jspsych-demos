@@ -30,16 +30,14 @@ var ami = {
     "If I realise I have been unpleasant to someone, I will feel terribly guilty afterwards."
   ],
   scale: [
-    "Completely<br>UNTRUE",                // scored as 4 (is reverse scored)
+    "Completely<br>untrue",                // scored as 4 (is reverse scored)
     "Mostly<br>untrue",                    // scored as 3
     "Neither<br>true nor<br>untrue",       // scored as 2
     "Quite<br>true",                       // scored as 1
-    "Completely<br>TRUE",                  // scored as 0
+    "Completely<br>true",                  // scored as 0
   ],
-  reverse: Array(18).fill(true), // see AMI scoring instructions; "each item is negatively scored"
-  instructions: `Below are a number of statements. Each statement asks you to think about your life over the last 2 weeks.
-  <br>For each statement, select how appropriately it describes your life right now.
-  <br>Select "Completely true" if the statement describes you perfectly, "Completely untrue" if the statement does not describe you at all over the last 2 weeks, and use the answers in between accordingly.`,
+  reverse: Array(18).fill(true),
+  instructions: `Below are a number of statements. Each statement asks you to think about your life over the last 2 weeks.<br>For each statement, select how appropriately it describes your life right now. Select "Completely true" if the statement describes you perfectly, "Completely untrue" if the statement does not describe you at all over the last 2 weeks, and use the answers in between accordingly.`,
   survey_width: 950,
   item_width: 50,
   scale_repeat: 9,
