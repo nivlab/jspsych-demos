@@ -20,21 +20,19 @@ var bads = {
     "Most of what I did was to escape from or avoid something unpleasant. ",
     "I spent a long time thinking over and over about my problems.",
     "I engaged in activities that would distract me from feeling bad.",
-    "I did things that were enjoyable"
+    "I did things that were enjoyable."
   ],
   scale: [
-    "Not at all<br>'0'",                // scored as 0
-    "'1'",                              // scored as 1
-    "A little<br>'2'",                  // scored as 2
-    "'3'",                              // scored as 3
-    "A lot<br>'4'",                     // scored as 4
-    "'5'",                              // scored as 5
-    "Completely<br>'6'"                 // scored as 6
+    "Not at all",                       // scored as 0
+    "",                                 // scored as 1
+    "A little",                         // scored as 2
+    "",                                 // scored as 3
+    "A lot",                            // scored as 4
+    "",                                 // scored as 5
+    "Completely"                        // scored as 6
   ],
   reverse: [true, false, false, false, false, true, true, true, false],
-  instructions: `Please read each statement carefully and then circle the number which best describes how
-  much the statement was true for you DURING THE PAST WEEK, INCLUDING
-  TODAY.`,
+  instructions: 'Please read each statement carefully and then circle the number which best describes how much the statement was true for you during the past week, including today.',
   survey_width: 950,
   item_width: 50,
   scale_repeat: 9,
