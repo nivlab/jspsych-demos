@@ -35,7 +35,9 @@ Note: the practice images must also be unpacked in order to run the instructions
 
 ## Abbreviated test forms
 
-Sam has been working on optimized, abbreviated test forms of the MaRs-IB items using item response theory. Please contact him for details. 
+Sam Zorowitz developed and validateed multiple abbreviated test forms using the MaRs-IB stimuli. See [Zorowitz et al. (2023)](https://doi.org/10.3758/s13428-023-02067-8) for details.
 
 ## References
-Chierchia, G., Fuhrmann, D., Knoll, L. J., Pi-Sunyer, B. P., Sakhardande, A. L., & Blakemore, S. J. (2019). The matrix reasoning item bank (MaRs-IB): novel, open-access abstract reasoning items for adolescents and adults. Royal Society open science, 6(10), 190232.
+Chierchia, G., Fuhrmann, D., Knoll, L. J., Pi-Sunyer, B. P., Sakhardande, A. L., & Blakemore, S. J. (2019). The matrix reasoning item bank (MaRs-IB): novel, open-access abstract reasoning items for adolescents and adults. Royal Society open science, 6(10), 190232. https://doi.org/10.1098/rsos.190232
+
+Zorowitz, S., Chierchia, G., Blakemore, SJ. et al. An item response theory analysis of the matrix reasoning item bank (MaRs-IB). Behav Res (2023). https://doi.org/10.3758/s13428-023-02067-8
