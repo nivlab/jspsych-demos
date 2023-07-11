@@ -343,7 +343,6 @@ var jsPsychSpatialRecall = (function (jspsych) {
         display_element.querySelector('#button-bar').setAttribute('status', status);
 
         // Hide cursor
-        // console.log(document.querySelector('.jspsych-content-wrapper'))
         document.querySelector('.jspsych-content-wrapper').setAttribute('status', status);
 
         // Hide mouse events
@@ -405,9 +404,13 @@ var jsPsychSpatialRecall = (function (jspsych) {
 
       // initialize response
       var responses = [];
+      var event_history = [];
 
       // function to handle responses by the subject
       function after_response(choice) {
+
+        // store event
+        event_history.push({button: parseInt(choice), time: performance.now() - start_time});
 
         // store response
         responses.push( parseInt(choice) );
@@ -426,6 +429,9 @@ var jsPsychSpatialRecall = (function (jspsych) {
 
       // function to clear current responses
       function clear_responses() {
+
+        // store event
+        event_history.push({button: 'clear', time: performance.now() - start_time});
 
         // update entry indicators
         for (let i = 0; i<Math.min(responses.length, trial.sequence.length); i++) {
@@ -452,6 +458,9 @@ var jsPsychSpatialRecall = (function (jspsych) {
         var end_time = performance.now();
         var rt = end_time - start_time;
 
+        // store event
+        event_history.push({button: 'submit', time: rt});
+
         // copy responses
         const copy = trial.backwards ? [...responses].reverse() : [...responses];
 
@@ -469,7 +478,8 @@ var jsPsychSpatialRecall = (function (jspsych) {
           score_an: score_an,
           score_pc: score_pc,
           score_ls: score_ls,
-          rt: rt
+          rt: rt,
+          event_history: event_history
         };
 
         // clear the display
