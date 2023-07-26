@@ -107,12 +107,6 @@ TABLE OF CONTENTS
 
 > A simple plugin for a forwards/backwards spatial recall task. Includes three scoring rules (absolute, partial credit, longest sequence).
 
-### Symmetry span
-
-[<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/symmetry-span) [<b>[Demo]</b>](./tasks/symmetry-span/experiment.html)
-
-> A jsPsych implementation of the symmetry span test ([Unsworth et al. 2005](https://doi.org/10.3758/BF03192720)), adapted from [Mahi Luthra](https://github.com/mahiluthra/working_memory_tests).
-
 ### Digit symbol matching
 
 [<b>[Code]</b>](https://github.com/nivlab/jspsych-demos/tree/main/tasks/dsst) [<b>[Demo]</b>](./tasks/dsst/experiment.html)
