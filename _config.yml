@@ -34,6 +34,10 @@ theme: jekyll-theme-minimal
 # seo
 google_analytics: G-8GG0RKT54J
 
+# include
+include:
+  - pages
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
