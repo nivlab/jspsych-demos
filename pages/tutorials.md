@@ -9,4 +9,4 @@ layout: default
 - Winson Yang's jsPsych tutorial [playlist](https://www.youtube.com/playlist?list=PLtdKTIOUlb42qG962wz30fzlUMibJCGQW)
 
 
-[back](./)
+[back](../)
