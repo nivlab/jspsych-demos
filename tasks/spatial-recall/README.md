@@ -1,6 +1,10 @@
 # Spatial recall
 
-Author(s): Sam Zorowitz
+## Author(s)
+
+Sam Zorowitz (szorowi1 [at] gmail.com)
+
+## Description
 
 A simple plugin for a forwards/backwards spatial recall task. Includes three scoring rules (absolute, partial credit, longest sequence).
 

@@ -1,5 +1,9 @@
 # Bandit task
 
-Author(s): Dan Bennett
+## Author(s)
 
-A jsPsych implementation of a 2-arm bandit task using Javascript and Canvas graphics.
+Dan Bennett (Daniel.Bennett [at] monash.edu)
+
+## Description
+
+A simple 2-arm bandit task using Javascript and Canvas graphics.

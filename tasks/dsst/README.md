@@ -1,10 +1,12 @@
 # Digit symbol substitution task
 
-Author(s): Sam Zorowitz
+## Author(s)
 
-A variant of the [digit symbol matching test](https://www.testmybrain.org/tests/DigSymbCoding/DSC.html), which is based on a well-validated and widely used measure of processing speed (e.g. WAIS digit symbol coding or digit symbol substitution tests). Task has been modified to minimize the need for visual scanning and instead encourages incidental learning.
+Sam Zorowitz (szorowi1 [at] gmail.com)
 
-Task aesthetics based on Lumosity version of the digit symbol coding test.
+## Description
+
+A variant of the [digit symbol matching test](https://www.testmybrain.org/tests/DigSymbCoding/DSC.html), which is based on the WAIS digit symbol coding or digit symbol substitution tests. The task can be used as a measure of speed-of-processing and has been modified to minimize the need for visual scanning. Its design is based on Lumosity version of the digit symbol coding test.
 
 ## References
 - Danthiir, V., Wilhelm, O., Schulze, R., & Roberts, R. D. (2005). Factor structure and validity of paper-and-pencil measures of mental speed: Evidence for a higher-order model?. Intelligence, 33(5), 491-514.

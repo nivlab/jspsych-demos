@@ -1,5 +1,13 @@
 # Horizons task
 
-Author(s): Sam Zorowitz, Isabel Zaller
+## Author(s)
 
-A jsPsych implementation of the horizons task ([Wilson et al. 2014](https://doi.org/10.1037/a0038199)) using Javascript and CSS.
+Sam Zorowitz (szorowi1 [at] gmail.com), Isabel Zaller
+
+## Description
+
+An implementation of the horizons task. Users are required to specify a complete list of trials.
+
+## References
+
+- Wilson, R. C., Geana, A., White, J. M., Ludvig, E. A., & Cohen, J. D. (2014). Humans use directed and random exploration to solve the explore–exploit dilemma. Journal of Experimental Psychology: General, 143(6), 2074.

@@ -1,5 +1,9 @@
 # Audio test
 
-Author(s): Dan Bennett
+## Author(s)
 
-Plugin for playing an audio file, getting a text response, and verifying that it is correct made by playing with jspsych template plugins.
+Dan Bennett (Daniel.Bennett [at] monash.edu)
+
+## Description
+
+A custom plugin that plays an audio file and requires a participant to report the audio played. The plugin then verifies that the participant has produced the correct response.
