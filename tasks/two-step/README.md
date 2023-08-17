@@ -1,8 +1,12 @@
 # Two-step
 
-Author(s): Sam Zorowitz, Gili Karni, Branson Byers
+## Author(s)
 
-A space-themed version of the two-step task.
+Sam Zorowitz (szorowi1 [at] gmail.com), Gili Karni, Branson Byers
+
+## Description
+
+A version of the two-step task with a space-themed cover story.
 
 ## References
 - Daw, N. D., Gershman, S. J., Seymour, B., Dayan, P., & Dolan, R. J. (2011). Model-based influences on humans' choices and striatal prediction errors. Neuron, 69(6), 1204-1215.

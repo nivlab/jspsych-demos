@@ -1,5 +1,13 @@
 # Risky investment task
 
-Author(s): Sam Zorowitz
+## Author(s)
 
-A stock market-themed risky investment task implemented using Javascript and CSS. Similar in framing to [Zhang et al. (2015)](https://doi.org/10.1111/tops.12143). Designed to study risk sensitive reinforcement learning behaviors.
+Sam Zorowitz (szorowi1 [at] gmail.com)
+
+## Description
+
+A task to measure risk-sensitive decision-making with a stock market-themed cover story.
+
+## References
+
+- Zhang, Y., Paik, J., & Pirolli, P. (2015). Reinforcement learning and counterfactual reasoning explain adaptive behavior in a changing environment. Topics in Cognitive Science, 7(2), 368-381.

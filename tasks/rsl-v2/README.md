@@ -1,5 +1,13 @@
 # Risk sensitive learning (v2)
 
-Author(s): Sam Zorowitz, Branson Byers
+## Author(s)
 
-A child-friendly, fishing-themed jsPsych implementation of the risk sensitive learning task ([Niv et al. 2012](https://doi.org/10.1523/JNEUROSCI.5498-10.2012)) using Javascript and CSS. 
+Sam Zorowitz (szorowi1 [at] gmail.com), Branson Byers
+
+## Description
+
+A variant of the risk sensitive learning task with a fishing-themed cover story.
+
+## References
+
+- Niv, Y., Edlund, J. A., Dayan, P., & O'Doherty, J. P. (2012). Neural prediction errors reveal a risk-sensitive reinforcement-learning process in the human brain. Journal of Neuroscience, 32(2), 551-562.
