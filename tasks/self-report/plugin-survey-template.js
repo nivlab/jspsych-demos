@@ -4,18 +4,19 @@ var jsPsychSurveyTemplate = (function (jspsych) {
   const info = {
     name: 'survey-template',
     description: '',
+    version: "1.01",
     parameters: {
       items: {
         type: jspsych.ParameterType.HTML_STRING,
         array: true,
         pretty_name: 'Items',
-        decription: 'The questions associated with the survey'
+        description: 'The questions associated with the survey'
       },
       scale: {
         type: jspsych.ParameterType.HTML_STRING,
         array: true,
         pretty_name: 'Scale',
-        decription: 'The response options associated with the survey'
+        description: 'The response options associated with the survey'
       },
       reverse: {
         type: jspsych.ParameterType.BOOL,
@@ -27,25 +28,25 @@ var jsPsychSurveyTemplate = (function (jspsych) {
       scoring_index: {
         type: jspsych.ParameterType.INT,
         pretty_name: 'Scoring index',
-        decription: 'The minimum item score (e.g. 0 if scoring is 0-indexed)',
+        description: 'The minimum item score (e.g. 0 if scoring is 0-indexed)',
         default: 0
       },
       infrequency_items: {
         type: jspsych.ParameterType.INT,
         array: true,
         pretty_name: 'Infrequency items',
-        decription: 'Infrequency-check item numbers (0-indexed)',
-        default: null
+        description: 'Infrequency-check item numbers (0-indexed)',
+        default: []
       },
       instructions: {
         type: jspsych.ParameterType.HTML_STRING,
         pretty_name: 'Instructions',
-        decription: 'The instructions associated with the survey'
+        description: 'The instructions associated with the survey'
       },
       randomize_question_order: {
         type: jspsych.ParameterType.BOOL,
         pretty_name: 'Randomize Question Order',
-        default: true,
+        default: false,
         description: 'If true, the order of the questions will be randomized'
       },
       scale_repeat: {
@@ -72,6 +73,44 @@ var jsPsychSurveyTemplate = (function (jspsych) {
         default:  'Continue',
         description: 'The text that appears on the button to finish the trial.'
       },
+    },
+    data: {
+        responses: {
+            type: jspsych.ParameterType.OBJECT,
+            pretty_name: "Participant responses"
+        },
+        rt: {
+            type: jspsych.ParameterType.FLOAT,
+            pretty_name: "Overall response times"
+        },
+        radio_event_ids: {
+            type: jspsych.ParameterType.ARRAY,
+            pretty_name: "Order of questions clicked"
+        },
+        radio_event_times: {
+            type: jspsych.ParameterType.ARRAY,
+            pretty_name: "Times of questions clicks"
+        },
+        key_event_times:  {
+            type: jspsych.ParameterType.ARRAY,
+            pretty_name: "Times of keyboard strokes"
+        },
+        mouse_event_times:  {
+            type: jspsych.ParameterType.ARRAY,
+            pretty_name: "Times of mouse clicks"
+        },
+        straightlining:  {
+            type: jspsych.ParameterType.FLOAT,
+            pretty_name: "Maximum percentage of responses of the same position"
+        },
+        zigzagging: {
+            type: jspsych.ParameterType.FLOAT,
+            pretty_name: "fraction of responses that exhibit response adjacency"
+        },
+        honeypot: {
+            type: jspsych.ParameterType.INT,
+            pretty_name: 'Whether hidden radio button was clicked. 0 - no. 1 - yes'
+        },
     }
   }
 
@@ -215,7 +254,7 @@ var jsPsychSurveyTemplate = (function (jspsych) {
         item_order = jsPsych.randomization.shuffle(item_order);
 
         // check if the first item is an infrequency item; if so, re-shuffle to avoid this
-        while (!(trial.infrequency_items === null) && trial.infrequency_items.toString().includes([item_order[0]])){
+        while (!(trial.infrequency_items.length === 0) && trial.infrequency_items.toString().includes([item_order[0]])){
           item_order = jsPsych.randomization.shuffle(item_order);
         }
 
