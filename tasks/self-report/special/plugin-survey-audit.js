@@ -4,6 +4,24 @@ var jsPsychSurveyAudit = (function (jspsych) {
   const info = {
     name: 'survey-audit',
     description: '',
+    version: '1.0.0',
+    data: {
+      rt: jspsych.ParameterType.INT,
+      radio_events: {
+        type: jspsych.ParameterType.FLOAT,
+        array: true
+      },
+      key_events: {
+        type: jspsych.ParameterType.FLOAT,
+        array: true
+      },
+      mouse_events: {
+        type: jspsych.ParameterType.FLOAT,
+        array: true
+      },
+      responses: jspsych.ParameterType.COMPLEX,
+      screen_resolution: jspsych.ParameterType.INT
+    },
     parameters: {
       button_label: {
         type: jspsych.ParameterType.STRING,

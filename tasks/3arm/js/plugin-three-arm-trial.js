@@ -4,6 +4,29 @@ var jsPsychThreeArmTrial = (function (jspsych) {
   const info = {
     name: 'three-arm-trial',
     description: '',
+    version: '1.0.0',
+    data: {
+      contexts: {
+        type: jspsych.ParameterType.STRING,
+        array: true,
+      },
+      outcomes: {
+        type: jspsych.ParameterType.INT,
+        array: true,
+      },
+      key: {
+        type: jspsych.ParameterType.STRING,
+      },
+      choice: {
+        type: jspsych.ParameterType.INT,
+      },
+      rt: {
+        type: jspsych.ParameterType.INT,
+      },
+      outcome: {
+        type: jspsych.ParameterType.INT,
+      }
+    },
     parameters: {
       contexts: {
         type: jspsych.ParameterType.HTML_STRING,
@@ -141,8 +164,8 @@ var jsPsychThreeArmTrial = (function (jspsych) {
         // only record the first response
         if (response.key == null) {
           response.rt = info.rt;
-          response.key = info.key;
-          response.choice = trial.valid_responses.indexOf(info.key);
+          response.key = info.key.toLowerCase();
+          response.choice = trial.valid_responses.indexOf(info.key.toLowerCase());
         }
 
         // Update screen.

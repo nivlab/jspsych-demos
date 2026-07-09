@@ -4,6 +4,14 @@ var jsPsychDisorderChecklist = (function (jspsych) {
   const info = {
     name: 'disorder-checklist',
     description: '',
+    version: '1.0.0',
+    data:{
+      diagnoses: {
+        type: jspsych.ParameterType.STRING,
+        array: true
+      },
+      rt: jspsych.ParameterType.INT
+    },
     parameters: {
       button_label: {
         type: jspsych.ParameterType.STRING,

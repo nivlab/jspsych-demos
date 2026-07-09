@@ -3,29 +3,108 @@ var jsPsychBanditTrial = (function (jspsych) {
 
   const info = {
     name: 'bandit',
+    version: '1.0.0',
+    data: {
+      trial_type: {
+        type: jspsych.ParameterType.STRING,
+      },
+      left_image_number: {
+        type: jspsych.ParameterType.INT,
+      },
+      right_image_number: {
+        type: jspsych.ParameterType.INT,
+      },
+      left_image_type: {
+        type: jspsych.ParameterType.STRING,
+      },
+      right_image_type: {
+        type: jspsych.ParameterType.STRING,
+      },
+      ur_left_image: {
+        type: jspsych.ParameterType.INT,
+      },
+      ur_right_image: {
+        type: jspsych.ParameterType.INT,
+      },
+      chosen_image: {
+        type: jspsych.ParameterType.INT,
+      },
+      ur_chosen_image: {
+        type: jspsych.ParameterType.INT,
+      },
+      rt: {
+        type: jspsych.ParameterType.INT,
+      },
+      key_char: {
+        type: jspsych.ParameterType.STRING,
+      },
+      choice: {
+        type: jspsych.ParameterType.STRING,
+      },
+      stimulus_array: {
+        type: jspsych.ParameterType.INT,
+        array: true,
+      },
+      feedback: {
+        type: jspsych.ParameterType.INT,
+      }
+    },
     parameters: {
+      choice_type: {
+        type: jspsych.ParameterType.STRING,
+        default: null
+      },
+      left_image_type: {
+        type: jspsych.ParameterType.STRING,
+        default: null
+      },
+      right_image_type: {
+        type: jspsych.ParameterType.STRING,
+        default: null
+      },
+      left_image_number: {
+        type: jspsych.ParameterType.INT,
+        default: null
+      },
+      right_image_number: {
+        type: jspsych.ParameterType.INT,
+        default: null
+      },
+      left_box: {
+        type: jspsych.ParameterType.STRING,
+        default: null
+      },
+      right_box: {
+        type: jspsych.ParameterType.STRING,
+        default: null
+      },
       face_stimuli: {
         type: jspsych.ParameterType.STRING,
-        default: null,
+        array: true,
+        default: [],
         description: 'The array of paths to face stimuli'
       },
       place_stimuli: {
         type: jspsych.ParameterType.STRING,
-        default: null,
+        array: true,
+        default: [],
         description: 'The array of paths to place stimuli'
       },
       feedback_images: {
         type: jspsych.ParameterType.STRING,
-        default: null,
+        array: true,
+        default: [],
         description: 'The array of paths to feedback images'
       },
       image_allocation: {
         type: jspsych.ParameterType.INT,
+        array: true,
         default: [0, 1, 2],
         description: 'The mapping to subject-specific images (allows randomisation of visual stimuli)'
       },
       canvas_dimensions: {
         type: jspsych.ParameterType.INT,
+        array: true,
         default: [1000, 500],
         description: 'The dimensions [width, height] of the html canvas on which things are drawn'
       },
@@ -36,12 +115,14 @@ var jsPsychBanditTrial = (function (jspsych) {
       },
       stimulus_offset: {
         type: jspsych.ParameterType.INT,
+        array: true,
         pretty_name: 'Stimulus offset',
         default: [270, 0],
         description: 'The offset [horizontal, vertica] of the centre of each stimulus from the centre of the canvas in pixels'
       },
       stimulus_dimensions: {
         type: jspsych.ParameterType.INT,
+        array: true,
         pretty_name: 'Stimulus dimensions',
         default: [250, 250],
         description: 'Stimulus dimensions in pixels [width, height]'
@@ -95,12 +176,14 @@ var jsPsychBanditTrial = (function (jspsych) {
       },
       feedback_offset: {
         type: jspsych.ParameterType.INT,
+        array: true,
         pretty_name: 'Feedback offset',
         default: [0, 0],//[270, -200],
         description: 'The offset [horizontal, vertica] of the centre of the feedback from the centre of the canvas in pixels'
       },
       feedback_dimensions: {
         type: jspsych.ParameterType.INT,
+        array: true,
         pretty_name: 'Feedback dimensions',
         default: [120, 120],
         description: 'Feedback image dimensions in pixels [width, height]'
@@ -151,6 +234,8 @@ var jsPsychBanditTrial = (function (jspsych) {
       ///// TRIAL LOOP /////
 
       // set the images
+      console.log("trial:", trial);
+
       if (trial.choice_type == "free"){
 
         display.left_image_number = trial.image_allocation[trial.left_image_number];
@@ -232,6 +317,11 @@ var jsPsychBanditTrial = (function (jspsych) {
       }
 
       DrawScreen();
+      console.log("left_image_number:", display.left_image_number);
+      console.log("right_image_number:", display.right_image_number);
+
+      console.log("left_stimulus:", display.left_stimulus);
+      console.log("right_stimulus:", display.right_stimulus);
 
       // start the response listener
       var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({

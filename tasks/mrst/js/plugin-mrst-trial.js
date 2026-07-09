@@ -4,9 +4,25 @@ var jsPsychMrstTrial = (function (jspsych) {
   const info = {
     name: 'mrst-trial',
     description: '',
+    version: '1.0.0',
+    data: {
+      stimulus: jspsych.ParameterType.STRING,
+      color: jspsych.ParameterType.STRING,
+      points: jspsych.ParameterType.INT,
+      key_press: jspsych.ParameterType.INT,
+      choice: jspsych.ParameterType.INT,
+      rt: jspsych.ParameterType.INT,
+      outcome: jspsych.ParameterType.INT,
+      fullscreen: jspsych.ParameterType.INT,
+      screen_resolution: {
+        type: jspsych.ParameterType.INT,
+        array: true,
+      },
+      minimum_resolution: jspsych.ParameterType.INT
+    },
     parameters: {
       stimulus: {
-        type: jspsych.ParameterType.INT,
+        type: jspsych.ParameterType.STRING,
         pretty_name: 'Card points',
         description: 'The points on the face of each card.'
       },
@@ -186,7 +202,7 @@ var jsPsychMrstTrial = (function (jspsych) {
 
         // record responses
         response.rt = info.rt;
-        response.key = trial.valid_responses.indexOf(info.key);
+        response.key = trial.valid_responses.indexOf(info.key.toLowerCase());
         response.choice = order[response.key];
 
         // compute earnings

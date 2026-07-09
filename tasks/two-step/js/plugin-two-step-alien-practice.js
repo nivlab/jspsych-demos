@@ -4,6 +4,22 @@ var jsPsychTwoStepAlienPractice = (function (jspsych) {
   const info = {
     name: 'alien-practice',
     description: '',
+    version: '1.0.0',
+    data: {
+      state_2_ids: {
+        type: jspsych.ParameterType.INT,
+        array: true
+      },
+      state_2_key: jspsych.ParameterType.INT,
+      state_2_choice: jspsych.ParameterType.INT,
+      state_2_rt: jspsych.ParameterType.INT,
+      outcome: jspsych.ParameterType.INT,
+      screen_resolution: {
+        type: jspsych.ParameterType.INT,
+        array: true
+      },
+      minimum_resolution: jspsych.ParameterType.INT
+    },
     parameters: {
       outcomes: {
         type: jspsych.ParameterType.INT,
@@ -164,7 +180,7 @@ var jsPsychTwoStepAlienPractice = (function (jspsych) {
 
         // Record responses.
         response.state_2_rt = info.rt;
-        response.state_2_key = trial.valid_responses.indexOf(info.key);
+        response.state_2_key = trial.valid_responses.indexOf(info.key.toLowerCase());
         response.state_2_choice = state_2_ids[response.state_2_key];
         response.outcome = trial.outcomes[response.state_2_choice];
 

@@ -4,6 +4,11 @@ var jsPsychSurveyCovid = (function (jspsych) {
   const info = {
     name: 'survey-covid',
     description: '',
+    version: '1.0.0',
+    data:{
+      responses: jspsych.ParameterType.COMPLEX,
+      rt: jspsych.ParameterType.INT
+    },
     parameters: {
       row_prompt_percent: {
         type: jspsych.ParameterType.INT,

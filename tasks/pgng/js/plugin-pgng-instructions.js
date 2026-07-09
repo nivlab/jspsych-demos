@@ -4,6 +4,11 @@ var jsPsychPgngInstructions = (function (jspsych) {
   const info = {
     name: 'pgng-instructions',
     description: '',
+    version: '1.0.0',
+    data: {
+      view_history: jspsych.ParameterType.STRING,
+      rt: jspsych.ParameterType.INT
+    },
     parameters: {
       pages: {
         type: jspsych.ParameterType.HTML_STRING,

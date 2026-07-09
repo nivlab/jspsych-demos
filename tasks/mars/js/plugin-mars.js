@@ -4,6 +4,26 @@ var jsPsychMars = (function (jspsych) {
   const info = {
     name: 'mars',
     description: '',
+    version: '1.0.0',
+    data: {
+      item: jspsych.ParameterType.INT,
+      shape_set: jspsych.ParameterType.INT,
+      distractor: jspsych.ParameterType.STRING,
+      choice_order: {
+        type: jspsych.ParameterType.INT,
+        array: true
+      },
+      correct: jspsych.ParameterType.INT,
+      choice: jspsych.ParameterType.INT,
+      accuracy: jspsych.ParameterType.INT,
+      rt: jspsych.ParameterType.INT,
+      screen_resolution: {
+        type: jspsych.ParameterType.INT,
+        array: true
+      },
+      minimum_resolution: jspsych.ParameterType.INT,
+      all_loaded: jspsych.ParameterType.BOOL
+    },
     parameters: {
       item: {
         type: jspsych.ParameterType.INT,

@@ -4,6 +4,10 @@ var jsPsychMentalHealthResources = (function (jspsych) {
   const info = {
     name: 'mental-health-resources',
     description: '',
+    version: '1.0.0',
+    data:{
+      rt: jspsych.ParameterType.INT
+    },
     parameters: {
       country: {
         type: jspsych.ParameterType.STRING,

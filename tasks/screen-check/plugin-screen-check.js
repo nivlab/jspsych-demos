@@ -3,6 +3,13 @@ var jsPsychScreenCheck = (function (jspsych) {
 
   const info = {
     name: 'screen-check',
+    version: '1.0.0',
+    data: {
+      min_width: jspsych.ParameterType.INT,
+      min_height: jspsych.ParameterType.INT,
+      inner_width: jspsych.ParameterType.INT,
+      inner_height: jspsych.ParameterType.INT
+    },
     parameters: {
       min_width: {
         type: jspsych.ParameterType.INT,

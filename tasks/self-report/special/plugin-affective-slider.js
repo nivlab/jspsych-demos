@@ -3,6 +3,12 @@ var jsPsychAffectiveSlider = (function (jspsych) {
 
   const info = {
     name: 'affective-slider',
+    version: '1.0.0',
+    data: {
+      slider_type: jspsych.ParameterType.STRING,
+      raw_loc: jspsych.ParameterType.INT,
+      type: jspsych.ParameterType.FLOAT
+    },
     parameters: {
       prompt: {
         type: jspsych.ParameterType.STRING,

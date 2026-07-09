@@ -4,6 +4,24 @@ var jsPsychRpm = (function (jspsych) {
   const info = {
     name: 'rpm',
     description: '',
+    version: '1.0.0',
+    data: {
+      stimulus: jspsych.ParameterType.HTML_STRING,
+      choice_order: {
+        type: jspsych.ParameterType.INT,
+        array: true
+      },
+      correct: jspsych.ParameterType.INT,
+      choice: jspsych.ParameterType.INT,
+      accuracy: jspsych.ParameterType.INT,
+      rt: jspsych.ParameterType.INT,
+      screen_resolution: {
+        type: jspsych.ParameterType.INT,
+        array: true
+      },
+      minimum_resolution: jspsych.ParameterType.INT,
+      all_loaded: jspsych.ParameterType.BOOL
+    },
     parameters: {
       stimulus: {
         type: jspsych.ParameterType.HTML_STRING,

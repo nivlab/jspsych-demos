@@ -4,6 +4,24 @@ var jsPsychSurveyDudit = (function (jspsych) {
   const info = {
     name: 'survey-dudit',
     description: '',
+    version: '1.0.0',
+    data: {
+      rt: jspsych.ParameterType.INT,
+      radio_events: {
+        type: jspsych.ParameterType.INT,
+        array: true
+      },
+      key_events: {
+        type: jspsych.ParameterType.INT,
+        array: true
+      },
+      mouse_events: {
+        type: jspsych.ParameterType.INT,
+        array: true
+      },
+      responses: jspsych.ParameterType.COMPLEX,
+      screen_resolution: jspsych.ParameterType.INT
+    },
     parameters: {
       button_label: {
         type: jspsych.ParameterType.STRING,

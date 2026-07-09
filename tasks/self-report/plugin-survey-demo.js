@@ -4,9 +4,14 @@ var jsPsychSurveyDemo = (function (jspsych) {
   const info = {
     name: 'survey-demo',
     description: '',
+    version: '1.0.0',
+    data: {
+      rt: jspsych.ParameterType.INT,
+      responses: jspsych.ParameterType.COMPLEX,
+    },
     parameters: {
       button_label: {
-        type: jspsych.ParameterTypeSTRING,
+        type: jspsych.ParameterType.STRING,
         pretty_name: 'Button label',
         default:  'Continue',
         description: 'The text that appears on the button to finish the trial.'

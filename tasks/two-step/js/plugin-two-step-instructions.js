@@ -3,6 +3,11 @@ var jsPsychTwoStepInstructions = (function (jspsych) {
 
   const info = {
     name: 'two-step-instructions',
+    version: '1.0.0',
+    data: {
+      view_history: jspsych.ParameterType.STRING,
+    rt: jspsych.ParameterType.INT
+    },
     parameters: {
       pages: {
         type: jspsych.ParameterType.HTML_STRING,
@@ -55,13 +60,13 @@ var jsPsychTwoStepInstructions = (function (jspsych) {
       key_forward: {
         type: jspsych.ParameterType.KEYCODE,
         pretty_name: 'Key forward',
-        default: 'ArrowRight',
+        default: 'arrowright',
         description: 'The key the subject can press in order to advance to the next page.'
       },
       key_backward: {
         type: jspsych.ParameterType.KEYCODE,
         pretty_name: 'Key backward',
-        default: 'ArrowLeft',
+        default: 'arrowleft',
         description: 'The key that the subject can press to return to the previous page.'
       }
     }
@@ -345,6 +350,7 @@ var jsPsychTwoStepInstructions = (function (jspsych) {
 
       var after_response = function(info) {
 
+        info.key = info.key.toLowerCase();
         // have to reinitialize this instead of letting it persist to prevent accidental skips of pages by holding down keys too long
         keyboard_listener = jsPsych.pluginAPI.getKeyboardResponse({
           callback_function: after_response,

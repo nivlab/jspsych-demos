@@ -4,6 +4,11 @@ var jsPsychMrstInstructions = (function (jspsych) {
   const info = {
     name: 'mrst-instructions',
     description: '',
+    version: '1.0.0',
+    data: {
+      view_history: jspsych.ParameterType.STRING,
+      rt: jspsych.ParameterType.INT
+    },
     parameters: {
       pages: {
         type: jspsych.ParameterType.COMPLEX,
@@ -43,11 +48,11 @@ var jsPsychMrstInstructions = (function (jspsych) {
           points: {
             type: jspsych.ParameterType.FLOAT,
             pretty_name: 'Points',
-            default: '10',
+            default: 10,
             description: 'The number of points on the back of the face-down card.'
           },
           face: {
-            type: jspsych.ParameterType.FLOAT,
+            type: jspsych.ParameterType.STRING,
             pretty_name: 'Face',
             default: 'down',
             description: 'The face direction of the card ("down", "up").'

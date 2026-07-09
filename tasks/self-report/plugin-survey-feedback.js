@@ -4,6 +4,11 @@ var jsPsychSurveyFeedback = (function (jspsych) {
   const info = {
     name: 'survey-feedback',
     description: '',
+    version: '1.0.0',
+    data: {
+      rt: jspsych.ParameterType.INT,
+      responses: jspsych.ParameterType.COMPLEX,
+    },
     parameters: {
       mental_demand: {
         type: jspsych.ParameterType.BOOL,

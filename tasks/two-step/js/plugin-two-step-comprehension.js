@@ -4,6 +4,15 @@ var jsPsychTwoStepComprehension = (function (jspsych) {
   const info = {
     name: 'two-step-comprehension',
     description: '',
+    version: '1.0.0',
+    data:{
+      responses: {
+        type: jspsych.ParameterType.STRING,
+        array: true
+      },
+      num_errors: jspsych.ParameterType.INT,
+      rt: jspsych.ParameterType.INT
+    },
     parameters: {
       prompts: {
         type: jspsych.ParameterType.HTML_STRING,

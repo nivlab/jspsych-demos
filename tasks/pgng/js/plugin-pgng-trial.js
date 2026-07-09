@@ -4,6 +4,28 @@ var jsPsychPgngTrial = (function (jspsych) {
   const info = {
     name: 'pgng-trial',
     description: '',
+    version: '1.0.0',
+    data: {
+      rune: jspsych.ParameterType.STRING,
+      rune_set: jspsych.ParameterType.STRING,
+      hex: jspsych.ParameterType.STRING,
+      correct: jspsych.ParameterType.STRING,
+      choice: jspsych.ParameterType.STRING,
+      rt: jspsych.ParameterType.INT,
+      accuracy: jspsych.ParameterType.INT,
+      outcome: jspsych.ParameterType.STRING,
+      keys: {
+        type: jspsych.ParameterType.INT,
+        array: true
+      },
+      total_keys: jspsych.ParameterType.INT,
+      fullscreen: jspsych.ParameterType.INT,
+      screen_resolution: {
+        type: jspsych.ParameterType.INT,
+        array: true
+      },
+      minimum_resolution: jspsych.ParameterType.INT
+    },
     parameters: {
       robot_rune: {
         type: jspsych.ParameterType.HTML_STRING,

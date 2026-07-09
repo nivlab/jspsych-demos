@@ -17,6 +17,10 @@ const outcome_duration = 1300;
 var min_width = 480;
 var min_height = 295;
 
+// Define quality assurance parameters.
+var missed_threshold = 6;
+var missed_responses = 0;
+
 //---------------------------------------//
 // Define stimuli.
 //---------------------------------------//
@@ -111,6 +115,12 @@ for (let i = 0; i < 1; i++) {
 
             // Set missing data to true.
             data.missing = true;
+
+            // Increment counter. Check if experiment should end.
+            missed_responses++;
+            if (missed_responses >= missed_threshold) {
+              jsPsych.abortExperiment();
+            }
 
           } else {
 

@@ -4,11 +4,21 @@ var jsPsychAudioTest = (function (jspsych) {
   const info = {
     name: 'audio-test',
     description: '',
+    version: '1.0.0',
+    data: {
+      rt: jspsych.ParameterType.INT,
+      stimulus: {
+        type: jspsych.ParameterType.AUDIO,
+        array: true
+      },
+      button_pressed: jspsych.ParameterType.INT
+    },
     parameters: {
       stimulus: {
         type: jspsych.ParameterType.AUDIO,
         pretty_name: 'Stimulus',
         default: undefined,
+        array: true,
         description: 'The array of audio stimuli to be played.'
       },
       correct_responses: {
@@ -59,21 +69,15 @@ var jsPsychAudioTest = (function (jspsych) {
     }
     trial(display_element, trial) {
 
-      var context = jsPsych.pluginAPI.audioContext();
       var audio_ix = jsPsych.randomization.sampleWithReplacement([0,1,2,3], 1);
       var audio = null;
+      var starttime;
 
       // load audio file
-      jsPsych.pluginAPI.getAudioBuffer(trial.stimulus[audio_ix])
-      .then(function (buffer) {
-        if (context !== null) {
-          audio = context.createBufferSource();
-          audio.buffer = buffer;
-          audio.connect(context.destination);
-        } else {
-          audio = buffer;
-          audio.currentTime = 0;
-        }
+      jsPsych.pluginAPI.getAudioPlayer(trial.stimulus[audio_ix])
+
+      .then(function (player) {
+        audio = player;
       })
       .catch(function (err) {
         console.error(`Failed to load audio file "${trial.stimulus}". Try checking the file path. We recommend using the preload plugin to load audio files.`)
@@ -127,39 +131,23 @@ var jsPsychAudioTest = (function (jspsych) {
         display_element.innerHTML = html;
 
         // start time
-        var startTime = performance.now();
+        starttime = performance.now();
 
-        // start audio
-        if (context !== null) {
-          startTime = context.currentTime;
-          audio.start(startTime);
-        } else {
-          audio.play();
-        }
+        audio.play();
 
         // add event listeners to buttons
         display_element.querySelector('#jspsych-audio-button-response-button-0').addEventListener('click', function(e){
+          response.rt = performance.now() - starttime;
+          response.button = 0
           check_response();
         });
 
         display_element.querySelector('#jspsych-audio-button-response-button-1').addEventListener('click', function(e){
-          // load audio file
-          jsPsych.pluginAPI.getAudioBuffer(trial.stimulus[audio_ix])
-          .then(function (buffer) {
-            if (context !== null) {
-              audio = context.createBufferSource();
-              audio.buffer = buffer;
-              audio.connect(context.destination);
-              startTime = context.currentTime;
-              audio.start(startTime);
-            } else {
-              audio.play()
-            }
-          })
-          .catch(function (err) {
-            console.error(`Failed to load audio file "${trial.stimulus}". Try checking the file path. We recommend using the preload plugin to load audio files.`)
-            console.error(err)
-          });
+          response.button = 1
+          if (audio) {
+            audio.stop(); 
+            audio.play();
+          }
         });
 
       };
@@ -177,16 +165,10 @@ var jsPsychAudioTest = (function (jspsych) {
 
       // function to end trial when it is time
       function end_trial() {
-
-        // stop the audio file if it is playing
-        // remove end event listeners if they exist
-        if(context !== null){
+        if (audio) {
           audio.stop();
-          audio.onended = function() { }
-        } else {
-          audio.pause();
-          audio.removeEventListener('ended', end_trial);
         }
+
 
         // kill any remaining setTimeout handlers
         jsPsych.pluginAPI.clearAllTimeouts();

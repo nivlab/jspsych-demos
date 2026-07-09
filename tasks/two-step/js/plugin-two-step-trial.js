@@ -4,6 +4,39 @@ var jsPsychTwoStepTrial = (function (jspsych) {
   const info = {
     name: 'two-step-trial',
     description: '',
+    version: '1.0.0',
+    data: {
+      state_1_ids: {
+        type: jspsych.ParameterType.INT,
+        array: true
+      },
+      state_1_key: jspsych.ParameterType.INT,
+      state_1_choice: jspsych.ParameterType.INT,
+      state_1_rt: jspsych.ParameterType.INT,
+      transition: jspsych.ParameterType.INT,
+      state: jspsych.ParameterType.INT,
+      state_2_ids: {
+        type: jspsych.ParameterType.INT,
+        array: true
+      },
+      state_2_key: jspsych.ParameterType.INT,
+      state_2_choice: jspsych.ParameterType.INT,
+      state_2_rt: jspsych.ParameterType.INT,
+      outcome: jspsych.ParameterType.INT,
+      rocket_colors: {
+        type: jspsych.ParameterType.HTML_STRING,
+        array: true
+      },
+      planet_colors: {
+        type: jspsych.ParameterType.HTML_STRING,
+        array: true
+      },
+      screen_resolution: {
+        type: jspsych.ParameterType.INT,
+        array: true
+      },
+      minimum_resolution: jspsych.ParameterType.INT
+    },
     parameters: {
       transition: {
         type: jspsych.ParameterType.INT,
@@ -213,7 +246,7 @@ var jsPsychTwoStepTrial = (function (jspsych) {
 
         // Record responses.
         response.state_1_rt = info.rt;
-        response.state_1_key = trial.valid_responses_s1.indexOf(info.key);
+        response.state_1_key = trial.valid_responses_s1.indexOf(info.key.toLowerCase());
         response.state_1_choice = state_1_ids[response.state_1_key];
 
         // Handle animations
@@ -291,7 +324,7 @@ var jsPsychTwoStepTrial = (function (jspsych) {
 
         // Record responses.
         response.state_2_rt = info.rt;
-        response.state_2_key = trial.valid_responses_s2.indexOf(info.key);
+        response.state_2_key = trial.valid_responses_s2.indexOf(info.key.toLowerCase());
         response.state_2_choice = state_2_ids[response.state_2_key];
         response.outcome = trial.outcomes[response.state_2_choice];
 

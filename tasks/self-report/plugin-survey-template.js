@@ -4,6 +4,34 @@ var jsPsychSurveyTemplate = (function (jspsych) {
   const info = {
     name: 'survey-template',
     description: '',
+    version: '1.0.0',
+    data: {
+      responses: jspsych.ParameterType.COMPLEX,
+    rt: jspsych.ParameterType.INT,
+    item_order: {
+      type: jspsych.ParameterType.INT,
+      array: true
+    },
+    radio_event_ids: {
+      type: jspsych.ParameterType.STRING,
+      array: true
+    },
+    radio_event_times: {
+      type: jspsych.ParameterType.INT,
+      array: true
+    },
+    key_event_times: {
+      type: jspsych.ParameterType.INT,
+      array: true
+    },
+    mouse_event_times: {
+      type: jspsych.ParameterType.INT,
+      array: true
+    },
+    straightlining: jspsych.ParameterType.FLOAT,
+    zigzagging: jspsych.ParameterType.FLOAT,
+    honeypot: jspsych.ParameterType.INT
+  },
     parameters: {
       items: {
         type: jspsych.ParameterType.HTML_STRING,
@@ -35,7 +63,7 @@ var jsPsychSurveyTemplate = (function (jspsych) {
         array: true,
         pretty_name: 'Infrequency items',
         decription: 'Infrequency-check item numbers (0-indexed)',
-        default: null
+        default: []
       },
       instructions: {
         type: jspsych.ParameterType.HTML_STRING,
