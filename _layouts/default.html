@@ -13,9 +13,12 @@
   {% include head-custom.html %}
 </head>
 
-<body>
-  <img src="{{ '/assets/img/demos-header.png' | append: page.banner | relative_url }}" alt="Niv Lab banner"
+<header class="site-header">
+  <img src="{{ '/assets/img/demos-header.png' | relative_url }}" alt="Niv Lab banner"
     class="nivlab-banner">
+</header>
+
+<body>
   <div class="top-nav">
     <button class="nav-toggle" aria-label="Open menu">
       <span></span>
