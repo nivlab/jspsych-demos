@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Digit Symbol Substitution Task</title>
 
   <!-- Load libraries -->
-  <script src="https://unpkg.com/jspsych@7.3.3"></script>
+  <script src="https://unpkg.com/jspsych@8.2.3"></script>
 
   <!-- Initialize jsPsych -->
   <script src="./js/init-jspsych.js"></script>
@@ -12,18 +13,20 @@
   <!-- Load jsPsych plug-ins -->
   <script src="./js/plugin-dsst.js"></script>
   <script src="./js/plugin-dsst-instructions.js"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-fullscreen@1.1.2"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.2"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-instructions@1.1.3"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-fullscreen@2.1.0"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-preload@2.1.0"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-instructions@2.1.0"></script>
 
   <!-- Load experiment -->
   <script src="./js/dsst-experiment.js"></script>
 
   <!-- Load CSS styles -->
-  <link href="https://unpkg.com/jspsych@7.3.3/css/jspsych.css" rel="stylesheet" type="text/css" />
-  <link href="./css/dsst-css.min.css" rel="stylesheet" type="text/css"></link>
+  <link href="https://unpkg.com/jspsych@8.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+  <link href="./css/dsst-css.min.css" rel="stylesheet" type="text/css">
+  </link>
 
 </head>
+
 <body></body>
 <script>
 
@@ -60,4 +63,5 @@
   jsPsych.run(timeline);
 
 </script>
+
 </html>

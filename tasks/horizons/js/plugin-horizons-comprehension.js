@@ -4,6 +4,15 @@ var jsPsychHorizonsComprehension = (function (jspsych) {
   const info = {
     name: 'horizons-comprehension',
     description: '',
+    version: '1.0.0',
+    data:{
+      responses: {
+        type: jspsych.ParameterType.STRING,
+        array: true
+      },
+      num_errors: jspsych.ParameterType.INT,
+      rt: jspsych.ParameterType.INT
+    },
     parameters: {
       button_label: {
         type: jspsych.ParameterType.STRING,

@@ -4,6 +4,29 @@ var jsPsychDsst = (function (jspsych) {
   const info = {
     name: 'dsst',
     description: '',
+    version: '1.0.0',
+    data: {
+      stimuli: {
+        type: jspsych.ParameterType.HTML_STRING,
+        array: true
+      },
+      target: {
+        type: jspsych.ParameterType.INT
+      },
+      key: {
+        type: jspsych.ParameterType.STRING
+      },
+      rt: {
+        type: jspsych.ParameterType.INT
+      },
+      screen_resolution: {
+        type: jspsych.ParameterType.INT,
+        array: true
+      },
+      minimum_resolution: {
+        type: jspsych.ParameterType.INT
+      }
+    },
     parameters: {
       stimuli: {
         type: jspsych.ParameterType.HTML_STRING,
@@ -76,7 +99,7 @@ var jsPsychDsst = (function (jspsych) {
       new_html += '<div class="dsst-stimulus-grid">';
       trial.stimuli.forEach((j, i) => {
         new_html += '<div class="dsst-stimulus"><img src="' + j + '"></img></div>';
-        new_html += '<div class="dsst-stimulus"><p>' + (i+1) + '</p></div>';
+        new_html += '<div class="dsst-stimulus"><p>' + (i + 1) + '</p></div>';
       });
       new_html += '</div>';
 
@@ -111,7 +134,7 @@ var jsPsychDsst = (function (jspsych) {
       };
 
       // function to handle correct responses by the subject
-      var after_response = function(info) {
+      var after_response = function (info) {
 
         // Kill all setTimeout handlers.
         jsPsych.pluginAPI.clearAllTimeouts();
@@ -125,12 +148,12 @@ var jsPsychDsst = (function (jspsych) {
         display_element.querySelector('#target').innerHTML = response.key;
 
         // Pause for animation (2s).
-        setTimeout(function() { end_trial(); }, trial.feedback_duration);
+        setTimeout(function () { end_trial(); }, trial.feedback_duration);
 
       };
 
       // function to end trial when it is time
-      var end_trial = function() {
+      var end_trial = function () {
 
         // kill any remaining setTimeout handlers
         jsPsych.pluginAPI.clearAllTimeouts();
@@ -159,7 +182,7 @@ var jsPsychDsst = (function (jspsych) {
 
       // start the response listener
       var keyboardListener = '';
-      setTimeout(function() {
+      setTimeout(function () {
         keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
           callback_function: after_response,
           valid_responses: [trial.valid_responses],
@@ -171,7 +194,7 @@ var jsPsychDsst = (function (jspsych) {
 
       // end trial if trial_duration is set
       if (trial.trial_duration !== null) {
-        jsPsych.pluginAPI.setTimeout(function() {
+        jsPsych.pluginAPI.setTimeout(function () {
           end_trial();
         }, trial.trial_duration + trial.iti_duration);
       }

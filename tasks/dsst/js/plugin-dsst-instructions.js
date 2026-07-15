@@ -4,6 +4,15 @@ var jsPsychDsstInstructions = (function (jspsych) {
   const info = {
     name: 'dsst-instructions',
     description: '',
+    version: '1.0.0',
+    data: {
+      view_history: {
+        type: jspsych.ParameterType.COMPLEX,
+      },
+      rt: {
+        type: jspsych.ParameterType.INT,
+      }
+    },
     parameters: {
       pages: {
         type: jspsych.ParameterType.HTML_STRING,
@@ -88,12 +97,12 @@ var jsPsychDsstInstructions = (function (jspsych) {
 
       var last_page_update_time = start_time;
 
-      function btnListener(evt){
+      function btnListener(evt) {
         evt.target.removeEventListener('click', btnListener);
-        if(this.id === "jspsych-instructions-back"){
+        if (this.id === "jspsych-instructions-back") {
           back();
         }
-        else if(this.id === 'jspsych-instructions-next'){
+        else if (this.id === 'jspsych-instructions-next') {
           next();
         }
       }
@@ -124,7 +133,7 @@ var jsPsychDsstInstructions = (function (jspsych) {
         html += '<div class="dsst-stimulus-grid">';
         trial.stimuli.forEach((j, i) => {
           html += '<div class="dsst-stimulus"><img src="' + j + '"></img></div>';
-          html += '<div class="dsst-stimulus"><p>' + (i+1) + '</p></div>';
+          html += '<div class="dsst-stimulus"><p>' + (i + 1) + '</p></div>';
         });
         html += '</div>';
 
@@ -144,12 +153,12 @@ var jsPsychDsstInstructions = (function (jspsych) {
 
           var nav_html = "<div class='jspsych-instructions-nav' style='padding: 10px 0px;'>";
           if (trial.allow_backward) {
-            var allowed = (current_page > 0 )? '' : "disabled='disabled'";
-            nav_html += "<button id='jspsych-instructions-back' class='jspsych-btn' style='margin-right: 5px;' "+allowed+">&lt; "+trial.button_label_previous+"</button>";
+            var allowed = (current_page > 0) ? '' : "disabled='disabled'";
+            nav_html += "<button id='jspsych-instructions-back' class='jspsych-btn' style='margin-right: 5px;' " + allowed + ">&lt; " + trial.button_label_previous + "</button>";
           }
-          nav_html += "<button id='jspsych-instructions-next' class='jspsych-btn'"+
-          "style='margin-left: 5px;'>"+trial.button_label_next+
-          " &gt;</button></div>";
+          nav_html += "<button id='jspsych-instructions-next' class='jspsych-btn'" +
+            "style='margin-left: 5px;'>" + trial.button_label_next +
+            " &gt;</button></div>";
 
           html += nav_html;
           display_element.innerHTML = html;
@@ -218,7 +227,7 @@ var jsPsychDsstInstructions = (function (jspsych) {
         jsPsych.finishTrial(trial_data);
       }
 
-      var after_response = function(info) {
+      var after_response = function (info) {
 
         // have to reinitialize this instead of letting it persist to prevent accidental skips of pages by holding down keys too long
         keyboard_listener = jsPsych.pluginAPI.getKeyboardResponse({

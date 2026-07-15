@@ -4,6 +4,33 @@ var jsPsychHorizonsTrial = (function (jspsych) {
   const info = {
     name: 'horizons-trial',
     description: '',
+    version: '1.0.0',
+    data: {
+      horizon: jspsych.ParameterType.INT,
+      rewards_L: {
+        type: jspsych.ParameterType.INT,
+        array: true,
+      },
+      rewards_R: {
+        type: jspsych.ParameterType.INT,
+        array: true,
+      },
+      key_presses: {
+        type: jspsych.ParameterType.STRING,
+        array: true,
+      },
+      response_times: {
+        type: jspsych.ParameterType.FLOAT,
+        array: true,
+      },
+      outcomes: {
+        type: jspsych.ParameterType.INT,
+        array: true,
+      },
+      screen_resolution: {
+        type: jspsych.ParameterType.INT,
+      }
+    },
     parameters: {
       horizon: {
         type: jspsych.ParameterType.INT,
@@ -113,8 +140,8 @@ var jsPsychHorizonsTrial = (function (jspsych) {
       //---------------------------------------//
 
       // Sum of array.
-      function arrSum(arr){
-        return arr.reduce(function(a,b){
+      function arrSum(arr) {
+        return arr.reduce(function (a, b) {
           return a + b
         }, 0);
       }
@@ -124,16 +151,16 @@ var jsPsychHorizonsTrial = (function (jspsych) {
 
         // Case 1: forced choice turn (left)
         if (turn < 4 && trial.forced_choices[turn] == 0) {
-          display_element.querySelector(`#L${turn}`).setAttribute('status','fill');
+          display_element.querySelector(`#L${turn}`).setAttribute('status', 'fill');
 
           // Case 2: forced choice turn (right)
         } else if (turn < 4 && trial.forced_choices[turn] == 1) {
-          display_element.querySelector(`#R${turn}`).setAttribute('status','fill');
+          display_element.querySelector(`#R${turn}`).setAttribute('status', 'fill');
 
           // Case 3: free choice turn
         } else {
-          display_element.querySelector(`#L${turn}`).setAttribute('status','fill');
-          display_element.querySelector(`#R${turn}`).setAttribute('status','fill');
+          display_element.querySelector(`#L${turn}`).setAttribute('status', 'fill');
+          display_element.querySelector(`#R${turn}`).setAttribute('status', 'fill');
         }
 
       }
@@ -145,7 +172,7 @@ var jsPsychHorizonsTrial = (function (jspsych) {
         var matches = display_element.querySelectorAll(".point-box[status='fill']");
 
         // Iteratively unfill.
-        matches.forEach( function(match) { match.setAttribute('status',null) } );
+        matches.forEach(function (match) { match.setAttribute('status', null) });
 
       }
 
@@ -173,7 +200,7 @@ var jsPsychHorizonsTrial = (function (jspsych) {
       };
 
       // function to handle missed responses
-      var missed_response = function() {
+      var missed_response = function () {
 
         // Kill all setTimeout handlers.
         jsPsych.pluginAPI.clearAllTimeouts();
@@ -184,31 +211,31 @@ var jsPsychHorizonsTrial = (function (jspsych) {
 
         display_element.innerHTML = msg;
 
-        jsPsych.pluginAPI.setTimeout(function() {
+        jsPsych.pluginAPI.setTimeout(function () {
           end_trial();
         }, 5000);
 
       }
 
       // function to handle responses by the subject
-      var after_response = function(info) {
+      var after_response = function (info) {
 
         // Kill all setTimeout handlers.
         jsPsych.pluginAPI.clearAllTimeouts();
         jsPsych.pluginAPI.cancelAllKeyboardResponses();
 
         // Record response
-        responses['key_presses'].push(info['key']);
+        responses['key_presses'].push(info['key'].toLowerCase());
         responses['response_times'].push(info['rt']);
 
         // Unfill boxes
         unfillPointBoxes();
 
         // Display outcome
-        if (info['key'] == trial.valid_responses[0]) {
+        if (info['key'].toLowerCase() == trial.valid_responses[0]) {
           responses['outcomes'].push(trial.rewards_L[turn]);
           display_element.querySelector(`#L${turn}`).innerHTML = trial.rewards_L[turn];
-        } else if (info['key'] == trial.valid_responses[1]) {
+        } else if (info['key'].toLowerCase() == trial.valid_responses[1]) {
           responses['outcomes'].push(trial.rewards_R[turn]);
           display_element.querySelector(`#R${turn}`).innerHTML = trial.rewards_R[turn];
         }
@@ -240,7 +267,7 @@ var jsPsychHorizonsTrial = (function (jspsych) {
       };
 
       // function to handle post-game events
-      var after_game = function() {
+      var after_game = function () {
 
         // Define message
         const msg = `<p>You earned <b>${arrSum(responses.outcomes)}</b> points.</p><p>Press any key to start the next round.</p>`
@@ -254,7 +281,7 @@ var jsPsychHorizonsTrial = (function (jspsych) {
 
         // initialize keyboardListener
         var keyboardListener = "";
-        setTimeout(function() {
+        setTimeout(function () {
           keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
             callback_function: end_trial,
             valid_responses: 'ALL_KEYS',
@@ -267,7 +294,7 @@ var jsPsychHorizonsTrial = (function (jspsych) {
       }
 
       // function to end trial when it is time
-      var end_trial = function() {
+      var end_trial = function () {
 
         // Kill any timeout handlers / keyboard listeners
         jsPsych.pluginAPI.clearAllTimeouts();
@@ -309,7 +336,7 @@ var jsPsychHorizonsTrial = (function (jspsych) {
 
       // end trial if choice_duration is set
       if (trial.choice_duration !== null) {
-        jsPsych.pluginAPI.setTimeout(function() {
+        jsPsych.pluginAPI.setTimeout(function () {
           missed_response();
         }, trial.choice_duration);
       }

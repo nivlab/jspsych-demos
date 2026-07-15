@@ -4,6 +4,7 @@
 
 // Define comprehension threshold.
 var max_errors = 0;
+var num_loops = 0;
 
 //------------------------------------//
 // Define images for preloading.
@@ -60,7 +61,7 @@ var PRACTICE_H5 = {
   rewards_L: [44, 57, 74, 72, 62],
   rewards_R: [31, 33, 24, 39, 29],
   forced_choices: [1, 0, 1, 1],
-  data: {phase: "practice"}
+  data: { phase: "practice" }
 }
 
 var PRACTICE_H10 = {
@@ -69,7 +70,7 @@ var PRACTICE_H10 = {
   rewards_L: [64, 50, 57, 35, 52, 38, 44, 61, 39, 38],
   rewards_R: [70, 69, 76, 71, 75, 58, 81, 84, 57, 61],
   forced_choices: [0, 0, 1, 1],
-  data: {phase: "practice"}
+  data: { phase: "practice" }
 }
 
 // Instructions (part 02)
@@ -98,7 +99,7 @@ var COMPREHENSION = {
 var INSTRUCTIONS_SKIP = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: '<p>You are starting a demo of the <b>Horizons task.</b></p><p>To see the instructions, press the "1" key. To skip them, press the "2" key.</p>',
-  choices: ["1","2"]
+  choices: ["1", "2"]
 }
 
 // Define instructions loop.
@@ -110,7 +111,7 @@ var INSTRUCTIONS = {
     INSTRUCTIONS_02,
     COMPREHENSION
   ],
-  loop_function: function(data) {
+  loop_function: function (data) {
 
     // Extract number of errors.
     const num_errors = data.values().slice(-1)[0].num_errors;
@@ -124,9 +125,9 @@ var INSTRUCTIONS = {
     }
 
   },
-  conditional_function: function(){
+  conditional_function: function () {
     var data = jsPsych.data.get().last(1).values()[0];
-    if(jsPsych.pluginAPI.compareKeys(data.response, '2')){
+    if (jsPsych.pluginAPI.compareKeys(data.response, '2')) {
       return false;
     } else {
       return true;

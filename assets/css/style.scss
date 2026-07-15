@@ -1,4 +1,503 @@
 ---
 ---
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-@import "jekyll-theme-minimal";
+/* ---------- Global ---------- */
+
+html,
+body,
+.main {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+}
+
+html,
+body {
+  overflow-x: visible !important;
+}
+
+body {
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.6;
+  color: #333;
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  font-family: "Montserrat", Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  color: #222;
+}
+
+h1{
+    padding-top: 20px;
+    scroll-margin-top: 110px;
+}
+h2,
+h3{
+  padding-top: 10px;
+  scroll-margin-top: 110px;
+}
+
+@media (max-width: 900px) {
+  h1 {
+    scroll-margin-top: 70px;
+  }
+
+  h2,
+  h3 {
+    scroll-margin-top: 60px;
+  }
+}
+
+hr {
+  height: 1px;
+  background-color: #cecece;
+  border: none;
+}
+
+
+/* ---------- Links ---------- */
+
+a {
+  color: #b85c00;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  font-weight: 500;
+}
+
+a:hover {
+  color: #e77500;
+  text-decoration: underline;
+}
+
+
+/* ---------- Banner ---------- */
+
+.nivlab-banner {
+  display: block;
+  width: 100%;
+  height: 310px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .nivlab-banner {
+    height: 200px;
+  }
+}
+
+@media (max-width: 400px) {
+  .nivlab-banner {
+    height: 120px;
+  }
+}
+
+
+/* ---------- Navigation ---------- */
+
+.top-nav,
+.site-nav {
+  width: 100%;
+  z-index: 999999;
+  overflow: visible !important;
+}
+
+.top-nav {
+  background: white;
+  border-bottom: 1px solid #ddd;
+  position: sticky !important;
+  top: 0;
+  z-index: 999999;
+  padding-bottom: 20px;
+  padding-top: 50px;
+}
+
+.main,
+.main-content-wrap,
+.main-content {
+  position: relative;
+  z-index: 1;
+}
+
+.main-header {
+  position: relative;
+  z-index: 10001;
+}
+
+/* ---------- Desktop Menu ---------- */
+
+.site-nav>.nav-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: clamp(0.25rem, 1vw, 1rem);
+
+  list-style: none;
+  margin: 0;
+  padding: clamp(4px, .8vw, 8px) 1vw;
+}
+
+.site-nav .nav-list-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 1;
+  list-style: none;
+  overflow: visible !important;
+}
+
+.site-nav a {
+  color: #000;
+  font-size: clamp(14px, 1.25vw, 16px);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  color: #000;
+  text-decoration: none;
+  background: rgba(231, 117, 0, 0.15);
+}
+
+.site-nav .nav-list .nav-list-link {
+  display: block;
+  padding-left: clamp(6px, .8vw, 20px);
+  padding-right: clamp(6px, .8vw, 20px);
+  white-space: nowrap;
+  width: 100%;
+}
+
+
+/* ---------- Dropdowns ---------- */
+
+.site-nav .nav-list-item>.nav-list {
+  display: none;
+
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  flex-direction: column !important;
+
+  min-width: 220px;
+  margin: 0;
+  padding: 8px 0;
+
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .15);
+
+  z-index: 999999 !important;
+}
+
+.site-nav .nav-list-item:hover>.nav-list,
+.site-nav .nav-list-item.active:hover>.nav-list {
+  display: flex !important;
+}
+
+
+/* ---------- Active State ---------- */
+
+.site-nav .nav-list-item.active>.nav-list {
+  display: none !important;
+}
+
+.site-nav .nav-list-link.active,
+.site-nav .nav-list-item.active>.nav-list-link {
+  color: #000 !important;
+  font-weight: 700;
+  background: rgba(231, 117, 0, 0.15) !important;
+  box-shadow: none !important;
+}
+
+.site-nav .nav-list-item:hover,
+.site-nav .nav-list-link:hover {
+  background: rgba(231, 117, 0, 0.15) !important;
+}
+
+
+/* ---------- Remove Theme Expanders ---------- */
+
+.nav-list-expander {
+  display: none !important;
+}
+
+
+/* ---------- Mobile Navbar ---------- */
+
+.nav-toggle {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+
+  .site-nav>.nav-list {
+    gap: 0.25rem;
+    padding: 4px 0.5rem;
+  }
+
+  .site-nav a {
+    font-size: 13px;
+  }
+
+  .site-nav .nav-list .nav-list-link {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+}
+
+@media (max-width: 900px) {
+
+  .top-nav {
+    height: 55px;
+    z-index: 100000;
+    padding: 0;
+    padding-bottom: 15px;
+  }
+
+
+  .nav-toggle {
+    display: flex;
+
+    position: absolute;
+    left: 50%;
+    top: 12px;
+
+    transform: translateX(-50%);
+
+    width: 40px;
+    height: 35px;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    z-index: 2000000;
+  }
+
+
+  .nav-toggle span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    margin: 3px 0;
+    background: #000;
+  }
+
+
+  body.menu-open .nav-toggle {
+    display: none !important;
+  }
+
+
+  .site-nav {
+    display: none !important;
+
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100dvh;
+
+    background: white;
+
+    padding: 80px 20px 40px;
+
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+
+    z-index: 1000001;
+  }
+
+
+  .site-nav.open,
+  body.menu-open .site-nav {
+    display: block !important;
+  }
+
+
+  .site-nav>.nav-list,
+  .site-nav .nav-list {
+    display: flex !important;
+
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+    gap: 0;
+  }
+
+
+  .site-nav .nav-list-item {
+    display: flex !important;
+
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    margin: 6px 0;
+  }
+
+
+  .site-nav>.nav-list>.nav-list-item>.nav-list-link {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  /* ---------- Expand mobile menus ---------- */
+
+  .site-nav .nav-list-item>.nav-list {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    position: static !important;
+
+    width: 100%;
+
+    flex-direction: column;
+    align-items: center;
+
+    transform: none;
+
+    background: transparent;
+    border: none;
+    box-shadow: none;
+
+    padding: 0;
+    margin: 0;
+
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+
+  .site-nav>.nav-list>.nav-list-item>.nav-list>.nav-list-item>.nav-list-link {
+    font-size: 15px;
+    font-weight: 400;
+    text-align: center;
+    padding: 3px 0;
+    white-space: normal;
+  }
+
+
+  .site-nav>.nav-list>.nav-list-item>.nav-list>.nav-list-item>.nav-list>.nav-list-item>.nav-list-link {
+    font-size: 13px;
+    color: #555;
+  }
+
+
+  .site-nav .nav-list-link.active,
+  .site-nav .nav-list-item.active>.nav-list-link {
+    background: transparent !important;
+    border-bottom: 2px solid #e77500;
+    font-weight: 700;
+  }
+
+
+  body.menu-open,
+  html.menu-open {
+    overflow: hidden !important;
+    height: 100% !important;
+  }
+
+
+  .site-nav.open>.nav-list {
+    min-height: max-content;
+    padding-bottom: 100px;
+  }
+
+
+  /* ---------- Scroll indicator ---------- */
+
+  .site-nav.open::after {
+    content: "↓";
+
+    position: fixed;
+
+    bottom: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+
+    border-radius: 50%;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+
+    color: #e77500;
+
+    font-size: 24px;
+    font-weight: bold;
+
+    z-index: 1000002;
+
+    pointer-events: none;
+
+    opacity: 1;
+    transition: opacity .2s ease;
+  }
+
+
+  .site-nav.open.at-bottom::after {
+    opacity: 0;
+  }
+
+  /* ---------- Dropdown menus permanently open ---------- */
+
+  .site-nav .nav-list-item>.nav-list,
+  .site-nav .nav-list-item.active>.nav-list,
+  .site-nav .nav-list-item:hover>.nav-list,
+  .site-nav .nav-list-item:focus-within>.nav-list {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: static !important;
+    transform: none !important;
+  }
+
+}
+
+.pt-5,
+.py-5 {
+  padding-top: 0 !important;
+}

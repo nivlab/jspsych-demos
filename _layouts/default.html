@@ -1,54 +1,54 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="{{ site.lang | default: " en-US" }}">
 
-{% seo %}
-    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
-    <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <![endif]-->
-    {% include head-custom.html %}
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        {% if site.logo %}
-          <img src="{{site.logo | relative_url}}" alt="Logo" / style="max-width: 200px">
-        {% endif %}
+  {% seo %}
+  <link rel="stylesheet" href="{{ " /assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+  <link rel="icon" type="image/png" href="{{ '/assets/img/nivlab-favicon.png' | relative_url }}">
 
-        <p>{{ site.description | default: site.github.project_tagline }}</p>
+  {% include head-custom.html %}
+</head>
 
-        <h3 style="margin-right: 145px;">Resources</h3>
+<body>
+  <img src="{{ '/assets/img/demos-header.png' | append: page.banner | relative_url }}" alt="Niv Lab banner"
+    class="nivlab-banner">
+  <div class="top-nav">
+    <button class="nav-toggle" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      {% include nav.html %}
+    </nav>
+  </div>
 
-        <p style="margin-right: 145px; margin-bottom: 2px;"><a href="https://www.jspsych.org/">jsPsych</a></p>
-        <p style="margin-right: 145px; margin-bottom: 2px;"><a href="https://nivlab.github.io/nivturk/">NivTurk</a></p>
-        <p style="margin-right: 140px; margin-bottom: 2px;"><a href="{{ site.baseurl }}/pages/tutorials.html">Tutorials</a></p>
-        <p style="margin-right: 151px; margin-bottom: 2px;"><a href="{{ site.baseurl }}/pages/stimuli.html">Stimuli</a></p>
-        <p style="margin-right: 127px; margin-bottom: 2px;"><a href="{{ site.baseurl }}/pages/extensions.html">Extensions</a></p>
+  <main class="main-content">
+    {{ content }}
+    <br>
+    <br>
+    <footer>
+      <p><small>View on <a href="{{ site.github.repository_url }}">GitHub</a> | Theme by <a
+            href="https://github.com/orderedlist">orderedlist</a><br>Funding from <a
+            href="https://ncats.nih.gov">NCATS</a> (UL1TR003017)</small></p>
+    </footer>
+  </main>
 
-      </header>
-      <section>
 
-      {{ content }}
+  <script src="{{ " /assets/js/scale.fix.js" | relative_url }}"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8GG0RKT54J"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-8GG0RKT54J');
+  </script>
+  <script src="{{ '/assets/js/custom.js' | relative_url }}"></script>
+</body>
 
-      </section>
-      <footer>
-        <p><small>View on <a href="{{ site.github.repository_url }}">GitHub</a> | Theme by <a href="https://github.com/orderedlist">orderedlist</a><br>Funding from <a href="https://ncats.nih.gov">NCATS</a> (UL1TR003017)</small></p>
-      </footer>
-    </div>
-    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8GG0RKT54J"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-8GG0RKT54J');
-    </script>
-  </body>
 </html>
