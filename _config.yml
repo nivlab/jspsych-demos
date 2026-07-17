@@ -38,6 +38,10 @@ google_analytics: G-8GG0RKT54J
 include:
   - pages
 
+aux_links:
+  "Back to NivLab":
+    - "//nivlab.github.io/"
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to

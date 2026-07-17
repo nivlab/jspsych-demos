@@ -1,5 +1,5 @@
----
----
+--- 
+--- 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 /* ---------- Global ---------- */
@@ -15,6 +15,17 @@ body,
 html,
 body {
   overflow-x: visible !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px;
+}
+
+@media (max-width: 900px) {
+  html {
+    scroll-padding-top: 60px;
+  }
 }
 
 body {
@@ -49,12 +60,13 @@ h6 {
   color: #222;
 }
 
-h1{
-    padding-top: 20px;
-    scroll-margin-top: 110px;
+h1 {
+  padding-top: 20px;
+  scroll-margin-top: 110px;
 }
+
 h2,
-h3{
+h3 {
   padding-top: 10px;
   scroll-margin-top: 110px;
 }
@@ -228,15 +240,22 @@ a:hover {
   display: none !important;
 }
 
-.site-nav .nav-list-link.active,
-.site-nav .nav-list-item.active>.nav-list-link {
+/* Highlight active child link */
+.site-nav .nav-list-link.active {
   color: #000 !important;
   font-weight: 700;
   background: rgba(231, 117, 0, 0.15) !important;
   box-shadow: none !important;
 }
 
-.site-nav .nav-list-item:hover,
+/* Highlight active parent section */
+.site-nav .nav-list-item.active > .nav-list-link {
+  color: #000 !important;
+  font-weight: 700;
+  background: rgba(231, 117, 0, 0.15) !important;
+  box-shadow: none !important;
+}
+
 .site-nav .nav-list-link:hover {
   background: rgba(231, 117, 0, 0.15) !important;
 }
@@ -510,4 +529,23 @@ a:hover {
 .pt-5,
 .py-5 {
   padding-top: 0 !important;
+}
+
+/* ---------- Back to NivLab ---------- */
+
+.aux-nav {
+  display: flex;
+  padding-bottom: 0.15rem;
+  border-bottom: 1px solid #d1d5db;
+  width: 100%;
+}
+
+.aux-nav-list {
+  list-style: none;
+  margin-left: auto;
+  padding-right: 2rem;
+}
+
+.aux-nav-list-item a {
+  font-size: 0.75rem;
 }

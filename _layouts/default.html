@@ -8,7 +8,7 @@
 
   {% seo %}
   <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
-  <link rel="icon" type="image/png" href="{{ '/assets/img/nivlab-favicon.png' | relative_url }}">
+  <link rel="icon" type="image/png" href="{{ '/nivlab-favicon.png' | relative_url }}">
 
   {% include head-custom.html %}
 </head>
@@ -29,6 +29,20 @@
       {% include nav.html %}
     </nav>
   </div>
+  {% if site.aux_links %}
+  <nav aria-label="Auxiliary" class="aux-nav">
+    <ul class="aux-nav-list">
+      {% for link in site.aux_links %}
+      <li class="aux-nav-list-item">
+          <a href="{{ link.last }}" class="site-button" {% if site.aux_links_new_tab %} target="_blank"
+          rel="noopener noreferrer" {% endif %}>
+          {{ link.first }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </nav>
+  {% endif %}
 
   <main class="main-content">
     {{ content }}
